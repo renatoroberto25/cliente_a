@@ -1,0 +1,203 @@
+(modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+cramfs\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo squashfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+squashfs\b' && ! lsmod | grep -q squashfs) || (! modinfo squashfs &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo udf &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+udf\b' && ! lsmod | grep -q udf) || (! modinfo udf &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo hfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+hfs\b' && ! lsmod | grep -q hfs) || (! modinfo hfs &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo hfsplus &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+hfsplus\b' && ! lsmod | grep -q hfsplus) || (! modinfo hfsplus &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo jffs2 &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+jffs2\b' && ! lsmod | grep -q jffs2) || (! modinfo jffs2 &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo freevxfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+freevxfs\b' && ! lsmod | grep -q freevxfs) || (! modinfo freevxfs &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo overlay &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+overlay\b' && ! lsmod | grep -q overlay) || (! modinfo overlay &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo usb-storage &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+usb_storage\b' && ! lsmod | grep -q usb_storage) || (! modinfo usb-storage &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo dccp &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+dccp\b' && ! lsmod | grep -q dccp) || (! modinfo dccp &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo sctp &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+sctp\b' && ! lsmod | grep -q sctp) || (! modinfo sctp &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo rds &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+rds\b' && ! lsmod | grep -q rds) || (! modinfo rds &>/dev/null) && echo "PASS" || echo "FAIL"
+(modinfo tipc &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+tipc\b' && ! lsmod | grep -q tipc) || (! modinfo tipc &>/dev/null) && echo "PASS" || echo "FAIL"
+(ulimit -c 0 && sysctl -n fs.suid_dumpable | grep -q '^0$') && echo "PASS" || echo "FAIL"
+(sysctl -n kernel.yama.ptrace_scope | grep -q '^[1-3]$') && echo "PASS" || echo "FAIL"
+(grep -q 'nx' /proc/cpuinfo && dmesg | grep -qi 'NX.*active') && echo "PASS" || echo "FAIL"
+(sysctl -n kernel.randomize_va_space | grep -q '^2$') && echo "PASS" || echo "FAIL"
+(grep -q 'iommu=on' /proc/cmdline) && echo "PASS" || echo "FAIL"
+(sysctl -n kernel.perf_event_paranoid | grep -q '^[2-3]$') && echo "PASS" || echo "FAIL"
+(sysctl -n kernel.dmesg_restrict | grep -q '^1$') && echo "PASS" || echo "FAIL"
+( [ ! -e /proc/sys/kernel/unprivileged_userns_clone ] || sysctl -n kernel.unprivileged_userns_clone 2>/dev/null | grep -q '^0$' ) && echo "PASS" || echo "FAIL"
+(sysctl -n fs.protected_symlinks | grep -q '^1$') && echo "PASS" || echo "FAIL"
+(sysctl -n fs.protected_hardlinks | grep -q '^1$') && echo "PASS" || echo "FAIL"
+(sysctl -n fs.suid_dumpable | grep -q '^0$') && echo "PASS" || echo "FAIL"
+(findmnt -kn /tmp >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /dev/shm >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /var >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /var/tmp >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /var/log >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /var/log/audit >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /home >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /historico >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /crash >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -kn /UNIX >/dev/null && echo "PASS" || echo "FAIL")
+(grep -E 'nodev|nosuid|noexec' /etc/fstab >/dev/null && echo "PASS" || echo "FAIL")
+(findmnt -n /var | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /tmp | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /dev/shm | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /var/tmp | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /var/log | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /var/log/audit | grep -Eq 'nodev|nosuid|noexec' && echo "PASS" || echo "FAIL")
+(findmnt -n /home | grep -qw nodev && echo "PASS" || echo "FAIL")
+(grep -E 'nodev|nosuid|noexec' /etc/fstab | grep -E '/media|/run/media' >/dev/null && echo "PASS" || echo "FAIL")
+(find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep . && echo "FAIL" || echo "PASS")
+(stat -c "%A" /tmp | grep -q 't' && echo "PASS" || echo "FAIL")
+(stat -c "%A" /var/tmp | grep -q 't' && echo "PASS" || echo "FAIL")
+(stat -c "%A" /dev/shm | grep -q 't' && echo "PASS" || echo "FAIL")
+(systemctl is-enabled autofs &>/dev/null && echo "FAIL" || echo "PASS")
+(grep -q 'password_pbkdf2' /boot/grub2/grub.cfg 2>/dev/null && echo "PASS" || echo "FAIL")
+(stat -Lc '%a %U %G' /boot/grub2/grub.cfg 2>/dev/null | grep -Eq '^(400|600) root root$' && echo "PASS" || echo "FAIL")
+(grep -q '^ExecStart=-/bin/sh' /usr/lib/systemd/system/emergency.service && echo "FAIL" || echo "PASS")
+(getenforce 2>/dev/null | grep -Eq 'Enforcing|Permissive' && echo "PASS" || echo "FAIL")
+(sestatus 2>/dev/null | grep -q 'Loaded policy name' && echo "PASS" || echo "FAIL")
+(ps -eZ | grep -q 'unconfined_service_t' && echo "FAIL" || echo "PASS")
+(ps -eZ | grep -q 'unconfined_t' && echo "FAIL" || echo "PASS")
+(rpm -q prelink &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q xinetd &>/dev/null && echo "FAIL" || echo "PASS")
+( systemctl is-active --quiet chronyd &>/dev/null || systemctl is-active --quiet ntpd &>/dev/null || systemctl is-active --quiet systemd-timesyncd &>/dev/null ) && echo "PASS" || echo "FAIL"
+( ! rpm -q chrony &>/dev/null || ( systemctl is-enabled chronyd &>/dev/null && grep -q '^server' /etc/chrony.conf 2>/dev/null ) ) && echo "PASS" || echo "FAIL"
+( ! rpm -q ntp &>/dev/null || ( systemctl is-enabled ntpd &>/dev/null && grep -q '^server' /etc/ntp.conf 2>/dev/null ) ) && echo "PASS" || echo "FAIL"
+(rpm -q xorg-x11-server-common &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q avahi &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q cups &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q dhcp-server &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q openldap-servers &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q bind &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q vsftpd &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q httpd &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q dovecot &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q samba &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q squid &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q net-snmp &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q ypserv &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q telnet-server &>/dev/null && echo "FAIL" || echo "PASS")
+( [ ! -f /etc/postfix/main.cf ] || grep -Eq '^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*(localhost|loopback-only)\b' /etc/postfix/main.cf 2>/dev/null ) && echo "PASS" || echo "FAIL"
+(systemctl is-enabled nfs-server &>/dev/null && echo "FAIL" || echo "PASS")
+(systemctl is-enabled rpcbind &>/dev/null && echo "FAIL" || echo "PASS")
+(systemctl is-enabled rsyncd &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q ypbind &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q rsh &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q talk &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q telnet &>/dev/null && echo "FAIL" || echo "PASS")
+(rpm -q openldap-clients &>/dev/null && echo "FAIL" || echo "PASS")
+(systemctl list-unit-files --state=enabled 2>/dev/null | grep -Eq '^(avahi-daemon|cups|telnet|vsftpd|xinetd|tftp|ypserv|ypbind)\.service' && echo "FAIL" || echo "PASS")
+(rpm -q tftp-server &>/dev/null && echo "FAIL" || echo "PASS")
+( grep -Ehv '^[[:space:]]*(//|#)' /etc/polkit-1/rules.d/*.rules 2>/dev/null | grep -Eq 'polkit\.Result\.YES|[^[:alnum:]_]allow[^[:alnum:]_]' ) && echo "FAIL" || echo "PASS"
+(grep -Eq '^gpgcheck\s*=\s*1' /etc/yum.conf /etc/yum.repos.d/*.repo 2>/dev/null && echo "PASS" || echo "FAIL")
+(dnf check-update --security &>/dev/null && echo "FAIL" || echo "PASS")
+( ( systemctl is-active --quiet chronyd &>/dev/null && ! systemctl is-active --quiet ntpd &>/dev/null && ! systemctl is-active --quiet systemd-timesyncd &>/dev/null ) || ( ! systemctl is-active --quiet chronyd &>/dev/null && systemctl is-active --quiet ntpd &>/dev/null && ! systemctl is-active --quiet systemd-timesyncd &>/dev/null ) || ( ! systemctl is-active --quiet chronyd &>/dev/null && ! systemctl is-active --quiet ntpd &>/dev/null && systemctl is-active --quiet systemd-timesyncd &>/dev/null ) ) && echo "PASS" || echo "FAIL"
+(stat -Lc '%a %U %G' /etc/cron.allow 2>/dev/null | grep -Eq '^640 root (root|crontab)$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.ip_forward 2>/dev/null | grep -q '^0$' && sysctl -n net.ipv6.conf.all.forwarding 2>/dev/null | grep -q '^0$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -q '^0$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -q '^0$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -q '^0$' && sysctl -n net.ipv4.conf.all.secure_redirects 2>/dev/null | grep -q '^0$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -Eq '^[12]$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -q '^1$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null | grep -q '^1$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -q '^1$' && echo "PASS" || echo "FAIL")
+(sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null | grep -q '^1$' && echo "PASS" || echo "FAIL")
+(firewall-cmd --direct --query-rule ipv4 filter INPUT 0 -p icmp --icmp-type timestamp-request -j DROP &>/dev/null || nft list ruleset 2>/dev/null | grep -Eqi 'icmp[[:space:]]+type[[:space:]]+timestamp-request[[:space:]]+drop' || iptables -L INPUT -n 2>/dev/null | grep -qi 'icmp type timestamp-request.*DROP') && echo "PASS" || echo "FAIL"
+(firewall-cmd --direct --query-rule ipv4 filter INPUT 0 -p icmp --icmp-type timestamp-reply -j DROP &>/dev/null || nft list ruleset 2>/dev/null | grep -Eqi 'icmp[[:space:]]+type[[:space:]]+timestamp-reply[[:space:]]+drop' || iptables -L INPUT -n 2>/dev/null | grep -qi 'icmp type timestamp-reply.*DROP') && echo "PASS" || echo "FAIL"
+(lsmod | grep -Eq 'bluetooth|iwlwifi' && echo "FAIL" || echo "PASS")
+(systemctl is-active firewalld >/dev/null 2>&1 && ZONE=$(firewall-cmd --get-default-zone 2>/dev/null) && firewall-cmd --permanent --zone="$ZONE" --get-target 2>/dev/null | grep -Eq 'default|DROP') && echo "PASS" || echo "FAIL"
+([ "$(printf "%s\n" "$(systemctl is-active firewalld >/dev/null 2>&1 && echo F)" "$(systemctl is-active nftables >/dev/null 2>&1 && echo F)" "$(systemctl is-active iptables >/dev/null 2>&1 && echo F)" | grep -c F)" -eq 1 ]) && echo "PASS" || echo "FAIL"
+(systemctl is-active firewalld >/dev/null 2>&1) && echo "PASS" || echo "FAIL"
+(firewall-cmd --get-default-zone >/dev/null 2>&1) && echo "PASS" || echo "FAIL"
+(systemctl is-active firewalld >/dev/null 2>&1 && firewall-cmd --permanent --zone=$(firewall-cmd --get-default-zone) --get-target >/dev/null 2>&1) && echo "PASS" || echo "FAIL"
+(update-crypto-policies --show 2>/dev/null | grep -qx FUTURE) && echo "PASS" || echo "FAIL"
+( stat -c %a /etc/ssh/sshd_config | grep -Eq '^(600|400)$' && [ "$(stat -c %U:%G /etc/ssh)" = "root:root" ] ) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*(AllowUsers|AllowGroups|DenyUsers|DenyGroups)[[:space:]]+' /etc/ssh/sshd_config 2>/dev/null) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*LogLevel[[:space:]]+(INFO|VERBOSE)' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*X11Forwarding[[:space:]]+no' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*MaxAuthTries[[:space:]]+[1-4]$' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*IgnoreRhosts[[:space:]]+yes' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*HostbasedAuthentication[[:space:]]+no' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*PermitRootLogin[[:space:]]+(no|prohibit-password)' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*PermitEmptyPasswords[[:space:]]+no' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*PermitUserEnvironment[[:space:]]+no' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*UsePAM[[:space:]]+yes' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*ClientAliveInterval[[:space:]]+([1-9][0-9]|[1-2][0-9]{2}|300)$' /etc/ssh/sshd_config  && grep -Eq '^[[:space:]]*ClientAliveCountMax[[:space:]]+[1-3]$' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*LoginGraceTime[[:space:]]+([1-9][0-9]|[1-5][0-9]{2})s?$' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*MaxStartups[[:space:]]+.+$' /etc/ssh/sshd_config  && grep -Eq '^[[:space:]]*MaxSessions[[:space:]]+[1-9]+' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*AllowTcpForwarding[[:space:]]+no' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+( grep -Eq '^[[:space:]]*Banner[[:space:]]+\S+' /etc/ssh/sshd_config ) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*Ciphers[[:space:]]+.*(chacha20|aes256).*' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*MACs[[:space:]]+.*(hmac-sha2|umac).*' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*KexAlgorithms[[:space:]]+.*(curve25519|diffie-hellman-group-exchange-sha256).*' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*(Ciphers|KexAlgorithms)[[:space:]]+.*(chacha20|curve25519).*' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+(grep -Eq '^[[:space:]]*(ForceCommand|ChrootDirectory)[[:space:]]+' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"
+grep -Eq 'pam_pwquality\.so' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"
+( grep -Eq 'pam_pwquality\.so' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null && grep -Psiq '^\s*minlen\s*=\s*(1[4-9]|[2-9][0-9]+)\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && grep -Psiq '^\s*minclass\s*=\s*[4-9]\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo "PASS" || echo "FAIL"
+(grep -Eq 'pam_faillock\.so' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"
+! grep -Eq 'pam_tally2\.so' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"
+(grep -Eq 'pam_pwhistory\.so' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"
+grep -Psiq '^\s*minlen\s*=\s*(1[4-9]|[2-9][0-9]+)' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"
+grep -Psiq '^\s*minclass\s*=\s*[4-9]' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"
+grep -Psiq '^\s*maxrepeat\s*=\s*3\b'   /etc/security/pwquality.conf* && grep -Psiq '^\s*maxsequence\s*=\s*3\b' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"
+! grep -Psiq '^\s*dictcheck\s*=\s*0\b' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"
+grep -Eq 'pam_unix\.so.*(sha512|yescrypt)' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"
+(grep -Eq 'pam_pwhistory\.so.*remember=([5-9]|[1-9][0-9]+)' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"
+grep -Pi '^\s*deny\s*=\s*([5-9]|[1-9][0-9]+)' /etc/security/faillock.conf && echo "PASS" || echo "FAIL"
+grep -Pi '^\s*unlock_time\s*=\s*(9[0-9]{2}|[1-9][0-9]{3,})\b' /etc/security/faillock.conf && echo "PASS" || echo "FAIL"
+val=$(awk '$1=="PASS_MAX_DAYS"{print $2; exit}' /etc/login.defs); [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -le 365 ]] && echo "PASS" || echo "FAIL"
+grep -Eq '^\s*PASS_MIN_DAYS\s+[1-9][0-9]*' /etc/login.defs && echo "PASS" || echo "FAIL"
+grep -Eq '^\s*PASS_WARN_AGE\s+([7-9]|[1-9][0-9]+)' /etc/login.defs && echo "PASS" || echo "FAIL"
+awk -F: '$2~/^\$/ && ($7=="" || $7<30){exit 1}' /etc/shadow && echo "PASS" || echo "FAIL"
+awk -F: '$2~/^\$/{if($3==""||$3==0) exit 1} END{exit 0}' /etc/shadow && echo "PASS" || echo "FAIL"
+awk -F: '($3==0 && $1!="root"){exit 1}' /etc/passwd && echo "PASS" || echo "FAIL"
+[ "$(awk -F: '/^root:/ {print $4}' /etc/passwd)" = "0" ] && echo "PASS" || echo "FAIL"
+awk -F: '($3<1000 && $1!="root" && $7 ~ /(bash|sh|zsh)$/){exit 1}' /etc/passwd && echo "PASS" || echo "FAIL"
+grep -qE '^(\/usr)?\/sbin\/nologin$' /etc/shells && echo "PASS" || echo "FAIL"
+grep -q 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' /root/.bash_profile && echo "PASS" || echo "FAIL"
+grep -Rqs 'umask 027' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null && echo "PASS" || echo "FAIL"
+grep -Rqs 'TMOUT=900' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null && echo "PASS" || echo "FAIL"
+grep -RqsE '^%.*ALL=\(ALL\)' /etc/sudoers /etc/sudoers.d 2>/dev/null && echo "FAIL" || echo "PASS"
+grep -Rqs 'use_pty' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"
+grep -Rqs 'logfile=' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"
+grep -Rqs '!authenticate' /etc/sudoers /etc/sudoers.d && echo "FAIL" || echo "PASS"
+grep -Rqs 'timestamp_timeout=5' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"
+grep -q 'pam_wheel.so' /etc/pam.d/su && echo "PASS" || echo "FAIL"
+( systemctl is-active rsyslog &>/dev/null || systemctl is-active systemd-journald &>/dev/null ) && echo "PASS" || echo "FAIL"
+grep -q '^Storage=persistent' /etc/systemd/journald.conf && echo "PASS" || echo "FAIL"
+( rpm -q rsyslog &>/dev/null && systemctl is-active rsyslog &>/dev/null ) && echo "PASS" || echo "FAIL"
+( grep -Eq 'rsyslog' /etc/logrotate.d/* 2>/dev/null ) && echo "PASS" || echo "FAIL"
+( rpm -q audit audit-libs &>/dev/null && systemctl is-active auditd &>/dev/null ) && echo "PASS" || echo "FAIL"
+grep -q 'audit=1' /proc/cmdline && echo "PASS" || echo "FAIL"
+( grep -Eq '^\s*max_log_file\s*=\s*[1-9]' /etc/audit/auditd.conf ) && echo "PASS" || echo "FAIL"
+( grep -Eq '^\s*max_log_file_action\s*=\s*(keep_logs|rotate)' /etc/audit/auditd.conf ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'adjtimex|settimeofday|clock_settime' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq '/etc/(passwd|shadow|group|gshadow)' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'sethostname|setdomainname|/etc/hosts|/etc/hostname' ) && echo "PASS" || echo "FAIL"
+auditctl -l 2>/dev/null | grep -Ei 'mac.*policy' >/dev/null && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq '/var/log/faillog|/var/log/lastlog|/var/run/utmp' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'chmod|chown|fchmod|fchown' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'EACCES|EPERM' ) && echo "PASS" || echo "FAIL"
+( find / -xdev -perm -4000 -type f 2>/dev/null | while read -r f; do auditctl -l 2>/dev/null | grep -q "$f" || exit 1; done ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'mount|umount' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'unlink|rename|rmdir|unlinkat|renameat' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq 'init_module|finit_module|delete_module' ) && echo "PASS" || echo "FAIL"
+( auditctl -l 2>/dev/null | grep -Eq '/etc/sudoers|/etc/sudoers.d' ) && echo "PASS" || echo "FAIL"
+( auditctl -s 2>/dev/null | grep -Eq '^[[:space:]]*enabled[[:space:]]+2\b' ) && echo "PASS" || echo "FAIL"
+( rpm -q aide &>/dev/null && [ -f /var/lib/aide/aide.db.gz ] ) && echo "PASS" || echo "FAIL"
+( grep -Ersq 'aide(\.wrapper)? .*(--check|--update|\$AIDEARGS)' /etc/cron.* /etc/crontab /var/spool/cron 2>/dev/null || systemctl list-timers --all 2>/dev/null | grep -qi aime ) && echo "PASS" || echo "FAIL"
+stat -Lc "%U %G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules 2>/dev/null | awk '{if($1!="root" || $2!="root") exit 1}' && echo "PASS" || echo "FAIL"
+( [ -f /etc/passwd ] && stat -Lc "%a %u %g" /etc/passwd | grep -Eq '^64[0-9] 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/passwd- ] && stat -Lc "%a %u %g" /etc/passwd- | grep -Eq '^64[0-9] 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/shadow ] && stat -Lc "%a %u %g" /etc/shadow | grep -Eq '^0+ 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/shadow- ] && stat -Lc "%a %u %g" /etc/shadow- | grep -Eq '^0+ 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/gshadow- ] && stat -Lc "%a %u %g" /etc/gshadow- | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/gshadow ] && stat -Lc "%a %u %g" /etc/gshadow | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/group ] && stat -Lc "%a %u %g" /etc/group | grep -Eq '^64[0-9] 0 0$' ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/group- ] && stat -Lc "%a %u %g" /etc/group- | grep -Eq '^64[0-9] 0 0$' ) && echo "PASS" || echo "FAIL"
+( awk -F: '$7 ~ /(\/usr)?\/sbin\/nologin$/ {found=1} END{exit !found}' /etc/passwd ) && echo "PASS" || echo "FAIL"
+( [ -f /etc/security/opasswd ] && stat -Lc "%a %u %g" /etc/security/opasswd | grep -Eq '^600 0 0$' ) && echo "PASS" || echo "FAIL"
+( find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"
+( find / -xdev \( -type f -o -type d \) -not -path "/tmp/*" -not -path "/var/tmp/*" -not -path "/dev/shm/*" -perm -0002 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"
+( find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"
+( find / -xdev \( -perm -4000 -o -perm -2000 \) 2>/dev/null | grep -Ev '^(/usr/bin/sudo|/usr/bin/su|/bin/su|/usr/bin/passwd|/usr/bin/chage|/usr/bin/chsh|/usr/bin/chfn|/usr/bin/newgrp|/usr/bin/gpasswd|/usr/sbin/unix_chkpwd|/usr/sbin/pam_timestamp_check|/usr/bin/mount|/usr/bin/umount|/usr/bin/fusermount|/usr/bin/pkexec|/usr/bin/crontab|/usr/bin/ssh-agent|/usr/bin/ksu|/usr/libexec/openssh/ssh-keysign|/usr/bin/ping|/usr/bin/ping6|/usr/bin/traceroute|/usr/bin/traceroute6)$' | grep -q . ) && echo "FAIL" || echo "PASS"
+( awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd | while read -r h; do [ -d "$h" ] || exit 1; done ) && echo "PASS" || echo "FAIL"
+( awk -F: '$3>=1000 && $1!="nfsnobody"{print $1,$6}' /etc/passwd | while read -r u h; do [ -d "$h" ] && [ "$(stat -Lc %U "$h")" = "$u" ] || exit 1; done ) && echo "PASS" || echo "FAIL"
+( awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd | while read -r h; do [ -d "$h" ] && [ "$(stat -Lc %a "$h")" -le 750 ] || exit 1; done ) && echo "PASS" || echo "FAIL"
+( while read -r h; do [ -d "$h" ] || continue; find "$h" -maxdepth 1 -type f -name ".*" -perm /022 2>/dev/null; done < <(awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd) | grep -q . ) && echo "FAIL" || echo "PASS"
+( while read -r h; do [ -d "$h" ] || continue; for f in "$h/.forward" "$h/.netrc" "$h/.rhosts"; do [ -e "$f" ] && echo "$f"; done; done < <(awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd) | grep -q . ) && echo "FAIL" || echo "PASS"

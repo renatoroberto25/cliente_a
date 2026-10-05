@@ -1,0 +1,77 @@
+C:\Users\Grupo Easy>ssh 192.168.56.77
+Last login: Thu Feb 26 14:12:53 2026 from 192.168.56.1
+[vagrant@oracle7-2-20260205 ~]$ sudo su
+[root@oracle7-2-20260205 vagrant]# ll
+total 12
+-rwxrwxr-x. 1 vagrant vagrant 4833 Feb 12 19:24 148-160.sh
+drwxrwxr-x. 5 vagrant vagrant   69 Feb 26 14:16 AUTOMACAO_LIGHT
+drwxrwxr-x. 7 vagrant vagrant 4096 Feb 23 19:35 one
+[root@oracle7-2-20260205 vagrant]# rm -rf AUTOMACAO_LIGHT/
+[root@oracle7-2-20260205 vagrant]# chmod -R +x 02_AUTOMACAO_LIGHT/
+[root@oracle7-2-20260205 vagrant]# cd 02_AUTOMACAO_LIGHT/
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]#
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]# ./executor.sh
+1) Audit
+2) Remediação
+3) Full (Audit → Remed → Audit)
+Escolha: 1
+=== AUDIT ===
+1_203_v3.sh                    PASS(70 ) FAIL(74 )
+
+Resumo:
+PASS : 70
+FAIL : 74
+Aderência: 48%
+Log: /home/vagrant/02_AUTOMACAO_LIGHT/logs/audit/audit-oracle7-2-20260205-20260226-142506.log
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]# ./executor.sh
+1) Audit
+2) Remediação
+3) Full (Audit → Remed → Audit)
+Escolha: 2
+=== REMEDIAÇÃO ===
+1_47.sh                        OK
+56_90.sh                       OK
+92_107.sh                      OK
+109_124.sh                     OK
+130_147.sh                     OK
+148_164.sh                     OK
+165_180.sh                     OK
+183_197.sh                     OK
+199_203.sh                     OK
+Log: /home/vagrant/02_AUTOMACAO_LIGHT/logs/remed/remed-oracle7-2-20260205-20260226-142553.log
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]# ./executor.sh
+1) Audit
+2) Remediação
+3) Full (Audit → Remed → Audit)
+Escolha: 1
+=== AUDIT ===
+1_203_v3.sh                    PASS(104) FAIL(40 )
+
+Resumo:
+PASS : 104
+FAIL : 40
+Aderência: 72%
+Log: /home/vagrant/02_AUTOMACAO_LIGHT/logs/audit/audit-oracle7-2-20260205-20260226-142634.log
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]# reboot
+Connection to 192.168.56.77 closed by remote host.
+Connection to 192.168.56.77 closed.
+
+C:\Users\Grupo Easy>ssh 192.168.56.77
+Last login: Thu Feb 26 14:24:23 2026 from 192.168.56.1
+[vagrant@oracle7-2-20260205 ~]$ sudo su
+[root@oracle7-2-20260205 vagrant]# ./executor.sh cd ^C
+[root@oracle7-2-20260205 vagrant]#
+[root@oracle7-2-20260205 vagrant]# cd 02_AUTOMACAO_LIGHT/
+[root@oracle7-2-20260205 02_AUTOMACAO_LIGHT]# ./executor.sh
+1) Audit
+2) Remediação
+3) Full (Audit → Remed → Audit)
+Escolha: 1
+=== AUDIT ===
+1_203_v3.sh                    PASS(104) FAIL(40 )
+
+Resumo:
+PASS : 104
+FAIL : 40
+Aderência: 72%
+Log: /home/vagrant/02_AUTOMACAO_LIGHT/logs/audit/audit-oracle7-2-20260205-20260226-142737.log

@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  DATA     = Time.now.strftime("%Y%m%d")
+  VM_NAME  = "vault-lab-#{DATA}"
+  VM_IP    = "192.168.56.200"
+  VM_USER  = "renato"
+  VM_PASS  = "C9p5au8naa@2025"
+
+  config.vm.box      = "debian/bookworm64"
+  config.vm.hostname = VM_NAME
+  config.vm.network "private_network", ip: VM_IP, name: "vboxnet1"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = VM_NAME
+    vb.memory = 2048
+    vb.cpus   = 2
+  end
+
+  config.ssh.insert_key    = false
+  config.ssh.forward_agent = false
+
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+set -e
+
+timedatectl set-timezone America/Sao_Paulo
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get update
+apt-get install -y sudo curl wget gpg ca-certificates openssh-server openssl
+
+if ! id -u "#{VM_USER}" >/dev/null 2>&1; then
+  useradd -m -s /bin/bash "#{VM_USER}"
+  echo "#{VM_USER}:#{VM_PASS}" | chpasswd
+fi
+
+usermod -aG sudo "#{VM_USER}"
+echo "#{VM_USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/#{VM_USER}"
+chmod 440 "/etc/sudoers.d/#{VM_USER}"
+systemctl enable --now ssh
+
+wget -qO- https://apt.releases.hashicorp.com/gpg | \
+  gpg --dearmor --yes -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com bookworm main" \
+  > /etc/apt/sources.list.d/hashicorp.list
+
+apt-get update
+apt-get install -y vault
+
+install -d -o vault -g vault /opt/vault/data /opt/vault/tls
+
+cat > /tmp/vault-cert.cnf <<'EOF'
+[req]
+distinguished_name = dn
+x509_extensions = v3_req
+prompt = no
+
+[dn]
+CN = vault-lab
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = vault-lab
+DNS.2 = #{VM_NAME}
+IP.1 = #{VM_IP}
+IP.2 = 127.0.0.1
+EOF
+
+openssl req -x509 -nodes -newkey rsa:4096 \
+  -keyout /opt/vault/tls/tls.key \
+  -out /opt/vault/tls/tls.crt \
+  -days 3650 \
+  -config /tmp/vault-cert.cnf
+
+chown vault:vault /opt/vault/tls/tls.key /opt/vault/tls/tls.crt
+chmod 600 /opt/vault/tls/tls.key
+chmod 644 /opt/vault/tls/tls.crt
+
+cat > /etc/vault.d/vault.hcl <<'EOF'
+ui = true
+api_addr = "https://#{VM_IP}:8200"
+
+storage "file" {
+  path = "/opt/vault/data"
+}
+
+listener "tcp" {
+  address       = "0.0.0.0:8200"
+  tls_cert_file = "/opt/vault/tls/tls.crt"
+  tls_key_file  = "/opt/vault/tls/tls.key"
+}
+EOF
+
+chown vault:vault /etc/vault.d/vault.hcl
+chmod 640 /etc/vault.d/vault.hcl
+systemctl enable --now vault
+
+echo "Vault pronto em https://#{VM_IP}:8200"
+echo "Próximo passo: vault operator init e vault operator unseal"
+SHELL
+end

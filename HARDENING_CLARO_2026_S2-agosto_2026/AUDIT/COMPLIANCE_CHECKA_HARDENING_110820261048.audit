@@ -1,0 +1,36 @@
+<check_type:"Unix">
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "999, Verificação de hardening aplicado (log local)"
+  info        : "Verifica se existe log local de execução do hardening e mostra o último registro."
+  solution    : "Executar a automação de hardening para criar /var/log/hitss-hardening.log."
+  reference   : "BASELINE-TO-JIRA_CLARO_TI Controle operacional"
+  see_also    : "/var/log/hitss-hardening.log"
+  cmd         : "sh -c 'log=/var/log/hitss-hardening.log; [ -f \"$log\" ] || { echo \"FAIL | sem_log\"; exit; }; echo \"PASS | $(tail -n 1 \"$log\")\"'"
+  expect      : "(?i)^\\s*PASS\\s*\\|"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "1000, Verificacao de artefatos gerenciados pelo hardening HITSS"
+  info        : "Procura somente nos caminhos exatos criados pelos scripts de remediacao. A presenca de qualquer arquivo e evidencia direta da automacao, mesmo sem o log do executor."
+  solution    : "Validar o artefato encontrado e o historico de execucao da automacao antes de qualquer remocao ou reaplicacao."
+  reference   : "HARDENING HITSS RHEL - REMED_SH 01, 10, 11, 15 e 16"
+  see_also    : "/etc/{modprobe.d,sysctl.d,security/limits.d,profile.d,sudoers.d,audit/rules.d}"
+  cmd         : "sh -c 'hits=; for f in /etc/modprobe.d/99-hitss-hardening.conf /etc/sysctl.d/99-hitss-hardening.conf /etc/security/limits.d/99-hitss-coredump.conf /etc/sysctl.d/99-hitss-network.conf /etc/modprobe.d/99-hitss-wireless.conf /etc/profile.d/99-hitss-umask.sh /etc/profile.d/99-hitss-tmout.sh /etc/sudoers.d/99-hitss-hardening /etc/audit/rules.d/99-hitss-hardening.rules; do [ -e \"$f\" ] && hits=\"$hits $f\"; done; [ -n \"$hits\" ] && echo \"PASS | artefatos:$hits\" || echo \"FAIL | nenhum_artefato_hitss\"'"
+  expect      : "(?i)^\\s*PASS\\s*\\|"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "1001, Verificacao de vestigios legados dos scripts de remediacao HITSS"
+  info        : "Procura backups, arquivos desativados e temporarios com o sufixo exclusivo .hitss deixado pelos remed antigos, inclusive quando o executor ainda nao gravava log central."
+  solution    : "Preservar a evidencia encontrada e correlacionar seu timestamp com a janela de hardening; nao excluir automaticamente."
+  reference   : "HARDENING HITSS RHEL - funcao backup_file dos REMED_SH"
+  see_also    : "Sufixos .hitss.bak.*, .hitss.disabled.* e .hitss.tmp.*"
+  cmd         : "sh -c 'hit=; for d in /etc /boot; do [ -d \"$d\" ] || continue; hit=$(find \"$d\" -xdev -type f \\( -name \"*.hitss.bak.*\" -o -name \"*.hitss.disabled.*\" -o -name \"*.hitss.tmp.*\" \\) -print -quit 2>/dev/null); [ -n \"$hit\" ] && break; done; if [ -z \"$hit\" ]; then for d in /root /home; do [ -d \"$d\" ] || continue; hit=$(find \"$d\" -xdev -maxdepth 2 -type f \\( -name \"*.hitss.bak.*\" -o -name \"*.hitss.disabled.*\" -o -name \"*.hitss.tmp.*\" \\) -print -quit 2>/dev/null); [ -n \"$hit\" ] && break; done; fi; [ -n \"$hit\" ] && echo \"PASS | vestigio=$hit\" || echo \"FAIL | nenhum_vestigio_hitss\"'"
+  expect      : "(?i)^\\s*PASS\\s*\\|"
+</custom_item>
+
+</check_type>

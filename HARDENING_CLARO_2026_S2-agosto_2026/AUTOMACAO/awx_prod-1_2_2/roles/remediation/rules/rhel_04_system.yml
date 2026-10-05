@@ -1,0 +1,22 @@
+---
+rhel_04_system_controls:
+  - id: 44
+    descricao: "Diretórios / Sticky Bit"
+    severidade: WARN
+    perfil: "Light"
+  - id: 45
+    descricao: "Diretórios / Sticky Bit"
+    severidade: INFO
+    perfil: "Light"
+  - id: 46
+    descricao: "Diretórios / Sticky Bit"
+    severidade: INFO
+    perfil: "Light"
+  - id: 47
+    descricao: "Diretórios / Sticky Bit"
+    severidade: INFO
+    perfil: "Light"
+  - id: 48
+    descricao: "Serviços / Sistema"
+    severidade: INFO
+    perfil: "Full"

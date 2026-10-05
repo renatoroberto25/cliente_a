@@ -1,0 +1,12 @@
+#####################################################################################
+################### SCRIPTS DE HARDENING - AUDITORIA TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 01 - 40 - Remediação estrutural (kernel, sysctl, mounts)"
+  script: 01-40-remed.sh
+  register: remed_hitss_01_40
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_01_40

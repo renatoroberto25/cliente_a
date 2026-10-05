@@ -1,0 +1,8 @@
+network_rules:
+  - id: 99
+    descricao: "IPv6 desabilitado ou endurecido"
+    perfil: "Full"
+
+  - id: 102
+    descricao: "Wireless/Bluetooth desabilitados"
+    perfil: "Full"

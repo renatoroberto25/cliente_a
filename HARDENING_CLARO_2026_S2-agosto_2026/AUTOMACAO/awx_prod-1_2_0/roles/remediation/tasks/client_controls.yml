@@ -1,0 +1,172 @@
+---
+- name: Localizar repositórios YUM (87)
+  ansible.builtin.find:
+    paths: /etc/yum.repos.d
+    patterns: "*.repo"
+    file_type: file
+  register: hitss_yum_repos
+
+- name: Habilitar assinatura no yum.conf (87)
+  ansible.builtin.lineinfile:
+    path: /etc/yum.conf
+    regexp: "^\\s*gpgcheck\\s*="
+    line: "gpgcheck=1"
+    create: true
+    mode: "0644"
+  register: hitss_gpgcheck_main
+
+- name: Habilitar assinatura nos repositórios (87)
+  ansible.builtin.lineinfile:
+    path: "{{ item.path }}"
+    regexp: "^\\s*gpgcheck\\s*="
+    line: "gpgcheck=1"
+  loop: "{{ hitss_yum_repos.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  register: hitss_gpgcheck_repos
+
+- name: Coletar serviços para time sync (89)
+  ansible.builtin.service_facts:
+
+- name: Definir daemons ativos de time sync (89)
+  ansible.builtin.set_fact:
+    hitss_time_active: >-
+      {{ ansible_facts.services | dict2items
+         | selectattr('key', 'in', ['chronyd.service', 'ntpd.service', 'systemd-timesyncd.service'])
+         | selectattr('value.state', 'equalto', 'running')
+         | map(attribute='key') | list }}
+
+- name: Manter apenas um daemon de time sync (89)
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+  loop: "{{ hitss_time_active[1:] }}"
+  register: hitss_time_apply
+
+- name: Configurar pwquality (131/135-138)
+  ansible.builtin.lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^\\s*{{ item.key }}\\s*="
+    line: "{{ item.key }} = {{ item.value }}"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - { id: 131, key: minlen, value: "14" }
+    - { id: 131, key: minclass, value: "4" }
+    - { id: 135, key: minlen, value: "14" }
+    - { id: 136, key: minclass, value: "4" }
+    - { id: 137, key: maxrepeat, value: "3" }
+    - { id: 137, key: maxsequence, value: "3" }
+    - { id: 138, key: dictcheck, value: "1" }
+  loop_control:
+    label: "{{ item.id }} - {{ item.key }}"
+  register: hitss_pwquality_apply
+
+- name: Remover pam_tally2 obsoleto (133)
+  ansible.builtin.lineinfile:
+    path: "{{ item }}"
+    regexp: "^.*pam_tally2\\.so.*$"
+    state: absent
+  loop:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
+  register: hitss_tally_apply
+
+- name: Configurar faillock (141/142)
+  ansible.builtin.lineinfile:
+    path: /etc/security/faillock.conf
+    regexp: "^\\s*{{ item.key }}\\s*="
+    line: "{{ item.key }} = {{ item.value }}"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - { id: 141, key: deny, value: "5" }
+    - { id: 142, key: unlock_time, value: "900" }
+  loop_control:
+    label: "{{ item.id }} - {{ item.key }}"
+  register: hitss_faillock_apply
+
+- name: Configurar sudo com pseudo tty (156)
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/99-hitss-use-pty
+    content: "Defaults use_pty\n"
+    owner: root
+    group: root
+    mode: "0440"
+    validate: /usr/sbin/visudo -cf %s
+  register: hitss_sudo_pty_apply
+
+- name: Restringir su ao grupo wheel (160)
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/su
+    regexp: "^\\s*auth\\s+required\\s+pam_wheel\\.so"
+    line: "auth required pam_wheel.so use_uid"
+  register: hitss_su_apply
+
+- name: Configurar auditoria imutável (181)
+  ansible.builtin.lineinfile:
+    path: /etc/audit/rules.d/99-hitss-hardening.rules
+    regexp: "^\\s*-e\\s+"
+    line: "-e 2"
+    create: true
+    owner: root
+    group: root
+    mode: "0640"
+  register: hitss_audit_immutable_apply
+  notify: reload audit rules
+
+- name: Resultado das remediações objetivas do CSV
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{ 'CHANGED' if item.changed | bool else 'OK' }}
+      perfil={{ control.perfil }} descricao={{ control.descricao }}
+  vars:
+    control: "{{ hitss_controls | selectattr('id', 'equalto', item.id) | first }}"
+  loop:
+    - { id: 87, changed: "{{ hitss_gpgcheck_main.changed or hitss_gpgcheck_repos.changed }}" }
+    - { id: 89, changed: "{{ hitss_time_apply.changed }}" }
+    - { id: 131, changed: "{{ hitss_pwquality_apply.changed }}" }
+    - { id: 133, changed: "{{ hitss_tally_apply.changed }}" }
+    - { id: 135, changed: "{{ hitss_pwquality_apply.changed }}" }
+    - { id: 136, changed: "{{ hitss_pwquality_apply.changed }}" }
+    - { id: 137, changed: "{{ hitss_pwquality_apply.changed }}" }
+    - { id: 138, changed: "{{ hitss_pwquality_apply.changed }}" }
+    - { id: 141, changed: "{{ hitss_faillock_apply.changed }}" }
+    - { id: 142, changed: "{{ hitss_faillock_apply.changed }}" }
+    - { id: 156, changed: "{{ hitss_sudo_pty_apply.changed }}" }
+    - { id: 160, changed: "{{ hitss_su_apply.changed }}" }
+    - { id: 181, changed: "{{ hitss_audit_immutable_apply.changed }}" }
+  loop_control:
+    label: "{{ item.id }} - {{ control.descricao }}"
+
+- name: Resultado dos controles que exigem decisão operacional
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item }}] MANUAL
+      perfil={{ control.perfil }} descricao={{ control.descricao }}
+  vars:
+    control: "{{ hitss_controls | selectattr('id', 'equalto', item) | first }}"
+  loop:
+    - 49
+    - 51
+    - 88
+    - 108
+    - 110
+    - 125
+    - 126
+    - 127
+    - 128
+    - 129
+    - 130
+    - 132
+    - 134
+    - 140
+    - 147
+    - 155
+  loop_control:
+    label: "{{ item }} - {{ control.descricao }}"

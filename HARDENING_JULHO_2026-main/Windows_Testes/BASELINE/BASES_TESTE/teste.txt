@@ -1,0 +1,5 @@
+renato@fedora:~/GitHub/HITSS/HARDENING_V1.3.5/Windows_Testes/IAC_28_07_2026$ ./04_gerar_dashboard_hardening_template.py . --saida dashboard_cmdb_informado.html --inventario iac-testes=16 --inventario iac-testes-2=4
+Dashboard gerado: /home/renato/GitHub/HITSS/HARDENING_V1.3.5/Windows_Testes/IAC_28_07_2026/dashboard_cmdb_informado.html
+Resumo: 2 equipes | 4 auditados | 441 FAILs | aderência 60.9%
+  IAC-TESTES: cobertura 2/16
+  IAC-TESTES-2: cobertura 2/4

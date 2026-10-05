@@ -1,0 +1,12 @@
+#####################################################################################
+################### SCRIPTS DE HARDENING - AUDITORIA TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 01 - 40 itens iniciais"
+  script: 01-40.sh
+  register: audit_1
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_01
+    - audit_hitss_01_40

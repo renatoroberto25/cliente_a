@@ -1,0 +1,38 @@
+---
+rhel_18_home_file_hygiene_controls:
+  - id: 195
+    descricao: "Contas / Arquivos e Homes"
+    severidade: INFO
+    perfil: "Full"
+  - id: 196
+    descricao: "Contas / Arquivos e Homes"
+    severidade: WARN
+    perfil: "Light"
+  - id: 197
+    descricao: "Contas / Arquivos e Homes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 198
+    descricao: "Contas / Arquivos e Homes"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 199
+    descricao: "Contas / Arquivos e Homes"
+    severidade: INFO
+    perfil: "Full"
+  - id: 200
+    descricao: "Contas / Arquivos e Homes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 201
+    descricao: "Contas / Arquivos e Homes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 202
+    descricao: "Contas / Arquivos e Homes"
+    severidade: INFO
+    perfil: "Light"
+  - id: 203
+    descricao: "Contas / Arquivos e Homes"
+    severidade: WARN
+    perfil: "Full"

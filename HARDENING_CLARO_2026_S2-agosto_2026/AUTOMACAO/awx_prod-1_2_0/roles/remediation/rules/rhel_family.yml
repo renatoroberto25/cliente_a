@@ -1,0 +1,162 @@
+---
+deb_family_rules:
+  - id: 50
+    descricao: "Permissões seguras no arquivo do bootloader"
+    perfil: "Light"
+
+  - id: 58
+    descricao: "Sincronização de tempo em uso"
+    perfil: "Full"
+
+  - id: 86
+    descricao: "PolicyKit endurecido"
+    perfil: "Full"
+
+  - id: 109
+    descricao: "Permissões seguras em sshd_config e chaves"
+    perfil: "Light"
+
+  - id: 111
+    descricao: "LogLevel adequado"
+    perfil: "Light"
+
+  - id: 112
+    descricao: "X11Forwarding desabilitado"
+    perfil: "Full"
+
+  - id: 113
+    descricao: "MaxAuthTries limitado"
+    perfil: "Light"
+
+  - id: 114
+    descricao: "IgnoreRhosts habilitado"
+    perfil: "Light"
+
+  - id: 115
+    descricao: "HostbasedAuthentication desabilitado"
+    perfil: "Full"
+
+  - id: 117
+    descricao: "PermitEmptyPasswords desabilitado"
+    perfil: "Light"
+
+  - id: 118
+    descricao: "PermitUserEnvironment desabilitado"
+    perfil: "Light"
+
+  - id: 119
+    descricao: "UsePAM habilitado"
+    perfil: "Full"
+
+  - id: 120
+    descricao: "Idle timeout configurado"
+    perfil: "Full"
+
+  - id: 121
+    descricao: "LoginGraceTime curto"
+    perfil: "Light"
+
+  - id: 122
+    descricao: "MaxStartups/MaxSessions limitados"
+    perfil: "Full"
+
+  - id: 123
+    descricao: "AllowTcpForwarding restrito"
+    perfil: "Full"
+
+  - id: 139
+    descricao: "Hashing sha512/yescrypt"
+    perfil: "Full"
+
+  - id: 143
+    descricao: "PASS_MAX_DAYS ≤ 365"
+    perfil: "Full"
+
+  - id: 144
+    descricao: "PASS_MIN_DAYS maior igual a 1"
+    perfil: "Full"
+
+  - id: 145
+    descricao: "PASS_WARN_AGE maior igual a 7"
+    perfil: "Full"
+
+  - id: 146
+    descricao: "inactive maior igual a 30 (para contas válidas)"
+    perfil: "Full"
+
+  - id: 157
+    descricao: "sudo logfile"
+    perfil: "Light"
+
+  - id: 158
+    descricao: "!authenticate ausente"
+    perfil: "Full"
+
+  - id: 159
+    descricao: "timestamp_timeout=5"
+    perfil: "Light"
+
+  - id: 162
+    descricao: "Journald configurado persistente"
+    perfil: "Light"
+
+  - id: 164
+    descricao: "Logrotate para rsyslog"
+    perfil: "Light"
+
+  - id: 166
+    descricao: "Auditoria antes do auditd(se utilizado)"
+    perfil: "Full"
+
+  - id: 167
+    descricao: "Tamanho de armazenamento de audit log"
+    perfil: "Light"
+
+  - id: 168
+    descricao: "Logs de auditoria não excluídos automaticamente"
+    perfil: "Full"
+
+  - id: 169
+    descricao: "Auditoria de alterações em data/hora"
+    perfil: "Light"
+
+  - id: 170
+    descricao: "Auditoria de alterações em contas/grupos"
+    perfil: "Light"
+
+  - id: 171
+    descricao: "Auditoria de alterações no ambiente de rede"
+    perfil: "Light"
+
+  - id: 173
+    descricao: "Auditoria de login/logout"
+    perfil: "Light"
+
+  - id: 174
+    descricao: "Auditoria de permissões DAC"
+    perfil: "Light"
+
+  - id: 175
+    descricao: "Auditoria de acessos não autorizados"
+    perfil: "Light"
+
+  - id: 176
+    descricao: "Auditoria de comandos privilegiados"
+    perfil: "Full"
+
+  - id: 177
+    descricao: "Auditoria de mount/unmount"
+    perfil: "Light"
+
+  - id: 178
+    descricao: "Auditoria de deleção de arquivos"
+    perfil: "Light"
+
+  - id: 179
+    descricao: "Auditoria de kernel modules"
+    perfil: "Light"
+
+  - id: 180
+    descricao: "Auditoria de sudoers/logs de sudo"
+    perfil: "Light"
+

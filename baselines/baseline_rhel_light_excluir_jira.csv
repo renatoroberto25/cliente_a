@@ -1,0 +1,53 @@
+﻿ID,Controle,Criticidade,Motivo da exclusão
+2,Bloqueio squashfs,Alta,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+3,Bloqueio udf,Alta,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+8,Desabilitar o modulo overlayfs,Média,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+9,Bloqueio usb_storage,Alta,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+11,Bloqueio SCTP,Alta,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+19,perf_event restrito,Média,Restrição de perf pode interferir em diagnóstico e observabilidade.
+25,Partição dedicada para /tmp,Média,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+26,Partição dedicada para /dev/shm,Média,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+27,Partição dedicada para /var,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+28,Partição dedicada para /var/tmp,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+29,Partição dedicada para /var/log,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+30,Partição dedicada para /var/log/audit,Média,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+31,Partição dedicada para /home,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+32,Partição dedicada para /historico,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+33,Partição dedicada para /crash,Alta,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+34,Partição dedicada para /UNIX,Média,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+35,Nodev removíveis,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+36,Nodev partições críticas,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+40,Segurança /var/log,Alta,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+41,Segurança audit log,Alta,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+42,Segurança /home,Alta,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+48,Autofs desabilitado,Baixa,Desabilitar autofs pode interromper montagens utilizadas pelas aplicações.
+49,Senha no bootloader,Alta,Senha de bootloader exige gestão de credenciais e alinhamento da recuperação por console.
+61,X11 removido,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+62,Avahi desabilitado,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+63,CUPS desabilitado,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+64,DHCP server ausente,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+65,LDAP server ausente,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+66,DNS server ausente,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+67,FTP server ausente,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+68,HTTP server ausente,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+69,IMAP/POP3 removidos,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+70,Samba removido,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+71,Proxy HTTP removido,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+72,SNMP desabilitado,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+76,NFS server desabilitado,Alta,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+77,rpcbind desabilitado,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+78,rsync daemon desabilitado,Alta,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+83,Cliente LDAP removido,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+84,Serviços não essenciais habilitados,Média,"Controle agregado volta a exigir ausência de serviços retirados individualmente do LIGHT, como Avahi, CUPS e FTP."
+95,Reverse path filtering habilitado,Alta,Filtragem reversa estrita depende da topologia e pode afetar tráfego com roteamento assimétrico; referência Claro TI não basta para generalizar.
+99,IPv6 desabilitado,Alta,Desativar IPv6 exige avaliação das dependências de rede e aplicações.
+104,Firewall único ativo,Média,Imposição de solução local e persistência de firewall depende da arquitetura e das regras de comunicação do ambiente.
+107,Persistência do firewall,Média,Imposição de solução local e persistência de firewall depende da arquitetura e das regras de comunicação do ambiente.
+112,X11Forwarding desabilitado,Média,Desabilitar encaminhamento SSH pode interromper fluxos administrativos ou de aplicações.
+116,PermitRootLogin restrito,Média,Conflita com PermitRootLogin yes usado pela Claro TI; retirar do LIGHT proposto sem transformar acesso root em requisito.
+123,AllowTcpForwarding desabilitado,Alta,Desabilitar encaminhamento SSH pode interromper fluxos administrativos ou de aplicações.
+160,Uso de su restrito,Alta,Restrição de su exige alinhamento prévio dos grupos e procedimentos administrativos.
+176,Auditoria de execve,Alta,Auditoria de execuções pode elevar volume de eventos e consumo de recursos.
+181,Auditoria imutável,Alta,Imutabilidade limita alterações de auditoria até reinicialização; manter no FULL.
+183,Verificação periódica de integridade,Alta,Verificação periódica com AIDE exige preparação da base e planejamento de execução e tratamento dos resultados.
+198,SUID/SGID indevidos,Alta,Verificação aceita somente sudo e su como SUID/SGID; exige avaliação dos demais executáveis legítimos antes de remediar.

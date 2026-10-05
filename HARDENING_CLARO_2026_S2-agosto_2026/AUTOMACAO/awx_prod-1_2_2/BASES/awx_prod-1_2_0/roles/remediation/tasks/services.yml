@@ -1,0 +1,71 @@
+- name: Carregar regras services
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/services.yml"
+
+- name: Pré-check services
+  command: systemctl is-active {{ item.name }}
+  register: remed_services_pre
+  loop: "{{ services_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Remediar services
+  ansible.builtin.systemd:
+    name: "{{ item.name }}"
+    state: stopped
+    enabled: false
+  register: remed_services_apply
+  loop: "{{ services_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }} - {{ item.descricao }}"
+  failed_when: false
+  when: >
+    remed_services_pre.results[index0].stdout | default('') | trim
+    not in ['inactive', 'failed', 'unknown', '']
+
+- name: Pós-check services
+  command: systemctl is-active {{ item.name }}
+  register: remed_services_post
+  loop: "{{ services_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado remediação services
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'OK'
+        if (
+          (
+            remed_services_pre.results[index0].stdout | default('') | trim
+            in ['inactive', 'failed', 'unknown', '']
+            or remed_services_pre.results[index0].rc | default(1) != 0
+          )
+          and
+          (
+            remed_services_post.results[index0].stdout | default('') | trim
+            in ['inactive', 'failed', 'unknown', '']
+            or remed_services_post.results[index0].rc | default(1) != 0
+          )
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            remed_services_post.results[index0].stdout | default('') | trim
+            in ['inactive', 'failed', 'unknown', '']
+            or remed_services_post.results[index0].rc | default(1) != 0
+          )
+          else 'FALHA'
+        )
+      }}
+  loop: "{{ services_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }} - {{ item.descricao }}"

@@ -1,0 +1,81 @@
+
+ENG-VIDEO
+
+PENDÊNCIAS:
+
+[X] - Formalizar por e-mail:
+ID 76 — controle foi atenuado
+ID 83 — controle foii atenuado
+ID 132 — controle foi reescrito
+
+[X] - Gerar baseline para importação no Jira.
+[ ] - Conforme acima aguardando resposta do cliente pra ajustar no Jira o que foi criado: CDB-4532 
+
+[X] - Gerar audit alinhado 1:1 com o baseline.
+
+######################################
+
+CLARO-TI
+
+11-08-2026
+scan default
+brux1270
+rjux0197
+brux1521
+ecc11cashdb01
+brux0782
+
+SCAN DOS 5 NOVOS FEITO, RESULTADO CONSOLIDADO NO
+/home/renato/GitHub/HARDENING_JULHO_2026/UTILS/PYTHON/Scripts_02/dash_12_08_2026.html
+E
+/home/renato/GitHub/HARDENING_JULHO_2026/UTILS/PYTHON/Scripts_02/claro-ti_08_12_2026_-14_25_48-gmt-3.csv
+
+-- Agora scan no grupo completo da claro-ti 
+
+Assunto: Validação inicial do hardening em servidores de homologação
+Olá, Fulano.
+Executei o scan com o perfil DEFAULT nos servidores mais recentes em que você instalou o agente. Estou encaminhando em anexo o dashboard consolidado e o CSV com os resultados detalhados.
+Nesta primeira rodada, foram avaliados cinco servidores:
+brux0782
+brux1270
+cbl2am37400
+ecc11cashdb01
+rjux0197
+O objetivo desta etapa é avaliar o impacto do hardening em diferentes perfis de servidor, considerando que cada ambiente possui características e requisitos próprios, como aplicações, bancos de dados, componentes de rede e Exadata.
+A partir dos resultados, queremos identificar quais controles são diretamente aplicáveis, quais exigem exceções ou adequações e quais podem causar impacto operacional. Essa análise servirá de base para refinarmos os perfis de hardening antes de avançarmos com a aplicação nos demais servidores.
+Não foi possível instalar o agente em todos os servidores inicialmente selecionados devido a problemas de comunicação via proxy. Esses casos poderão entrar em uma próxima rodada após a regularização do acesso.
+Peço que avaliem os resultados junto às equipes responsáveis pelos servidores, principalmente as não conformidades de maior criticidade e os possíveis impactos das correções sugeridas.
+Obrigado.
+
+######################################
+STAR ONE 
+
+KIKI AINDA DE FÉRIAS
+
+
+######################################
+
+BOOK criado
+
+######################################
+
+CLARO TI
+Linux
+Atualização: Scan DEFAULT concluído em 26 novos servidores, com dashboard e CSV consolidados.
+Pontos de atenção: Analisar impactos, exceções e não conformidades. Próxima etapa: scan do grupo completo.
+Aguardando retorno do cliente para atualização do Jira CDB-4532.
+
+BCC
+Linux
+Atualização: Sem atualização registrada.
+Pontos de atenção: Segunda feira 14h próxima agenda.
+
+STARONE
+Linux
+Atualização: Atividades pausadas devido às férias da responsável.
+Pontos de atenção: Retomar os alinhamentos após o retorno.
+
+ENGENHARIA VÍDEO
+Linux
+Atualização: Baseline gerado e audit alinhado 1:1. Controles 76, 83 e 132 ajustados.
+Pontos de atenção: Retorno da engenharia.

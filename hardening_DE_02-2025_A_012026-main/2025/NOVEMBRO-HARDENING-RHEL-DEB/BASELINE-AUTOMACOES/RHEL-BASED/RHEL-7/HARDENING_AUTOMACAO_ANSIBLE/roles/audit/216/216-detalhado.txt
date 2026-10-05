@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# [216] Auditar permissões de arquivos de sistema
+echo "[216] Audite permissões de arquivos de sistema"
+rpm -Va --nomtime --nosize --nomd5 --nolinkto | grep -vw c && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# [217] Verifique se as permissões de /etc/passwd estão configuradas corretamente
+echo "[217] Verifique se as permissões de /etc/passwd estão configuradas"
+stat /etc/passwd | grep -Eq 'Access: \(0644/' && grep -q "Uid: ( 0/ root)" <(stat /etc/passwd) && grep -q "Gid: ( 0/ root)" <(stat /etc/passwd) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [218] Verifique se as permissões de /etc/passwd- estão configuradas corretamente
+echo "[218] Verifique se as permissões de /etc/passwd- estão configuradas"
+[ -f /etc/passwd- ] && stat /etc/passwd- | grep -Eq 'Access: \(06(4|0)0/' && grep -q "Uid: ( 0/ root)" <(stat /etc/passwd-) && grep -q "Gid: ( 0/ root)" <(stat /etc/passwd-) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [219] Verifique se as permissões de /etc/shadow estão configuradas corretamente
+echo "[219] Verifique se as permissões de /etc/shadow estão configuradas"
+stat /etc/shadow | grep -Eq 'Access: \(0000/' && grep -q "Uid: ( 0/ root)" <(stat /etc/shadow) && grep -q "Gid: ( 0/ root)" <(stat /etc/shadow) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [220] Verifique se as permissões de /etc/shadow- estão configuradas corretamente
+echo "[220] Verifique se as permissões de /etc/shadow- estão configuradas"
+[ -f /etc/shadow- ] && stat /etc/shadow- | grep -Eq 'Access: \(0000/' && grep -q "Uid: ( 0/ root)" <(stat /etc/shadow-) && grep -q "Gid: ( 0/ root)" <(stat /etc/shadow-) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [221] Verifique se as permissões de /etc/gshadow- estão configuradas corretamente
+echo "[221] Verifique se as permissões de /etc/gshadow- estão configuradas"
+[ -f /etc/gshadow- ] && stat /etc/gshadow- | grep -Eq 'Access: \(0000/' && grep -q "Uid: ( 0/ root)" <(stat /etc/gshadow-) && grep -q "Gid: ( 0/ root)" <(stat /etc/gshadow-) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [222] Verifique se as permissões de /etc/gshadow estão configuradas corretamente
+echo "[222] Verifique se as permissões de /etc/gshadow estão configuradas"
+stat /etc/gshadow | grep -Eq 'Access: \(0000/' && grep -q "Uid: ( 0/ root)" <(stat /etc/gshadow) && grep -q "Gid: ( 0/ root)" <(stat /etc/gshadow) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [223] Verifique se as permissões de /etc/group estão configuradas corretamente
+echo "[223] Verifique se as permissões de /etc/group estão configuradas"
+stat /etc/group | grep -Eq 'Access: \(0644/' && grep -q "Uid: ( 0/ root)" <(stat /etc/group) && grep -q "Gid: ( 0/ root)" <(stat /etc/group) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [224] Verifique se as permissões de /etc/group- estão configuradas corretamente
+echo "[224] Verifique se as permissões de /etc/group- estão configuradas"
+[ -f /etc/group- ] && stat /etc/group- | grep -Eq 'Access: \(0644/' && grep -q "Uid: ( 0/ root)" <(stat /etc/group-) && grep -q "Gid: ( 0/ root)" <(stat /etc/group-) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# [225] Verifique se não existem arquivos world-writable
+echo "[225] Verifique se não existem arquivos world-writable"
+df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002 | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# [226] Verifique se não existem arquivos sem dono (unowned)
+echo "[226] Verifique se não existem arquivos sem dono"
+df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -nouser | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# [227] Verifique se não existem arquivos sem grupo (ungrouped)
+echo "[227] Verifique se não existem arquivos sem grupo"
+df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -nogroup | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# [228] Auditar arquivos com bit SUID
+echo "[228] Audite arquivos com bit SUID"
+df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -4000 -exec ls -l {} \; | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# [229] Auditar arquivos com bit SGID
+echo "[229] Audite arquivos com bit SGID"
+df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000 -exec ls -l {} \; | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO"

@@ -1,0 +1,95 @@
+# ===== 90 - Cron/at restritos =====
+- name: Carregar variáveis HITSS
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/../vars/hitss.yml"
+
+- name: Detectar crontab
+  shell: command -v crontab
+  register: hitss_crontab_cmd
+  changed_when: false
+  failed_when: false
+
+- name: Detectar at
+  shell: command -v at
+  register: hitss_at_cmd
+  changed_when: false
+  failed_when: false
+
+- name: Auditar política de cron
+  shell: |
+    set -eu
+    expected="{{ hitss_cron_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_crontab_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/cron.deny ]; then
+      echo "REPROVADO"
+      exit 0
+    fi
+
+    if [ ! -f /etc/cron.allow ]; then
+      echo "REPROVADO"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/cron.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      echo "APROVADO"
+    else
+      echo "REPROVADO"
+    fi
+  register: hitss_cron_audit
+  changed_when: false
+  failed_when: false
+
+- name: Auditar política de at
+  shell: |
+    set -eu
+    expected="{{ hitss_at_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_at_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/at.deny ]; then
+      echo "REPROVADO"
+      exit 0
+    fi
+
+    if [ ! -f /etc/at.allow ]; then
+      echo "REPROVADO"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/at.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      echo "APROVADO"
+    else
+      echo "REPROVADO"
+    fi
+  register: hitss_at_audit
+  changed_when: false
+  failed_when: false
+
+- name: Resultado cron/at restritos (90)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][90]
+      {{
+        'APROVADO'
+        if (
+          hitss_cron_audit.stdout | trim in ['APROVADO', 'NA'] and
+          hitss_at_audit.stdout | trim in ['APROVADO', 'NA']
+        )
+        else 'REPROVADO'
+      }}
+      cron={{ hitss_cron_audit.stdout | trim }}
+      at={{ hitss_at_audit.stdout | trim }}

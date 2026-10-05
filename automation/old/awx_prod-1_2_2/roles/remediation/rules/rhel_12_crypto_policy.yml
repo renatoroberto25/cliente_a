@@ -1,0 +1,6 @@
+---
+rhel_12_crypto_policy_controls:
+  - id: 108
+    descricao: "Criptografia / Política"
+    severidade: BLOCK
+    perfil: "Full"

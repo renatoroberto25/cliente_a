@@ -1,0 +1,979 @@
+[root@alma10-lab-20260831 renato]# tail -f /var/log/secure
+Aug 31 15:51:47 localhost sshd-session[5962]: Disconnected from user tenable-ol10 192.168.56.200 port 57316
+Aug 31 15:51:47 localhost sshd-session[5945]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:11 localhost sshd-session[6099]: Accepted password for tenable-ol10 from 192.168.56.200 port 60090 ssh2
+Aug 31 17:14:11 localhost (systemd)[6105]: pam_unix(systemd-user:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:11 localhost sshd-session[6099]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:15 localhost sshd-session[6149]: Accepted publickey for renato from 192.168.56.1 port 57644 ssh2: ED25519 SHA256:oht66Cx9zwdBfrJRy03/GU5WRPjQQLBsc2JjBZod/js
+Aug 31 17:14:15 localhost sshd-session[6149]: pam_unix(sshd:session): session opened for user renato(uid=1001) by renato(uid=0)
+Aug 31 17:14:17 localhost sudo[6209]:  renato : TTY=pts/3 ; PWD=/home/renato ; USER=root ; COMMAND=/bin/su
+Aug 31 17:14:17 localhost sudo[6209]: pam_unix(sudo:session): session opened for user root(uid=0) by renato(uid=1001)
+Aug 31 17:14:17 localhost su[6212]: pam_unix(su:session): session opened for user root(uid=0) by renato(uid=0)
+Aug 31 17:14:26 localhost sshd-session[6118]: Read error from remote host 192.168.56.200 port 60090: Connection reset by peer
+Aug 31 17:14:26 localhost sshd-session[6099]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:26 localhost sshd-session[6241]: Accepted password for tenable-ol10 from 192.168.56.200 port 60444 ssh2
+Aug 31 17:14:26 localhost sshd-session[6241]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:26 localhost sshd-session[6248]: Read error from remote host 192.168.56.200 port 60444: Connection reset by peer
+Aug 31 17:14:26 localhost sshd-session[6241]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:26 localhost sshd-session[6246]: Accepted password for tenable-ol10 from 192.168.56.200 port 60450 ssh2
+Aug 31 17:14:26 localhost sshd-session[6246]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:26 localhost sshd-session[6252]: Read error from remote host 192.168.56.200 port 60450: Connection reset by peer
+Aug 31 17:14:26 localhost sshd-session[6246]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:27 localhost sshd-session[6277]: Accepted password for tenable-ol10 from 192.168.56.200 port 60460 ssh2
+Aug 31 17:14:27 localhost sshd-session[6277]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:27 localhost sudo[6314]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Kln1p6P8"; netstat -a -n; printf "command_done_%s" "HsBnSGFJ"'
+Aug 31 17:14:27 localhost sudo[6314]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:14:27 localhost sudo[6314]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:14:27 localhost sshd-session[6282]: Read error from remote host 192.168.56.200 port 60460: Connection reset by peer
+Aug 31 17:14:27 localhost sshd-session[6277]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:27 localhost sshd-session[6319]: Accepted password for tenable-ol10 from 192.168.56.200 port 60476 ssh2
+Aug 31 17:14:27 localhost sshd-session[6319]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:27 localhost sudo[6354]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "sYeSuKF9"; (/usr/sbin/ss -n -a 2>/dev/null && echo 1)|| (/bin/ss -n -a 2>/dev/null && echo 2)|| (/usr/bin/ss -n -a 2>/dev/null && echo 3); printf "command_done_%s" "muZDZMFc"'
+Aug 31 17:14:27 localhost sudo[6354]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:14:27 localhost sudo[6354]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:14:27 localhost sshd-session[6324]: Read error from remote host 192.168.56.200 port 60476: Connection reset by peer
+Aug 31 17:14:27 localhost sshd-session[6319]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:57 localhost sshd-session[6374]: banner exchange: Connection from 192.168.56.200 port 60528: invalid format
+Aug 31 17:14:57 localhost sshd-session[6375]: banner exchange: Connection from 192.168.56.200 port 60542: invalid format
+Aug 31 17:14:57 localhost sshd-session[6376]: banner exchange: Connection from 192.168.56.200 port 60544: invalid format
+Aug 31 17:14:57 localhost sshd-session[6377]: banner exchange: Connection from 192.168.56.200 port 60552: invalid format
+Aug 31 17:14:57 localhost sshd-session[6378]: banner exchange: Connection from 192.168.56.200 port 60560: invalid format
+Aug 31 17:14:58 localhost sshd-session[6379]: banner exchange: Connection from 192.168.56.200 port 60562: invalid format
+Aug 31 17:14:58 localhost sshd-session[6380]: banner exchange: Connection from 192.168.56.200 port 60578: invalid format
+Aug 31 17:14:58 localhost sshd-session[6381]: banner exchange: Connection from 192.168.56.200 port 60586: invalid format
+Aug 31 17:14:58 localhost sshd-session[6382]: banner exchange: Connection from 192.168.56.200 port 60596: invalid format
+Aug 31 17:14:59 localhost sshd-session[6383]: error: kex_exchange_identification: read: Connection reset by peer
+Aug 31 17:14:59 localhost sshd-session[6383]: Connection reset by 192.168.56.200 port 60610
+Aug 31 17:14:59 localhost sshd-session[6384]: Accepted password for tenable-ol10 from 192.168.56.200 port 60616 ssh2
+Aug 31 17:14:59 localhost (systemd)[6390]: pam_unix(systemd-user:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:59 localhost sshd-session[6384]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:59 localhost sshd-session[6401]: Read error from remote host 192.168.56.200 port 60616: Connection reset by peer
+Aug 31 17:14:59 localhost sshd-session[6384]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:14:59 localhost sshd-session[6403]: Connection reset by authenticating user tenable-ol10 192.168.56.200 port 60618 [preauth]
+Aug 31 17:14:59 localhost sshd-session[6405]: Accepted password for tenable-ol10 from 192.168.56.200 port 60642 ssh2
+Aug 31 17:14:59 localhost sshd-session[6404]: Accepted password for tenable-ol10 from 192.168.56.200 port 60630 ssh2
+Aug 31 17:14:59 localhost sshd-session[6405]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:59 localhost sshd-session[6404]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:14:59 localhost sshd-session[6417]: Read error from remote host 192.168.56.200 port 60630: Connection reset by peer
+Aug 31 17:14:59 localhost sshd-session[6415]: subsystem request for netconf by user tenable-ol10 failed, subsystem not found
+Aug 31 17:14:59 localhost sshd-session[6404]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:00 localhost sshd-session[6413]: Accepted password for tenable-ol10 from 192.168.56.200 port 60646 ssh2
+Aug 31 17:15:00 localhost sshd-session[6413]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:00 localhost sshd-session[6420]: subsystem request for netconf by user tenable-ol10 failed, subsystem not found
+Aug 31 17:15:00 localhost sshd-session[6420]: Read error from remote host 192.168.56.200 port 60646: Connection reset by peer
+Aug 31 17:15:00 localhost sshd-session[6413]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:01 localhost sshd-session[6422]: Accepted password for tenable-ol10 from 192.168.56.200 port 60272 ssh2
+Aug 31 17:15:01 localhost sshd-session[6422]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:02 localhost sshd-session[6426]: Read error from remote host 192.168.56.200 port 60272: Connection reset by peer
+Aug 31 17:15:02 localhost sshd-session[6422]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:04 localhost sshd-session[6427]: Accepted password for tenable-ol10 from 192.168.56.200 port 60286 ssh2
+Aug 31 17:15:04 localhost sshd-session[6427]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:04 localhost sudo[6463]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "voQNgyna"; printf "command_start_%s" "TEST"; printf "command_done_%s" "x1aq_yw9"'
+Aug 31 17:15:04 localhost sudo[6463]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:04 localhost sudo[6463]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:04 localhost sudo[6467]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "d9sV2nji"; uname -a; printf "command_done_%s" "X7Q3v2Ez"'
+Aug 31 17:15:04 localhost sudo[6467]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:04 localhost sudo[6467]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:04 localhost sudo[6472]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "T60TJLDn"; date +"%Z %z"; printf "command_done_%s" "sCJSzUe3"'
+Aug 31 17:15:04 localhost sudo[6472]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:04 localhost sudo[6472]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:04 localhost sudo[6477]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "gXcGhsv3"; timedatectl | grep "Time zone:"; printf "command_done_%s" "4nft0h13"'
+Aug 31 17:15:04 localhost sudo[6477]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6477]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6484]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "n5sqT8sU"; echo $TZ; printf "command_done_%s" "ctAcr2lK"'
+Aug 31 17:15:05 localhost sudo[6484]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6484]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6488]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "c1TqhzhG"; cat /etc/timezone | tail -n 1; printf "command_done_%s" "U9TXRn0w"'
+Aug 31 17:15:05 localhost sudo[6488]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6488]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6494]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "FUzBQDdn"; cat /etc/localtime | tail -n 1; printf "command_done_%s" "bSfbOvoQ"'
+Aug 31 17:15:05 localhost sudo[6494]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6494]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6500]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "KNN1L4jU"; version; printf "command_done_%s" "hagzdwC4"'
+Aug 31 17:15:05 localhost sudo[6500]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6500]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6505]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "grt0ZEwg"; cat /opt/vmware/etc/appliance-manifest.xml; printf "command_done_%s" "l0Dw6dJO"'
+Aug 31 17:15:05 localhost sudo[6505]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6505]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6510]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "YZLq2yhn"; cat /opt/vmware/var/lib/vami/update/data/info/manifest-installed.xml; printf "command_done_%s" "_LfOjzGi"'
+Aug 31 17:15:05 localhost sudo[6510]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6510]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6515]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ntNtabkF"; id; printf "command_done_%s" "7CwDLXPj"'
+Aug 31 17:15:05 localhost sudo[6515]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6515]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6520]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "9UA7tTCM"; uname -r; printf "command_done_%s" "h04xTovc"'
+Aug 31 17:15:05 localhost sudo[6520]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6520]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6525]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "bHXfRsw1"; uname -m; printf "command_done_%s" "Am0YbU2e"'
+Aug 31 17:15:05 localhost sudo[6525]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6525]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:05 localhost sudo[6530]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "BA3jES6I"; uname -v; printf "command_done_%s" "5pffVgfr"'
+Aug 31 17:15:05 localhost sudo[6530]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:05 localhost sudo[6530]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6535]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "tOkjEPou"; cat /etc/product; printf "command_done_%s" "esgLsuAS"'
+Aug 31 17:15:06 localhost sudo[6535]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6535]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6540]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5dvS6vcI"; cat /etc/photon-release; printf "command_done_%s" "vTZLGbYI"'
+Aug 31 17:15:06 localhost sudo[6540]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6540]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6545]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "aUbmpTgk"; cat /etc/os-release; printf "command_done_%s" "laqk67FI"'
+Aug 31 17:15:06 localhost sudo[6545]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6545]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6550]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "S5_gBCZQ"; cat /etc/lsb-release; printf "command_done_%s" "isIfjsy5"'
+Aug 31 17:15:06 localhost sudo[6550]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6550]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6557]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "FcUAsZql"; cat /etc/vmware-release; printf "command_done_%s" "wgyKvv2M"'
+Aug 31 17:15:06 localhost sudo[6557]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6557]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6562]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "yNzIhY87"; cat /etc/gentoo-release; printf "command_done_%s" "DAP9xLFQ"'
+Aug 31 17:15:06 localhost sudo[6562]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6562]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6567]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3AjjlwAG"; cat /etc/slackware-version; printf "command_done_%s" "BsX8yBju"'
+Aug 31 17:15:06 localhost sudo[6567]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6567]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6573]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "JV9jhv14"; cat /etc/redhat-release; printf "command_done_%s" "zxnanXKz"'
+Aug 31 17:15:06 localhost sudo[6573]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6573]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6578]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "54DUleGm"; /bin/rpm -qa --qf \'%{NAME}-%{VERSION}-%{RELEASE}|%{EPOCH} %{INSTALLTIME:date}|%{VENDOR}|%{PACKAGER}\\n\'; printf "command_done_%s" "IeWO0TsO"'
+Aug 31 17:15:06 localhost sudo[6578]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6578]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:06 localhost sudo[6583]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WtS6FcID"; cat /etc/ecs.conf; printf "command_done_%s" "3ZMvG7IS"'
+Aug 31 17:15:06 localhost sudo[6583]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:06 localhost sudo[6583]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6588]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "fIOhEb4g"; /etc/init.d/guiSvr version; printf "command_done_%s" "32RxHmMl"'
+Aug 31 17:15:07 localhost sudo[6588]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6588]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6593]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1KHBO1xA"; /etc/init.d/devSvr version; printf "command_done_%s" "vwcG_XOA"'
+Aug 31 17:15:07 localhost sudo[6593]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6593]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6598]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "iMh1H40m"; LANG=C; /sbin/ifconfig -a; printf "command_done_%s" "u7ZrZN2o"'
+Aug 31 17:15:07 localhost sudo[6598]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6598]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6603]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xvhajEho"; LANG=C; /sbin/ip addr show; printf "command_done_%s" "8q2xjvqK"'
+Aug 31 17:15:07 localhost sudo[6603]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6603]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6608]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "IIXeZqFh"; /bin/hostname; printf "command_done_%s" "IXujDakO"'
+Aug 31 17:15:07 localhost sudo[6608]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6608]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6613]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XH9wGrbO"; hostname -A; printf "command_done_%s" "SHjolA1v"'
+Aug 31 17:15:07 localhost sudo[6613]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6613]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6618]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "UNM7TEwp"; /usr/bin/last reboot 2>/dev/null; printf "command_done_%s" "Pgqzueai"'
+Aug 31 17:15:07 localhost sudo[6618]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6618]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6623]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "wgboVSc2"; lsmod | grep -q iptable_filter && iptables -L -n -v -t filter; printf "command_done_%s" "QARSYlT3"'
+Aug 31 17:15:07 localhost sudo[6623]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6623]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6629]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "DIfeV9CG"; lsmod | grep -q _conntrack_ipv4 && iptables -L -n -v -t nat; printf "command_done_%s" "ih2P0xO9"'
+Aug 31 17:15:07 localhost sudo[6629]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6629]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6635]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "KFlikMTg"; lsmod | grep -q iptable_mangle && iptables -L -n -v -t mangle; printf "command_done_%s" "NkmPZgli"'
+Aug 31 17:15:07 localhost sudo[6635]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6635]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:07 localhost sudo[6641]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "oQZ9NAwG"; /usr/bin/kcarectl --version 2>/dev/null; printf "command_done_%s" "3sMAAHpb"'
+Aug 31 17:15:07 localhost sudo[6641]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:07 localhost sudo[6641]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6646]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "uJLpv3Hd"; kpatch list 2>/dev/null; printf "command_done_%s" "JJ65uXWP"'
+Aug 31 17:15:08 localhost sudo[6646]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6646]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6651]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "tb0_aHwz"; uptrack-uname -a 2> /dev/null; printf "command_done_%s" "9SQxW5Te"'
+Aug 31 17:15:08 localhost sudo[6651]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6651]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6656]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "fkxwuaFU"; cat "/var/cache/uptrack/Linux/x86_64/6.12.0-211.47.1.el10_2.x86_64/#1 SMP PREEMPT_DYNAMIC Thu Aug 13 10:40:14 EDT 2026/status"; printf "command_done_%s" "9JYYAHA7"'
+Aug 31 17:15:08 localhost sudo[6656]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6656]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6661]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "22gpcSq5"; grep . /sys/devices/system/cpu/vulnerabilities/*; printf "command_done_%s" "7LedErE3"'
+Aug 31 17:15:08 localhost sudo[6661]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6661]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6666]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "eoc2_87x"; ls -1 /etc/dnf/modules.d/*.module; printf "command_done_%s" "2giaRArw"'
+Aug 31 17:15:08 localhost sudo[6666]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6666]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sudo[6671]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "De8Fz4Kb"; if [ -x /opt/shelladmin ]; then (echo -ne \'34\\n\\n\' | /opt/shelladmin); fi; printf "command_done_%s" "omGOj3Sq"'
+Aug 31 17:15:08 localhost sudo[6671]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:08 localhost sudo[6671]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:08 localhost sshd-session[6432]: Read error from remote host 192.168.56.200 port 60286: Connection reset by peer
+Aug 31 17:15:08 localhost sshd-session[6427]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:08 localhost sshd-session[6676]: Accepted password for tenable-ol10 from 192.168.56.200 port 60290 ssh2
+Aug 31 17:15:08 localhost sshd-session[6677]: Accepted password for tenable-ol10 from 192.168.56.200 port 60300 ssh2
+Aug 31 17:15:08 localhost sshd-session[6678]: Accepted password for tenable-ol10 from 192.168.56.200 port 60306 ssh2
+Aug 31 17:15:08 localhost sshd-session[6676]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:08 localhost sshd-session[6677]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:08 localhost sshd-session[6678]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:08 localhost sshd-session[6691]: Read error from remote host 192.168.56.200 port 60300: Connection reset by peer
+Aug 31 17:15:08 localhost sshd-session[6677]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:08 localhost sshd-session[6689]: Accepted password for tenable-ol10 from 192.168.56.200 port 60316 ssh2
+Aug 31 17:15:09 localhost sshd-session[6689]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:09 localhost sudo[6756]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "_3Wuwupp"; /usr/bin/containerd config dump 2>/dev/null; printf "command_done_%s" "34Jj3rMi"'
+Aug 31 17:15:09 localhost sudo[6755]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "mbedc5Bm"; docker version --format \'{{.Server.Version}},{{.Server.GitCommit}}\'; printf "command_done_%s" "Z_k687ZA"'
+Aug 31 17:15:09 localhost sudo[6756]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6755]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6756]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sudo[6755]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sshd-session[6688]: Read error from remote host 192.168.56.200 port 60290: Connection reset by peer
+Aug 31 17:15:09 localhost sshd-session[6676]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:09 localhost sudo[6798]: tenable-ol10 : TTY=pts/6 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "86VrEkWr"; cat /etc/passwd; printf "command_done_%s" "CUttGAPY"'
+Aug 31 17:15:09 localhost sudo[6798]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6798]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sudo[6834]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "vNky9iyE"; /usr/bin/containerd config default 2>/dev/null; printf "command_done_%s" "l6LU_bYc"'
+Aug 31 17:15:09 localhost sudo[6834]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6834]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sshd-session[6797]: Accepted password for tenable-ol10 from 192.168.56.200 port 60328 ssh2
+Aug 31 17:15:09 localhost sshd-session[6797]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:09 localhost sudo[6881]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "s3L7kUi7"; cat /etc/group; printf "command_done_%s" "Vwz1JL3D"'
+Aug 31 17:15:09 localhost sudo[6881]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6881]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sudo[6935]: tenable-ol10 : TTY=pts/6 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "a7GbQkkT"; /bin/ps auxww 2>/dev/null; printf "command_done_%s" "vPF6S1nE"'
+Aug 31 17:15:09 localhost sudo[6934]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "oya574f3"; /usr/local/bin/containerd config dump 2>/dev/null; printf "command_done_%s" "yQLk7jl9"'
+Aug 31 17:15:09 localhost sudo[6935]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6934]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6934]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sudo[6935]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sshd-session[6870]: Read error from remote host 192.168.56.200 port 60328: Connection reset by peer
+Aug 31 17:15:09 localhost sshd-session[6797]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:09 localhost sudo[6978]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "gUPn53x3"; cat /etc/login.defs; printf "command_done_%s" "NjgIDRFk"'
+Aug 31 17:15:09 localhost sudo[6978]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[6978]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sshd-session[6972]: Accepted password for tenable-ol10 from 192.168.56.200 port 60330 ssh2
+Aug 31 17:15:09 localhost sshd-session[6972]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:09 localhost sudo[7012]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Eu5ITZBv"; /usr/local/bin/containerd config default 2>/dev/null; printf "command_done_%s" "ukLsIeLP"'
+Aug 31 17:15:09 localhost sudo[7012]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[7012]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sshd-session[6692]: Read error from remote host 192.168.56.200 port 60306: Connection reset by peer
+Aug 31 17:15:09 localhost sshd-session[6678]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:09 localhost sudo[7078]: tenable-ol10 : TTY=pts/6 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "bKYRhpdY"; test -s /etc/tenable_tag && echo FOUND; printf "command_done_%s" "7DbNOgyW"'
+Aug 31 17:15:09 localhost sudo[7077]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XMC67ya7"; ls -1 /home | grep -E \'.+@.+\\.[a-zA-Z]+\'; printf "command_done_%s" "TkUHfG0X"'
+Aug 31 17:15:09 localhost sudo[7077]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[7078]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:09 localhost sudo[7078]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:09 localhost sudo[7077]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:10 localhost sshd-session[6754]: Read error from remote host 192.168.56.200 port 60316: Connection reset by peer
+Aug 31 17:15:10 localhost sshd-session[6689]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:10 localhost sshd-session[7088]: Accepted password for tenable-ol10 from 192.168.56.200 port 60338 ssh2
+Aug 31 17:15:10 localhost sshd-session[7088]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:10 localhost sshd-session[7123]: Read error from remote host 192.168.56.200 port 60338: Connection reset by peer
+Aug 31 17:15:10 localhost sshd-session[7088]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:10 localhost sudo[7125]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5Hf0SKSi"; sh -c "echo 218073f4f3984f6bb795ee0d00a309a1 > /etc/tenable_tag && echo OK"; printf "command_done_%s" "pDJLVAm5"'
+Aug 31 17:15:10 localhost sudo[7125]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:10 localhost sudo[7125]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:10 localhost sshd-session[7121]: Accepted password for tenable-ol10 from 192.168.56.200 port 60348 ssh2
+Aug 31 17:15:10 localhost sshd-session[7121]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:10 localhost sudo[7161]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "AVFVP9OJ"; chmod 640 /etc/tenable_tag && echo OK; printf "command_done_%s" "gHZe8Ez_"'
+Aug 31 17:15:10 localhost sudo[7161]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:10 localhost sudo[7161]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:10 localhost sudo[7225]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xwGcj4fm"; type timeout 2>&1; printf "command_done_%s" "sJg0DSWY"'
+Aug 31 17:15:10 localhost sudo[7225]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:10 localhost sudo[7225]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:10 localhost sudo[7229]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "_yr8VOqF"; chown 0:0 /etc/tenable_tag && echo OK; printf "command_done_%s" "_W1aBpqc"'
+Aug 31 17:15:10 localhost sudo[7229]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:10 localhost sudo[7229]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:10 localhost sshd-session[7013]: Read error from remote host 192.168.56.200 port 60330: Connection reset by peer
+Aug 31 17:15:10 localhost sshd-session[6972]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:11 localhost sudo[7264]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xrTvRHRC"; type perl 2>&1; printf "command_done_%s" "ZDCxZXcS"'
+Aug 31 17:15:11 localhost sudo[7264]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:11 localhost sudo[7264]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:11 localhost sudo[7297]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ShzgslcC"; type find 2>&1; printf "command_done_%s" "pWnLGOyl"'
+Aug 31 17:15:11 localhost sudo[7297]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:11 localhost sudo[7297]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:11 localhost sudo[7330]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "8BDmiAFq"; cd ~ 2>/dev/null; find MeFbG3Lebqo0MLn82xTs -mindepth 2 2>&1; printf "command_done_%s" "gglkIn3K"'
+Aug 31 17:15:11 localhost sudo[7330]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:11 localhost sudo[7330]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:11 localhost sudo[7364]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "kqlAmV9R"; cd ~ 2>/dev/null; find j7DBv8aGCnX9dwj6Y79U -ctime +0 2>&1; printf "command_done_%s" "6gyMDsjK"'
+Aug 31 17:15:11 localhost sudo[7364]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:11 localhost sudo[7364]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:12 localhost sudo[7398]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "PTW5Jhql"; cd ~ 2>/dev/null; find rh5frIzfhO9_9YZEhEfe -uid +0 2>&1; printf "command_done_%s" "8mQI5RPi"'
+Aug 31 17:15:12 localhost sudo[7398]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:12 localhost sudo[7398]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:12 localhost sudo[7432]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "KEw4aB2Z"; cd ~ 2>/dev/null; find kYkyfTMQBymr0fSJj8xO -maxdepth 2 2>&1; printf "command_done_%s" "cIR4BOrB"'
+Aug 31 17:15:12 localhost sudo[7432]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:12 localhost sudo[7432]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:12 localhost sudo[7466]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "mygHl6uv"; cd ~ 2>/dev/null; find DKtilBqQxeA5yO_iawnh -context \'fRBnqx1aIf\' 2>&1; printf "command_done_%s" "MELXoaWd"'
+Aug 31 17:15:12 localhost sudo[7466]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:12 localhost sudo[7466]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:12 localhost sudo[7500]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "9gto_1WJ"; cd ~ 2>/dev/null; find uJLzUXLHVHe8lLE_TuUp -user \'_nuJHJwyfvPaO2QY0MI2\' 2>&1; printf "command_done_%s" "YQ7gJwef"'
+Aug 31 17:15:12 localhost sudo[7500]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:12 localhost sudo[7500]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:13 localhost sudo[7534]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "4tMUFPzQ"; cd ~ 2>/dev/null; find arCasG1TTgUMkxAukPbO -path 2 2>&1; printf "command_done_%s" "fw8MwGFD"'
+Aug 31 17:15:13 localhost sudo[7534]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:13 localhost sudo[7534]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:13 localhost sudo[7568]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "AscUtGwP"; cd ~ 2>/dev/null; find HjpBTQEThXYHXvAGJoiR -group \'Nb2TfnHT3Rx6k8CZC3ir\' 2>&1; printf "command_done_%s" "qw3Hpacq"'
+Aug 31 17:15:13 localhost sudo[7568]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:13 localhost sudo[7568]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:13 localhost sudo[7602]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "s217o6Gl"; cd ~ 2>/dev/null; find 8SwJMBkUqIWmoLi9V2JV -xautofs 2>&1; printf "command_done_%s" "alF0eZKy"'
+Aug 31 17:15:13 localhost sudo[7602]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:13 localhost sudo[7602]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:14 localhost sudo[7636]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "soWrPlpE"; cd ~ 2>/dev/null; find o0qZAnptfW9N2RPTefHt -mtime +0 2>&1; printf "command_done_%s" "n2iRQ99i"'
+Aug 31 17:15:14 localhost sudo[7636]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:14 localhost sudo[7636]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:14 localhost sudo[7670]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "CemLsT8f"; cd ~ 2>/dev/null; find Y2nKLuIkK1wSg_RgNzxu -gid +0 2>&1; printf "command_done_%s" "3jo98PTv"'
+Aug 31 17:15:14 localhost sudo[7670]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:14 localhost sudo[7670]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:14 localhost sudo[7704]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "81AGOtHE"; ps -aef; printf "command_done_%s" "9IOKeCdh"'
+Aug 31 17:15:14 localhost sudo[7704]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:14 localhost sudo[7704]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:14 localhost sshd-session[7162]: Read error from remote host 192.168.56.200 port 60348: Connection reset by peer
+Aug 31 17:15:14 localhost sshd-session[7121]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:14 localhost sshd-session[7711]: Accepted password for tenable-ol10 from 192.168.56.200 port 36066 ssh2
+Aug 31 17:15:14 localhost sshd-session[7710]: Accepted password for tenable-ol10 from 192.168.56.200 port 36064 ssh2
+Aug 31 17:15:14 localhost sshd-session[7712]: Accepted password for tenable-ol10 from 192.168.56.200 port 36070 ssh2
+Aug 31 17:15:14 localhost sshd-session[7711]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:14 localhost sshd-session[7710]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:14 localhost sshd-session[7712]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:15 localhost sudo[7814]: tenable-ol10 : TTY=pts/6 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ql_alXX_"; cd ~ 2>/dev/null; timeout -s9 240s find \'/opt/IBM\' -maxdepth 5 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) -a \\( -path \'*/httpd\' \\) \\) 2>/dev/null; RET=$?; echo; echo "$RET"; printf "command_done_%s" "QHcgJaZg"'
+Aug 31 17:15:15 localhost sudo[7814]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7812]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "KIOVaoQx"; cd ~ 2>/dev/null; find \'/u01\' \'/u02\' \'/u11\' \'/u12\' \'/app\' \'/appl\' \'/srv\' \'/oracle\' -maxdepth 6 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) -a \\( -path \'*/oraInst.loc\' \\) \\); printf "command_done_%s" "uhyR3Efa"'
+Aug 31 17:15:15 localhost sudo[7813]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Q4bzQNXj"; cd ~ 2>/dev/null; timeout -s9 240s find \'/home/\' \'/opt/\' \'/bin/\' \'/sbin/\' \'/usr/bin/\' \'/usr/local/\' \'/usr/local/bin/\' \'/sbin/\' \'/usr/sbin/\' \'/app/\' \'/var/\' -maxdepth 10 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) -a \\( -path \'*/InstallationManager/installed.xml\' \\) \\) 2>/dev/null; RET=$?; echo; echo "$RET"; printf "command_done_%s" "1qIzR1Tl"'
+Aug 31 17:15:15 localhost sudo[7813]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7814]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sudo[7812]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7812]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sshd-session[7724]: Read error from remote host 192.168.56.200 port 36070: Connection reset by peer
+Aug 31 17:15:15 localhost sshd-session[7712]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:15 localhost sudo[7813]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sshd-session[7834]: Accepted password for tenable-ol10 from 192.168.56.200 port 36080 ssh2
+Aug 31 17:15:15 localhost sshd-session[7834]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:15 localhost sudo[7898]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "vxYTs72f"; cd ~ 2>/dev/null; find \'/home\' -maxdepth 10 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) ! \\( -path \'/srv/backups\' -prune -o -path \'/srv/ftp\' -prune -o -path \'/srv/tftp\' -prune -o -path \'/srv/rsync\' -prune -o -path \'/srv/cvs\' -prune -o -path \'/srv/svn\' -prune -o -path \'/srv/git\' -prune -o -path \'/srv/gitosis\' -prune -o -path \'/srv/salt\' -prune -o -path \'/srv/swift\' -prune -o -path \'/srv/plone\' -prune \\) -a \\( -path \'*/oraInst.loc\' \\) \\); printf "command_done_%s" "LEUi7xAq"'
+Aug 31 17:15:15 localhost sudo[7898]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7898]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sudo[7916]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xOzN7zos"; [ -f "/var/ibm/InstallationManager/installed.xml" ] || [ -d "/var/ibm/InstallationManager/installed.xml" ] && echo "found"; printf "command_done_%s" "OHTOu0zj"'
+Aug 31 17:15:15 localhost sudo[7916]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7916]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sshd-session[7722]: Read error from remote host 192.168.56.200 port 36066: Connection reset by peer
+Aug 31 17:15:15 localhost sshd-session[7711]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:15 localhost sudo[7937]: tenable-ol10 : TTY=pts/6 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "MMg1Rq4D"; cd ~ 2>/dev/null; timeout -s9 240s find \'/\' \'/apps/\' \'/opt/\' \'/var/\' \'/var/lib/\' \'/usr/\' \'/usr/local/\' \'/usr/share/\' -maxdepth 5 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) ! \\( -path \'/bin\' -prune -o -path \'/boot\' -prune -o -path \'/dev\' -prune -o -path \'/etc\' -prune -o -path \'/lib\' -prune -o -path \'/media\' -prune -o -path \'/mnt\' -prune -o -path \'/proc\' -prune -o -path \'/run\' -prune -o -path \'/sbin\' -prune -o -path \'/srv\' -prune -o -path \'/sys\' -prune -o -path \'/tmp\' -prune \\) -a \\( -path \'*/bin/catalina-tasks.xml\' -o -path \'*/lib/catalina.jar\' \\) \\) 2>/dev/null; RET=$?; echo; echo "$RET"; printf
+Aug 31 17:15:15 localhost sudo[7937]: tenable-ol10 : (command continued) "command_done_%s" "RgXl08Ov"'
+Aug 31 17:15:15 localhost sudo[7937]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7977]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5NX9jFnP"; cat \'/etc/oraInst.loc\'; printf "command_done_%s" "MsmUSKGA"'
+Aug 31 17:15:15 localhost sudo[7977]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[7977]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sshd-session[7945]: Accepted password for tenable-ol10 from 192.168.56.200 port 36090 ssh2
+Aug 31 17:15:15 localhost sshd-session[7945]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:15 localhost sudo[8042]: tenable-ol10 : TTY=pts/7 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xEhH_7i4"; [ -f "/usr/sbin/apache2" ] || [ -d "/usr/sbin/apache2" ] && echo "found"; printf "command_done_%s" "WI2aqYjC"'
+Aug 31 17:15:15 localhost sudo[8042]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[8042]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:15 localhost sudo[8047]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Uo57GPZk"; cat \'/etc/oratab\'; printf "command_done_%s" "rDWNRQkJ"'
+Aug 31 17:15:15 localhost sudo[8047]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:15 localhost sudo[8047]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[8111]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "x_JxfxSN"; cat \'/var/opt/oracle/oratab\'; printf "command_done_%s" "uMVNCSJ9"'
+Aug 31 17:15:16 localhost sudo[8112]: tenable-ol10 : TTY=pts/7 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "gyW4k_wI"; [ -f "/sw/package/apache/bin/apache2" ] || [ -d "/sw/package/apache/bin/apache2" ] && echo "found"; printf "command_done_%s" "kPo7ti87"'
+Aug 31 17:15:16 localhost sudo[8111]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8112]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8111]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[8112]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[7937]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sshd-session[7876]: Read error from remote host 192.168.56.200 port 36080: Connection reset by peer
+Aug 31 17:15:16 localhost sshd-session[7834]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:16 localhost sudo[8179]: tenable-ol10 : TTY=pts/7 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "J0STu22K"; [ -f "/usr/local/apache/bin/apache2" ] || [ -d "/usr/local/apache/bin/apache2" ] && echo "found"; printf "command_done_%s" "UpW1MIn8"'
+Aug 31 17:15:16 localhost sudo[8180]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "t7mcQdQ7"; cd ~ 2>/dev/null; find \'/home\' -maxdepth 3 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) -a \\( -path \'*/beahomelist\' \\) \\); printf "command_done_%s" "rXpps7sg"'
+Aug 31 17:15:16 localhost sudo[8179]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8180]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8179]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[8180]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sshd-session[7723]: Read error from remote host 192.168.56.200 port 36064: Connection reset by peer
+Aug 31 17:15:16 localhost sshd-session[7710]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:16 localhost sudo[8219]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "lLryrSLg"; [ -f "/usr/local/apache2/bin/apache2" ] || [ -d "/usr/local/apache2/bin/apache2" ] && echo "found"; printf "command_done_%s" "rbMF6QgC"'
+Aug 31 17:15:16 localhost sudo[8219]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8219]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[8252]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "9wYoew7e"; which cat 2>&1; printf "command_done_%s" "Ms2Z1dNG"'
+Aug 31 17:15:16 localhost sudo[8252]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8252]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:16 localhost sudo[8286]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "KUHgtVMP"; which -a apache2 2>/dev/null; printf "command_done_%s" "g795aO11"'
+Aug 31 17:15:16 localhost sudo[8286]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:16 localhost sudo[8286]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:17 localhost sudo[8320]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "iBEOnxxc"; [ -f "/usr/sbin/httpd" ] || [ -d "/usr/sbin/httpd" ] && echo "found"; printf "command_done_%s" "K78AB5Vd"'
+Aug 31 17:15:17 localhost sudo[8320]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:17 localhost sudo[8320]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:17 localhost sudo[8353]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "HAZJpOVz"; [ -f "/sw/package/apache/bin/httpd" ] || [ -d "/sw/package/apache/bin/httpd" ] && echo "found"; printf "command_done_%s" "mIY7TX5o"'
+Aug 31 17:15:17 localhost sudo[8353]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:17 localhost sudo[8353]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:17 localhost sudo[8386]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "FicVyID6"; [ -f "/usr/local/apache/bin/httpd" ] || [ -d "/usr/local/apache/bin/httpd" ] && echo "found"; printf "command_done_%s" "e6JnDldl"'
+Aug 31 17:15:17 localhost sudo[8386]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:17 localhost sudo[8386]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:17 localhost sudo[8419]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "uAJ_BGQJ"; [ -f "/usr/local/apache2/bin/httpd" ] || [ -d "/usr/local/apache2/bin/httpd" ] && echo "found"; printf "command_done_%s" "o49TtloM"'
+Aug 31 17:15:17 localhost sudo[8419]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:17 localhost sudo[8419]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:18 localhost sudo[8452]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ncOVclF4"; which -a httpd 2>/dev/null; printf "command_done_%s" "zt4439uN"'
+Aug 31 17:15:18 localhost sudo[8452]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:18 localhost sudo[8452]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:18 localhost sudo[8486]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "qSj7wxT9"; cd ~ 2>/dev/null; timeout -s9 240s find \'/opt/\' \'/var/\' \'/var/lib/\' \'/usr/\' \'/usr/local/\' \'/usr/share/\' -maxdepth 5 -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) ! \\( -path \'/bin\' -prune -o -path \'/boot\' -prune -o -path \'/dev\' -prune -o -path \'/etc\' -prune -o -path \'/lib\' -prune -o -path \'/media\' -prune -o -path \'/mnt\' -prune -o -path \'/proc\' -prune -o -path \'/run\' -prune -o -path \'/sbin\' -prune -o -path \'/srv\' -prune -o -path \'/sys\' -prune -o -path \'/tmp\' -prune \\) -a \\( -path \'*/apache2\' -o -path \'*/httpd\' \\) \\) 2>/dev/null; RET=$?; echo; echo "$RET"; printf "command_done_%s" "9LNGEUbj"'
+Aug 31 17:15:18 localhost sudo[8486]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:18 localhost sudo[8486]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:18 localhost sshd-session[7983]: Read error from remote host 192.168.56.200 port 36090: Connection reset by peer
+Aug 31 17:15:18 localhost sshd-session[7945]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:44 localhost sshd-session[6415]: Read error from remote host 192.168.56.200 port 60642: Connection reset by peer
+Aug 31 17:15:44 localhost sshd-session[6405]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:45 localhost sshd-session[8499]: Accepted password for tenable-ol10 from 192.168.56.200 port 58494 ssh2
+Aug 31 17:15:45 localhost sshd-session[8500]: Accepted password for tenable-ol10 from 192.168.56.200 port 58496 ssh2
+Aug 31 17:15:45 localhost sshd-session[8499]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:45 localhost sshd-session[8500]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:45 localhost sudo[8568]: tenable-ol10 : TTY=pts/5 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "9bOEyOGm"; cd ~ 2>/dev/null; timeout -s9 240s find \'/opt/\' \'/usr/\' \'/usr/local/\' \'/usr/share/\' \'/var/\' \'/var/lib/\' \'/apps/\' \'/home\' -maxdepth 5 -xdev -xautofs -follow \\( ! \\( -fstype nfs -prune -o -fstype nfs4 -prune -o -fstype cifs -prune -o -fstype smbfs -prune -o -fstype afs -prune -o -fstype sysfs -prune -o -fstype proc -prune -o -fstype panfs -prune \\) ! \\( -path \'/bin\' -prune -o -path \'/boot\' -prune -o -path \'/dev\' -prune -o -path \'/etc\' -prune -o -path \'/lib\' -prune -o -path \'/media\' -prune -o -path \'/mnt\' -prune -o -path \'/proc\' -prune -o -path \'/run\' -prune -o -path \'/sbin\' -prune -o -path \'/srv\' -prune -o -path \'/sys\' -prune -o -path \'/tmp\' -prune \\) -a \\( -path \'*/openliberty.properties\' \\) \\) 2>/dev/null; RET=$?; echo; echo "$RET"; printf "command_done_%s" "PBZ5pM4o"'
+Aug 31 17:15:45 localhost sudo[8569]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5HQ7iifK"; ls -d1 /opt/* /data/* 2>/dev/null; printf "command_done_%s" "2lhE9h2x"'
+Aug 31 17:15:45 localhost sudo[8569]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:45 localhost sudo[8568]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:45 localhost sudo[8569]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:45 localhost sshd-session[8507]: Read error from remote host 192.168.56.200 port 58494: Connection reset by peer
+Aug 31 17:15:45 localhost sshd-session[8499]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:45 localhost sudo[8568]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:45 localhost sshd-session[8508]: Read error from remote host 192.168.56.200 port 58496: Connection reset by peer
+Aug 31 17:15:45 localhost sshd-session[8500]: pam_unix(sshd:session): session closed for user tenable-ol10
+Aug 31 17:15:46 localhost sshd-session[8582]: Accepted password for tenable-ol10 from 192.168.56.200 port 58506 ssh2
+Aug 31 17:15:46 localhost sshd-session[8582]: pam_unix(sshd:session): session opened for user tenable-ol10(uid=1002) by tenable-ol10(uid=0)
+Aug 31 17:15:46 localhost sudo[8616]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "suGYKTrS"; env -i sh -c "echo >&2"|cat; printf "command_done_%s" "dbkFo_VE"'
+Aug 31 17:15:46 localhost sudo[8616]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8616]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:46 localhost sudo[8622]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1cNBZoxc"; id|cat; printf "command_done_%s" "KN2CpPHO"'
+Aug 31 17:15:46 localhost sudo[8622]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8622]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:46 localhost sudo[8628]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "FIfMM43b"; env LANG=C id|cat; printf "command_done_%s" "E1LsLH65"'
+Aug 31 17:15:46 localhost sudo[8628]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8628]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:46 localhost sudo[8634]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "7fs_m4V1"; LANG=C; uname|cat; printf "command_done_%s" "gdvQ_Z3I"'
+Aug 31 17:15:46 localhost sudo[8634]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8634]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:46 localhost sudo[8640]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "6wtQwrCl"; LANG=C; uname -a|cat; printf "command_done_%s" "M7KmbDZU"'
+Aug 31 17:15:46 localhost sudo[8640]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8640]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:46 localhost sudo[8646]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "EsSt6f_1"; LANG=C; (modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+cramfs\\b\' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "R7PT6lS9"'
+Aug 31 17:15:46 localhost sudo[8646]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:46 localhost sudo[8646]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8654]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "G08Du_TZ"; LANG=C; (modinfo squashfs &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+squashfs\\b\' && ! lsmod | grep -q squashfs) || (! modinfo squashfs &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "znqkQ2ZB"'
+Aug 31 17:15:47 localhost sudo[8654]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8654]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8666]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "002SVX6W"; LANG=C; (modinfo udf &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+udf\\b\' && ! lsmod | grep -q udf) || (! modinfo udf &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "0GqvzJsi"'
+Aug 31 17:15:47 localhost sudo[8666]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8666]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8678]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "502TK0dF"; LANG=C; (modinfo hfs &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+hfs\\b\' && ! lsmod | grep -q hfs) || (! modinfo hfs &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "y7tn7Ghn"'
+Aug 31 17:15:47 localhost sudo[8678]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8678]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8686]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "FSQKPhyG"; LANG=C; (modinfo hfsplus &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+hfsplus\\b\' && ! lsmod | grep -q hfsplus) || (! modinfo hfsplus &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "k5nNLVt0"'
+Aug 31 17:15:47 localhost sudo[8686]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8686]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8694]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xsb6aTDH"; LANG=C; (modinfo jffs2 &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+jffs2\\b\' && ! lsmod | grep -q jffs2) || (! modinfo jffs2 &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "q2oeDepV"'
+Aug 31 17:15:47 localhost sudo[8694]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8694]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8702]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Wk0I7Msg"; LANG=C; (modinfo freevxfs &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+freevxfs\\b\' && ! lsmod | grep -q freevxfs) || (! modinfo freevxfs &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "XCurq4QN"'
+Aug 31 17:15:47 localhost sudo[8702]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:47 localhost sudo[8702]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:47 localhost sudo[8710]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "EzaAg_nQ"; LANG=C; (modinfo overlay &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+overlay\\b\' && ! lsmod | grep -q overlay) || (! modinfo overlay &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "G98AnW4b"'
+Aug 31 17:15:47 localhost sudo[8710]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8710]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8722]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "z7ZAehoX"; LANG=C; (modinfo usb-storage &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+usb_storage\\b\' && ! lsmod | grep -q usb_storage) || (! modinfo usb-storage &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "kGzghU3x"'
+Aug 31 17:15:48 localhost sudo[8722]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8722]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8734]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "7VCd6wFO"; LANG=C; (modinfo dccp &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+dccp\\b\' && ! lsmod | grep -q dccp) || (! modinfo dccp &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "oaoPbxOR"'
+Aug 31 17:15:48 localhost sudo[8734]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8734]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8742]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "JMeS4Art"; LANG=C; (modinfo sctp &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+sctp\\b\' && ! lsmod | grep -q sctp) || (! modinfo sctp &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "6WRHtbvI"'
+Aug 31 17:15:48 localhost sudo[8742]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8742]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8750]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "A0IwTNPR"; LANG=C; (modinfo rds &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+rds\\b\' && ! lsmod | grep -q rds) || (! modinfo rds &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "rtqg0cNY"'
+Aug 31 17:15:48 localhost sudo[8750]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8750]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8758]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "MxBbiGuD"; LANG=C; (modinfo tipc &>/dev/null && modprobe --showconfig | grep -Pq \'\\b(install|blacklist)\\h+tipc\\b\' && ! lsmod | grep -q tipc) || (! modinfo tipc &>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "ICTmTFa8"'
+Aug 31 17:15:48 localhost sudo[8758]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8758]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8766]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "EA92Dg2K"; LANG=C; (ulimit -c 0 && sysctl -n fs.suid_dumpable | grep -q \'^0$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "7Ybb1uMx"'
+Aug 31 17:15:48 localhost sudo[8766]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8766]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8775]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "AicuYTzp"; LANG=C; (sysctl -n kernel.yama.ptrace_scope | grep -q \'^[1-3]$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "AMk1yzsZ"'
+Aug 31 17:15:48 localhost sudo[8775]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8775]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8784]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "hqWIGfl0"; LANG=C; (grep -q \'nx\' /proc/cpuinfo && dmesg | grep -qi \'NX.*active\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "oTt_WLxB"'
+Aug 31 17:15:48 localhost sudo[8784]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:48 localhost sudo[8784]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:48 localhost sudo[8792]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xNlo1BuJ"; LANG=C; (sysctl -n kernel.randomize_va_space | grep -q \'^2$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "ACmhhZiI"'
+Aug 31 17:15:48 localhost sudo[8792]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8792]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8799]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "4sOiSRvV"; LANG=C; (grep -q \'iommu=on\' /proc/cmdline) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "HxZyarnR"'
+Aug 31 17:15:49 localhost sudo[8799]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8799]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8806]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3s03HEQD"; LANG=C; (sysctl -n kernel.perf_event_paranoid | grep -q \'^[2-3]$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "yTL7_aT1"'
+Aug 31 17:15:49 localhost sudo[8806]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8806]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8813]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "6y801OgM"; LANG=C; (sysctl -n kernel.dmesg_restrict | grep -q \'^1$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "9PknnkYN"'
+Aug 31 17:15:49 localhost sudo[8813]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8813]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8820]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XIbTGbJr"; LANG=C; ( [ ! -e /proc/sys/kernel/unprivileged_userns_clone ] || sysctl -n kernel.unprivileged_userns_clone 2>/dev/null | grep -q \'^0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "ij64cqCu"'
+Aug 31 17:15:49 localhost sudo[8820]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8820]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8825]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "URQHidNO"; LANG=C; (sysctl -n fs.protected_symlinks | grep -q \'^1$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "WjlvHCer"'
+Aug 31 17:15:49 localhost sudo[8825]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8825]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8832]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "2Q6tbaMi"; LANG=C; (sysctl -n fs.protected_hardlinks | grep -q \'^1$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "IRYVv4m5"'
+Aug 31 17:15:49 localhost sudo[8832]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8832]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8839]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ZmYfC3NQ"; LANG=C; (sysctl -n fs.suid_dumpable | grep -q \'^0$\') && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "FQnSFJQ5"'
+Aug 31 17:15:49 localhost sudo[8839]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8839]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8848]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Nv9_oMN3"; LANG=C; (findmnt -kn /tmp >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "XqtAtlR3"'
+Aug 31 17:15:49 localhost sudo[8848]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8848]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:49 localhost sudo[8855]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "MziANL8M"; LANG=C; (findmnt -kn /dev/shm >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "ctBSuGx3"'
+Aug 31 17:15:49 localhost sudo[8855]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:49 localhost sudo[8855]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8862]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "6HWURhAz"; LANG=C; (findmnt -kn /var >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "j73vdGx4"'
+Aug 31 17:15:50 localhost sudo[8862]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8862]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8870]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WAgAaf9_"; LANG=C; (findmnt -kn /var/tmp >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "sqHMfGZQ"'
+Aug 31 17:15:50 localhost sudo[8870]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8870]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8877]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Gi_LEK4W"; LANG=C; (findmnt -kn /var/log >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "IbPuO5HH"'
+Aug 31 17:15:50 localhost sudo[8877]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8877]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8884]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "l4PPPXSX"; LANG=C; (findmnt -kn /var/log/audit >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "LfcR4P4t"'
+Aug 31 17:15:50 localhost sudo[8884]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8884]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8891]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ntgps4J2"; LANG=C; (findmnt -kn /home >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "oTthdvPr"'
+Aug 31 17:15:50 localhost sudo[8891]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8891]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8898]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "oYtqo6uJ"; LANG=C; (findmnt -kn /historico >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "H4DIGr9e"'
+Aug 31 17:15:50 localhost sudo[8898]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8898]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8905]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "8ly_YAeE"; LANG=C; (findmnt -kn /crash >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "TgHMAncD"'
+Aug 31 17:15:50 localhost sudo[8905]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8905]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8912]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "hUYh6Agq"; LANG=C; (findmnt -kn /UNIX >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "trm3piD6"'
+Aug 31 17:15:50 localhost sudo[8912]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8912]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8919]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "hN31uxVu"; LANG=C; (grep -E \'nodev|nosuid|noexec\' /etc/fstab >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "XQk3jiny"'
+Aug 31 17:15:50 localhost sudo[8919]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8919]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8926]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ip6Vgj2w"; LANG=C; (findmnt -n /var | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "sFsPTVnr"'
+Aug 31 17:15:50 localhost sudo[8926]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8926]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8934]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Q3xYPAJe"; LANG=C; (findmnt -n /tmp | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "2Yy6qxKC"'
+Aug 31 17:15:50 localhost sudo[8934]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8934]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8942]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "qP9p0GFJ"; LANG=C; (findmnt -n /dev/shm | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "ziT6vtx3"'
+Aug 31 17:15:50 localhost sudo[8942]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8942]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8950]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "UBZ8BqoZ"; LANG=C; (findmnt -n /var/tmp | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "tsSjcXcb"'
+Aug 31 17:15:50 localhost sudo[8950]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8950]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8958]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "oOH58mKy"; LANG=C; (findmnt -n /var/log | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "ElOBDtYr"'
+Aug 31 17:15:50 localhost sudo[8958]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8958]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:50 localhost sudo[8967]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "qy5NEoX6"; LANG=C; (findmnt -n /var/log/audit | grep -Eq \'nodev|nosuid|noexec\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "daGVuw4Z"'
+Aug 31 17:15:50 localhost sudo[8967]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:50 localhost sudo[8967]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[8975]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Ak9xEX8l"; LANG=C; (findmnt -n /home | grep -qw nodev && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "0koZu1eU"'
+Aug 31 17:15:51 localhost sudo[8975]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[8975]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[8983]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "SP8QJpYo"; LANG=C; (grep -E \'nodev|nosuid|noexec\' /etc/fstab | grep -E \'/media|/run/media\' >/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "nENVjbSt"'
+Aug 31 17:15:51 localhost sudo[8983]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[8983]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[8991]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "VwkaVwp1"; LANG=C; (find -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep . && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "XZnG5ogT"'
+Aug 31 17:15:51 localhost sudo[8991]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[8991]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9000]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "jycJr3lQ"; LANG=C; (stat -c "%A" /tmp | grep -q \'t\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "uayUtmNh"'
+Aug 31 17:15:51 localhost sudo[9000]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9000]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9008]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "D0CcMSMG"; LANG=C; (stat -c "%A" /var/tmp | grep -q \'t\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "DEZD0mow"'
+Aug 31 17:15:51 localhost sudo[9008]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9008]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9016]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "zLPIxvWy"; LANG=C; (stat -c "%A" /dev/shm | grep -q \'t\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "YlXbzM7l"'
+Aug 31 17:15:51 localhost sudo[9016]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9016]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9024]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "cQatrOoO"; LANG=C; (systemctl is-enabled autofs &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "akMWbG1f"'
+Aug 31 17:15:51 localhost sudo[9024]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9024]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9031]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "6ZXcODLJ"; LANG=C; (grep -q \'password_pbkdf2\' /boot/grub2/grub.cfg 2>/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "LvoqRGJJ"'
+Aug 31 17:15:51 localhost sudo[9031]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9031]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9038]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "RF13j5gY"; LANG=C; (stat -Lc \'%a %U %G\' /boot/grub2/grub.cfg 2>/dev/null | grep -Eq \'^(400|600) root root$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "doPOpDu8"'
+Aug 31 17:15:51 localhost sudo[9038]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9038]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9046]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XGWhRw8z"; LANG=C; (grep -q \'^ExecStart=-/bin/sh\' /usr/lib/systemd/system/emergency.service && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "KVThIi2g"'
+Aug 31 17:15:51 localhost sudo[9046]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9046]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9053]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "pn4daPI8"; LANG=C; (rpm -q prelink &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "kksxB7xd"'
+Aug 31 17:15:51 localhost sudo[9053]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9053]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9060]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "qlaFJQ9s"; LANG=C; (rpm -q xinetd &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "X8eMTr6v"'
+Aug 31 17:15:51 localhost sudo[9060]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9060]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:51 localhost sudo[9067]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WuSiTvFD"; LANG=C; ( systemctl is-active --quiet chronyd &>/dev/null || systemctl is-active --quiet ntpd &>/dev/null || systemctl is-active --quiet systemd-timesyncd &>/dev/null ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "x72ps7v_"'
+Aug 31 17:15:51 localhost sudo[9067]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:51 localhost sudo[9067]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9073]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "t_9tYdqI"; LANG=C; (rpm -q xorg-x11-server-common &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "b3ay_dne"'
+Aug 31 17:15:52 localhost sudo[9073]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9073]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9080]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "NHEfGfvF"; LANG=C; (rpm -q avahi &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "ykEmZAyk"'
+Aug 31 17:15:52 localhost sudo[9080]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9080]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9087]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "yIpyWUEd"; LANG=C; (rpm -q cups &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "MuQIlPvc"'
+Aug 31 17:15:52 localhost sudo[9087]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9087]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9094]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "rqdaB1nC"; LANG=C; (rpm -q dhcp-server &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "tk80gY2j"'
+Aug 31 17:15:52 localhost sudo[9094]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9094]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9101]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "hOoafOeE"; LANG=C; (rpm -q openldap-servers &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "jnJt6JmU"'
+Aug 31 17:15:52 localhost sudo[9101]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9101]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9108]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "EdUEc3vG"; LANG=C; (rpm -q bind &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "r6G2sGrR"'
+Aug 31 17:15:52 localhost sudo[9108]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9108]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9115]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "dl9QoD_P"; LANG=C; (rpm -q vsftpd &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "db4A8S8s"'
+Aug 31 17:15:52 localhost sudo[9115]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9115]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9122]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Rba9nFyi"; LANG=C; (rpm -q httpd &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "Ux1yOyJH"'
+Aug 31 17:15:52 localhost sudo[9122]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9122]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9129]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "_iN9lYy4"; LANG=C; (rpm -q dovecot &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "1Gbb4Sw6"'
+Aug 31 17:15:52 localhost sudo[9129]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9129]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9136]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "y71Av4AF"; LANG=C; (rpm -q samba &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "GoQdEISK"'
+Aug 31 17:15:52 localhost sudo[9136]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9136]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:52 localhost sudo[9143]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "P4LzHhXJ"; LANG=C; (rpm -q squid &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "GTNgT9Pw"'
+Aug 31 17:15:52 localhost sudo[9143]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:52 localhost sudo[9143]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9150]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "7aFImUj7"; LANG=C; (rpm -q net-snmp &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "Ei4gtVEp"'
+Aug 31 17:15:53 localhost sudo[9150]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9150]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9157]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "m1GH6Dn9"; LANG=C; (rpm -q ypserv &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "MF2SdL7R"'
+Aug 31 17:15:53 localhost sudo[9157]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9157]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9165]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "OBMggMtd"; LANG=C; (rpm -q telnet-server &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "zXbaxX3Z"'
+Aug 31 17:15:53 localhost sudo[9165]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9165]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9172]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "qmWaiS7l"; LANG=C; ( [ ! -f /etc/postfix/main.cf ] || grep -Eq \'^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*(localhost|loopback-only)\\b\' /etc/postfix/main.cf 2>/dev/null ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "Fqk5T5AF"'
+Aug 31 17:15:53 localhost sudo[9172]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9172]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9177]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "mT8H_pPs"; LANG=C; (systemctl is-enabled nfs-server &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "D75_oHkI"'
+Aug 31 17:15:53 localhost sudo[9177]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9177]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9184]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "n4PNSii4"; LANG=C; (systemctl is-enabled rpcbind &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "9wzT78mq"'
+Aug 31 17:15:53 localhost sudo[9184]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9184]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9191]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "EGLq13me"; LANG=C; (systemctl is-enabled rsyncd &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "GDZTzdFF"'
+Aug 31 17:15:53 localhost sudo[9191]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9191]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9198]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "I94VOl8_"; LANG=C; (rpm -q ypbind &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "GnWJwxOk"'
+Aug 31 17:15:53 localhost sudo[9198]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9198]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9205]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "QLCXzt7A"; LANG=C; (rpm -q rsh &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "SbfdphT0"'
+Aug 31 17:15:53 localhost sudo[9205]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9205]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9212]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "c6TaaJpi"; LANG=C; (rpm -q talk &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "6M1EHVrM"'
+Aug 31 17:15:53 localhost sudo[9212]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9212]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9219]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "0I6roJF7"; LANG=C; (rpm -q telnet &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "jZ892cvl"'
+Aug 31 17:15:53 localhost sudo[9219]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9219]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9226]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "n9VWrMPT"; LANG=C; (rpm -q openldap-clients &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "NzuV1LN5"'
+Aug 31 17:15:53 localhost sudo[9226]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:53 localhost sudo[9226]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:53 localhost sudo[9233]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "wvlnbxoS"; LANG=C; (systemctl list-unit-files --state=enabled 2>/dev/null | grep -Eq \'^(avahi-daemon|cups|telnet|vsftpd|xinetd|tftp|ypserv|ypbind)\\.service\' && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "XlU13fen"'
+Aug 31 17:15:53 localhost sudo[9233]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9233]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9241]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "HVTfIn0T"; LANG=C; (rpm -q tftp-server &>/dev/null && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "Wevwa5Jm"'
+Aug 31 17:15:54 localhost sudo[9241]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9241]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9249]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XaTIlPm5"; LANG=C; ( grep -Ehv \'^[[:space:]]*(//|#)\' /etc/polkit-1/rules.d/*.rules 2>/dev/null | grep -Eq \'polkit\\.Result\\.YES|[^[:alnum:]_]allow[^[:alnum:]_]\' ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "mZTHIyki"'
+Aug 31 17:15:54 localhost sudo[9249]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9249]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9258]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "sICumOPX"; LANG=C; (grep -Eq \'^gpgcheck\\s*=\\s*1\' /etc/yum.conf /etc/yum.repos.d/*.repo 2>/dev/null && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "6Z24HVXJ"'
+Aug 31 17:15:54 localhost sudo[9258]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9258]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9266]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "gDlrh4ez"; LANG=C; ( ( systemctl is-active --quiet chronyd &>/dev/null && ! systemctl is-active --quiet ntpd &>/dev/null && ! systemctl is-active --quiet systemd-timesyncd &>/dev/null ) || ( ! systemctl is-active --quiet chronyd &>/dev/null && systemctl is-active --quiet ntpd &>/dev/null && ! systemctl is-active --quiet systemd-timesyncd &>/dev/null ) || ( ! systemctl is-active --quiet chronyd &>/dev/null && ! systemctl is-active --quiet ntpd &>/dev/null && systemctl is-active --quiet systemd-timesyncd &>/dev/null ) ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "ihQUzQu6"'
+Aug 31 17:15:54 localhost sudo[9266]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9266]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9275]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "0uUUSkWu"; LANG=C; (stat -Lc \'%a %U %G\' /etc/cron.allow 2>/dev/null | grep -Eq \'^640 root (root|crontab)$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "hT9dURBC"'
+Aug 31 17:15:54 localhost sudo[9275]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9275]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9283]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "DSJGzb4R"; LANG=C; (sysctl -n net.ipv4.ip_forward 2>/dev/null | grep -q \'^0$\' && sysctl -n net.ipv6.conf.all.forwarding 2>/dev/null | grep -q \'^0$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "lD6VGnCg"'
+Aug 31 17:15:54 localhost sudo[9283]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9283]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9293]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "sdMnk8vS"; LANG=C; (sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -q \'^0$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "YoGKijO_"'
+Aug 31 17:15:54 localhost sudo[9293]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9293]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9301]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "nFL9CMpA"; LANG=C; (sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -q \'^0$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "tyu4IczT"'
+Aug 31 17:15:54 localhost sudo[9301]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9301]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:54 localhost sudo[9309]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "6_kX35JL"; LANG=C; (sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -q \'^0$\' && sysctl -n net.ipv4.conf.all.secure_redirects 2>/dev/null | grep -q \'^0$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "hBhF3Kzx"'
+Aug 31 17:15:54 localhost sudo[9309]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:54 localhost sudo[9309]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9317]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "NczI7ycE"; LANG=C; (sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -Eq \'^[12]$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "k0CeXLj6"'
+Aug 31 17:15:55 localhost sudo[9317]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9317]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9325]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "d_lQYG2K"; LANG=C; (sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -q \'^1$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "Cgau_Ybn"'
+Aug 31 17:15:55 localhost sudo[9325]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9325]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9333]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "U0yi9Csp"; LANG=C; (sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null | grep -q \'^1$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "COtW43bs"'
+Aug 31 17:15:55 localhost sudo[9333]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9333]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9341]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Y4THFKPx"; LANG=C; (sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -q \'^1$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "ezNYb_Wh"'
+Aug 31 17:15:55 localhost sudo[9341]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9341]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9349]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "71CGkmY2"; LANG=C; (sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null | grep -q \'^1$\' && echo "PASS" || echo "FAIL")|cat; printf "command_done_%s" "jJBNM9w4"'
+Aug 31 17:15:55 localhost sudo[9349]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9349]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9357]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WEpiBqFQ"; LANG=C; (lsmod | grep -Eq \'bluetooth|iwlwifi\' && echo "FAIL" || echo "PASS")|cat; printf "command_done_%s" "2duM1Irb"'
+Aug 31 17:15:55 localhost sudo[9357]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9357]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9365]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1LjB9hOU"; LANG=C; (update-crypto-policies --show 2>/dev/null | grep -qx FUTURE) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "V_Y9aYGQ"'
+Aug 31 17:15:55 localhost sudo[9365]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9365]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9374]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "f9FGAu5_"; LANG=C; ( stat -c %a /etc/ssh/sshd_config | grep -Eq \'^(600|400)$\' && [ "$(stat -c %U:%G /etc/ssh)" = "root:root" ] ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "0NFfa9L7"'
+Aug 31 17:15:55 localhost sudo[9374]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9374]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9382]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xOH7aYdK"; LANG=C; (grep -Eq \'^[[:space:]]*(AllowUsers|AllowGroups|DenyUsers|DenyGroups)[[:space:]]+\' /etc/ssh/sshd_config 2>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "cPF0V8U3"'
+Aug 31 17:15:55 localhost sudo[9382]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9382]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9389]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "gzPIq6uQ"; LANG=C; (grep -Eq \'^[[:space:]]*LogLevel[[:space:]]+(INFO|VERBOSE)\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "xSok_RxA"'
+Aug 31 17:15:55 localhost sudo[9389]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:55 localhost sudo[9389]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:55 localhost sudo[9396]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "uxkJ6u_y"; LANG=C; (grep -Eq \'^[[:space:]]*X11Forwarding[[:space:]]+no\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "WjqL2cem"'
+Aug 31 17:15:56 localhost sudo[9396]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9396]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9403]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "GJKHNgRA"; LANG=C; (grep -Eq \'^[[:space:]]*MaxAuthTries[[:space:]]+[1-4]$\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "UZXFQlHe"'
+Aug 31 17:15:56 localhost sudo[9403]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9403]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9410]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "CUrI4_KT"; LANG=C; (grep -Eq \'^[[:space:]]*IgnoreRhosts[[:space:]]+yes\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "seOG645C"'
+Aug 31 17:15:56 localhost sudo[9410]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9410]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9417]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "zeLxdpTf"; LANG=C; (grep -Eq \'^[[:space:]]*HostbasedAuthentication[[:space:]]+no\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "s0bxXJVe"'
+Aug 31 17:15:56 localhost sudo[9417]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9417]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9424]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "AvC5UX1S"; LANG=C; (grep -Eq \'^[[:space:]]*PermitEmptyPasswords[[:space:]]+no\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "l3AOPtVs"'
+Aug 31 17:15:56 localhost sudo[9424]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9424]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9431]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "j2e7wA8z"; LANG=C; (grep -Eq \'^[[:space:]]*PermitUserEnvironment[[:space:]]+no\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "eZ6o_cfR"'
+Aug 31 17:15:56 localhost sudo[9431]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9431]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9438]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3Fa8vZi8"; LANG=C; (grep -Eq \'^[[:space:]]*UsePAM[[:space:]]+yes\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "IXJJsrLz"'
+Aug 31 17:15:56 localhost sudo[9438]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9438]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9445]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3TjFwjM5"; LANG=C; (grep -Eq \'^[[:space:]]*ClientAliveInterval[[:space:]]+([1-9][0-9]|[1-2][0-9]{2}|300)$\' /etc/ssh/sshd_config  && grep -Eq \'^[[:space:]]*ClientAliveCountMax[[:space:]]+[1-3]$\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "h5I27Ahs"'
+Aug 31 17:15:56 localhost sudo[9445]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9445]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9453]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "_sCSdyY9"; LANG=C; (grep -Eq \'^[[:space:]]*LoginGraceTime[[:space:]]+([1-9][0-9]|[1-5][0-9]{2})s?$\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "GlU1G0Hn"'
+Aug 31 17:15:56 localhost sudo[9453]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9453]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9460]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "t4m59CYc"; LANG=C; (grep -Eq \'^[[:space:]]*MaxStartups[[:space:]]+.+$\' /etc/ssh/sshd_config  && grep -Eq \'^[[:space:]]*MaxSessions[[:space:]]+[1-9]+\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "Z_3lcU16"'
+Aug 31 17:15:56 localhost sudo[9460]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9460]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9469]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1ciOV9zx"; LANG=C; (grep -Eq \'^[[:space:]]*AllowTcpForwarding[[:space:]]+no\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "WBI04nBy"'
+Aug 31 17:15:56 localhost sudo[9469]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9469]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9476]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "HQZAyNs9"; LANG=C; (grep -Eq \'^[[:space:]]*Ciphers[[:space:]]+.*(chacha20|aes256).*\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "4RSUmDnp"'
+Aug 31 17:15:56 localhost sudo[9476]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9476]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9483]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "QVkAfbq0"; LANG=C; (grep -Eq \'^[[:space:]]*MACs[[:space:]]+.*(hmac-sha2|umac).*\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "AxniWoiZ"'
+Aug 31 17:15:56 localhost sudo[9483]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:56 localhost sudo[9483]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:56 localhost sudo[9490]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "bPF7cbtj"; LANG=C; (grep -Eq \'^[[:space:]]*KexAlgorithms[[:space:]]+.*(curve25519|diffie-hellman-group-exchange-sha256).*\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "RUrouc02"'
+Aug 31 17:15:57 localhost sudo[9490]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9490]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9497]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Nbs8Do0V"; LANG=C; (grep -Eq \'^[[:space:]]*(Ciphers|KexAlgorithms)[[:space:]]+.*(chacha20|curve25519).*\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "SVk5a7TE"'
+Aug 31 17:15:57 localhost sudo[9497]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9497]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9504]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "PlXW2_bh"; LANG=C; (grep -Eq \'^[[:space:]]*(ForceCommand|ChrootDirectory)[[:space:]]+\' /etc/ssh/sshd_config) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "KLMQudp8"'
+Aug 31 17:15:57 localhost sudo[9504]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9504]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9511]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "pR7V3mTn"; LANG=C; grep -Eq \'pam_pwquality\\.so\' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "nZwPFMUC"'
+Aug 31 17:15:57 localhost sudo[9511]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9511]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9516]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WvqFxIE1"; LANG=C; ( grep -Eq \'pam_pwquality\\.so\' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null && grep -Psiq \'^\\s*minlen\\s*=\\s*(1[4-9]|[2-9][0-9]+)\\b\' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && grep -Psiq \'^\\s*minclass\\s*=\\s*[4-9]\\b\' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "OjiKfyyx"'
+Aug 31 17:15:57 localhost sudo[9516]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9516]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9525]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "IWsc6Bm4"; LANG=C; (grep -Eq \'pam_faillock\\.so\' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "nfDfQAHi"'
+Aug 31 17:15:57 localhost sudo[9525]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9525]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9532]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "N5ITicsG"; LANG=C; ! grep -Eq \'pam_tally2\\.so\' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "HVvPb037"'
+Aug 31 17:15:57 localhost sudo[9532]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9532]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9537]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "uogbJqEc"; LANG=C; (grep -Eq \'pam_pwhistory\\.so\' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "mKAwgQ_7"'
+Aug 31 17:15:57 localhost sudo[9537]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9537]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9544]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "H6g_vBrg"; LANG=C; grep -Psiq \'^\\s*minlen\\s*=\\s*(1[4-9]|[2-9][0-9]+)\' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "3LH0zMYm"'
+Aug 31 17:15:57 localhost sudo[9544]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9544]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9552]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "oKZAhxzY"; LANG=C; grep -Psiq \'^\\s*minclass\\s*=\\s*[4-9]\' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "pcKQPRlz"'
+Aug 31 17:15:57 localhost sudo[9552]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9552]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9560]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1zcl5R3u"; LANG=C; grep -Psiq \'^\\s*maxrepeat\\s*=\\s*3\\b\'   /etc/security/pwquality.conf* && grep -Psiq \'^\\s*maxsequence\\s*=\\s*3\\b\' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "5Y3R6qnj"'
+Aug 31 17:15:57 localhost sudo[9560]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9560]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9567]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "HldWqPDg"; LANG=C; ! grep -Psiq \'^\\s*dictcheck\\s*=\\s*0\\b\' /etc/security/pwquality.conf* && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "PPko4Zso"'
+Aug 31 17:15:57 localhost sudo[9567]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:57 localhost sudo[9567]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:57 localhost sudo[9572]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ueCzIVav"; LANG=C; grep -Eq \'pam_unix\\.so.*(sha512|yescrypt)\' /etc/pam.d/*auth && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "dqKK6erf"'
+Aug 31 17:15:58 localhost sudo[9572]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9572]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9577]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "09Tj3z_m"; LANG=C; (grep -Eq \'pam_pwhistory\\.so.*remember=([5-9]|[1-9][0-9]+)\' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "NqkZDkir"'
+Aug 31 17:15:58 localhost sudo[9577]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9577]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9584]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "aj5WeR9T"; LANG=C; grep -Pi \'^\\s*deny\\s*=\\s*([5-9]|[1-9][0-9]+)\' /etc/security/faillock.conf && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "YugHsNso"'
+Aug 31 17:15:58 localhost sudo[9584]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9584]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9591]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "xiLjjC_6"; LANG=C; grep -Pi \'^\\s*unlock_time\\s*=\\s*(9[0-9]{2}|[1-9][0-9]{3,})\\b\' /etc/security/faillock.conf && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "341T5W8o"'
+Aug 31 17:15:58 localhost sudo[9591]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9591]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9598]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "BfOJZ1sY"; LANG=C; val=$(awk \'$1=="PASS_MAX_DAYS"{print $2; exit}\' /etc/login.defs); [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -le 365 ]] && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "HbZdWumn"'
+Aug 31 17:15:58 localhost sudo[9598]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9598]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9605]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "9HlJ0b_K"; LANG=C; grep -Eq \'^\\s*PASS_MIN_DAYS\\s+[1-9][0-9]*\' /etc/login.defs && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "fOOnK481"'
+Aug 31 17:15:58 localhost sudo[9605]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9605]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9612]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "nWS7fxwm"; LANG=C; grep -Eq \'^\\s*PASS_WARN_AGE\\s+([7-9]|[1-9][0-9]+)\' /etc/login.defs && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "ZhfLxuxN"'
+Aug 31 17:15:58 localhost sudo[9612]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9612]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9617]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Dd0NU0xq"; LANG=C; awk -F: \'$2~/^\\$/ && ($7=="" || $7<30){exit 1}\' /etc/shadow && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "yBFLdA8u"'
+Aug 31 17:15:58 localhost sudo[9617]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9617]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9624]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WEEWyt9Q"; LANG=C; awk -F: \'$2~/^\\$/{if($3==""||$3==0) exit 1} END{exit 0}\' /etc/shadow && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "R48iA3g6"'
+Aug 31 17:15:58 localhost sudo[9624]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9624]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9629]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "L4yH5JZq"; LANG=C; awk -F: \'($3==0 && $1!="root"){exit 1}\' /etc/passwd && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "e6tLknVW"'
+Aug 31 17:15:58 localhost sudo[9629]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9629]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9634]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5kz4btvA"; LANG=C; [ "$(awk -F: \'/^root:/ {print $4}\' /etc/passwd)" = "0" ] && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "D0KdMtqx"'
+Aug 31 17:15:58 localhost sudo[9634]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9634]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:58 localhost sudo[9639]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "biYEVy38"; LANG=C; awk -F: \'($3<1000 && $1!="root" && $7 ~ /(bash|sh|zsh)$/){exit 1}\' /etc/passwd && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "vd_riPeo"'
+Aug 31 17:15:58 localhost sudo[9639]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:58 localhost sudo[9639]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9644]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "vtVkCCP6"; LANG=C; grep -qE \'^(\\/usr)?\\/sbin\\/nologin$\' /etc/shells && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "NSgka2Ux"'
+Aug 31 17:15:59 localhost sudo[9644]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9644]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9651]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "eWfr2Yw7"; LANG=C; grep -q \'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\' /root/.bash_profile && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "UtSNlBeW"'
+Aug 31 17:15:59 localhost sudo[9651]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9651]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9658]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "5Aip_x7R"; LANG=C; grep -Rqs \'umask 027\' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "_yRu6PbE"'
+Aug 31 17:15:59 localhost sudo[9658]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9658]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9665]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "RCMCbIe7"; LANG=C; grep -Rqs \'TMOUT=900\' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "PhYgdzPJ"'
+Aug 31 17:15:59 localhost sudo[9665]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9665]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9672]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "SvH_RfFd"; LANG=C; grep -RqsE \'^%.*ALL=\\(ALL\\)\' /etc/sudoers /etc/sudoers.d 2>/dev/null && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "8Vp89iei"'
+Aug 31 17:15:59 localhost sudo[9672]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9672]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9677]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "RWLo5bhF"; LANG=C; grep -Rqs \'use_pty\' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "1VE6uIee"'
+Aug 31 17:15:59 localhost sudo[9677]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9677]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9684]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "YEs7CQVh"; LANG=C; grep -Rqs \'logfile=\' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "dxRHA6zz"'
+Aug 31 17:15:59 localhost sudo[9684]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9684]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9691]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "aGcQ4v4U"; LANG=C; grep -Rqs \'!authenticate\' /etc/sudoers /etc/sudoers.d && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "REOZsPWt"'
+Aug 31 17:15:59 localhost sudo[9691]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9691]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9698]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "rY2KSvvE"; LANG=C; grep -Rqs \'timestamp_timeout=5\' /etc/sudoers /etc/sudoers.d && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "2MUIC_Vb"'
+Aug 31 17:15:59 localhost sudo[9698]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9698]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9705]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "VGUqPUOc"; LANG=C; grep -q \'pam_wheel.so\' /etc/pam.d/su && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "pNb_3Izq"'
+Aug 31 17:15:59 localhost sudo[9705]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9705]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9711]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "V1SIoR7C"; LANG=C; grep -q \'^Storage=persistent\' /etc/systemd/journald.conf && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "yatWPF0a"'
+Aug 31 17:15:59 localhost sudo[9711]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9711]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9718]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "zOrgTRaP"; LANG=C; ( grep -Eq \'rsyslog\' /etc/logrotate.d/* 2>/dev/null ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "6aj1cS9s"'
+Aug 31 17:15:59 localhost sudo[9718]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9718]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9723]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "WAYvdCDc"; LANG=C; grep -q \'audit=1\' /proc/cmdline && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "YLk0IR0O"'
+Aug 31 17:15:59 localhost sudo[9723]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9723]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:15:59 localhost sudo[9730]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "0tgLK6rO"; LANG=C; ( grep -Eq \'^\\s*max_log_file\\s*=\\s*[1-9]\' /etc/audit/auditd.conf ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "L9EeeeVi"'
+Aug 31 17:15:59 localhost sudo[9730]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:15:59 localhost sudo[9730]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9735]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "DvzUfXWU"; LANG=C; ( grep -Eq \'^\\s*max_log_file_action\\s*=\\s*(keep_logs|rotate)\' /etc/audit/auditd.conf ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "X6HzjlBr"'
+Aug 31 17:16:00 localhost sudo[9735]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9735]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9742]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "YoXmxtll"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'adjtimex|settimeofday|clock_settime\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "oGTlSn19"'
+Aug 31 17:16:00 localhost sudo[9742]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9742]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9751]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "2HYkiWvk"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'/etc/(passwd|shadow|group|gshadow)\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "W0yAIAN8"'
+Aug 31 17:16:00 localhost sudo[9751]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9751]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9760]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "fZxVgnDE"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'sethostname|setdomainname|/etc/hosts|/etc/hostname\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "hpJQSjlK"'
+Aug 31 17:16:00 localhost sudo[9760]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9760]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9769]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "f0UP9m5Z"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'/var/log/faillog|/var/log/lastlog|/var/run/utmp\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "hqQ5Onsd"'
+Aug 31 17:16:00 localhost sudo[9769]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9769]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9778]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "J0TzO6lN"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'chmod|chown|fchmod|fchown\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "JfWz8A7e"'
+Aug 31 17:16:00 localhost sudo[9778]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9778]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9787]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "tOfiVug6"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'EACCES|EPERM\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "SRC9EbxP"'
+Aug 31 17:16:00 localhost sudo[9787]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9787]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9796]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3mEUjLiW"; LANG=C; ( find -xdev -perm -4000 -type f 2>/dev/null | while read -r f; do auditctl -l 2>/dev/null | grep -q "$f" || exit 1; done ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "oLzuOmfA"'
+Aug 31 17:16:00 localhost sudo[9796]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9796]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9804]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "D7hjWZoo"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'mount|umount\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "SX2CPGyz"'
+Aug 31 17:16:00 localhost sudo[9804]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9804]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9813]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "hVM8y3G0"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'unlink|rename|rmdir|unlinkat|renameat\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "cGf47gtF"'
+Aug 31 17:16:00 localhost sudo[9813]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9813]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:00 localhost sudo[9822]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "C7AJezlB"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'init_module|finit_module|delete_module\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "x1IQXEz1"'
+Aug 31 17:16:00 localhost sudo[9822]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:00 localhost sudo[9822]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9831]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "E6UAAwdI"; LANG=C; ( auditctl -l 2>/dev/null | grep -Eq \'/etc/sudoers|/etc/sudoers.d\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "BayFt1jQ"'
+Aug 31 17:16:01 localhost sudo[9831]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9831]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9840]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "1GU0hx2G"; LANG=C; ( auditctl -s 2>/dev/null | grep -Eq \'^[[:space:]]*enabled[[:space:]]+2\\b\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "wT4VepuU"'
+Aug 31 17:16:01 localhost sudo[9840]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9840]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9850]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "fBcUXlcA"; LANG=C; ( [ -f /etc/passwd ] && stat -Lc "%a %u %g" /etc/passwd | grep -Eq \'^64[0-9] 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "cIrfQ7pl"'
+Aug 31 17:16:01 localhost sudo[9850]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9850]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9857]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "Z5jweLgm"; LANG=C; ( [ -f /etc/passwd- ] && stat -Lc "%a %u %g" /etc/passwd- | grep -Eq \'^64[0-9] 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "aNaPfkKm"'
+Aug 31 17:16:01 localhost sudo[9857]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9857]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9864]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "QRGFFAA7"; LANG=C; ( [ -f /etc/shadow ] && stat -Lc "%a %u %g" /etc/shadow | grep -Eq \'^0+ 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "phUrzakF"'
+Aug 31 17:16:01 localhost sudo[9864]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9864]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9871]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "x6tTEtx2"; LANG=C; ( [ -f /etc/shadow- ] && stat -Lc "%a %u %g" /etc/shadow- | grep -Eq \'^0+ 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "HdvJv38s"'
+Aug 31 17:16:01 localhost sudo[9871]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9871]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9878]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "mIS8iHxt"; LANG=C; ( [ -f /etc/gshadow- ] && stat -Lc "%a %u %g" /etc/gshadow- | grep -Eq \'^(600|60[0-9]|[0-5][0-9]{2}) 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "rVuemard"'
+Aug 31 17:16:01 localhost sudo[9878]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9878]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9887]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "eW7dO6zv"; LANG=C; ( [ -f /etc/gshadow ] && stat -Lc "%a %u %g" /etc/gshadow | grep -Eq \'^(600|60[0-9]|[0-5][0-9]{2}) 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "LpVSrIqM"'
+Aug 31 17:16:01 localhost sudo[9887]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9887]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9896]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "3EkyaDLG"; LANG=C; ( [ -f /etc/group ] && stat -Lc "%a %u %g" /etc/group | grep -Eq \'^64[0-9] 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "Zk1iL1Mw"'
+Aug 31 17:16:01 localhost sudo[9896]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9896]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9903]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "yRkzOR73"; LANG=C; ( [ -f /etc/group- ] && stat -Lc "%a %u %g" /etc/group- | grep -Eq \'^64[0-9] 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "MshZZQno"'
+Aug 31 17:16:01 localhost sudo[9903]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9903]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9910]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "TBRoLFki"; LANG=C; ( awk -F: \'$7 ~ /(\\/usr)?\\/sbin\\/nologin$/ {found=1} END{exit !found}\' /etc/passwd ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "gCR03_no"'
+Aug 31 17:16:01 localhost sudo[9910]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9910]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:01 localhost sudo[9915]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "CHpFR2Hp"; LANG=C; ( [ -f /etc/security/opasswd ] && stat -Lc "%a %u %g" /etc/security/opasswd | grep -Eq \'^600 0 0$\' ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "mJwFELHg"'
+Aug 31 17:16:01 localhost sudo[9915]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:01 localhost sudo[9915]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9922]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "ynJTrpiY"; LANG=C; ( find -xdev \\( -nouser -o -nogroup \\) 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "Z7JeFndy"'
+Aug 31 17:16:02 localhost sudo[9922]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9922]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9931]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "QZf8TSMW"; LANG=C; ( find -xdev \\( -type f -o -type d \\) -not -path "/tmp/*" -not -path "/var/tmp/*" -not -path "/dev/shm/*" -perm -0002 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "_ZINTOCw"'
+Aug 31 17:16:02 localhost sudo[9931]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9931]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9940]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XVoUtpmB"; LANG=C; ( find -xdev \\( -nouser -o -nogroup \\) 2>/dev/null | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "F1B9i02P"'
+Aug 31 17:16:02 localhost sudo[9940]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9940]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9949]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "QFJiFjl2"; LANG=C; ( find -xdev \\( -perm -4000 -o -perm -2000 \\) 2>/dev/null | grep -Ev \'^(/usr/bin/sudo|/usr/bin/su|/bin/su|/usr/bin/passwd|/usr/bin/chage|/usr/bin/chsh|/usr/bin/chfn|/usr/bin/newgrp|/usr/bin/gpasswd|/usr/sbin/unix_chkpwd|/usr/sbin/pam_timestamp_check|/usr/bin/mount|/usr/bin/umount|/usr/bin/fusermount|/usr/bin/pkexec|/usr/bin/crontab|/usr/bin/ssh-agent|/usr/bin/ksu|/usr/libexec/openssh/ssh-keysign|/usr/bin/ping|/usr/bin/ping6|/usr/bin/traceroute|/usr/bin/traceroute6)$\' | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "aRILKQW8"'
+Aug 31 17:16:02 localhost sudo[9949]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9949]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9959]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "75B4g7ed"; LANG=C; ( awk -F: \'$3>=1000 && $1!="nfsnobody"{print $6}\' /etc/passwd | while read -r h; do [ -d "$h" ] || exit 1; done ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "MsAXslkg"'
+Aug 31 17:16:02 localhost sudo[9959]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9959]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9966]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "RviySiV_"; LANG=C; ( awk -F: \'$3>=1000 && $1!="nfsnobody"{print $1,$6}\' /etc/passwd | while read -r u h; do [ -d "$h" ] && [ "$(stat -Lc %U "$h")" = "$u" ] || exit 1; done ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "JcC3d9Yf"'
+Aug 31 17:16:02 localhost sudo[9966]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9966]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9976]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "aOeemUGl"; LANG=C; ( awk -F: \'$3>=1000 && $1!="nfsnobody"{print $6}\' /etc/passwd | while read -r h; do [ -d "$h" ] && [ "$(stat -Lc %a "$h")" -le 750 ] || exit 1; done ) && echo "PASS" || echo "FAIL"|cat; printf "command_done_%s" "Z3HJ8rJa"'
+Aug 31 17:16:02 localhost sudo[9976]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9976]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[9987]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "H08ZOshz"; LANG=C; ( while read -r h; do [ -d "$h" ] || continue; find "$h" -maxdepth 1 -type f -name ".*" -perm /022 2>/dev/null; done < <(awk -F: \'$3>=1000 && $1!="nfsnobody"{print $6}\' /etc/passwd) | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "KPDNYWm1"'
+Aug 31 17:16:02 localhost sudo[9987]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[9987]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[10001]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "XjJBMzTP"; LANG=C; ( while read -r h; do [ -d "$h" ] || continue; for f in "$h/.forward" "$h/.netrc" "$h/.rhosts"; do [ -e "$f" ] && echo "$f"; done; done < <(awk -F: \'$3>=1000 && $1!="nfsnobody"{print $6}\' /etc/passwd) | grep -q . ) && echo "FAIL" || echo "PASS"|cat; printf "command_done_%s" "KkrLlXAF"'
+Aug 31 17:16:02 localhost sudo[10001]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[10001]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sudo[10011]: tenable-ol10 : TTY=pts/4 ; PWD=/home/tenable-ol10 ; USER=root ; COMMAND=/bin/sh -c 'printf "command_start_%s" "quae35_l"; LANG=C; sh -c \'log=/var/log/hitss-hardening.log; [ -f "$log" ] || { echo "FAIL | sem_log"; exit; }; echo "PASS | $(tail -n 1 "$log")"\'|cat; printf "command_done_%s" "E6lbQiVu"'
+Aug 31 17:16:02 localhost sudo[10011]: pam_unix(sudo:session): session opened for user root(uid=0) by tenable-ol10(uid=1002)
+Aug 31 17:16:02 localhost sudo[10011]: pam_unix(sudo:session): session closed for user root
+Aug 31 17:16:02 localhost sshd-session[8586]: Read error from remote host 192.168.56.200 port 58506: Connection reset by peer
+Aug 31 17:16:02 localhost sshd-session[8582]: pam_unix(sshd:session): session closed for user tenable-ol10

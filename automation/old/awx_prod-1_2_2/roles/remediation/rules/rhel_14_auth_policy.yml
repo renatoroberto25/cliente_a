@@ -1,0 +1,78 @@
+---
+rhel_14_auth_policy_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 130
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 131
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 132
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 133
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 134
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 135
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 136
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 137
+    descricao: "Autenticação / PAM"
+    severidade: WARN
+    perfil: "Full"
+  - id: 138
+    descricao: "Autenticação / PAM"
+    severidade: WARN
+    perfil: "Full"
+  - id: 139
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 140
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 141
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 142
+    descricao: "Autenticação / PAM"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 143
+    descricao: "Autenticação / Senhas"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 144
+    descricao: "Autenticação / Senhas"
+    severidade: INFO
+    perfil: "Full"
+  - id: 145
+    descricao: "Autenticação / Senhas"
+    severidade: INFO
+    perfil: "Full"
+  - id: 146
+    descricao: "Autenticação / Senhas"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 147
+    descricao: "Autenticação / Senhas"
+    severidade: BLOCK
+    perfil: "Full"

@@ -1,0 +1,1588 @@
+<check_type:"Unix">
+<custom_item>
+  type        : CMD_EXEC
+  description : "1"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo cramfs persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+cramfs\\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "2"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo squashfs persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo squashfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+squashfs\\b' && ! lsmod | grep -q squashfs) || (! modinfo squashfs &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "3"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo udf persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo udf &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+udf\\b' && ! lsmod | grep -q udf) || (! modinfo udf &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "4"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo hfs persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo hfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+hfs\\b' && ! lsmod | grep -q hfs) || (! modinfo hfs &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "5"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo hfsplus persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo hfsplus &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+hfsplus\\b' && ! lsmod | grep -q hfsplus) || (! modinfo hfsplus &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "6"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo jffs2 persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo jffs2 &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+jffs2\\b' && ! lsmod | grep -q jffs2) || (! modinfo jffs2 &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "7"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo freevxfs persistentemente via modprobe.d e remover se carregado."
+  see_also    : "Light"
+  cmd         : "((modinfo freevxfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+freevxfs\\b' && ! lsmod | grep -q freevxfs) || (! modinfo freevxfs &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "9"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Bloquear módulo usb_storage persistentemente."
+  see_also    : "Light"
+  cmd         : "((modinfo usb_storage &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+usb_storage\\b' && ! lsmod | grep -q usb_storage) || (! modinfo usb_storage &>/dev/null)) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "15"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar fs.suid_dumpable=0 persistentemente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n fs.suid_dumpable 2>/dev/null | grep -qx 0 && grep -REq '^\\s*fs\\.suid_dumpable\\s*=\\s*0\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "18"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar ASLR completo via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n kernel.randomize_va_space 2>/dev/null | grep -qx 2 && grep -REq '^\\s*kernel\\.randomize_va_space\\s*=\\s*2\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "20"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar perf_event_paranoid restritivo via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n kernel.perf_event_paranoid 2>/dev/null | grep -Eq '^[23]$' && grep -REq '^\\s*kernel\\.perf_event_paranoid\\s*=\\s*[23]\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "21"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar dmesg_restrict=1 via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n kernel.dmesg_restrict 2>/dev/null | grep -qx 1 && grep -REq '^\\s*kernel\\.dmesg_restrict\\s*=\\s*1\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "23"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar fs.protected_symlinks=1 persistentemente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n fs.protected_symlinks 2>/dev/null | grep -qx 1 && grep -REq '^\\s*fs\\.protected_symlinks\\s*=\\s*1\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "24"
+  info        : "Alta"
+  solution    : "Kernel"
+  reference   : "Configurar fs.protected_hardlinks=1 persistentemente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n fs.protected_hardlinks 2>/dev/null | grep -qx 1 && grep -REq '^\\s*fs\\.protected_hardlinks\\s*=\\s*1\\b' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "35"
+  info        : "Média"
+  solution    : "Filesystem"
+  reference   : "Ajustar opções nodev,nosuid,noexec para mídias removíveis."
+  see_also    : "Light"
+  cmd         : "(grep -E '\\s/(media|mnt)\\s' /etc/fstab | grep -Eq '\\bnodev\\b') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "36"
+  info        : "Média"
+  solution    : "Filesystem"
+  reference   : "Ajustar opções nodev,nosuid para partições críticas."
+  see_also    : "Light"
+  cmd         : "(grep -E '\\s/(var|home|tmp|var/tmp|var/log|var/log/audit)\\s' /etc/fstab | grep -Eq '\\bnodev\\b' && grep -E '\\s/(var|home|tmp|var/tmp|var/log|var/log/audit)\\s' /etc/fstab | grep -Eq '\\bnosuid\\b') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "40"
+  info        : "Alta"
+  solution    : "Filesystem"
+  reference   : "Configurar /var/log com nodev,nosuid."
+  see_also    : "Light"
+  cmd         : "(findmnt -n /var/log -o OPTIONS | grep -Eq '\\bnodev\\b' && findmnt -n /var/log -o OPTIONS | grep -Eq '\\bnosuid\\b') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "41"
+  info        : "Alta"
+  solution    : "Filesystem"
+  reference   : "Configurar /var/log/audit com nodev,nosuid."
+  see_also    : "Light"
+  cmd         : "(findmnt -n /var/log/audit -o OPTIONS | grep -Eq '\\bnodev\\b' && findmnt -n /var/log/audit -o OPTIONS | grep -Eq '\\bnosuid\\b') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "42"
+  info        : "Alta"
+  solution    : "Filesystem"
+  reference   : "Configurar /home com nodev quando aplicável."
+  see_also    : "Light"
+  cmd         : "(findmnt -n /home -o OPTIONS | grep -Eq '\\bnodev\\b') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "44"
+  info        : "Alta"
+  solution    : "Filesystem"
+  reference   : "Aplicar sticky bit em diretórios world writable locais."
+  see_also    : "Light"
+  cmd         : "(! df --local -P | awk 'NR>1{print \\$6}' | xargs -I{} find {} -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep -q .) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "45"
+  info        : "Média"
+  solution    : "Filesystem"
+  reference   : "Aplicar sticky bit em /tmp."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /tmp 2>/dev/null | grep -Eq '1[0-7][0-7][0-7]') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "46"
+  info        : "Média"
+  solution    : "Filesystem"
+  reference   : "Aplicar sticky bit em /var/tmp."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /var/tmp 2>/dev/null | grep -Eq '1[0-7][0-7][0-7]') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "47"
+  info        : "Alta"
+  solution    : "Filesystem"
+  reference   : "Aplicar sticky bit em /dev/shm quando aplicável."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /dev/shm 2>/dev/null | grep -Eq '1[0-7][0-7][0-7]') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "56"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Remover prelink quando presente."
+  see_also    : "Light"
+  cmd         : "(! rpm -q prelink &>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "57"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar ou remover xinetd quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled xinetd 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "58"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Habilitar serviço de sincronização de tempo aprovado."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled chronyd 2>/dev/null | grep -qx enabled && systemctl is-active chronyd 2>/dev/null | grep -qx active ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "59"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Configurar fontes de tempo confiáveis."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*server\\s+\\S+' /etc/chrony.conf 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "60"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Habilitar sincronização automática no boot."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled chronyd 2>/dev/null | grep -qx enabled && systemctl is-active chronyd 2>/dev/null | grep -qx active ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "61"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Remover componentes X11 quando não necessários."
+  see_also    : "Light"
+  cmd         : "( ! rpm -qa | grep -Eq '^xorg-x11' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "62"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Desabilitar avahi quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled avahi-daemon 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "63"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar CUPS quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled cups 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "69"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Remover serviços IMAP/POP3 quando não aplicáveis."
+  see_also    : "Light"
+  cmd         : "(! rpm -qa | grep -Eq '^(dovecot|cyrus-imapd)') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "70"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Remover Samba quando não aplicável."
+  see_also    : "Light"
+  cmd         : "(! rpm -q samba &>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "71"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Remover proxy HTTP quando não aplicável."
+  see_also    : "Light"
+  cmd         : "(! rpm -qa | grep -Eq '^squid') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "72"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar SNMP quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled snmpd 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "73"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Remover servidor NIS quando não aplicável."
+  see_also    : "Light"
+  cmd         : "(! rpm -q ypserv &>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "74"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Remover servidor Telnet."
+  see_also    : "Light"
+  cmd         : "(! rpm -q telnet-server &>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "75"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Configurar MTA para modo local only quando aplicável."
+  see_also    : "Light"
+  cmd         : "( ! rpm -q postfix &>/dev/null || postconf -n 2>/dev/null | grep -Eq '^\\s*inet_interfaces\\s*=\\s*localhost\\b' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "76"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Desabilitar NFS server quando não aplicável."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled nfs-server 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "77"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar rpcbind quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled rpcbind 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "78"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Desabilitar rsync daemon quando não requerido."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled rsyncd 2>/dev/null | grep -qx enabled ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "79"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Remover cliente NIS."
+ see_also    : "Light"
+ cmd         : "( ! rpm -q ypbind >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "80"
+ info        : "Média"
+ solution    : "Sistema"
+ reference   : "Remover cliente rsh."
+ see_also    : "Light"
+ cmd         : "( ! rpm -qa 2>/dev/null | grep -Eq '^rsh(-|$)' ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "81"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Remover cliente talk."
+ see_also    : "Light"
+ cmd         : "( ! rpm -qa 2>/dev/null | grep -Eq '^talk(-|$)' ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "82"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Remover cliente telnet."
+ see_also    : "Light"
+ cmd         : "( ! rpm -q telnet >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "83"
+ info        : "Média"
+ solution    : "Sistema"
+ reference   : "Remover cliente LDAP quando não requerido."
+ see_also    : "Light"
+ cmd         : "( ! rpm -q openldap-clients >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "84"
+ info        : "Média"
+ solution    : "Sistema"
+ reference   : "Remover ou mascarar serviços não essenciais."
+ see_also    : "Light"
+ cmd         : "( systemctl list-unit-files --state=enabled 2>/dev/null | grep -Eq '^(avahi-daemon|cups|telnet|vsftpd|xinetd|tftp)' ) && echo \"FAIL\" || echo \"PASS\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "85"
+ info        : "Média"
+ solution    : "Sistema"
+ reference   : "Remover servidor TFTP."
+ see_also    : "Light"
+ cmd         : "( ! rpm -q tftp-server >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "86"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Configurar polkit conforme baseline aprovado."
+ see_also    : "Light"
+ cmd         : "( grep -REq 'polkit\\.Result\\.YES|allow' /etc/polkit-1/rules.d/*.rules 2>/dev/null && echo \"FAIL\" || echo \"PASS\" )"
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "87"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Habilitar gpgcheck em todos os repositórios."
+  see_also    : "Light"
+  cmd         : "(grep -q 'gpgcheck=1' /etc/yum.repos.d/*.repo 2>/dev/null) && echo  \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+#88 Não aplicavel
+<custom_item>
+ type        : CMD_EXEC
+ description : "88"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Aplicar atualizações de segurança pendentes."
+ see_also    : "Light"
+ cmd         : "( yum -q check-update >/dev/null 2>&1; rc=$?; [ \"$rc\" -eq 0 ] ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "89"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Manter apenas um mecanismo de sincronização ativo."
+ see_also    : "Light"
+ cmd         : "(chrony_active=$(systemctl is-active chronyd 2>/dev/null | grep -c '^active$'); ntpd_active=$(systemctl is-active ntpd 2>/dev/null | grep -c '^active$'); if [ \"$chrony_active\" -eq 1 ] && [ \"$ntpd_active\" -eq 0 ]; then echo \"PASS\"; elif [ \"$chrony_active\" -eq 0 ] && [ \"$ntpd_active\" -eq 1 ]; then echo \"PASS\"; else echo \"FAIL\"; fi)"
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "90"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Restringir cron e at a usuários autorizados."
+ see_also    : "Light"
+ cmd         : "( [ -f /etc/cron.allow ] && [ -f /etc/at.allow ] && grep -qx root /etc/cron.allow && grep -qx root /etc/at.allow ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "92"
+  info        : "Alta"
+  solution    : "Rede"
+  reference   : "Desabilitar redirects de pacotes via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.send_redirects 2>/dev/null | grep -qx 0 && grep -REq 'net\.ipv4\.conf\.(all|default)\.send_redirects[[:space:]]*=[[:space:]]*0' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "93"
+  info        : "Média"
+  solution    : "Rede"
+  reference   : "Desabilitar source routed packets via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.accept_source_route 2>/dev/null | grep -qx 0 && grep -REq 'net\.ipv4\.conf\.(all|default)\.accept_source_route[[:space:]]*=[[:space:]]*0' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "94"
+  info        : "Média"
+  solution    : "Rede"
+  reference   : "Desabilitar ICMP redirects via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.accept_redirects 2>/dev/null | grep -qx 0 && grep -REq 'net\.ipv4\.conf\.(all|default)\.accept_redirects[[:space:]]*=[[:space:]]*0' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "95"
+  info        : "Alta"
+  solution    : "Rede"
+  reference   : "Habilitar reverse path filtering via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -qx 1 && sysctl -n net.ipv4.conf.default.rp_filter 2>/dev/null | grep -qx 1 && grep -REq 'net\.ipv4\.conf\.(all|default)\.rp_filter[[:space:]]*=[[:space:]]*1' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "96"
+  info        : "Alta"
+  solution    : "Rede"
+  reference   : "Habilitar ignore broadcast ICMP via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -qx 1 && grep -REq 'net\.ipv4\.icmp_echo_ignore_broadcasts[[:space:]]*=[[:space:]]*1' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "97"
+  info        : "Média"
+  solution    : "Rede"
+  reference   : "Habilitar ignore bogus ICMP responses via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null | grep -qx 1 && grep -REq 'net\.ipv4\.icmp_ignore_bogus_error_responses[[:space:]]*=[[:space:]]*1' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "98"
+  info        : "Alta"
+  solution    : "Rede"
+  reference   : "Habilitar tcp_syncookies via sysctl persistente."
+  see_also    : "Light"
+  cmd         : "(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -qx 1 && grep -REq 'net\.ipv4\.tcp_syncookies[[:space:]]*=[[:space:]]*1' /etc/sysctl.conf /etc/sysctl.d/*) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "100"
+  info        : "Alta"
+  solution    : "Firewall"
+  reference   : "Bloquear ICMP timestamp request no firewall."
+  see_also    : "Light"
+  cmd         : "(iptables-save 2>/dev/null | grep -q -- \"--icmp-type 13\") && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "101"
+  info        : "Média"
+  solution    : "Firewall"
+  reference   : "Bloquear ICMP timestamp reply no firewall."
+  see_also    : "Light"
+  cmd         : "(iptables-save 2>/dev/null | grep -q -- \"--icmp-type 14\") && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "102"
+  info        : "Média"
+  solution    : "Rede"
+  reference   : "Desabilitar interfaces wireless ou bluetooth quando não necessárias."
+  see_also    : "Light"
+  cmd         : "(! nmcli -t -f TYPE device status 2>/dev/null | grep -Eq '^(wifi|bluetooth)$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "104"
+  info        : "Alta"
+  solution    : "Firewall"
+  reference   : "Manter apenas uma solução de firewall ativa."
+  see_also    : "Light"
+  cmd         : "(fw_active=$(systemctl is-active firewalld 2>/dev/null | grep -c '^active$'); ipt_active=$(systemctl is-active iptables 2>/dev/null | grep -c '^active$'); if [ \"$fw_active\" -eq 1 ] && [ \"$ipt_active\" -eq 0 ]; then echo \"PASS\"; elif [ \"$fw_active\" -eq 0 ] && [ \"$ipt_active\" -eq 1 ]; then echo \"PASS\"; else echo \"FAIL\"; fi)"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+#iptables apenas
+#<custom_item>
+#  type        : CMD_EXEC
+#  description : "105"
+#  info        : "Média"
+#  solution    : "Firewall"
+#  reference   : "Permitir loopback e conexões ESTABLISHED,RELATED no firewall."
+#  see_also    : "Light"
+#  cmd         : "( iptables -L INPUT -n 2>/dev/null | grep -Eq 'ACCEPT.*lo' && iptables -L INPUT -n 2>/dev/null | grep -Eq 'ESTABLISHED,RELATED' ) && echo \"PASS\" || echo \"FAIL\""
+#  expect      : "(?i)^\\s*pass\\s*$"
+#</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "107"
+  info        : "Média"
+  solution    : "Firewall"
+  reference   : "Garantir persistência das regras de firewall após reboot."
+  see_also    : "Light"
+  cmd         : "([ -f /etc/sysconfig/iptables ] || systemctl is-enabled firewalld 2>/dev/null | grep -qx enabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "109"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Ajustar permissões de sshd_config e diretório /etc/ssh."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a %U %G' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^(600|640) root root$' && stat -c '%a %U %G' /etc/ssh 2>/dev/null | grep -Eq '^(700|750) root root$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "111"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Configurar SyslogFacility AUTHPRIV."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*SyslogFacility\\s+AUTHPRIV\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "112"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Desabilitar X11Forwarding quando não requerido."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*X11Forwarding\\s+no\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "113"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar MaxAuthTries de forma restritiva."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*MaxAuthTries\\s+[1-4]\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "114"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar IgnoreRhosts yes."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*IgnoreRhosts\\s+yes\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "115"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Configurar HostbasedAuthentication no."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*HostbasedAuthentication\\s+no\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "116"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar PermitRootLogin conforme política."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*PermitRootLogin\\s+(no|prohibit-password)\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "117"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar PermitEmptyPasswords no."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*PermitEmptyPasswords\\s+no\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "118"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Configurar PermitUserEnvironment no."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*PermitUserEnvironment\\s+no\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "119"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar UsePAM yes."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*UsePAM\\s+yes\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "120"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Ajustar ClientAliveInterval e ClientAliveCountMax."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*ClientAliveInterval\\s+[1-9][0-9]*\\b' /etc/ssh/sshd_config && grep -Eiq '^\\s*ClientAliveCountMax\\s+[1-9][0-9]*\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "121"
+  info        : "Alta"
+  solution    : "SSH"
+  reference   : "Configurar LoginGraceTime restritivo."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*LoginGraceTime\\s+[1-9][0-9]*\\b' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "122"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Configurar MaxStartups e MaxSessions restritivos."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*MaxStartups\\s+[0-9:]+' /etc/ssh/sshd_config && grep -Eiq '^\\s*MaxSessions\\s+[0-9]+' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "124"
+  info        : "Média"
+  solution    : "SSH"
+  reference   : "Configurar Banner legal quando exigido."
+  see_also    : "Light"
+  cmd         : "(grep -Eiq '^\\s*Banner\\s+\\S+' /etc/ssh/sshd_config) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "130"
+  info        : "Alta"
+  solution    : "PAM"
+  reference   : "Incluir módulo de complexidade na stack PAM."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '\\bpam_pwquality\\.so\\b' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "131"
+  info        : "Alta"
+  solution    : "PAM"
+  reference   : "Configurar pam_pwquality conforme baseline."
+  see_also    : "Light"
+  cmd         : "(grep -Eq 'pam_pwquality\\.so.*(minlen=|dcredit=|ucredit=|lcredit=|ocredit=)' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "134"
+  info        : "Alta"
+  solution    : "PAM"
+  reference   : "Configurar pam_pwhistory."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '\\bpam_pwhistory\\.so\\b' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "135"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Definir tamanho mínimo de senha."
+  see_also    : "Light"
+  cmd         : "(grep -Eq 'minlen=[1-9][0-9]+' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "136"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Configurar complexidade mínima de senha."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '(dcredit|ucredit|lcredit|ocredit)=-?[1-9]+' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "137"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Configurar limites de repetição e sequência."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*(maxrepeat|maxsequence)\\s*=\\s*[1-9]+' /etc/security/pwquality.conf) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "138"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Habilitar verificação de dicionário quando aplicável."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*dictcheck\\s*=\\s*1\\b' /etc/security/pwquality.conf) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "139"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Configurar algoritmo de hashing forte."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*password\\s+(sufficient|required)\\s+pam_unix\\.so.*\\bsha512\\b' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "140"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Configurar histórico de senha."
+  see_also    : "Light"
+  cmd         : "(grep -Eq 'pam_pwhistory\\.so.*remember=[1-9]+' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "142"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Configurar tempo de desbloqueio conforme política."
+  see_also    : "Light"
+  cmd         : "(grep -Eq 'pam_faillock\\.so.*unlock_time=[1-9]+' /etc/pam.d/system-auth) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "143"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Configurar PASS_MAX_DAYS."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*PASS_MAX_DAYS\\s+[1-9][0-9]+' /etc/login.defs) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "144"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Configurar PASS_MIN_DAYS."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*PASS_MIN_DAYS\\s+[0-9]+' /etc/login.defs) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "145"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Configurar PASS_WARN_AGE."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*PASS_WARN_AGE\\s+[1-9][0-9]*' /etc/login.defs) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "146"
+  info        : "Alta"
+  solution    : "Senha"
+  reference   : "Configurar parâmetro INACTIVE para contas locais."
+  see_also    : "Light"
+  cmd         : "(useradd -D 2>/dev/null | grep -Eq '^INACTIVE=[1-9][0-9]*') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "147"
+  info        : "Média"
+  solution    : "Senha"
+  reference   : "Corrigir datas inconsistentes de troca de senha."
+  see_also    : "Light"
+  cmd         : "(! awk -F: '($2!~/^(!|\\*)/ && $2!=\"\" && \\$5==0){print}' /etc/shadow | grep -q .) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "148"
+  info        : "Alta"
+  solution    : "Contas"
+  reference   : "Garantir apenas root com UID 0."
+  see_also    : "Light"
+  cmd         : "( awk -F: '$3==0{print}' /etc/passwd | wc -l | grep -qx 1 ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "149"
+  info        : "Alta"
+  solution    : "Contas"
+  reference   : "Garantir apenas grupo root com GID 0."
+  see_also    : "Light"
+  cmd         : "( awk -F: '$3==0{print}' /etc/group | wc -l | grep -qx 1 ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "150"
+ info        : "Alta"
+ solution    : "Contas"
+ reference   : "Bloquear contas de sistema com shell inválido."
+ see_also    : "Light"
+ cmd         : "( awk -F: '($3>0 && $3<1000 && $7!=\"/sbin/nologin\" && $7!=\"/bin/false\"){exit 1}' /etc/passwd ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "151"
+ info        : "Média"
+ solution    : "Contas"
+ reference   : "Remover shells inválidos de /etc/shells."
+ see_also    : "Light"
+ cmd         : "( ! grep -Ev '^(#|/bin/bash|/bin/sh|/sbin/nologin|/bin/false)$' /etc/shells 2>/dev/null | grep -q . ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "152"
+ info        : "Alta"
+ solution    : "Contas"
+ reference   : "Ajustar PATH do root removendo diretórios inseguros."
+ see_also    : "Light"
+ cmd         : "( su - root -c 'echo \"$PATH\"' 2>/dev/null | grep -Eq '(^|:)\\.(:|$)' && echo \"FAIL\" || echo \"PASS\" )"
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "153"
+ info        : "Alta"
+ solution    : "Contas"
+ reference   : "Configurar umask restritiva padrão."
+ see_also    : "Full"
+ cmd         : "( grep -REq '^[[:space:]]*umask[[:space:]]+0[2-7][2-7]\\b' /etc/profile /etc/bashrc 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "154"
+ info        : "Média"
+ solution    : "Contas"
+ reference   : "Configurar timeout de shell."
+ see_also    : "Light"
+ cmd         : "( grep -REq '^\\s*TMOUT=[1-9][0-9]+' /etc/profile /etc/bashrc 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "155"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "Restringir administração privilegiada via sudo."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*%wheel\\s+ALL=\\(ALL\\)\\s+ALL\\b' /etc/sudoers) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "156"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "Configurar sudo para uso de pseudo tty."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*Defaults\\s+requiretty\\b' /etc/sudoers) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "157"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "Habilitar logging de sudo."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*Defaults\\s+logfile=' /etc/sudoers) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "159"
+  info        : "Média"
+  solution    : "Sudo"
+  reference   : "Configurar timeout de autenticação sudo."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*Defaults\\s+timestamp_timeout=[1-9][0-9]*\\b' /etc/sudoers) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "160"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "Restringir uso de su a grupo autorizado."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^[[:space:]]*auth[[:space:]]+required[[:space:]]+pam_wheel\\.so([[:space:]]|$)' /etc/pam.d/su) && echo \"PASS\"  || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "161"
+  info        : "Média"
+  solution    : "Logs"
+  reference   : "Ajustar arquitetura de logs evitando duplicidade."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled rsyslog 2>/dev/null | grep -qx enabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "162"
+  info        : "Alta"
+  solution    : "Logs"
+  reference   : "Configurar journald com persistência."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*Storage=persistent\\b' /etc/systemd/journald.conf) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "163"
+  info        : "Média"
+  solution    : "Logs"
+  reference   : "Instalar e ativar rsyslog."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled rsyslog 2>/dev/null | grep -qx enabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "164"
+  info        : "Alta"
+  solution    : "Logs"
+  reference   : "Configurar rotação de logs."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*rotate\\s+[1-9][0-9]*' /etc/logrotate.conf) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "165"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Instalar e habilitar auditd."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled auditd 2>/dev/null | grep -qx enabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "166"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Garantir auditd antes de serviços críticos."
+  see_also    : "Light"
+  cmd         : "( systemctl show auditd -p Before 2>/dev/null | grep -q sysinit.target ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "167"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Configurar max_log_file."
+  see_also    : "Light"
+  cmd         : "(grep -Eq '^\\s*max_log_file\\s*=\\s*[1-9][0-9]*' /etc/audit/auditd.conf) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "169"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar alterações de data e hora."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(adjtimex|settimeofday|clock_settime)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "170"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar alterações de contas e grupos."
+  see_also    : "Light"
+  cmd         : "(grep -REq '(/etc/passwd|/etc/group|/etc/shadow)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "171"
+  info        : "Média"
+  solution    : "Audit"
+  reference   : "Auditar alterações de rede."
+  see_also    : "Light"
+  cmd         : "(grep -REq '(/etc/sysconfig/network|/etc/hosts|/etc/resolv\\.conf)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "172"
+  info        : "Média"
+  solution    : "Audit"
+  reference   : "Auditar eventos SELinux."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(setenforce|/etc/selinux|selinux-policy)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "173"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar eventos de login."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(login|logout|session)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "174"
+  info        : "Média"
+  solution    : "Audit"
+  reference   : "Auditar mudanças de permissões."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(chmod|chown|setxattr|fchmod)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "175"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar EACCES e EPERM."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(EACCES|EPERM)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "176"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar execve."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\bexecve\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "177"
+  info        : "Média"
+  solution    : "Audit"
+  reference   : "Auditar mount."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(mount|umount2)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "178"
+  info        : "Média"
+  solution    : "Audit"
+  reference   : "Auditar unlink/rename."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(unlink|rename|rmdir|unlinkat|renameat)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "179"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar init_module/delete_module."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\b(init_module|delete_module|finit_module)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "180"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Auditar sudo e sudoers."
+  see_also    : "Light"
+  cmd         : "(grep -REq '(/etc/sudoers|/etc/sudoers\\.d|sudo\\.log)\\b' /etc/audit/rules.d 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "183"
+  info        : "Alta"
+  solution    : "Integridade"
+  reference   : "Agendar verificação periódica de integridade."
+  see_also    : "Light"
+  cmd         : "(grep -REq '\\baide\\b' /etc/cron.* 2>/dev/null) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "185"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/passwd."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /etc/passwd | grep -Eq '^[0-6]44$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "186"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/passwd-."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /etc/passwd- 2>/dev/null | grep -Eq '^[0-6]44$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "187"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/shadow."
+  see_also    : "Light"
+  cmd         : "( stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "188"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/shadow-."
+  see_also    : "Light"
+  cmd         : "( stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^000 root root$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "189"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/gshadow-."
+  see_also    : "Light"
+  cmd         : "( stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^000 root root$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "190"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/gshadow."
+  see_also    : "Light"
+  cmd         : "( stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^000 root root$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "191"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/group."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /etc/group | grep -Eq '^[0-6]44$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "192"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/group-."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a' /etc/group- 2>/dev/null | grep -Eq '^[0-6]44$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "194"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Proteger /etc/security/opasswd."
+  see_also    : "Light"
+  cmd         : "(stat -c '%a %U %G' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) root root$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "195"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Corrigir arquivos órfãos."
+  see_also    : "Light"
+  cmd         : "(find / -xdev -nouser 2>/dev/null | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "196"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Garantir sticky bit em diretórios world writable."
+  see_also    : "Light"
+  cmd         : "(! find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep -q .) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "197"
+  info        : "Média"
+  solution    : "Permissões"
+  reference   : "Corrigir arquivos sem owner ou grupo."
+  see_also    : "Light"
+  cmd         : "(find / -xdev \\( -nouser -o -nogroup \\) 2>/dev/null | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "199"
+  info        : "Média"
+  solution    : "Home"
+  reference   : "Verificar usuários sem diretório home."
+  see_also    : "Light"
+  cmd         : "(awk -F: '($3>=1000 && $7!=\"/sbin/nologin\" && $7!=\"/bin/false\"){print $1\":\"$6}' /etc/passwd | while IFS=: read u d; do [ -d \"$d\" ] || echo \"$u\"; done | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "200"
+  info        : "Alta"
+  solution    : "Home"
+  reference   : "Ajustar ownership dos diretórios home."
+  see_also    : "Light"
+  cmd         : "(awk -F: '($3>=1000 && $7!=\"/sbin/nologin\" && $7!=\"/bin/false\"){print $1\":\"$6}' /etc/passwd | while IFS=: read u d; do [ -d \"$d\" ] && [ \"$(stat -c %U \"$d\")\" = \"$u\" ] || echo \"$u\"; done | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "201"
+  info        : "Alta"
+  solution    : "Home"
+  reference   : "Ajustar permissões de home para 750."
+  see_also    : "Light"
+  cmd         : "(find /home -mindepth 1 -maxdepth 1 -type d -perm /027 2>/dev/null | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "202"
+  info        : "Média"
+  solution    : "Home"
+  reference   : "Ajustar permissões de dotfiles."
+  see_also    : "Light"
+  cmd         : "(find /home -maxdepth 2 -type f -name \".*\" -perm -002 2>/dev/null | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "203"
+  info        : "Alta"
+  solution    : "Home"
+  reference   : "Remover arquivos .forward, .netrc, .rhosts."
+  see_also    : "Light"
+  cmd         : "(find /home -maxdepth 2 -type f \\( -name \".forward\" -o -name \".netrc\" -o -name \".rhosts\" \\) 2>/dev/null | grep -q . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+</check_type>

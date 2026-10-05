@@ -1,0 +1,1499 @@
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 1 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 1"
+  script: 111/1111.sh
+  register: audit_1111
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_1
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 2"
+  script: 111/1112.sh
+  register: audit_1112
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_2
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 3"
+  script: 111/1113.sh
+  register: audit_1113
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_3
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 4"
+  script: 111/1114.sh
+  register: audit_1114
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_4
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 5"
+  script: 111/1115.sh
+  register: audit_1115
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_5
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 6 - Nível 2"
+  script: 111/1116.sh
+  register: audit_1116
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_6
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 7 - Nível 2"
+  script: 111/1117.sh
+  register: audit_1117
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_7
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 8"
+  script: 111/1118.sh
+  register: audit_1118
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_8
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 9"
+  script: 111/1119.sh
+  register: audit_1119
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_9
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 10 - 35"
+  script: 112/112.sh
+  register: audit_112
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_10
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 36 - 39"
+  script: 121/121.sh
+  register: audit_121
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_36
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 40"
+  script: 122/122.sh
+  register: audit_122
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_40
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 41 - 48"
+  script: 131/131.sh
+  register: audit_131
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_41
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 49"
+  script: 141/141.sh
+  register: audit_141
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_49
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 50"
+  script: 142/142.sh
+  register: audit_142
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_50
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 51"
+  script: 151/151.sh
+  register: audit_151
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_51
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 52"
+  script: 152/152.sh
+  register: audit_152
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_52
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 53"
+  script: 153/153.sh
+  register: audit_153
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_53
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 54"
+  script: 154/154.sh
+  register: audit_154
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_54
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 55"
+  script: 161/161.sh
+  register: audit_161
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_55
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 56"
+  script: 162/162.sh
+  register: audit_162
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_56
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 57"
+  script: 163/163.sh
+  register: audit_163
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_57
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 58"
+  script: 164/164.sh
+  register: audit_164
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_58
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 59"
+  script: 165/165.sh
+  register: audit_165
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_59
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 60"
+  script: 166/166.sh
+  register: audit_166
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_60
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 61"
+  script: 167/167.sh
+  register: audit_167
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_61
+    - audit
+    - audit_1.x
+
+- name: "Executar audit dos HITSS 62 a 67"
+  script: 171/171.sh
+  register: audit_171
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_62
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 68"
+  script: 181/181.sh
+  register: audit_181
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_68
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 69"
+  script: 181/182.sh
+  register: audit_182
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_69
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 70"
+  script: 181/183.sh
+  register: audit_183
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_70
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 71"
+  script: 181/184.sh
+  register: audit_184
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_71
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 72"
+  script: 181/185.sh
+  register: audit_185
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_72
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 73"
+  script: 181/186.sh
+  register: audit_186
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_73
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 74"
+  script: 181/187.sh
+  register: audit_187
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_74
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 75"
+  script: 181/188.sh
+  register: audit_188
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_75
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 76"
+  script: 181/189.sh
+  register: audit_189
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_76
+    - audit
+    - audit_1.x
+
+- name: "Executar audit HITSS 77"
+  script: 181/1810.sh
+  register: audit_1810
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_77
+    - audit
+    - audit_1.x
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 2 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 78"
+  script: 211/211.sh
+  register: audit_211
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_78
+    - audit
+    - audit_2.x
+
+- name: "Executar audit HITSS 100"
+  script: 221/221.sh
+  register: audit_221
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_100
+    - audit
+    - audit_2.x
+
+- name: "Executar audit HITSS 105"
+  script: 231/231.sh
+  register: audit_231
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_105
+    - audit
+    - audit_2.x
+
+- name: "Executar audit HITSS 115"
+  script: 241/241.sh
+  register: audit_241
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_115
+    - audit
+    - audit_2.x
+
+- name: "Executar audit HITSS 116"
+  script: 242/242.sh
+  register: audit_242
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_116
+    - audit
+    - audit_2.x
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 3 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 117"
+  script: 311/311.sh
+  register: audit_311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_117
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 118"
+  script: 312/312.sh
+  register: audit_312
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_118
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 119"
+  script: 313/313.sh
+  register: audit_313
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_119
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 120"
+  script: 321/321.sh
+  register: audit_321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_120
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 124"
+  script: 331/331.sh
+  register: audit_331
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_124
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 125"
+  script: 332/332.sh
+  register: audit_332
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_125
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 126"
+  script: 333/333.sh
+  register: audit_333
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_126
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 127"
+  script: 334/334.sh
+  register: audit_334
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_127
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 128"
+  script: 335/335.sh
+  register: audit_335
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_128
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 129"
+  script: 336/336.sh
+  register: audit_336
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_129
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 130"
+  script: 337/337.sh
+  register: audit_337
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_130
+    - audit
+    - audit_3.x
+    
+- name: "Executar audit HITSS 131"
+  script: 338/338.sh
+  register: audit_338
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_131
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 132"
+  script: 339/339.sh
+  register: audit_339
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_132
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 133"
+  script: 331/3310.sh
+  register: audit_3310
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_133
+    - audit
+    - audit_3.x
+
+- name: "Executar audit HITSS 134"
+  script: 331/3311.sh
+  register: audit_3311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_134
+    - audit
+    - audit_3.x
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 4 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 135"
+  script: 411/411.sh
+  register: audit_411
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_135
+    - audit
+    - audit_4.x
+
+- name: "Executar audit HITSS 136"
+  script: 412/412.sh
+  register: audit_412
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_136
+    - audit
+    - audit_4.x
+
+- name: "Executar audit HITSS 137"
+  script: 421/421.sh
+  register: audit_421
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_137
+    - audit
+    - audit_4.x
+
+- name: "Executar audit HITSS 138"
+  script: 422/422.sh
+  register: audit_422
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_138
+    - audit
+    - audit_4.x
+
+- name: "Executar audit HITSS 139 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/431/431.sh
+  register: audit_431
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - nfaudit_hitss_139
+
+- name: "Executar audit HITSS 140 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/432/432.sh
+  register: audit_432
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - nfaudit_hitss_140
+
+- name: "Executar audit HITSS 141 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/433/433.sh
+  register: audit_433
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - nfaudit_hitss_141
+
+- name: "Executar audit HITSS 142 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/434/434.sh
+  register: audit_434
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - nfaudit_hitss_142
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 5 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 143"
+  script: 511/511.sh
+  register: audit_511
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_143
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 144"
+  script: 512/512.sh
+  register: audit_512
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_144
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 145"
+  script: 513/513.sh
+  register: audit_513
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_145
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 146 - 147 - 148"
+  script: 514/514.sh
+  register: audit_514
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_146
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 152 a 158"
+  script: 511/5110.sh
+  register: audit_5110
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_152
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 159 a 164"
+  script: 511/5117.sh
+  register: audit_5117
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_159
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 165"
+  script: 521/521.sh
+  register: audit_521
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_165
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 166"
+  script: 522/522.sh
+  register: audit_522
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_166
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 167"
+  script: 523/523.sh
+  register: audit_523
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_167
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 168"
+  script: 524/524.sh
+  register: audit_524
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_168
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 169"
+  script: 525/525.sh
+  register: audit_525
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_169
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 170"
+  script: 526/526.sh
+  register: audit_526
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_170
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 171"
+  script: 527/527.sh
+  register: audit_527
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_171
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 172 - 174"
+  script: 531/531.sh
+  register: audit_531
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_172
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 175"
+  script: 532/5321.sh
+  register: audit_5321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_175
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 176"
+  script: 532/5322.sh
+  register: audit_5322
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_176
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 177"
+  script: 532/5323.sh
+  register: audit_5323
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_177
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 178"
+  script: 532/5324.sh
+  register: audit_5324
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_178
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 179"
+  script: 532/5325.sh
+  register: audit_5325
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_179
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 180"
+  script: 533/53311.sh
+  register: audit_53311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_180
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 181"
+  script: 533/53312.sh
+  register: audit_53312
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_181
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 182"
+  script: 533/53313.sh
+  register: audit_53313
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_182
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 183"
+  script: 533/53321.sh
+  register: audit_53321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_183
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 190"
+  script: 533/53331.sh
+  register: audit_53331
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_190
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 192"
+  script: 533/53333.sh
+  register: audit_53333
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_192
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 193"
+  script: 533/53341.sh
+  register: audit_53341
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_193
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 197 - 202"
+  script: 541/541.sh
+  register: audit_541
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_197
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 203"
+  script: 542/5421.sh
+  register: audit_5421
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_203
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 207"
+  script: 542/5425.sh
+  register: audit_5425
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_207
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 208"
+  script: 542/5426.sh
+  register: audit_5426
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_208
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 209"
+  script: 542/5427.sh
+  register: audit_5427
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_209
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 210"
+  script: 542/5428.sh
+  register: audit_5428
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_210
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 211"
+  script: 543/5431.sh
+  register: audit_5431
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_211
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 212"
+  script: 543/5432.sh
+  register: audit_5432
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_212
+    - audit
+    - audit_5.x
+
+- name: "Executar audit HITSS 213"
+  script: 543/5433.sh
+  register: audit_5433
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_213
+    - audit
+    - audit_5.x
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 6 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 214"
+  script: 611/611.sh
+  register: audit_611
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_214
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 216"
+  script: 611/613.sh
+  register: audit_613
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_216
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 217"
+  script: 621/6211.sh
+  register: audit_6211
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_217
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 218"
+  script: 621/6212.sh
+  register: audit_6212
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_218
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 219"
+  script: 621/6213.sh
+  register: audit_6213
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_219
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 220"
+  script: 621/6214.sh
+  register: audit_6214
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_220
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 221 - 224"
+  script: 622/6221.sh
+  register: audit_6221
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_221
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 225"
+  script: 622/6222.sh
+  register: audit_6222
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_225
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 228"
+  script: 623/6231.sh
+  register: audit_6231
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_228
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 235"
+  script: 623/6238.sh
+  register: audit_6238
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_235
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 236"
+  script: 624/6241.sh
+  register: audit_6241
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_236
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 237"
+  script: 631/6311.sh
+  register: audit_6311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_237
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 241"
+  script: 632/6321.sh
+  register: audit_6321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_241
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 245"
+  script: 633/6331.sh
+  register: audit_6331
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_245
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 246"
+  script: 633/6332.sh
+  register: audit_6332
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_246
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 247"
+  script: 633/6333.sh
+  register: audit_6333
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_247
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 248"
+  script: 633/6334.sh
+  register: audit_6334
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_248
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 249"
+  script: 633/6335.sh
+  register: audit_6335
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_249
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 250"
+  script: 633/6336.sh
+  register: audit_6336
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_250
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 251"
+  script: 633/6337.sh
+  register: audit_6337
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_251
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 252"
+  script: 633/6338.sh
+  register: audit_6338
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_252
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 253"
+  script: 633/6339.sh
+  register: audit_6339
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_253
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 254"
+  script: 633/63310.sh
+  register: audit_63310
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_254
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 255"
+  script: 633/63311.sh
+  register: audit_63311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_255
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 256"
+  script: 633/63312.sh
+  register: audit_63312
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_256
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 257"
+  script: 633/63313.sh
+  register: audit_63313
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_257
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 258"
+  script: 633/63314.sh
+  register: audit_63314
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_258
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 259"
+  script: 633/63315.sh
+  register: audit_63315
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_259
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 260"
+  script: 633/63316.sh
+  register: audit_63316
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_260
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 261"
+  script: 633/63317.sh
+  register: audit_63317
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_261
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 262"
+  script: 633/63318.sh
+  register: audit_63318
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_262
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 263"
+  script: 633/63319.sh
+  register: audit_63319
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_263
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 264"
+  script: 633/63320.sh
+  register: audit_63320
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_264
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 265"
+  script: 633/63321.sh
+  register: audit_63321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_265
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 266"
+  script: 634/6341.sh
+  register: audit_6341
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_266
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 267"
+  script: 634/6342.sh
+  register: audit_6342
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_267
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 268"
+  script: 634/6343.sh
+  register: audit_6343
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_268
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 269"
+  script: 634/6344.sh
+  register: audit_6344
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_269
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 270"
+  script: 634/6345.sh
+  register: audit_6345
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_270
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 271"
+  script: 634/6346.sh
+  register: audit_6346
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_271
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 272 - 273"
+  script: 634/6347.sh
+  register: audit_6347
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_272
+    - audit
+    - audit_6.x
+
+- name: "Executar audit HITSS 274 - 275"
+  script: 634/6349.sh
+  register: audit_6349
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - audit_hitss_274
+    - audit
+    - audit_6.x
+
+#####################################################################################
+###################### SCRIPTS DE HARDENING - AUDIT TÓPICO 7 ########################
+#####################################################################################
+
+- name: "Executar audit HITSS 276 - 285"
+  script: 711/711.sh
+  register: audit_711
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_276
+    - audit
+    - audit_7.x
+
+- name: "Executar audit HITSS 286"
+  script: 711/7111.sh
+  register: audit_7112
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_287
+    - audit
+    - audit_7.x
+
+- name: "Executar audit HITSS 288"
+  script: 711/7113.sh
+  register: audit_7113
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_288
+    - audit
+    - audit_7.x
+
+- name: "Executar audit HITSS 289"
+  script: 721/721.sh
+  register: audit_721
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_289
+    - audit
+    - audit_7.x
+
+- name: "Executar audit HITSS 296"
+  script: 721/728.sh
+  register: audit_728
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_296
+    - audit
+    - audit_7.x
+
+- name: "Executar audit HITSS 297"
+  script: 721/729.sh
+  register: audit_729
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_297
+    - audit
+    - audit_7.x

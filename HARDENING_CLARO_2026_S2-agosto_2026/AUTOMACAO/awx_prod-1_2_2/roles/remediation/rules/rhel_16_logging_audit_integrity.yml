@@ -1,0 +1,78 @@
+---
+rhel_16_logging_audit_integrity_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 4
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 162
+    descricao: "Logging"
+    severidade: WARN
+    perfil: "Light"
+  - id: 164
+    descricao: "Logging"
+    severidade: INFO
+    perfil: "Light"
+  - id: 166
+    descricao: "Auditoria"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 167
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 168
+    descricao: "Auditoria"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 169
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 170
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 171
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 173
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 174
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 175
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 176
+    descricao: "Auditoria"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 177
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 178
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 179
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 180
+    descricao: "Auditoria"
+    severidade: WARN
+    perfil: "Light"
+  - id: 181
+    descricao: "Auditoria"
+    severidade: BLOCK
+    perfil: "Full"

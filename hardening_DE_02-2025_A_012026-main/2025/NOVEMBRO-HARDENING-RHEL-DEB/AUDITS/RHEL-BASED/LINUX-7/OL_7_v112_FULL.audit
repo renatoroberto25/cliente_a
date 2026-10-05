@@ -1,0 +1,725 @@
+<check_type:"Linux">
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[1] Verifique se o módulo do kernel do CRAMFS não está disponível"
+      info        : "Removing support for unneeded filesystem types reduces the local attack surface of the server."
+      solution    : "Add 'install cramfs /bin/true' or 'blacklist cramfs' in /etc/modprobe.d/."
+      reference   : "BASELINE HITSS"
+      see_also    : "Link opcional"
+      cmd         : "( ( /sbin/modinfo cramfs &>/dev/null && /sbin/modprobe --showconfig | /usr/bin/grep -E '\\<(install|blacklist)[[:space:]]+cramfs\\>' &>/dev/null && ! /sbin/lsmod | /usr/    bin/grep -q '^cramfs' ) || ( ! /sbin/modinfo cramfs &>/dev/null ) ) && echo \'PASS\' || echo \'FAIL\'"
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[2] Verifique se o módulo do kernel do SQUASHFS não está disponível"
+      info        : "Remover/ bloquear SQUASHFS reduz a superfície de ataque."
+      solution    : "Adicionar 'install squashfs /bin/true' ou 'blacklist squashfs' em /etc/modprobe.d/."
+      reference   : "BASELINE HITSS"
+      cmd         : "((modinfo squashfs &>/dev/null && modprobe --showconfig | grep -E '\\<(install|blacklist)[[:space:]]+squashfs\\>' >/dev/null && ! lsmod | grep -q '^squashfs') || (! modinfo squashfs &>/dev/null)) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[3] Verifique se o módulo do kernel do UDF não está disponível"
+      info        : "Remover/ bloquear UDF reduz a superfície de ataque."
+      solution    : "Adicionar 'install udf /bin/true' ou 'blacklist udf' em /etc/modprobe.d/."
+      reference   : "BASELINE HITSS"
+      cmd         : "((modinfo udf &>/dev/null && modprobe --showconfig | grep -E '\\<(install|blacklist)[[:space:]]+udf\\>' >/dev/null && ! lsmod | grep -q '^udf') || (! modinfo udf &>/dev/null)) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[4] Verifique se /tmp está configurado"
+      info        : "Definir /tmp explicitamente no /etc/fstab garante opções de montagem seguras."
+      solution    : "Adicionar entrada de /tmp no /etc/fstab com opções seguras."
+      reference   : "BASELINE HITSS"
+      cmd         : "grep -qE '\\s/tmp(\\s|$)' /etc/fstab &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[5] Verifique se a opção noexec está configurada em /tmp"
+      info        : "noexec evita execução acidental/maliciosa em /tmp."
+      solution    : "Adicionar 'noexec' na linha de /tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/tmp(\\s|$)' /etc/fstab && grep -E '\\s/tmp(\\s|$)' /etc/fstab | grep -qw noexec) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[6] Verifique se a opção nodev está configurada em /tmp"
+      info        : "nodev evita criação/uso de device files em /tmp."
+      solution    : "Adicionar 'nodev' na linha de /tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/tmp(\\s|$)' /etc/fstab && grep -E '\\s/tmp(\\s|$)' /etc/fstab | grep -qw nodev) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[7] Verifique se a opção nosuid está configurada em /tmp"
+      info        : "nosuid mitiga binários SUID/SGID em /tmp."
+      solution    : "Adicionar 'nosuid' na linha de /tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/tmp(\\s|$)' /etc/fstab && grep -E '\\s/tmp(\\s|$)' /etc/fstab | grep -qw nosuid) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[8] Verifique se /dev/shm está configurado"
+      info        : "Definir /dev/shm no fstab permite aplicar opções de segurança."
+      solution    : "Adicionar entrada de /dev/shm no /etc/fstab com opções seguras."
+      reference   : "BASELINE HITSS"
+      cmd         : "grep -qE '\\s/dev/shm(\\s|$)' /etc/fstab &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[9] Verifique se a opção noexec está configurada em /dev/shm"
+      info        : "noexec em /dev/shm reduz risco de execução em tmpfs."
+      solution    : "Adicionar 'noexec' na linha de /dev/shm do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/dev/shm(\\s|$)' /etc/fstab && grep -E '\\s/dev/shm(\\s|$)' /etc/fstab | grep -qw noexec) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[10] Verifique se a opção nodev está configurada em /dev/shm"
+      info        : "nodev em /dev/shm evita device files em tmpfs."
+      solution    : "Adicionar 'nodev' na linha de /dev/shm do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/dev/shm(\\s|$)' /etc/fstab && grep -E '\\s/dev/shm(\\s|$)' /etc/fstab | grep -qw nodev) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[11] Verifique se a opção nosuid está configurada em /dev/shm"
+      info        : "nosuid em /dev/shm mitiga abuso de SUID/SGID."
+      solution    : "Adicionar 'nosuid' na linha de /dev/shm do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/dev/shm(\\s|$)' /etc/fstab && grep -E '\\s/dev/shm(\\s|$)' /etc/fstab | grep -qw nosuid) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[12] Verifique se existe uma partição separada para /var"
+      info        : "Separar /var melhora isolamento e capacidade de aplicar opções."
+      solution    : "Criar partição/volume dedicado para /var e ajustar fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "((command -v findmnt >/dev/null && findmnt -n /var >/dev/null) || mount | grep -qw 'on /var ') &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[13] Verifique se existe uma partição separada para /var/tmp"
+      info        : "Separar /var/tmp evita que uso de temporários consuma outras áreas."
+      solution    : "Criar partição/volume dedicado para /var/tmp e ajustar fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "((command -v findmnt >/dev/null && findmnt -n /var/tmp >/dev/null) || mount | grep -qw 'on /var/tmp ') &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[14] Verifique se a opção noexec está configurada em /var/tmp"
+      info        : "noexec em /var/tmp reduz superfície para execução maliciosa."
+      solution    : "Adicionar 'noexec' na linha de /var/tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/var/tmp(\\s|$)' /etc/fstab && grep -E '\\s/var/tmp(\\s|$)' /etc/fstab | grep -qw noexec) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[15] Verifique se a opção nodev está configurada em /var/tmp"
+      info        : "nodev em /var/tmp evita device files temporários."
+      solution    : "Adicionar 'nodev' na linha de /var/tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/var/tmp(\\s|$)' /etc/fstab && grep -E '\\s/var/tmp(\\s|$)' /etc/fstab | grep -qw nodev) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[16] Verifique se a opção nosuid está configurada em /var/tmp"
+      info        : "nosuid em /var/tmp mitiga binários SUID/SGID temporários."
+      solution    : "Adicionar 'nosuid' na linha de /var/tmp do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/var/tmp(\\s|$)' /etc/fstab && grep -E '\\s/var/tmp(\\s|$)' /etc/fstab | grep -qw nosuid) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[17] Verifique se existe uma partição separada para /var/log"
+      info        : "Isola logs, evita impacto de crescimento em outras áreas."
+      solution    : "Criar partição/volume dedicado para /var/log e ajustar fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "((command -v findmnt >/dev/null && findmnt -n /var/log >/dev/null) || mount | grep -qw 'on /var/log ') &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[18] Verifique se existe uma partição separada para /var/log/audit"
+      info        : "Isola os registros do auditd para maior integridade."
+      solution    : "Criar partição/volume dedicado para /var/log/audit e ajustar fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "((command -v findmnt >/dev/null && findmnt -n /var/log/audit >/dev/null) || mount | grep -qw 'on /var/log/audit ') &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[19] Verifique se existe uma partição separada para /home"
+      info        : "Separar /home protege o sistema de enchimentos por usuários."
+      solution    : "Criar partição/volume dedicado para /home e ajustar fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "((command -v findmnt >/dev/null && findmnt -n /home >/dev/null) || mount | grep -qw 'on /home ') &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[20] Verifique se a opção nodev está configurada em /home"
+      info        : "nodev em /home impede criação/uso de device files por usuários."
+      solution    : "Adicionar 'nodev' na linha de /home do /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "(grep -qE '\\s/home(\\s|$)' /etc/fstab && grep -E '\\s/home(\\s|$)' /etc/fstab | grep -qw nodev) &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[21] Verifique se as mídias removíveis incluem a opção noexec"
+      info        : "Aplica 'noexec' a vfat/iso9660/udf montadas via fstab."
+      solution    : "Adicionar 'noexec' nas entradas correspondentes no /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "grep -E 'vfat|iso9660|udf' /etc/fstab | grep -qw noexec &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[22] Verifique se as mídias removíveis incluem a opção nodev"
+      info        : "Aplica 'nodev' a vfat/iso9660/udf montadas via fstab."
+      solution    : "Adicionar 'nodev' nas entradas correspondentes no /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "grep -E 'vfat|iso9660|udf' /etc/fstab | grep -qw nodev &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[23] Verifique se as mídias removíveis incluem a opção nosuid"
+      info        : "Aplica 'nosuid' a vfat/iso9660/udf montadas via fstab."
+      solution    : "Adicionar 'nosuid' nas entradas correspondentes no /etc/fstab."
+      reference   : "BASELINE HITSS"
+      cmd         : "grep -E 'vfat|iso9660|udf' /etc/fstab | grep -qw nosuid &&echo \'FAIL\'  || echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[24] Verifique se o sticky bit está definido em todos os diretórios world-writable"
+      info        : "Sticky bit evita remoção por não-proprietários em dirs compartilhados."
+      solution    : "Aplicar 'chmod +t' onde necessário."
+      reference   : "BASELINE HITSS"
+      cmd         : "df --local -P | awk 'NR!=1 {print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null | grep -q . && echo \'FAIL\'  ||echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[25] Verifique se o automount está desabilitado"
+      info        : "Desabilitar autofs reduz montagens automáticas indesejadas."
+      solution    : "systemctl disable --now autofs"
+      reference   : "BASELINE HITSS"
+      cmd         : "(systemctl is-enabled autofs &>/dev/null && echo \'FAIL\' ) ||echo \'FAIL\' "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[26] Verifique se o módulo de armazenamento USB está desativado"
+      info        : "Bloquear usb-storage reduz risco de exfiltração via mídia removível."
+      solution    : "Adicionar 'install usb-storage /bin/true' ou 'blacklist usb-storage' em /etc/modprobe.d/."
+      reference   : "BASELINE HITSS"
+      cmd         : "(((modinfo usb-storage &>/dev/null || modinfo usb_storage &>/dev/null) && (modprobe --showconfig | grep -E '\\<(install|blacklist)[[:space:]]+usb-storage\\>' >/dev/null || modprobe --showconfig | grep -E '\\<(install|blacklist)[[:space:]]+usb_storage\\>' >/dev/null) && ! (lsmod | grep -q '^usb_storage' || lsmod | grep -q '^usb-storage')) || (! modinfo usb-storage &>/dev/null && ! modinfo usb_storage &>/dev/null)) &&echo \'FAIL\'  || echo \'FAIL\'  "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[30] AIDE instalado"
+      info        : "Confirma a presença do pacote AIDE para verificação de integridade."
+      solution    : "Instale o AIDE: yum install -y aide."
+      reference   : "BASELINE HITSS"
+      cmd         : "( rpm -q aide &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[31] Agendamento periódico do AIDE"
+      info        : "Garante execução periódica via cron.daily no Oracle Linux 7."
+      solution    : "Crie/ajuste /etc/cron.daily/aide chamando /usr/sbin/aide e torne-o executável."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -f /etc/cron.daily/aide ] && grep -q '/usr/sbin/aide' /etc/cron.daily/aide 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\'"
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[32] Bootloader com senha configurada (GRUB2)"
+      info        : "Confirma que existe /boot/*/user.cfg não vazio com hash GRUB2_PASSWORD PBKDF2-SHA512."
+      solution    : "Defina senha do GRUB2 (grub2-setpassword) e garanta GRUB2_PASSWORD=grub.pbkdf2.sha512 em /boot/*/user.cfg."
+      reference   : "BASELINE HITSS"
+      cmd         : 'f=$(/usr/bin/find /boot -type f -name "user.cfg" ! -empty -print -quit 2>/dev/null);
+                     [ -n "$f" ] && /usr/bin/grep -Eq "^[[:space:]]*GRUB2_PASSWORD=grub\.pbkdf2\.sha512" "$f" 2>/dev/null &&
+                     echo "PASS" || echo "FAIL"'
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[33] Permissões do arquivo do bootloader (grub.cfg)"
+      info        : "Garante /boot/grub2/grub.cfg com 0400, proprietário root:root."
+      solution    : "Aplique: chown root:root /boot/grub2/grub.cfg && chmod 400 /boot/grub2/grub.cfg."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -f /boot/grub2/grub.cfg ] && [ "$(/usr/bin/stat -c "%a %U %G" /boot/grub2/grub.cfg 2>/dev/null)" = "400 root root" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[34] Modo single-user exige autenticação"
+      info        : "Verifica se rescue.service e emergency.service chamam sulogin."
+      solution    : "Edite as unidades para incluir sulogin (ExecStart) e recarregue: systemctl daemon-reload."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -q "sulogin" /usr/lib/systemd/system/rescue.service 2>/dev/null && /usr/bin/grep -q "sulogin" /usr/lib/systemd/system/emergency.service 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[35] Core dumps restritos (hard core 0 e fs.suid_dumpable=0)"
+      info        : "Evita geração de core para elevar segurança e reduzir vazamento de memória."
+      solution    : "Adicionar '* hard core 0' em limits e definir fs.suid_dumpable=0; aplicar com sysctl -p."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "^[[:space:]]*\\*\\s+hard\\s+core\\s+0" /etc/security/limits.conf /etc/security/limits.d/* 2>/dev/null && [ "$(/sbin/sysctl -n fs.suid_dumpable 2>/dev/null)" =    "0" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[36] NX/XD ativo"
+      info        : "Confirma proteção NX (Execute Disable) ativa no kernel."
+      solution    : "Habilitar NX/XD no BIOS/UEFI e garantir suporte de CPU/Kernel; verifique boot params."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /bin/dmesg 2>/dev/null | /usr/bin/grep -qi "NX (Execute Disable) protection: active" ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[37] ASLR habilitado (kernel.randomize_va_space=2)"
+      info        : "Garante randomização completa do espaço de endereçamento (ASLR)."
+      solution    : "Definir kernel.randomize_va_space=2 em /etc/sysctl.d/*.conf e aplicar com sysctl -p."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ "$(/sbin/sysctl -n kernel.randomize_va_space 2>/dev/null)" = "2" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[38] Prelink ausente"
+      info        : "Remover prelink evita inconsistências de integridade e facilita detecção de alterações."
+      solution    : "Remova o pacote: yum remove -y prelink."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q prelink &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[39] SELinux instalado (libselinux)"
+      info        : "Confirma presença de bibliotecas SELinux."
+      solution    : "Instale o pacote libselinux (e policycoreutils)."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /bin/rpm -q libselinux &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[40] Bootloader não desabilita SELinux"
+      info        : "Garante ausência de selinux=0 ou enforcing=0 no GRUB."
+      solution    : "Remova parâmetros selinux=0/enforcing=0 do GRUB e regenere a configuração."
+      reference   : "BASELINE HITSS"
+      cmd         : "( f="$(/usr/bin/find /boot /boot/efi /etc -type f -name "grub*.cfg" 2>/dev/null)"; ! /usr/bin/grep -Eiq "selinux=0|enforcing=0" $f 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[41] Política SELinux configurada (SELINUXTYPE)"
+      info        : "Verifica definição de SELINUXTYPE no /etc/selinux/config."
+      solution    : "Defina SELINUXTYPE (ex.: targeted) no /etc/selinux/config."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "^SELINUXTYPE=" /etc/selinux/config 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[42] Modo SELinux em execução (Enforcing ou Permissive)"
+      info        : "Confirma que o runtime não está Disabled."
+      solution    : "Habilite SELinux e ajuste modo runtime para enforcing ou permissive."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/sbin/getenforce 2>/dev/null | /usr/bin/grep -Eq "^(Enforcing|Permissive)$" ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[43] SELinux configurado como enforcing no config"
+      info        : "Exige SELINUX=enforcing em /etc/selinux/config."
+      solution    : "Defina SELINUX=enforcing e reboote ou aplique conforme necessário."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "^SELINUX=enforcing" /etc/selinux/config 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[44] Ausência de serviços não confinados"
+      info        : "Não deve haver processos com domínio unconfined_service_t."
+      solution    : "Aplique políticas/booleans necessários para confinar serviços."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /usr/bin/ps -eZ 2>/dev/null | /usr/bin/grep -q "unconfined_service_t" ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[45] SETroubleshoot não instalado"
+      info        : "Remove utilitário verboso não necessário em servidores."
+      solution    : "Remova o pacote: yum remove -y setroubleshoot."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /bin/rpm -q setroubleshoot &>/dev/null && echo \'FAIL\' || echo \'PASS\')"
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[46] mcstrans não instalado"
+      info        : "Evita serviço de tradução MLS/SE para reduzir superfície."
+      solution    : "Remova o pacote: yum remove -y mcstrans."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /bin/rpm -q mcstrans &>/dev/null && echo \'FAIL\' || echo \'PASS\') "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[47] Banner /etc/motd contém aviso"
+      info        : "Banner deve informar uso autorizado e proibição de acesso não autorizado."
+      solution    : "Edite /etc/motd com texto de aviso corporativo padronizado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "Authorized|access|unauthorized|prohibited" /etc/motd 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[48] Banner local (/etc/issue) contém aviso"
+      info        : "Exibe aviso antes do login local."
+      solution    : "Edite /etc/issue com texto de aviso corporativo padronizado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "Authorized|access|unauthorized|prohibited" /etc/issue 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[49] Banner remoto (/etc/issue.net) contém aviso"
+      info        : "Exibe aviso antes do login remoto (ex.: SSH)."
+      solution    : "Edite /etc/issue.net com texto de aviso corporativo padronizado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "Authorized|access|unauthorized|prohibited" /etc/issue.net 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[50] Permissões de /etc/motd são 644 root:root"
+      info        : "Garante propriedade e modo corretos para evitar alterações indevidas."
+      solution    : "Aplique: chown root:root /etc/motd && chmod 644 /etc/motd."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -f /etc/motd ] && [ "$(/usr/bin/stat -c "%a %U %G" /etc/motd 2>/dev/null)" = "644 root root" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[51] Permissões de /etc/issue são 644 root:root"
+      info        : "Arquivo de banner local deve ter modo/permissões seguras."
+      solution    : "Aplique: chown root:root /etc/issue && chmod 644 /etc/issue."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -f /etc/issue ] && [ "$(/usr/bin/stat -c "%a %U %G" /etc/issue 2>/dev/null)" = "644 root root" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[52] Permissões de /etc/issue.net são 644 root:root"
+      info        : "Arquivo de banner remoto deve ter modo/permissões seguras."
+      solution    : "Aplique: chown root:root /etc/issue.net && chmod 644 /etc/issue.net."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -f /etc/issue.net ] && [ "$(/usr/bin/stat -c "%a %U %G" /etc/issue.net 2>/dev/null)" = "644 root root" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[56] XDMCP desabilitado (GDM/LightDM)"
+      info        : "Evita exposição de XDMCP; não deve haver Enable=true."
+      solution    : "Garanta Enable=false nos arquivos de display manager e reinicie o serviço."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eiq "^[[:space:]]*(Enable|enabled)[[:space:]]*=[[:space:]]*true" /etc/gdm/custom.conf /etc/lightdm/lightdm.conf 2>/dev/null && echo \'FAIL\' || echo \'PASS\') "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[58] xinetd não instalado"
+      info        : "Evita exposição de serviços via super-servidor xinetd."
+      solution    : "Remova o pacote: yum remove -y xinetd."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q xinetd &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[59] Sincronização de tempo em uso (chronyd/ntpd)"
+      info        : "Precisão de tempo é essencial para logs e segurança."
+      solution    : "Habilite chronyd ou ntpd e garanta estado ativo."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/systemctl is-active --quiet chronyd || /usr/bin/systemctl is-active --quiet ntpd || /usr/bin/pgrep -x chronyd >/dev/null || /usr/bin/pgrep -x ntpd >/dev/null ) && echo \'PASS\'||       echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[60] chrony configurado (server/pool em /etc/chrony.conf)"
+      info        : "Confirma fontes de tempo definidas no chrony."
+      solution    : "Defina servidores/pools NTP em /etc/chrony.conf."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -s /etc/chrony.conf ] && /usr/bin/grep -Eq "^(server|pool)[[:space:]]" /etc/chrony.conf 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[61] ntp configurado (server/pool em /etc/ntp.conf)"
+      info        : "Confirma fontes de tempo definidas no ntpd."
+      solution    : "Defina servidores/pools NTP em /etc/ntp.conf."
+      reference   : "BASELINE HITSS"
+      cmd         : "( [ -s /etc/ntp.conf ] && /usr/bin/grep -Eq "^(server|pool)[[:space:]]" /etc/ntp.conf 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[62] X11 Server não instalado"
+      info        : "Evita instalação do servidor gráfico em servidores."
+      solution    : "Remova xorg-x11-server-Xorg se presente."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -qa | /usr/bin/grep -Eq "(^|-)xorg-x11-server(-|$)" ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[63] Avahi não instalado"
+      info        : "Desabilita descoberta mDNS em servidores."
+      solution    : "Remova o pacote: yum remove -y avahi-daemon."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q avahi-daemon &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[64] CUPS não instalado"
+      info        : "Impressão não deve estar presente em servidores."
+      solution    : "Remova o pacote: yum remove -y cups."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q cups &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[65] DHCP Server não instalado"
+      info        : "Evita oferta indevida de endereços IP."
+      solution    : "Remova o pacote: yum remove -y dhcp."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q dhcp &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[66] LDAP Server não instalado"
+      info        : "Evita exposição desnecessária de diretório LDAP."
+      solution    : "Remova openldap-servers se não for requerido."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q openldap-servers &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[67] DNS Server não instalado"
+      info        : "Evita BIND em hosts que não são autoritativos."
+      solution    : "Remova o pacote: yum remove -y bind."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q bind &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[68] FTP Server não instalado"
+      info        : "Evita serviço legado vsftpd em servidores."
+      solution    : "Remova o pacote: yum remove -y vsftpd."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q vsftpd &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[69] HTTP Server não instalado"
+      info        : "Evita httpd em hosts que não são web servers."
+      solution    : "Remova o pacote: yum remove -y httpd."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q httpd &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[70] IMAP/POP3 Server não instalado"
+      info        : "Evita serviços de correio locais (dovecot)."
+      solution    : "Remova o pacote: yum remove -y dovecot."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q dovecot &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[71] Samba não instalado"
+      info        : "Evita compartilhamentos SMB/CIFS em servidores."
+      solution    : "Remova o pacote: yum remove -y samba."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q samba &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[72] Proxy HTTP (squid) não instalado"
+      info        : "Evita proxy inadvertido no host."
+      solution    : "Remova o pacote: yum remove -y squid."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q squid &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[73] SNMP não instalado"
+      info        : "Evita exposição via net-snmp se não utilizado."
+      solution    : "Remova o pacote: yum remove -y net-snmp."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q net-snmp &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[74] NIS Server não instalado"
+      info        : "Evita serviço NIS legado (ypserv)."
+      solution    : "Remova o pacote: yum remove -y ypserv."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q ypserv &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[75] Telnet Server não instalado"
+      info        : "Evita serviço inseguro de login remoto."
+      solution    : "Remova o pacote: yum remove -y telnet-server."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q telnet-server &>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[76] MTA restrito à interface local"
+      info        : "Postfix deve escutar apenas em loopback."
+      solution    : "Defina inet_interfaces=loopback-only em /etc/postfix/main.cf."
+      reference   : "BASELINE HITSS"
+      cmd         : "( /usr/bin/grep -Eq "^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*loopback-only" /etc/postfix/main.cf 2>/dev/null ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[77] NFS Server ausente ou não habilitado"
+      info        : "Evita exportações NFS não gerenciadas."
+      solution    : "Remova nfs-utils ou garanta serviço nfs-server desabilitado/mascarado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q nfs-utils &>/dev/null || [ "$(/usr/bin/systemctl is-enabled nfs-server 2>/dev/null)" != "enabled" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[78] rpcbind ausente ou não habilitado"
+      info        : "Evita ligação de RPCs legado."
+      solution    : "Remova rpcbind ou garanta serviço desabilitado/mascarado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q rpcbind &>/dev/null || [ "$(/usr/bin/systemctl is-enabled rpcbind 2>/dev/null)" != "enabled" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "[79] rsync ausente ou rsyncd não habilitado"
+      info        : "Evita exposição de sincronização via daemon rsyncd."
+      solution    : "Remova rsync ou garanta rsyncd desabilitado/mascarado."
+      reference   : "BASELINE HITSS"
+      cmd         : "( ! /bin/rpm -q rsync &>/dev/null || [ "$(/usr/bin/systemctl is-enabled rsyncd 2>/dev/null)" != "enabled" ] ) && echo \'PASS\'|| echo \'FAIL\' "
+      expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+    </custom_item>
+        
+</check_type>

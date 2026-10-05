@@ -1,0 +1,8 @@
+[servidores ol8]
+oracle8-1 ansible_host=IP ansible_python_interpreter=/usr/bin/python3.11
+oracle8-2 ansible_host=IP ansible_python_interpreter=/usr/bin/python3.11
+
+[dsec_targets:vars]
+ansible_user=USER
+ansible_ssh_private_key_file=~/.ssh/chave_host_vms
+ansible_port=22

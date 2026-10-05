@@ -1,0 +1,28 @@
+accounts_rules:
+  - id: 148
+    descricao: "Root é o único UID 0"
+    perfil: "Full"
+
+  - id: 149
+    descricao: "Root é o único GID 0"
+    perfil: "Full"
+
+  - id: 150
+    descricao: "Contas de sistema com shell interativo"
+    perfil: "Full"
+
+  - id: 151
+    descricao: "/sbin/nologin presente em /etc/shells"
+    perfil: "Full"
+
+  - id: 152
+    descricao: "PATH do root configurado"
+    perfil: "Full"
+
+  - id: 153
+    descricao: "umask 027"
+    perfil: "Full"
+
+  - id: 154
+    descricao: "TMOUT 900"
+    perfil: "Full"

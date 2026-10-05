@@ -1,0 +1,62 @@
+---
+rhel_15_accounts_shell_sudo_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 2
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 148
+    descricao: "Contas / Permissões"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 149
+    descricao: "Contas / Permissões"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 150
+    descricao: "Contas / Permissões"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 151
+    descricao: "Contas / Permissões"
+    severidade: INFO
+    perfil: "Full"
+  - id: 152
+    descricao: "Contas / Permissões"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 153
+    descricao: "Contas / Permissões"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 154
+    descricao: "Contas / Permissões"
+    severidade: INFO
+    perfil: "Full"
+  - id: 155
+    descricao: "Sudo / Privilégios"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 156
+    descricao: "Sudo / Privilégios"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 157
+    descricao: "Sudo / Privilégios"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 158
+    descricao: "Sudo / Privilégios"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 159
+    descricao: "Sudo / Privilégios"
+    severidade: INFO
+    perfil: "Light"
+  - id: 160
+    descricao: "Sudo / Privilégios"
+    severidade: BLOCK
+    perfil: "Full"

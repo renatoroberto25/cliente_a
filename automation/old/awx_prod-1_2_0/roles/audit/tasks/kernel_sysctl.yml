@@ -1,0 +1,89 @@
+# roles/audit/tasks/kernel_sysctl.yml
+- name: Carregar regras sysctl kernel
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/kernel_sysctl.yml"
+
+- name: Coletar valores sysctl kernel
+  command: sysctl -n {{ item.key }}
+  register: sysctl_check
+  loop: >-
+    {{
+      kernel_sysctl_rules
+      | selectattr('key', 'defined')
+      | rejectattr('key', 'none')
+      | rejectattr('cmd', 'defined')
+      | list
+    }}
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria sysctl kernel
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if (
+          (item.item.expected is defined and (item.stdout | default('') | trim) == item.item.expected)
+          or
+          (item.item.expected_min is defined and ((item.stdout | default('0') | trim | int) >= (item.item.expected_min | int)))
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ sysctl_check.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Construir mapa de sysctl coletados
+  ansible.builtin.set_fact:
+    sysctl_results: >-
+      {{
+        dict(
+          sysctl_check.results
+          | map(attribute='item.key')
+          | zip(
+              sysctl_check.results
+              | map(attribute='stdout') | map('default', '') | map('trim')
+            )
+        )
+      }}
+  changed_when: false
+  no_log: false
+
+- name: Verificar comandos kernel sem sysctl
+  shell: "{{ item.cmd }}"
+  register: kernel_cmd_check
+  loop: "{{ kernel_sysctl_rules | selectattr('cmd', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria comandos kernel
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if item.rc == 0
+        else 'REPROVADO'
+      }}
+  loop: "{{ kernel_cmd_check.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Resultado auditoria protected links (22)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][22]
+      {{
+        'APROVADO'
+        if (
+          sysctl_results['fs.protected_symlinks'] | default('0') == '1'
+          and
+          sysctl_results['fs.protected_hardlinks'] | default('0') == '1'
+        )
+        else 'REPROVADO'
+      }}

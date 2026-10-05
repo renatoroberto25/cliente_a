@@ -1,0 +1,10 @@
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "1"
+      info            : "Verifique se o módulo do kernel do CRAMFS está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "MEDIUM"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+cramfs\\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) && echo \"PASS\" || echo \"FAIL\" "
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>

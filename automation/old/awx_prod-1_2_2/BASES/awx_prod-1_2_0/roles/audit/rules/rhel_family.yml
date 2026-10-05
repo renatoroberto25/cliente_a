@@ -1,0 +1,274 @@
+# roles/audit/rules/rhel_family.yml
+rhel_family_rules:
+  - id: 49
+    descricao: "Senha de bootloader configurada"
+    perfil: "Full"
+
+  - id: 50
+    descricao: "Permissões seguras no arquivo do bootloader"
+    perfil: "Light"
+
+  - id: 51
+    descricao: "Single user mode com autenticação"
+    perfil: "Full"
+
+  - id: 86
+    descricao: "PolicyKit endurecido"
+    perfil: "Full"
+
+  - id: 87
+    descricao: "Assinaturas de pacotes habilitadas"
+    perfil: "Full"
+
+  - id: 88
+    descricao: "Patches de segurança aplicados - USO APENAS EM TEMPLATES"
+    perfil: "Full"
+
+  - id: 89
+    descricao: "Apenas um daemon de time sync"
+    perfil: "Full"
+
+  - id: 108
+    descricao: "TLS mínimo 1.2/1.3"
+    perfil: "Full"
+
+  - id: 109
+    descricao: "Permissões seguras em sshd_config e chaves"
+    perfil: "Light"
+
+  - id: 110
+    descricao: "Controle de acesso via Allow/Deny"
+    perfil: "Full"
+
+  - id: 111
+    descricao: "LogLevel adequado"
+    perfil: "Light"
+
+  - id: 112
+    descricao: "X11Forwarding desabilitado"
+    perfil: "Full"
+
+  - id: 113
+    descricao: "MaxAuthTries limitado"
+    perfil: "Light"
+
+  - id: 114
+    descricao: "IgnoreRhosts habilitado"
+    perfil: "Light"
+
+  - id: 115
+    descricao: "HostbasedAuthentication desabilitado"
+    perfil: "Full"
+
+  - id: 117
+    descricao: "PermitEmptyPasswords desabilitado"
+    perfil: "Light"
+
+  - id: 118
+    descricao: "PermitUserEnvironment desabilitado"
+    perfil: "Light"
+
+  - id: 119
+    descricao: "UsePAM habilitado"
+    perfil: "Full"
+
+  - id: 120
+    descricao: "Idle timeout configurado"
+    perfil: "Full"
+
+  - id: 121
+    descricao: "LoginGraceTime curto"
+    perfil: "Light"
+
+  - id: 122
+    descricao: "MaxStartups/MaxSessions limitados"
+    perfil: "Full"
+
+  - id: 123
+    descricao: "AllowTcpForwarding restrito"
+    perfil: "Full"
+
+  - id: 125
+    descricao: "Ciphers fortes"
+    perfil: "Full"
+
+  - id: 126
+    descricao: "MACs fortes"
+    perfil: "Full"
+
+  - id: 127
+    descricao: "KexAlgorithms fortes"
+    perfil: "Full"
+
+  - id: 128
+    descricao: "Preferência moderna - double check"
+    perfil: "Full"
+
+  - id: 129
+    descricao: "ForceCommand/Chroot"
+    perfil: "Full"
+
+  - id: 130
+    descricao: "pwquality habilitado"
+    perfil: "Full"
+
+  - id: 131
+    descricao: "Verificar parâmetros do pam_pwquality"
+    perfil: "Full"
+
+  - id: 132
+    descricao: "pam_faillock habilitado"
+    perfil: "Full"
+
+  - id: 133
+    descricao: "pam_tally2 NÃO deve existir em RHEL 8/9"
+    perfil: "Full"
+
+  - id: 134
+    descricao: "pam_pwhistory habilitado"
+    perfil: "Full"
+
+  - id: 135
+    descricao: "minlen ≥ 14"
+    perfil: "Full"
+
+  - id: 136
+    descricao: "minclass ≥ 4"
+    perfil: "Full"
+
+  - id: 137
+    descricao: "maxrepeat & maxsequence = 3"
+    perfil: "Full"
+
+  - id: 138
+    descricao: "dictcheck != 0"
+    perfil: "Full"
+
+  - id: 139
+    descricao: "Hashing sha512/yescrypt"
+    perfil: "Full"
+
+  - id: 140
+    descricao: "pwhistory remember ≥ 5"
+    perfil: "Full"
+
+  - id: 141
+    descricao: "deny maior igual a 5 (faillock)"
+    perfil: "Full"
+
+  - id: 142
+    descricao: "unlock_time maior igual a 900"
+    perfil: "Full"
+
+  - id: 143
+    descricao: "PASS_MAX_DAYS ≤ 365"
+    perfil: "Full"
+
+  - id: 144
+    descricao: "PASS_MIN_DAYS maior igual a 1"
+    perfil: "Full"
+
+  - id: 145
+    descricao: "PASS_WARN_AGE maior igual a 7"
+    perfil: "Full"
+
+  - id: 146
+    descricao: "inactive maior igual a 30 (para contas válidas)"
+    perfil: "Full"
+
+  - id: 147
+    descricao: "campo 3 diferente 0"
+    perfil: "Full"
+
+rhel_teste_rules:
+  - id: 155
+    descricao: "Ausência de regras amplas sudo"
+    perfil: "Full"
+
+  - id: 156
+    descricao: "sudo usa pty"
+    perfil: "Light"
+
+  - id: 157
+    descricao: "sudo logfile"
+    perfil: "Light"
+
+  - id: 158
+    descricao: "!authenticate ausente"
+    perfil: "Full"
+
+  - id: 159
+    descricao: "timestamp_timeout=5"
+    perfil: "Light"
+
+  - id: 160
+    descricao: "su restrito ao wheel"
+    perfil: "Full"
+
+  - id: 162
+    descricao: "Journald configurado persistente"
+    perfil: "Light"
+
+  - id: 164
+    descricao: "Logrotate para rsyslog"
+    perfil: "Light"
+
+  - id: 166
+    descricao: "Auditoria antes do auditd(se utilizado)"
+    perfil: "Full"
+
+  - id: 167
+    descricao: "Tamanho de armazenamento de audit log"
+    perfil: "Light"
+
+  - id: 168
+    descricao: "Logs de auditoria não excluídos automaticamente"
+    perfil: "Full"
+
+  - id: 169
+    descricao: "Auditoria de alterações em data/hora"
+    perfil: "Light"
+
+  - id: 170
+    descricao: "Auditoria de alterações em contas/grupos"
+    perfil: "Light"
+
+  - id: 171
+    descricao: "Auditoria de alterações no ambiente de rede"
+    perfil: "Light"
+
+  - id: 173
+    descricao: "Auditoria de login/logout"
+    perfil: "Light"
+
+  - id: 174
+    descricao: "Auditoria de permissões DAC"
+    perfil: "Light"
+
+  - id: 175
+    descricao: "Auditoria de acessos não autorizados"
+    perfil: "Light"
+
+  - id: 176
+    descricao: "Auditoria de comandos privilegiados"
+    perfil: "Full"
+
+  - id: 177
+    descricao: "Auditoria de mount/unmount"
+    perfil: "Light"
+
+  - id: 178
+    descricao: "Auditoria de deleção de arquivos"
+    perfil: "Light"
+
+  - id: 179
+    descricao: "Auditoria de kernel modules"
+    perfil: "Light"
+
+  - id: 180
+    descricao: "Auditoria de sudoers/logs de sudo"
+    perfil: "Light"
+
+  - id: 181
+    descricao: "Configuração de auditoria imutável"
+    perfil: "Full"

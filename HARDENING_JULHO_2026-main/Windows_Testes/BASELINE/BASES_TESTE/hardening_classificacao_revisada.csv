@@ -1,0 +1,282 @@
+﻿001,Minimum password length,Alta
+002,Minimum password age,Baixa
+003,Maximum password age,Baixa
+004,Enforce password history,Baixa
+005,Account lockout threshold,Alta
+006,Reset account lockout counter after,Baixa
+007,Account lockout duration,Baixa
+008,Force logoff when logon hours expire,Baixa
+009,Password must meet complexity requirements,Alta
+010,Store passwords using reversible encryption,Alta
+011,Guest account status,Alta
+012,Rename administrator account,Baixa
+013,Allow anonymous SID Name translation,Alta
+014,Application log - Maximum log size KB,Baixa
+015,Application log - Log retention method,Baixa
+016,Application log - Restrict guest access to log,Baixa
+017,System log - Maximum log size KB,Baixa
+018,System log - Log retention method,Baixa
+019,System log - Restrict guest access to log,Baixa
+020,Security log - Maximum log size KB,Alta
+021,Security log - Log retention method,Alta
+022,Security log - Restrict guest access to log,Alta
+023,Service Spooler installation metadata,Alta
+024,Access this computer from the network,Media
+025,Bypass traverse checking,Baixa
+026,Debug programs,Alta
+027,Force shutdown from a remote system,Baixa
+028,Allow log on locally,Media
+029,Shut down the system,Baixa
+030,Allow log on through Remote Desktop Services,Alta
+031,Access Credential Manager as a trusted caller,Alta
+032,Adjust memory quotas for a process,Baixa
+033,Back up files and directories,Media
+034,Change the system time,Media
+035,Create a pagefile,Baixa
+036,Create a token object,Alta
+037,Create global objects,Baixa
+038,Create permanent shared objects,Baixa
+039,Create symbolic links,Media
+040,Enable computer and user accounts to be trusted for delegation,Alta
+041,Generate security audits,Media
+042,Impersonate a client after authentication,Media
+043,Increase scheduling priority,Baixa
+044,Load and unload device drivers,Media
+045,Lock pages in memory,Baixa
+046,Manage auditing and security log,Media
+047,Modify an object label,Media
+048,Modify firmware environment values,Media
+049,Perform volume maintenance tasks,Baixa
+050,Profile single process,Baixa
+051,Profile system performance,Baixa
+052,Replace a process level token,Media
+053,Restore files and directories,Media
+054,Take ownership of files or other objects,Media
+055,Change the time zone,Baixa
+056,Add workstations to domain,Baixa
+057,Act as part of the operating system,Alta
+058,Increase a process working set,Baixa
+059,Deny access to this computer from the network,Baixa
+060,Deny log on as a batch job,Baixa
+061,Deny log on locally,Baixa
+062,Deny log on through Remote Desktop Services,Alta
+063,BASELINE SOFTWARE PSS,Media
+064,SCENoApplyLegacyAuditPolicy System CurrentControlSet Control Lsa,Alta
+065,TSUserEnabled System CurrentControlSet Control Terminal Server,Media
+066,MinEncryptionLevel System CurrentControlSet Control Terminal Server WinStations RDP-tcp,Media
+067,fPromptforPassword System CurrentControlSet Control Terminal Server WinStations RDP-tcp,Alta
+068,fInheritMaxSessionTime System CurrentControlSet Control Terminal Server WinStations RDP-tcp,Baixa
+069,fInheritMaxDisconnectionTime System CurrentControlSet Control Terminal Server WinStations RDP-tcp,Baixa
+070,fInheritMaxIdleTime System CurrentControlSet Control Terminal Server WinStations RDP-tcp,Baixa
+071,FdisableClip Software Policies Microsoft Windows NT Terminal Services,Media
+072,DisablePasswordSaving Software Policies Microsoft Windows NT Terminal Services,Alta
+073,sfcdisable software microsoft windows nt currentversion winlogon,Media
+074,SfcScan Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+075,EnableUIADesktopToggle Software Microsoft Windows CurrentVersion Policies System,Media
+076,Policy Software Microsoft Driver Signing,Media
+077,EnableSecuritySignature SYSTEM CurrentControlSet Services Lanmanworkstation Parameters,Alta
+078,Hidden System CurrentControlSet Services LanmanServer Parameters,Alta
+079,Notification Packages SYSTEM CurrentControlSet Control LSA,Alta
+080,RequireSecuritySignature SYSTEM CurrentControlSet Services Lanmanworkstation Parameters,Alta
+081,RequireSecuritySignature System CurrentControlSet Services LanManServer Parameters,Alta
+082,Autorun SYSTEM CurrentControlSet Services Cdrom,Alta
+083,RestrictAnonymous SYSTEM CurrentControlSet Control LSA,Alta
+084,LMCompatibilityLevel SYSTEM CurrentControlSet Control LSA,Alta
+085,FullPrivilegeAuditing SYSTEM CurrentControlSet Control Lsa,Alta
+086,CachedLogonsCount SOFTWARE Microsoft Windows NT CurrentVersion Winlogon,Media
+087,AutoShareServer SYSTEM CurrentControlSet Services LanManServer Parameters,Alta
+088,DontDisplayLastUserName SOFTWARE Microsoft Windows CurrentVersion Policies System,Baixa
+089,AuditBaseObjects SYSTEM CurrentControlSet Control LSA,Alta
+090,EnablePlainTextPassword System CurrentControlSet Services LanmanWorkstation Parameters,Alta
+091,AllocateFloppies Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+092,AllocateCDROMS Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+093,SubmitControl SYSTEM CurrentControlSet Control Lsa,Alta
+094,AddPrinterDrivers SYSTEM CurrentControlSet Control Print Providers LanMan Print Services Servers,Alta
+095,EnableSecuritySignature System CurrentControlSet Services LanManServer Parameters,Alta
+096,SignSecureChannel System CurrentControlSet Services Netlogon Parameters,Alta
+097,RestrictNullSessAccess System CurrentControlSet Services LanmanServer Parameters,Alta
+098,SealSecureChannel System CurrentControlSet Services Netlogon Parameters,Alta
+099,RequireSignOrSeal System CurrentControlSet Services Netlogon Parameters,Alta
+100,ForceGuest System CurrentControlSet Control Lsa,Alta
+101,AutoAdminLogon SOFTWARE Microsoft Windows NT CurrentVersion Winlogon,Media
+102,ClearPageFileAtShutdown SYSTEM CurrentControlSet Control Session Manager Memory Management,Baixa
+103,ShutdownWithoutLogon SOFTWARE Microsoft Windows CurrentVersion Policies System,Baixa
+104,NullSessionShares SYSTEM CurrentControlSet Services LanmanServer Parameters,Alta
+105,NullSessionPipes SYSTEM CurrentControlSet Services LanmanServer Parameters,Alta
+106,DisableCAD Software Microsoft Windows CurrentVersion Policies System,Baixa
+107,LegalNoticeCaption Software Microsoft Windows CurrentVersion policies system,Baixa
+108,LegalNoticeText SOFTWARE Microsoft Windows CurrentVersion Policies System,Baixa
+109,NoDriveTypeAutoRun Software Microsoft Windows CurrentVersion Policies Explorer,Alta
+110,AllocateDASD Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+111,SetCommand Software Microsoft Windows NT CurrentVersion Setup RecoveryConsole,Media
+112,SecurityLevel Software Microsoft Windows NT CurrentVersion Setup RecoveryConsole,Alta
+113,DisablePasswordChange System CurrentControlSet Services Netlogon Parameters,Alta
+114,AutoDisconnect System CurrentControlSet Services LanManServer Parameters,Alta
+115,ScRemoveOption Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+116,SecureBoot SYSTEM CurrentControlSet Control LSA,Alta
+117,ForceUnlockLogon Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+118,DisableDomainCreds System CurrentControlSet Control Lsa,Alta
+119,EveryoneIncludesAnonymous System CurrentControlSet Control Lsa,Alta
+120,LimitBlankPasswordUse System CurrentControlSet Control Lsa,Alta
+121,RestrictAnonymousSAM System CurrentControlSet Control Lsa,Alta
+122,NoLMHash System CurrentControlSet Control Lsa,Alta
+123,PasswordExpiryWarning Software Microsoft Windows NT CurrentVersion Winlogon,Alta
+124,ObCaseInsensitive System CurrentControlSet Control Session Manager Kernel,Baixa
+125,EnableForcedLogOff System CurrentControlSet Services LanManServer Parameters,Alta
+126,LDAPClientIntegrity System CurrentControlSet Services LDAP,Media
+127,MaximumPasswordAge SYSTEM CurrentControlSet Services Netlogon Parameters,Alta
+128,RequireStrongKey SYSTEM CurrentControlSet Services Netlogon Parameters,Alta
+129,ForceKeyProtection Software Policies Microsoft Cryptography,Baixa
+130,Timeout System CurrentControlSet Control GraphicsDrivers DCI,Baixa
+131,optional SYSTEM CurrentControlSet Control Session Manager SubSystems,Baixa
+132,NtfsDisable8dot3NameCreation System CurrentControlSet Control FileSYSTEM,Baixa
+133,Machine SYSTEM CurrentControlSet Control SecurePipeServers winreg AllowedPaths,Media
+134,Machine SYSTEM CurrentControlSet Control SecurePipeServers Winreg AllowedExactPaths,Media
+135,SafeDllSearchMode System CurrentControlSet Control Session Manager,Media
+136,WarningLevel System CurrentControlSet Services Eventlog Security,Alta
+137,AuthenticodeEnabled Software Policies Microsoft Windows Safer CodeIdentifiers,Baixa
+138,Start SYSTEM CurrentControlSet Services UsbStor,Media
+139,WriteProtect System CurrentControlSet Control StorageDevicePolicies,Baixa
+140,ConsentPromptBehaviorAdmin Software Microsoft Windows CurrentVersion Policies System,Baixa
+141,ValidateAdminCodeSignatures Software Microsoft Windows CurrentVersion Policies System,Baixa
+142,EnableSecureUIAPaths Software Microsoft Windows CurrentVersion Policies System,Media
+143,InactivityTimeoutSecs Software Microsoft Windows CurrentVersion Policies System,Media
+144,NoConnectedUser Software Microsoft Windows CurrentVersion Policies System,Baixa
+145,SmartScreenEnabled Software Microsoft Windows CurrentVersion Explorer,Alta
+146,DisablePasswordReveal Software Policies Microsoft Windows CredUI,Alta
+147,DontEnumerateConnectedUsers Software Policies Microsoft Windows System,Baixa
+148,DisableLockScreenAppNotifications Software Policies Microsoft Windows System,Baixa
+149,DisableIPSourceRouting System CurrentControlSet Services Tcpip Parameters,Media
+150,EnablePMTUDiscovery System CurrentControlSet Services Tcpip Parameters,Baixa
+151,KeepAliveTime System CurrentControlSet Services Tcpip Parameters,Baixa
+152,NoNameReleaseOnDemand System CurrentControlSet Services Tcpip Parameters,Baixa
+153,PerformRouterDiscovery System CurrentControlSet Services Tcpip Parameters,Baixa
+154,SynAttackProtect System CurrentControlSet Services Tcpip Parameters,Baixa
+155,TcpMaxConnectResponseRetransmissions System CurrentControlSet Services Tcpip Parameters,Baixa
+156,TCPMaxHalfOpen System CurrentControlSet Services Tcpip Parameters,Baixa
+157,TCPMaxPortsExhausted System CurrentControlSet Services Tcpip Parameters,Baixa
+158,TcpMaxHalfOpenRetried System CurrentControlSet Services Tcpip Parameters,Baixa
+159,TcpMaxConnectRetransmissions System CurrentControlSet Services Tcpip Parameters,Baixa
+160,TcpMaxDataRetransmissions System CurrentControlSet Services Tcpip Parameters,Baixa
+161,IPEnableRouter System CurrentControlSet Services Tcpip Parameters,Media
+162,EnableAddrMaskReply System CurrentControlSet Services Tcpip Parameters,Baixa
+163,EnableDeadGWDetect SYSTEM CurrentControlSet Services Tcpip Parameters,Baixa
+164,EnableICMPRedirect SYSTEM CurrentControlSet Services Tcpip Parameters,Media
+165,EnableDynamicBacklog System CurrentControlSet Services AFD Parameters,Baixa
+166,DynamicBacklogGrowthDelta System CurrentControlSet Services AFD Parameters,Baixa
+167,MaximumDynamicBacklog System CurrentControlSet Services AFD Parameters,Baixa
+168,MinimumDynamicBacklog System CurrentControlSet Services AFD Parameters,Baixa
+169,NoNameReleaseOnDemand System CurrentControlSet Services NetBT Parameters,Baixa
+170,EnablemulticastForwarding System CurrentControlSet Services NetBT Parameters,Baixa
+171,EnableFragmentChecking System CurrentControlSet Services NetBT Parameters,Baixa
+172,AllowUserRawAccess System CurrentControlSet Services NetBT Parameters,Media
+173,RefusePasswordChange System CurrentControlSet Services Netlogon Parameters,Alta
+174,RemoveWindowsStore Software Policies Microsoft WindowsStore,Baixa
+175,NoUseStoreOpenwith Software Policies Microsoft Windows Explorer,Baixa
+176,LocalAccountTokenFilterPolicy SOFTWARE Microsoft Windows CurrentVersion Policies System,Media
+177,EnableVirtualization Software Microsoft Windows CurrentVersion Policies System,Baixa
+178,EnableSecureCredentialPrompting Software Microsoft Windows CurrentVersion Policies CredUi,Alta
+179,DisableRestrictedAdmin SYSTEM CurrentControlSet Control Lsa,Alta
+180,AllowOnlineID System CurrentControlSet Control Lsa pku2u,Alta
+181,AllowIndexingEncryptedStoresOrItems SOFTWARE Policies Microsoft Windows Windows Search,Baixa
+182,ConsentPromptBehaviorUser Software Microsoft Windows CurrentVersion Policies System,Media
+183,SmbServerNameHardeningLevel System CurrentControlSet Services LanManServer Parameters,Alta
+184,SupportedEncryptionTypes Software Microsoft Windows CurrentVersion Policies System Kerberos Parameters,Alta
+185,EnumerateAdministrators Software Microsoft Windows CurrentVersion Policies CredUI,Baixa
+186,allownullsessionfallback System CurrentControlSet Control Lsa MSV1_0,Alta
+187,UseMachineId System CurrentControlSet Control Lsa,Alta
+188,DisableIPSourceRouting System CurrentControlSet Services Tcpip6 Parameters,Media
+189,TcpMaxDataRetransmissions System CurrentControlSet Services Tcpip6 Parameters,Baixa
+190,DisabledComponents System CurrentControlSet Services Tcpip6 Parameters,Baixa
+191,FilterAdministratorToken Software Microsoft Windows CurrentVersion Policies System,Media
+192,EnableInstallerDetection Software Microsoft Windows CurrentVersion Policies System,Baixa
+193,PromptOnSecureDesktop Software Microsoft Windows CurrentVersion Policies System,Media
+194,fDisableLPT SOFTWARE Policies Microsoft Windows NT Terminal Services,Baixa
+195,fDisablePNPRedir SOFTWARE Policies Microsoft Windows NT Terminal Services,Baixa
+196,fDisableCpm SOFTWARE Policies Microsoft Windows NT Terminal Services,Media
+197,fDisableCdm SOFTWARE Policies Microsoft Windows NT Terminal Services,Media
+198,fDisableCcm SOFTWARE Policies Microsoft Windows NT Terminal Services,Baixa
+199,DisableHTTPPrinting Software Policies Microsoft Windows NT Printers,Baixa
+200,EnumerateLocalUsers Software Policies Microsoft Windows System,Baixa
+201,ProtectionMode System CurrentControlSet Control Session Manager,Baixa
+202,NTLMMinServerSec SYSTEM CurrentControlSet Control Lsa MSV1_0,Alta
+203,NTLMMinClientSec SYSTEM CurrentControlSet Control Lsa MSV1_0,Alta
+204,ScreenSaverGracePeriod Software Microsoft Windows NT CurrentVersion Winlogon,Baixa
+205,AutoDownload Software Policies Microsoft WindowsStore,Baixa
+206,UseLogonCredential System CurrentControlSet Control SecurityProviders WDigest,Alta
+207,AllowBuildPreview SOFTWARE Policies Microsoft Windows PreviewBuilds,Baixa
+208,MitigationOptions_FontBocking SOFTWARE Policies Microsoft Windows NT MitigationOptions,Baixa
+209,Policy SOFTWARE Microsoft Non-Driver Signing,Baixa
+210,Auto SOFTWARE Microsoft Windows NT CurrentVersion AEDebug,Baixa
+211,TrustPolicy SOFTWARE Microsoft Windows Script Host Settings,Baixa
+212,BlockHostedAppAccessWinRT SOFTWARE Microsoft Windows CurrentVersion Policies System,Baixa
+213,EnableLUA SOFTWARE Microsoft Windows CurrentVersion Policies System,Media
+214,EnableMulticast SOFTWARE Policies Microsoft Windows NT DNSClient,Media
+215,UserAuthentication SOFTWARE Policies Microsoft Windows NT Terminal Services,Media
+216,AllowSharedLocalAppData SOFTWARE Policies Microsoft Windows CurrentVersion AppModel StateManager,Baixa
+217,ExecutionPolicy SOFTWARE Policies Microsoft Windows powershell,Baixa
+218,AllowSearchToUseLocation SOFTWARE Policies Microsoft Windows Windows Search,Baixa
+219,SFCScan SOFTWARE Policies Microsoft Windows NT Windows File Protection,Baixa
+220,NoDefaultAdminOwner SYSTEM CurrentControlSet Control Lsa,Alta
+221,AdditionalBaseNamedObjectsProtectionMode SYSTEM CurrentControlSet Control Session Manager,Baixa
+222,EnhancedSecurityLevel SYSTEM CurrentControlSet Control Session Manager,Alta
+223,DisableAddressSharing SYSTEM CurrentControlSet Services AFD parameters,Baixa
+224,NoDefaultExempt SYSTEM CurrentControlSet Services IPSEC,Baixa
+225,SMB1 SYSTEM CurrentControlSet Services LanmanServer Parameters,Alta
+226,DependOnService SYSTEM CurrentControlSet Services LanmanWorkstation,Alta
+227,Start SYSTEM CurrentControlSet Services mrxsmb10,Alta
+228,LdapEnforceChannelBinding SYSTEM CurrentControlSet Services NTDS Parameters,Media
+229,Schema Update Allowed SYSTEM CurrentControlSet Services NTDS Parameters,Media
+230,Sctrict Replication Consistency SYSTEM CurrentControlSet Services NTDS Parameters,Media
+231,Disable Performance Counters SYSTEM CurrentControlSet Services RemoteAccess Performance,Baixa
+232,Secure Responses SYSTEM CurrentControlSet Services tcpip parameters,Baixa
+233,Registry ACL - system currentcontrolset control securepipeservers winreg,Alta
+234,Service TlntSvr startup and ACL,Alta
+235,Service Dfsr startup and ACL,Baixa
+236,Service Spooler ACL,Alta
+237,Service SSDPSRV startup and ACL,Baixa
+238,Service SNMPTRAP startup and ACL,Alta
+239,Service snmp startup and ACL,Alta
+240,Service RasMan startup and ACL,Baixa
+241,Service RasAuto startup and ACL,Baixa
+242,Service Fax startup and ACL,Baixa
+243,Service SharedAccess startup and ACL,Alta
+244,Service TapiSrv startup and ACL,Baixa
+245,Service Browser startup and ACL,Baixa
+246,Service RemoteAccess startup and ACL,Alta
+247,Service IsmServ startup and ACL,Baixa
+248,Service TrkWks startup and ACL,Baixa
+249,Service NtFrs startup and ACL,Media
+250,Service KPSSVC startup and ACL,Baixa
+251,Service RemoteRegistry startup and ACL,Alta
+252,Service ALG startup and ACL,Baixa
+253,Service Themes startup and ACL,Baixa
+254,Service HidServ startup and ACL,Baixa
+255,Service AudioSrv startup,Baixa
+256,Service BITS startup and ACL,Media
+257,Service wuauserv startup and ACL,Media
+258,Service SysMain startup and ACL,Baixa
+259,Service UI0Detect startup and ACL,Baixa
+260,Service AeLookupSvc startup and ACL,Baixa
+261,Service MpsSvc startup and ACL,Media
+262,Service vmickvpexchange startup and ACL,Baixa
+263,Service vmicshutdown startup and ACL,Baixa
+264,Service vmicheartbeat startup and ACL,Baixa
+265,Service vmicrdv startup and ACL,Baixa
+266,Service vmictimesync startup and ACL,Baixa
+267,Service vmicvss startup and ACL,Baixa
+268,Service DeviceAssociationService startup and ACL,Baixa
+269,Service WSService startup and ACL,Baixa
+270,Service XblAuthManager startup and ACL,Baixa
+271,Service XblGameSave startup and ACL,Baixa
+272,Service DiagTrack startup and ACL,Alta
+273,Service kdc startup and ACL,Media
+274,Service bthserv startup and ACL,Baixa
+275,Service UxSms startup and ACL,Baixa
+276,Service FontCache3.0.0.0 startup and ACL,Baixa
+277,Service NtmsSvc startup and ACL,Baixa
+278,Service TabletInputService startup and ACL,Baixa
+279,Service MapsBroker startup and ACL,Baixa
+280,Service wbengine startup and ACL,Baixa
+281,Service seclogon startup and ACL,Alta
+282,Service CscService startup and ACL,Baixa

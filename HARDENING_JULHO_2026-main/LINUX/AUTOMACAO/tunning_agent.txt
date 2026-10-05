@@ -1,0 +1,35 @@
+root@ubuntu2204-lab:/home/vagrant# watch -n 3 "ps aux | grep [n]essus | awk '{print \$2, \$3\"%CPU\", \$4\"%MEM\", \$11}'"
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --set process_priority=low
+Successfully set 'process_priority' to 'low'.
+The Nessus Agent web server will be restarted.
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli agent cpu-limit 
+Agent CPU quota is not set
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --set plugin_load_performance_mode=high
+Successfully set 'plugin_load_performance_mode' to 'high'.
+The Nessus service (nessusd) will be restarted.
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --set scan_performance_mode=high
+Successfully set 'scan_performance_mode' to 'high'.
+The Nessus service (nessusd) will be restarted.
+root@ubuntu2204-lab:/home/vagrant# systemctl restart nessusagent
+root@ubuntu2204-lab:/home/vagrant# reboot
+root@ubuntu2204-lab:/home/vagrant# Connection to 192.168.56.122 closed by remote host.
+Connection to 192.168.56.122 closed.
+renato@debian-easy:~$ ssh ubuntu2204 
+Last login: Tue Aug 18 10:37:20 2026 from 192.168.56.1
+vagrant@ubuntu2204-lab:~$ sudo su
+root@ubuntu2204-lab:/home/vagrant# chmod -R +x AUTOMACAO_COMPLETA/^C
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli agent cpu-limit 
+Agent CPU quota is not set
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --get process_priority
+The current value for 'process_priority' is 'low'.
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --get plugin_load_performance_mode
+The current value for 'plugin_load_performance_mode' is 'high'.
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --get scan_performance_mode
+The current value for 'scan_performance_mode' is 'high'.
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --set process_priority=high
+Successfully set 'process_priority' to 'high'.
+The Nessus Agent web server will be restarted.
+root@ubuntu2204-lab:/home/vagrant# systemctl restart nessusagent
+root@ubuntu2204-lab:/home/vagrant# /opt/nessus_agent/sbin/nessuscli fix --get process_priority
+The current value for 'process_priority' is 'high'.
+root@ubuntu2204-lab:/home/vagrant# 

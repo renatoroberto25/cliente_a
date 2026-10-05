@@ -1,0 +1,204 @@
+Tópico	Subtópico	Auditoria - Script
+1	Bloquear módulo cramfs persistentemente via modprobe.d e remover se carregado.	(( ! modinfo cramfs &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+cramfs\b' && ! lsmod | awk '{print $1}' | grep -qx cramfs )) && echo PASS || echo FAIL
+2	Bloquear módulo squashfs persistentemente via modprobe.d e remover se carregado.	(( ! modinfo squashfs &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+squashfs\b' && ! lsmod | awk '{print $1}' | grep -qx squashfs )) && echo PASS || echo FAIL
+3	Bloquear módulo udf persistentemente via modprobe.d e remover se carregado.	(( ! modinfo udf &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+udf\b' && ! lsmod | awk '{print $1}' | grep -qx udf )) && echo PASS || echo FAIL
+4	Bloquear módulo hfs persistentemente via modprobe.d e remover se carregado.	(( ! modinfo hfs &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+hfs\b' && ! lsmod | awk '{print $1}' | grep -qx hfs )) && echo PASS || echo FAIL
+5	Bloquear módulo hfsplus persistentemente via modprobe.d e remover se carregado.	(( ! modinfo hfsplus &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+hfsplus\b' && ! lsmod | awk '{print $1}' | grep -qx hfsplus )) && echo PASS || echo FAIL
+6	Bloquear módulo jffs2 persistentemente via modprobe.d e remover se carregado.	(( ! modinfo jffs2 &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+jffs2\b' && ! lsmod | awk '{print $1}' | grep -qx jffs2 )) && echo PASS || echo FAIL
+7	Bloquear módulo freevxfs persistentemente via modprobe.d e remover se carregado.	(( ! modinfo freevxfs &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+freevxfs\b' && ! lsmod | awk '{print $1}' | grep -qx freevxfs )) && echo PASS || echo FAIL
+8	Bloquear módulo overlayfs quando não houver uso de containers.	(( ! modinfo overlay &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+overlay\b' && ! lsmod | awk '{print $1}' | grep -qx overlay )) && echo PASS || echo FAIL
+9	Bloquear módulo usb_storage persistentemente.	(( ! modinfo usb_storage &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+usb_storage\b' && ! lsmod | awk '{print $1}' | grep -qx usb_storage )) && echo PASS || echo FAIL
+10	Bloquear módulo DCCP persistentemente.	(( ! modinfo dccp &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+dccp\b' && ! lsmod | awk '{print $1}' | grep -qx dccp )) && echo PASS || echo FAIL
+11	Bloquear módulo SCTP persistentemente.	(( ! modinfo sctp &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+sctp\b' && ! lsmod | awk '{print $1}' | grep -qx sctp )) && echo PASS || echo FAIL
+12	Bloquear módulo RDS persistentemente.	(( ! modinfo rds &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+rds\b' && ! lsmod | awk '{print $1}' | grep -qx rds )) && echo PASS || echo FAIL
+13	Bloquear módulo TIPC persistentemente.	(( ! modinfo tipc &>/dev/null ) || ( modprobe --showconfig | grep -Eq '^\s*(install|blacklist)\s+tipc\b' && ! lsmod | awk '{print $1}' | grep -qx tipc )) && echo PASS || echo FAIL
+14	Desabilitar geração de core dumps persistentemente.	( grep -REq '^\s*\*\s+hard\s+core\s+0\b' /etc/security/limits.conf /etc/security/limits.d/ ) && echo PASS || echo FAIL
+15	Configurar fs.suid_dumpable=0 persistentemente.	( sysctl -n fs.suid_dumpable 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+16	Configurar ptrace_scope de forma restritiva via sysctl persistente.	( sysctl -a 2>/dev/null | grep -q '^kernel.yama.ptrace_scope' && sysctl -n kernel.yama.ptrace_scope 2>/dev/null | grep -Eq '^[12]$' ) && echo PASS || echo FAIL
+17	Habilitar NX no firmware e garantir parâmetros adequados no boot.	( dmesg 2>/dev/null | grep -qi 'NX.*enabled' ) && echo PASS || echo FAIL
+18	Configurar ASLR completo via sysctl persistente.	( sysctl -n kernel.randomize_va_space 2>/dev/null | grep -qx 2 ) && echo PASS || echo FAIL
+19	Habilitar IOMMU via parâmetro de boot quando aplicável.	( grubby --info=ALL 2>/dev/null | grep -Eq 'iommu=on|intel_iommu=on|amd_iommu=on' ) && echo PASS || echo FAIL
+20	Configurar perf_event_paranoid restritivo via sysctl persistente.	( sysctl -n kernel.perf_event_paranoid 2>/dev/null | grep -Eq '^[23]$' ) && echo PASS || echo FAIL
+21	Configurar dmesg_restrict=1 via sysctl persistente.	( sysctl -n kernel.dmesg_restrict 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+22	Desabilitar user namespaces quando não requerido.	( sysctl -a 2>/dev/null | grep -q '^user.max_user_namespaces' && sysctl -n user.max_user_namespaces 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+23	Configurar fs.protected_symlinks=1 persistentemente.	( sysctl -n fs.protected_symlinks 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+24	Configurar fs.protected_hardlinks=1 persistentemente.	( sysctl -n fs.protected_hardlinks 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+25	Criar partição dedicada para /tmp e ajustar /etc/fstab.	( findmnt -n /tmp 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+26	Criar partição dedicada para /dev/shm (RHEL only quando aplicável).	( findmnt -n /dev/shm 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+27	Criar partição dedicada para /var e ajustar /etc/fstab.	( findmnt -n /var 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+28	Criar partição dedicada para /var/tmp e ajustar /etc/fstab.	( findmnt -n /var/tmp 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+29	Criar partição dedicada para /var/log e ajustar /etc/fstab.	( findmnt -n /var/log 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+30	Criar partição dedicada para /var/log/audit e ajustar /etc/fstab.	( findmnt -n /var/log/audit 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+31	Criar partição dedicada para /home e ajustar /etc/fstab.	( findmnt -n /home 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+32	Criar partição dedicada para diretório histórico conforme política.	( findmnt -n /UNIX 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+33	Criar partição dedicada para /crash quando aplicável.	( [ -d /crash ] && findmnt -n /crash 2>/dev/null | awk '{print $2}' | grep -vq '^/$' ) && echo PASS || echo FAIL
+34	Criar partições adicionais conforme arquitetura definida (/UNIX e outras).	( grep -Eq '\s/(UNIX|opt|data)\s' /etc/fstab ) && echo PASS || echo FAIL
+35	Ajustar opções nodev,nosuid,noexec para mídias removíveis no fstab.	( grep -E '\s/media|\s/mnt' /etc/fstab | grep -Eq 'nodev' ) && echo PASS || echo FAIL
+36	Ajustar opções nodev,nosuid para partições críticas.	( grep -E '\s/(var|home|tmp|var/tmp|var/log|var/log/audit)\s' /etc/fstab | grep -Eq 'nodev|nosuid' ) && echo PASS || echo FAIL
+37	Configurar /tmp com nodev,nosuid,noexec.	( findmnt -n /tmp 2>/dev/null | grep -Eq 'nodev' && findmnt -n /tmp 2>/dev/null | grep -Eq 'nosuid' && findmnt -n /tmp 2>/dev/null | grep -Eq 'noexec' ) && echo PASS || echo FAIL
+38	Configurar /dev/shm com nodev,nosuid,noexec quando aplicável.	( findmnt -n /dev/shm 2>/dev/null | grep -Eq 'nodev' && findmnt -n /dev/shm 2>/dev/null | grep -Eq 'nosuid' && findmnt -n /dev/shm 2>/dev/null | grep -Eq 'noexec' ) && echo PASS || echo FAIL
+39	Configurar /var/tmp com nodev,nosuid,noexec.	( findmnt -n /var/tmp 2>/dev/null | grep -Eq 'nodev' && findmnt -n /var/tmp 2>/dev/null | grep -Eq 'nosuid' && findmnt -n /var/tmp 2>/dev/null | grep -Eq 'noexec' ) && echo PASS || echo FAIL
+40	Configurar /var/log com nodev,nosuid.	( findmnt -n /var/log 2>/dev/null | grep -Eq 'nodev' && findmnt -n /var/log 2>/dev/null | grep -Eq 'nosuid' ) && echo PASS || echo FAIL
+41	Configurar /var/log/audit com nodev,nosuid.	( findmnt -n /var/log/audit 2>/dev/null | grep -Eq 'nodev' && findmnt -n /var/log/audit 2>/dev/null | grep -Eq 'nosuid' ) && echo PASS || echo FAIL
+42	Configurar /home com nodev quando aplicável.	( findmnt -n /home 2>/dev/null | grep -Eq 'nodev' ) && echo PASS || echo FAIL
+43	Desabilitar automount indevido de dispositivos removíveis.	( systemctl is-enabled autofs 2>/dev/null | grep -vq enabled ) && echo PASS || echo FAIL
+44	Aplicar sticky bit em diretórios world writable locais.	( ! df --local -P | awk 'NR!=1{print $6}' | xargs -I{} find {} -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+45	Aplicar sticky bit em /tmp.	( stat -c '%A' /tmp 2>/dev/null | grep -q 't' ) && echo PASS || echo FAIL
+46	Aplicar sticky bit em /var/tmp.	( stat -c '%A' /var/tmp 2>/dev/null | grep -q 't' ) && echo PASS || echo FAIL
+47	Aplicar sticky bit em /dev/shm quando aplicável.	( stat -c '%A' /dev/shm 2>/dev/null | grep -q 't' ) && echo PASS || echo FAIL
+48	Desabilitar autofs quando não requerido.	( systemctl is-enabled autofs 2>/dev/null | grep -vq enabled ) && echo PASS || echo FAIL
+49	Configurar senha no bootloader.	( grep -Eq '^\spassword_pbkdf2\s+' /boot/grub2/grub.cfg 2>/dev/null ) && echo PASS || echo FAIL
+50	Ajustar permissões restritivas dos arquivos do bootloader.	( stat -c '%a %U %G' /boot/grub2/grub.cfg 2>/dev/null | grep -Eq '^(400|600) root root$' ) && echo PASS || echo FAIL
+51	Proteger modo single user com autenticação.	( grep -Eq '^\sExecStart=.*(sulogin)' /usr/lib/systemd/system/rescue.service 2>/dev/null ) && echo PASS || echo FAIL
+52	Configurar SELinux para modo Enforcing.	( /sbin/getenforce 2>/dev/null | grep -qx Enforcing ) && echo PASS || echo FAIL
+53	Carregar política SELinux conforme baseline aprovado.	( sestatus 2>/dev/null | grep -Eq '^Loaded policy name:\s+(targeted|mls)' ) && echo PASS || echo FAIL
+54	Remover domínios SELinux permissive não autorizados.	( ! semanage permissive -l 2>/dev/null | awk 'NR>1' | grep -q . ) && echo PASS || echo FAIL
+55	Ajustar booleanos SELinux conforme baseline.	( getsebool -a 2>/dev/null | grep -vq 'off$' ) && echo PASS || echo FAIL
+56	Remover prelink quando presente.	( ! rpm -q prelink &>/dev/null ) && echo PASS || echo FAIL
+57	Desabilitar ou remover xinetd quando não requerido.	( ! systemctl is-enabled xinetd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+58	Habilitar serviço de sincronização de tempo aprovado.	( systemctl is-enabled chronyd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+59	Configurar fontes de tempo confiáveis.	( grep -Eq '^\sserver\s+' /etc/chrony.conf 2>/dev/null ) && echo PASS || echo FAIL
+60	Habilitar sincronização automática no boot.	( systemctl is-enabled chronyd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+61	Remover componentes X11 quando não necessários.	( ! rpm -qa | grep -Eq '^xorg-x11|^xorg-x11-server' ) && echo PASS || echo FAIL
+62	Desabilitar avahi quando não requerido.	( ! systemctl is-enabled avahi-daemon 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+63	Desabilitar CUPS quando não requerido.	( ! systemctl is-enabled cups 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+64	Remover servidor DHCP quando não aplicável.	( ! rpm -q dhcp &>/dev/null ) && echo PASS || echo FAIL
+65	Remover servidor LDAP quando não aplicável.	( ! rpm -q openldap-servers &>/dev/null ) && echo PASS || echo FAIL
+66	Remover servidor DNS quando não aplicável.	( ! rpm -q bind &>/dev/null ) && echo PASS || echo FAIL
+67	Remover servidor FTP quando não aplicável.	( ! rpm -q vsftpd &>/dev/null ) && echo PASS || echo FAIL
+68	Remover servidor HTTP quando não aplicável.	( ! rpm -q httpd &>/dev/null ) && echo PASS || echo FAIL
+69	Remover serviços IMAP/POP3 quando não aplicáveis.	( ! rpm -qa | grep -Eq 'dovecot|cyrus-imapd' ) && echo PASS || echo FAIL
+70	Remover Samba quando não aplicável.	( ! rpm -q samba &>/dev/null ) && echo PASS || echo FAIL
+71	Remover proxy HTTP quando não aplicável.	( ! rpm -qa | grep -Eq 'squid' ) && echo PASS || echo FAIL
+72	Desabilitar SNMP quando não requerido.	( ! systemctl is-enabled snmpd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+73	Remover servidor NIS quando não aplicável.	( ! rpm -q ypserv &>/dev/null ) && echo PASS || echo FAIL
+74	Remover servidor Telnet.	( ! rpm -q telnet-server &>/dev/null ) && echo PASS || echo FAIL
+75	Configurar MTA para modo local only quando aplicável.	( postconf -n 2>/dev/null | grep -Eq 'inet_interfaces\s=\slocalhost' ) && echo PASS || echo FAIL
+76	Desabilitar NFS server quando não aplicável.	( ! systemctl is-enabled nfs-server 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+77	Desabilitar rpcbind quando não requerido.	( ! systemctl is-enabled rpcbind 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+78	Desabilitar rsync daemon quando não requerido.	( ! systemctl is-enabled rsyncd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+79	Remover cliente NIS.	( ! rpm -q ypbind &>/dev/null ) && echo PASS || echo FAIL
+80	Remover cliente rsh.	( ! rpm -qa | grep -Eq '^rsh' ) && echo PASS || echo FAIL
+81	Remover cliente talk.	( ! rpm -qa | grep -Eq '^talk' ) && echo PASS || echo FAIL
+82	Remover cliente telnet.	( ! rpm -q telnet &>/dev/null ) && echo PASS || echo FAIL
+83	Remover cliente LDAP quando não requerido.	( ! rpm -q openldap-clients &>/dev/null ) && echo PASS || echo FAIL
+84	Remover ou mascarar serviços não essenciais.	( systemctl list-unit-files --type=service | grep -vE 'enabled|disabled' ) && echo PASS || echo FAIL
+85	Remover servidor TFTP.	( ! rpm -q tftp-server &>/dev/null ) && echo PASS || echo FAIL
+86	Configurar polkit conforme baseline aprovado.	( grep -R "^\s[^#]." /etc/polkit-1/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+87	Habilitar gpgcheck em todos os repositórios.	( grep -RE '^\sgpgcheck\s*=\s1' /etc/yum.repos.d/ 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+88	Aplicar atualizações de segurança pendentes.	( ! yum check-update -q >/dev/null 2>&1 ) && echo PASS || echo FAIL
+89	Manter apenas um mecanismo de sincronização ativo.	( [ "$(systemctl is-enabled chronyd 2>/dev/null | grep -c enabled)" -eq 1 ] ) && echo PASS || echo FAIL
+90	Restringir cron e at a usuários autorizados.	( grep -Eq '^\sroot' /etc/cron.allow 2>/dev/null && grep -Eq '^\s*root' /etc/at.allow 2>/dev/null ) && echo PASS || echo FAIL
+91	Configurar ip_forward=0 quando não for roteador.	( sysctl -n net.ipv4.ip_forward 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+92	Desabilitar redirects de pacotes via sysctl persistente.	( sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.send_redirects 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+93	Desabilitar source routed packets via sysctl persistente.	( sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.accept_source_route 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+94	Desabilitar ICMP redirects via sysctl persistente.	( sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -qx 0 && sysctl -n net.ipv4.conf.default.accept_redirects 2>/dev/null | grep -qx 0 ) && echo PASS || echo FAIL
+95	Habilitar reverse path filtering via sysctl persistente.	( sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -qx 1 && sysctl -n net.ipv4.conf.default.rp_filter 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+96	Habilitar ignore broadcast ICMP via sysctl persistente.	( sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+97	Habilitar ignore bogus ICMP responses via sysctl persistente.	( sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+98	Habilitar tcp_syncookies via sysctl persistente.	( sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+99	Desabilitar ou proteger IPv6 conforme arquitetura definida.	( sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null | grep -qx 1 ) && echo PASS || echo FAIL
+100	Bloquear ICMP timestamp request no firewall.	( iptables -L INPUT -n 2>/dev/null | grep -Eq 'icmp.*timestamp-request.*DROP|REJECT' ) && echo PASS || echo FAIL
+101	Bloquear ICMP timestamp reply no firewall.	( iptables -L INPUT -n 2>/dev/null | grep -Eq 'icmp.*timestamp-reply.*DROP|REJECT' ) && echo PASS || echo FAIL
+102	Desabilitar interfaces wireless ou bluetooth quando não necessárias.	( ! nmcli device status 2>/dev/null | grep -Eq 'wifi|bluetooth' ) && echo PASS || echo FAIL
+103	Definir política default deny para tráfego de entrada.	( iptables -L INPUT -n 2>/dev/null | grep -Eq '^Chain INPUT.*policy DROP' ) && echo PASS || echo FAIL
+104	Manter apenas uma solução de firewall ativa.	( [ "$(systemctl is-enabled firewalld 2>/dev/null | grep -c enabled)" -le 1 ] && [ "$(systemctl is-enabled iptables 2>/dev/null | grep -c enabled)" -le 1 ] ) && echo PASS || echo FAIL
+105	Permitir loopback e conexões ESTABLISHED,RELATED no firewall.	( iptables -L INPUT -n 2>/dev/null | grep -Eq 'ACCEPT.lo' && iptables -L INPUT -n 2>/dev/null | grep -Eq 'ESTABLISHED,RELATED' ) && echo PASS || echo FAIL
+106	Todas as portas em escuta devem possuir regra explícita de firewall documentada.	( comm -23 <(ss -tuln 2>/dev/null | awk 'NR>1 {print $5}' | sed 's/.://') <(iptables -L INPUT -n 2>/dev/null | grep ACCEPT | awk '{print $7}') | grep -q . && echo FAIL || echo PASS )
+107	Garantir persistência das regras de firewall após reboot.	( [ -f /etc/sysconfig/iptables ] || [ -f /etc/firewalld/firewalld.conf ] ) && echo PASS || echo FAIL
+108	Configurar TLS mínimo 1.2 ou superior quando aplicável.	( grep -R "TLSv1.[0-1]" /etc 2>/dev/null | grep -q . && echo FAIL || echo PASS )
+109	Ajustar permissões de sshd_config e diretório /etc/ssh.	( stat -c '%a %U %G' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^(600|640) root root$' && stat -c '%a %U %G' /etc/ssh 2>/dev/null | grep -Eq '^(700|750) root root$' ) && echo PASS || echo FAIL
+110	Configurar AllowUsers/DenyUsers conforme política.	( grep -Eiq '^\s*(AllowUsers|DenyUsers)\s+' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+111	Configurar SyslogFacility AUTHPRIV.	( grep -Eiq '^\sSyslogFacility\s+AUTHPRIV\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+112	Desabilitar X11Forwarding quando não requerido.	( grep -Eiq '^\sX11Forwarding\s+no\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+113	Configurar MaxAuthTries de forma restritiva.	( grep -Eiq '^\sMaxAuthTries\s+[1-4]\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+114	Configurar IgnoreRhosts yes.	( grep -Eiq '^\sIgnoreRhosts\s+yes\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+115	Configurar HostbasedAuthentication no.	( grep -Eiq '^\sHostbasedAuthentication\s+no\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+116	Configurar PermitRootLogin conforme política.	( grep -Eiq '^\sPermitRootLogin\s+(no|prohibit-password)\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+117	Configurar PermitEmptyPasswords no.	( grep -Eiq '^\sPermitEmptyPasswords\s+no\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+118	Configurar PermitUserEnvironment no.	( grep -Eiq '^\sPermitUserEnvironment\s+no\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+119	Configurar UsePAM yes.	( grep -Eiq '^\sUsePAM\s+yes\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+120	Ajustar ClientAliveInterval e ClientAliveCountMax.	( grep -Eiq '^\sClientAliveInterval\s+[1-9][0-9]\b' /etc/ssh/sshd_config && grep -Eiq '^\sClientAliveCountMax\s+[1-9][0-9]\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+121	Configurar LoginGraceTime restritivo.	( grep -Eiq '^\sLoginGraceTime\s+[1-9][0-9]\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+122	Configurar MaxStartups e MaxSessions restritivos.	( grep -Eiq '^\sMaxStartups\s+[0-9]+' /etc/ssh/sshd_config && grep -Eiq '^\sMaxSessions\s+[0-9]+' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+123	Configurar AllowTcpForwarding conforme política.	( grep -Eiq '^\sAllowTcpForwarding\s+(no|local)\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+124	Configurar Banner legal quando exigido.	( grep -Eiq '^\sBanner\s+\S+' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+125	Restringir Ciphers a algoritmos fortes.	( grep -Eiq '^\sCiphers\s+.(aes|chacha20)' /etc/ssh/sshd_config && ! grep -Eiq '3des|cbc' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+126	Restringir MACs a algoritmos fortes.	( grep -Eiq '^\sMACs\s+.(hmac-sha2|umac)' /etc/ssh/sshd_config && ! grep -Eiq 'md5|hmac-sha1\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+127	Restringir KexAlgorithms a algoritmos fortes.	( grep -Eiq '^\sKexAlgorithms\s+.(curve25519|diffie-hellman-group-exchange-sha256)' /etc/ssh/sshd_config && ! grep -Eiq 'group1|sha1\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+128	Restringir HostKeyAlgorithms a algoritmos seguros.	( grep -Eiq '^\sHostKeyAlgorithms\s+.(rsa-sha2|ecdsa|ed25519)' /etc/ssh/sshd_config && ! grep -Eiq 'ssh-dss\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+129	Exigir autenticação por chave pública quando aplicável e restringir password authentication.	( grep -Eiq '^\sPubkeyAuthentication\s+yes\b' /etc/ssh/sshd_config && grep -Eiq '^\s*PasswordAuthentication\s+no\b' /etc/ssh/sshd_config ) && echo PASS || echo FAIL
+130	Incluir módulo de complexidade na stack PAM.	( grep -Eq 'pam_pwquality.so' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+131	Configurar pam_pwquality conforme baseline.	( grep -Eq 'pam_pwquality.so.(minlen|dcredit|ucredit|lcredit|ocredit)=' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+132	Configurar pam_faillock conforme baseline.	( grep -Eq 'pam_faillock.so' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+133	Configurar pam_tally2 quando aplicável.	( grep -Eq 'pam_tally2.so' /etc/pam.d/system-auth || ! rpm -q pam_tally2 &>/dev/null ) && echo PASS || echo FAIL
+134	Configurar pam_pwhistory.	( grep -Eq 'pam_pwhistory.so' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+135	Definir tamanho mínimo de senha.	( grep -Eq 'minlen=[1-9][0-9]' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+136	Configurar complexidade mínima de senha.	( grep -Eq '(dcredit|ucredit|lcredit|ocredit)=-?[1-9]' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+137	Configurar limites de repetição e sequência.	( grep -Eq '(maxrepeat|maxsequence)=[1-9]' /etc/security/pwquality.conf ) && echo PASS || echo FAIL
+138	Habilitar verificação de dicionário quando aplicável.	( grep -Eq 'dictcheck\s*=\s1' /etc/security/pwquality.conf ) && echo PASS || echo FAIL
+139	Configurar algoritmo de hashing forte.	( grep -Eq '^\spassword\s+sufficient\s+pam_unix.so.sha512' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+140	Configurar histórico de senha.	( grep -Eq 'remember=[1-9]' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+141	Configurar bloqueio após tentativas inválidas.	( grep -Eq 'pam_faillock.so.deny=[1-9]' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+142	Configurar tempo de desbloqueio conforme política.	( grep -Eq 'pam_faillock.so.unlock_time=[1-9]' /etc/pam.d/system-auth ) && echo PASS || echo FAIL
+143	Configurar PASS_MAX_DAYS.	( grep -Eq '^\sPASS_MAX_DAYS\s+[1-9][0-9]' /etc/login.defs ) && echo PASS || echo FAIL
+144	Configurar PASS_MIN_DAYS.	( grep -Eq '^\sPASS_MIN_DAYS\s+[1-9][0-9]' /etc/login.defs ) && echo PASS || echo FAIL
+145	Configurar PASS_WARN_AGE.	( grep -Eq '^\sPASS_WARN_AGE\s+[1-9][0-9]*' /etc/login.defs ) && echo PASS || echo FAIL
+146	Configurar parâmetro INACTIVE para contas locais.	( useradd -D 2>/dev/null | grep -Eq 'INACTIVE=[1-9]' ) && echo PASS || echo FAIL
+147	Corrigir datas inconsistentes de troca de senha.	( ! awk -F: '($2!~/^!|^*|^$/ && $5==0){print}' /etc/shadow | grep -q . ) && echo PASS || echo FAIL
+148	Garantir apenas root com UID 0.	( awk -F: '($3==0){print}' /etc/passwd | wc -l | grep -qx 1 ) && echo PASS || echo FAIL
+149	Garantir apenas grupo root com GID 0.	( awk -F: '($3==0){print}' /etc/group | wc -l | grep -qx 1 ) && echo PASS || echo FAIL
+150	Bloquear contas de sistema com shell inválido.	( awk -F: '($3>0 && $3<1000 && $7!="/sbin/nologin" && $7!="/bin/false"){print}' /etc/passwd | grep -q . && echo FAIL || echo PASS )
+151	Remover shells inválidos de /etc/shells.	( grep -Ev '^(/bin/bash|/bin/sh|/sbin/nologin|/bin/false)$' /etc/shells | grep -q . && echo FAIL || echo PASS )
+152	Ajustar PATH do root removendo diretórios inseguros.	( echo "$PATH" | grep -Eq '(^|:).(:|$)' && echo FAIL || echo PASS )
+153	Configurar umask restritiva padrão.	( grep -R "umask 0[2-7][2-7]" /etc/profile /etc/bashrc 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+154	Configurar timeout de shell.	( grep -R "TMOUT=" /etc/profile /etc/bashrc 2>/dev/null | grep -Eq 'TMOUT=[1-9][0-9]+' ) && echo PASS || echo FAIL
+155	Restringir administração privilegiada via sudo.	( grep -Eq '^\s*%wheel\s+ALL=\(ALL\)\s+ALL' /etc/sudoers ) && echo PASS || echo FAIL
+156	Configurar sudo para uso de pseudo tty.	( grep -Eq '^\sDefaults\s+requiretty' /etc/sudoers ) && echo PASS || echo FAIL
+157	Habilitar logging de sudo.	( grep -Eq '^\sDefaults\s+logfile=' /etc/sudoers ) && echo PASS || echo FAIL
+158	Garantir reautenticação de sudo ativa.	( grep -Eq '^\sDefaults\s+timestamp_timeout=[1-9][0-9]' /etc/sudoers ) && echo PASS || echo FAIL
+159	Configurar timeout de autenticação sudo.	( grep -Eq '^\sDefaults\s+timestamp_timeout=[1-9][0-9]' /etc/sudoers ) && echo PASS || echo FAIL
+160	Restringir uso de su a grupo autorizado.	( grep -Eq 'pam_wheel.so' /etc/pam.d/su ) && echo PASS || echo FAIL
+161	Ajustar arquitetura de logs evitando duplicidade.	( systemctl is-enabled rsyslog 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+162	Configurar journald com persistência quando aplicável.	( grep -Eq '^Storage=persistent' /etc/systemd/journald.conf ) && echo PASS || echo FAIL
+163	Instalar e ativar rsyslog quando requerido.	( systemctl is-enabled rsyslog 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+164	Configurar rotação de logs.	( grep -Eq 'rotate\s+[1-9]' /etc/logrotate.conf ) && echo PASS || echo FAIL
+165	Instalar e habilitar auditd.	( systemctl is-enabled auditd 2>/dev/null | grep -q enabled ) && echo PASS || echo FAIL
+166	Garantir auditd inicializa antes de serviços críticos.	( systemctl list-dependencies multi-user.target 2>/dev/null | grep -q auditd.service ) && echo PASS || echo FAIL
+167	Configurar tamanho máximo de log de auditoria.	( grep -Eq '^\smax_log_file\s=' /etc/audit/auditd.conf ) && echo PASS || echo FAIL
+168	Configurar retenção de logs de auditoria.	( grep -Eq '^\smax_log_file_action\s=' /etc/audit/auditd.conf ) && echo PASS || echo FAIL
+169	Configurar auditoria de alteração de data e hora.	( grep -R "adjtimex|settimeofday" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+170	Configurar auditoria de alteração de contas e grupos.	( grep -R -E "/etc/passwd|/etc/group|/etc/shadow" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+171	Configurar auditoria de alterações de rede.	grep -R -E "/etc/sysconfig/network|/etc/hosts|/etc/resolv.conf"
+172	Configurar auditoria de eventos MAC quando aplicável.	( grep -R -E "setenforce|/etc/selinux|selinux-policy" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+173	Configurar auditoria de login e logout.	( grep -R -E "login|logout|session" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+174	Configurar auditoria de permissões DAC.	( grep -R -E "chmod|chown|setxattr|fchmod" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+175	Configurar auditoria de tentativas de acesso não autorizado.	( grep -R -E "EACCES|EPERM" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+176	Configurar auditoria de execuções privilegiadas.	( grep -R "execve" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+177	Configurar auditoria de mount e unmount.	( grep -R -E "mount|umount2" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+178	Configurar auditoria de deleção de arquivos.	( grep -R -E "unlink|rename|rmdir" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+179	Configurar auditoria de carga e descarga de módulos de kernel.	( grep -R -E "init_module|delete_module" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+180	Configurar auditoria de sudo e sudoers.	( grep -R -E "/etc/sudoers|sudo.log" /etc/audit/rules.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+181	Proteger configuração de auditoria contra alteração após inicialização.	( auditctl -s 2>/dev/null | grep -q "enabled 2" ) && echo PASS || echo FAIL
+182	Instalar e inicializar AIDE ou ferramenta equivalente.	( rpm -q aide &>/dev/null && [ -f /var/lib/aide/aide.db.gz ] ) && echo PASS || echo FAIL
+183	Agendar verificação periódica de integridade.	( grep -R aide /etc/cron.* 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+184	Proteger binários e configurações de auditoria contra alteração não autorizada.	( stat -c '%a %U %G' /etc/audit/auditd.conf 2>/dev/null | grep -Eq '^(600|640) root root$' ) && echo PASS || echo FAIL
+185	Ajustar permissões de /etc/passwd.	( stat -c '%a' /etc/passwd | grep -Eq '^[0-6]44$' ) && echo PASS || echo FAIL
+186	Ajustar permissões de /etc/passwd-.	( stat -c '%a' /etc/passwd- 2>/dev/null | grep -Eq '^[0-6]44$' ) && echo PASS || echo FAIL
+187	Ajustar permissões de /etc/shadow.	( stat -c '%a' /etc/shadow | grep -qx 000 ) && echo PASS || echo FAIL
+188	Ajustar permissões de /etc/shadow-.	( stat -c '%a' /etc/shadow- 2>/dev/null | grep -qx 000 ) && echo PASS || echo FAIL
+189	Ajustar permissões de /etc/gshadow-.	( stat -c '%a' /etc/gshadow- 2>/dev/null | grep -qx 000 ) && echo PASS || echo FAIL
+190	Ajustar permissões de /etc/gshadow.	( stat -c '%a' /etc/gshadow | grep -qx 000 ) && echo PASS || echo FAIL
+191	Ajustar permissões de /etc/group.	( stat -c '%a' /etc/group | grep -Eq '^[0-6]44$' ) && echo PASS || echo FAIL
+192	Ajustar permissões de /etc/group-.	( stat -c '%a' /etc/group- 2>/dev/null | grep -Eq '^[0-6]44$' ) && echo PASS || echo FAIL
+193	Remover ACL estendidas de arquivos críticos de identidade.	( getfacl -p /etc/passwd 2>/dev/null | grep -q "user:" && echo FAIL || echo PASS )
+194	Proteger /etc/security/opasswd contra acesso não autorizado.	( stat -c '%a %U %G' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) root root$' ) && echo PASS || echo FAIL
+195	Corrigir arquivos órfãos sem owner válido.	( find / -xdev -nouser 2>/dev/null | grep -q . && echo FAIL || echo PASS )
+196	Garantir sticky bit em diretórios world writable.	( ! find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+197	Corrigir arquivos sem owner ou grupo válido.	( find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q . && echo FAIL || echo PASS )
+198	Revisar e justificar arquivos SUID e SGID conforme baseline.	( find / -xdev -type f \( -perm -4000 -o -perm -2000 \) 2>/dev/null | grep -q . ) && echo PASS || echo FAIL
+199	Criar diretórios home ausentes para usuários interativos.	( awk -F: '($3>=1000 && $7!="/sbin/nologin" && $7!="/bin/false"){print $1}' /etc/passwd | while read u; do [ -d "/home/$u" ] || echo "$u"; done | grep -q . && echo FAIL || echo PASS )
+200	Ajustar ownership dos diretórios home para o respectivo usuário.	( awk -F: '($3>=1000 && $7!="/sbin/nologin" && $7!="/bin/false"){print $1":"$6}' /etc/passwd | while IFS=: read u d; do [ -d "$d" ] && [ "$(stat -c %U "$d")" = "$u" ] || echo "$u"; done | grep -q . && echo FAIL || echo PASS )
+201	Ajustar permissões de home para 750 ou mais restritivas.	( find /home -maxdepth 1 -type d -perm /027 2>/dev/null | grep -q . && echo FAIL || echo PASS )
+202	Ajustar permissões de dotfiles removendo escrita indevida.	( find /home -maxdepth 2 -name ".*" -perm -002 2>/dev/null | grep -q . && echo FAIL || echo PASS )
+203	Remover ou proteger arquivos forward, netrc e rhosts conforme política.	( find /home -maxdepth 2 -type f \( -name ".forward" -o -name ".netrc" -o -name ".rhosts" \) 2>/dev/null | grep -q . && echo FAIL || echo PASS )

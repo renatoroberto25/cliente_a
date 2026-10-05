@@ -1,0 +1,398 @@
+2026-08-05 13:21:34,033 INFO - Importer started!
+2026-08-05 13:21:34,033 INFO - Engine is running in Validation-only mode
+2026-08-05 13:21:34,334 INFO - All issues will be imported to project: Controle de Baseline (CDB)
+2026-08-05 13:21:34,393 INFO - Creating issue: [externalId='autoid--4921941050639336400', summary='Kernel']
+2026-08-05 13:21:34,666 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:34,686 INFO - Creating issue: [externalId='autoid--7002367072997732692', summary='Kernel']
+2026-08-05 13:21:34,791 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:34,801 INFO - Creating issue: [externalId='autoid-4129291189510440929', summary='Kernel']
+2026-08-05 13:21:34,899 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:34,909 INFO - Creating issue: [externalId='autoid--3659704074875932349', summary='Kernel']
+2026-08-05 13:21:35,009 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,016 INFO - Creating issue: [externalId='autoid--7962042539390658261', summary='Kernel']
+2026-08-05 13:21:35,110 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,126 INFO - Creating issue: [externalId='autoid-527744807641175273', summary='Kernel']
+2026-08-05 13:21:35,222 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,232 INFO - Creating issue: [externalId='autoid--3081697292349250102', summary='Kernel']
+2026-08-05 13:21:35,234 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,338 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,348 INFO - Creating issue: [externalId='autoid-418224967489772015', summary='Kernel']
+2026-08-05 13:21:35,350 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,450 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,459 INFO - Creating issue: [externalId='autoid--2409587421253410076', summary='Kernel']
+2026-08-05 13:21:35,460 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,559 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,568 INFO - Creating issue: [externalId='autoid-5144650261933817684', summary='Kernel']
+2026-08-05 13:21:35,569 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,671 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,678 INFO - Creating issue: [externalId='autoid--768545302594745766', summary='Kernel']
+2026-08-05 13:21:35,680 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,779 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,789 INFO - Creating issue: [externalId='autoid--5329726232731870669', summary='Kernel']
+2026-08-05 13:21:35,791 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:35,888 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:35,898 INFO - Creating issue: [externalId='autoid-171505468366741856', summary='Kernel']
+2026-08-05 13:21:35,899 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:36,004 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,013 INFO - Creating issue: [externalId='autoid--7271218226600128388', summary='Kernel']
+2026-08-05 13:21:36,015 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:36,113 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,122 INFO - Creating issue: [externalId='autoid--1754836644298599345', summary='Kernel']
+2026-08-05 13:21:36,218 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,227 INFO - Creating issue: [externalId='autoid-783527813450664678', summary='Kernel']
+2026-08-05 13:21:36,316 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,325 INFO - Creating issue: [externalId='autoid--2168272766044570695', summary='Kernel']
+2026-08-05 13:21:36,420 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,428 INFO - Creating issue: [externalId='autoid-2466218805660062244', summary='Kernel']
+2026-08-05 13:21:36,518 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,531 INFO - Creating issue: [externalId='autoid-3169645743593299646', summary='Kernel']
+2026-08-05 13:21:36,532 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:36,632 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,641 INFO - Creating issue: [externalId='autoid-2852655411234753366', summary='Kernel']
+2026-08-05 13:21:36,643 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:36,767 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,790 INFO - Creating issue: [externalId='autoid-2463584061012903581', summary='Kernel']
+2026-08-05 13:21:36,792 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:36,905 INFO - No problems found with issue 'Kernel'
+2026-08-05 13:21:36,918 INFO - Creating issue: [externalId='autoid--3212616842872862782', summary='Filesystem']
+2026-08-05 13:21:37,012 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,029 INFO - Creating issue: [externalId='autoid-3535032469734684557', summary='Filesystem']
+2026-08-05 13:21:37,121 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,130 INFO - Creating issue: [externalId='autoid--1250992027670111293', summary='Filesystem']
+2026-08-05 13:21:37,218 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,229 INFO - Creating issue: [externalId='autoid-2507861035923563213', summary='Filesystem']
+2026-08-05 13:21:37,317 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,324 INFO - Creating issue: [externalId='autoid--2796941046589574911', summary='Filesystem']
+2026-08-05 13:21:37,410 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,425 INFO - Creating issue: [externalId='autoid-4407846057626936826', summary='Filesystem']
+2026-08-05 13:21:37,516 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,526 INFO - Creating issue: [externalId='autoid--1539584878129281055', summary='Filesystem']
+2026-08-05 13:21:37,613 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,623 INFO - Creating issue: [externalId='autoid--3144801080558982240', summary='Filesystem']
+2026-08-05 13:21:37,713 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,722 INFO - Creating issue: [externalId='autoid--8920809582960305089', summary='Filesystem']
+2026-08-05 13:21:37,809 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,820 INFO - Creating issue: [externalId='autoid--2235109161799646958', summary='Filesystem']
+2026-08-05 13:21:37,907 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:37,916 INFO - Creating issue: [externalId='autoid--2193559360259235494', summary='Filesystem']
+2026-08-05 13:21:37,918 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,025 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,034 INFO - Creating issue: [externalId='autoid-972441571517445501', summary='Filesystem']
+2026-08-05 13:21:38,036 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,126 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,136 INFO - Creating issue: [externalId='autoid--8216810089158702833', summary='Filesystem']
+2026-08-05 13:21:38,137 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,238 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,247 INFO - Creating issue: [externalId='autoid--226177511307307461', summary='Filesystem']
+2026-08-05 13:21:38,248 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,360 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,371 INFO - Creating issue: [externalId='autoid--1101794690018735542', summary='Filesystem']
+2026-08-05 13:21:38,372 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,479 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,491 INFO - Creating issue: [externalId='autoid-1097008488413469796', summary='Filesystem']
+2026-08-05 13:21:38,492 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:38,600 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,611 INFO - Creating issue: [externalId='autoid--4642471132889802055', summary='Filesystem']
+2026-08-05 13:21:38,711 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,722 INFO - Creating issue: [externalId='autoid-1426026478784192427', summary='Filesystem']
+2026-08-05 13:21:38,809 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,820 INFO - Creating issue: [externalId='autoid--6049814576590516287', summary='Filesystem']
+2026-08-05 13:21:38,907 INFO - No problems found with issue 'Filesystem'
+2026-08-05 13:21:38,918 INFO - Creating issue: [externalId='autoid-9189897125593326182', summary='Servicos']
+2026-08-05 13:21:39,021 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:39,032 INFO - Creating issue: [externalId='autoid-3475355310168496821', summary='Boot']
+2026-08-05 13:21:39,034 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,144 INFO - No problems found with issue 'Boot'
+2026-08-05 13:21:39,155 INFO - Creating issue: [externalId='autoid-6982810723644033774', summary='Boot']
+2026-08-05 13:21:39,253 INFO - No problems found with issue 'Boot'
+2026-08-05 13:21:39,266 INFO - Creating issue: [externalId='autoid--6927506035684404155', summary='Boot']
+2026-08-05 13:21:39,268 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,375 INFO - No problems found with issue 'Boot'
+2026-08-05 13:21:39,383 INFO - Creating issue: [externalId='autoid-4582780628861427240', summary='Servicos']
+2026-08-05 13:21:39,484 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:39,494 INFO - Creating issue: [externalId='autoid-4020352657392552756', summary='Servicos']
+2026-08-05 13:21:39,495 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,604 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:39,611 INFO - Creating issue: [externalId='autoid--1795032082896826525', summary='Sincronizacao de Tempo']
+2026-08-05 13:21:39,613 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,725 INFO - No problems found with issue 'Sincronizacao de Tempo'
+2026-08-05 13:21:39,748 INFO - Creating issue: [externalId='autoid--4606740588561888691', summary='Sincronizacao de Tempo']
+2026-08-05 13:21:39,749 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,842 INFO - No problems found with issue 'Sincronizacao de Tempo'
+2026-08-05 13:21:39,851 INFO - Creating issue: [externalId='autoid-2956099005892933989', summary='Sincronizacao de Tempo']
+2026-08-05 13:21:39,854 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:39,936 INFO - No problems found with issue 'Sincronizacao de Tempo'
+2026-08-05 13:21:39,945 INFO - Creating issue: [externalId='autoid--2199353672973792873', summary='Servicos']
+2026-08-05 13:21:39,947 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,022 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,031 INFO - Creating issue: [externalId='autoid-8950804982267696320', summary='Servicos']
+2026-08-05 13:21:40,106 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,118 INFO - Creating issue: [externalId='autoid--4295146997144174905', summary='Servicos']
+2026-08-05 13:21:40,192 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,202 INFO - Creating issue: [externalId='autoid--1444384129694285975', summary='Servicos']
+2026-08-05 13:21:40,203 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,281 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,290 INFO - Creating issue: [externalId='autoid-2550793510506250485', summary='Servicos']
+2026-08-05 13:21:40,291 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,368 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,377 INFO - Creating issue: [externalId='autoid--6630988209785362038', summary='Servicos']
+2026-08-05 13:21:40,379 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,453 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,467 INFO - Creating issue: [externalId='autoid-3265349007762338707', summary='Servicos']
+2026-08-05 13:21:40,537 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,559 INFO - Creating issue: [externalId='autoid--143988959162582122', summary='Servicos']
+2026-08-05 13:21:40,561 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,659 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,668 INFO - Creating issue: [externalId='autoid-6899080151024774298', summary='Servicos']
+2026-08-05 13:21:40,669 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,749 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,760 INFO - Creating issue: [externalId='autoid--1703949116375184994', summary='Servicos']
+2026-08-05 13:21:40,761 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,840 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,851 INFO - Creating issue: [externalId='autoid--5647384987242968571', summary='Servicos']
+2026-08-05 13:21:40,852 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:40,927 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:40,942 INFO - Creating issue: [externalId='autoid--4015961032237258781', summary='Servicos']
+2026-08-05 13:21:40,944 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,036 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,047 INFO - Creating issue: [externalId='autoid--4854223110877943166', summary='Servicos']
+2026-08-05 13:21:41,130 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,144 INFO - Creating issue: [externalId='autoid-4625903497897850027', summary='Servicos']
+2026-08-05 13:21:41,226 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,242 INFO - Creating issue: [externalId='autoid-2363981945599343975', summary='Servicos']
+2026-08-05 13:21:41,243 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,364 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,374 INFO - Creating issue: [externalId='autoid-647106250165578584', summary='Servicos']
+2026-08-05 13:21:41,375 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,465 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,475 INFO - Creating issue: [externalId='autoid--5763441046162743838', summary='Servicos']
+2026-08-05 13:21:41,476 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,552 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,563 INFO - Creating issue: [externalId='autoid--108880336514706251', summary='Servicos']
+2026-08-05 13:21:41,565 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,653 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,662 INFO - Creating issue: [externalId='autoid-6534659568097029492', summary='Servicos']
+2026-08-05 13:21:41,663 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:41,757 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,768 INFO - Creating issue: [externalId='autoid--6089765189486843757', summary='Servicos']
+2026-08-05 13:21:41,857 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,868 INFO - Creating issue: [externalId='autoid--5394400830771437152', summary='Servicos']
+2026-08-05 13:21:41,956 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:41,964 INFO - Creating issue: [externalId='autoid--5246899381818805100', summary='Servicos']
+2026-08-05 13:21:41,966 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:42,054 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:42,063 INFO - Creating issue: [externalId='autoid--2804976829519857441', summary='Servicos']
+2026-08-05 13:21:42,064 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:42,147 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:42,158 INFO - Creating issue: [externalId='autoid-3431086539107654726', summary='Servicos']
+2026-08-05 13:21:42,159 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:42,248 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:42,260 INFO - Creating issue: [externalId='autoid--9119987679022347562', summary='Servicos']
+2026-08-05 13:21:42,340 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:42,349 INFO - Creating issue: [externalId='autoid--9166884056234801549', summary='Servicos']
+2026-08-05 13:21:42,351 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:42,441 INFO - No problems found with issue 'Servicos'
+2026-08-05 13:21:42,453 INFO - Creating issue: [externalId='autoid-7803174560076244938', summary='Manutencao do Sistema']
+2026-08-05 13:21:42,539 INFO - No problems found with issue 'Manutencao do Sistema'
+2026-08-05 13:21:42,548 INFO - Creating issue: [externalId='autoid-1705087073695550390', summary='Manutencao do Sistema']
+2026-08-05 13:21:42,627 INFO - No problems found with issue 'Manutencao do Sistema'
+2026-08-05 13:21:42,635 INFO - Creating issue: [externalId='autoid-3956021742658173779', summary='Manutencao do Sistema']
+2026-08-05 13:21:42,636 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:42,727 INFO - No problems found with issue 'Manutencao do Sistema'
+2026-08-05 13:21:42,759 INFO - Creating issue: [externalId='autoid--288592381895148975', summary='Rede']
+2026-08-05 13:21:42,843 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:42,853 INFO - Creating issue: [externalId='autoid-4023135362793317967', summary='Rede']
+2026-08-05 13:21:42,934 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:42,943 INFO - Creating issue: [externalId='autoid--5006521786386693314', summary='Rede']
+2026-08-05 13:21:42,945 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:43,026 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,039 INFO - Creating issue: [externalId='autoid-162543884940903449', summary='Rede']
+2026-08-05 13:21:43,121 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,129 INFO - Creating issue: [externalId='autoid--7700605174816578429', summary='Rede']
+2026-08-05 13:21:43,209 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,218 INFO - Creating issue: [externalId='autoid--5723986149176865029', summary='Rede']
+2026-08-05 13:21:43,298 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,308 INFO - Creating issue: [externalId='autoid-5021947399276864714', summary='Rede']
+2026-08-05 13:21:43,376 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,400 INFO - Creating issue: [externalId='autoid-5439380132891056096', summary='Rede']
+2026-08-05 13:21:43,481 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,490 INFO - Creating issue: [externalId='autoid--8853562369973341136', summary='Rede']
+2026-08-05 13:21:43,491 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:43,584 INFO - No problems found with issue 'Rede'
+2026-08-05 13:21:43,594 INFO - Creating issue: [externalId='autoid-6498251622888129870', summary='SSH']
+2026-08-05 13:21:43,678 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:43,688 INFO - Creating issue: [externalId='autoid--5676941318924581284', summary='SSH']
+2026-08-05 13:21:43,769 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:43,779 INFO - Creating issue: [externalId='autoid-2275572439964126610', summary='SSH']
+2026-08-05 13:21:43,780 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:43,858 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:43,870 INFO - Creating issue: [externalId='autoid-3625295481051167188', summary='SSH']
+2026-08-05 13:21:43,872 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:43,963 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:43,977 INFO - Creating issue: [externalId='autoid-5034100992821108796', summary='SSH']
+2026-08-05 13:21:44,046 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,058 INFO - Creating issue: [externalId='autoid--1892834493700677493', summary='SSH']
+2026-08-05 13:21:44,139 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,150 INFO - Creating issue: [externalId='autoid--4430364162490223923', summary='SSH']
+2026-08-05 13:21:44,233 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,240 INFO - Creating issue: [externalId='autoid--5529520971459019331', summary='SSH']
+2026-08-05 13:21:44,313 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,325 INFO - Creating issue: [externalId='autoid--2283741889730091858', summary='SSH']
+2026-08-05 13:21:44,326 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:44,414 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,427 INFO - Creating issue: [externalId='autoid-6573826840272817407', summary='SSH']
+2026-08-05 13:21:44,511 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,520 INFO - Creating issue: [externalId='autoid-7555018118470413924', summary='SSH']
+2026-08-05 13:21:44,603 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,614 INFO - Creating issue: [externalId='autoid-6954406854169011857', summary='SSH']
+2026-08-05 13:21:44,616 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:44,705 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,721 INFO - Creating issue: [externalId='autoid-8186990907103481858', summary='SSH']
+2026-08-05 13:21:44,723 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:44,808 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,819 INFO - Creating issue: [externalId='autoid-376168216261793014', summary='SSH']
+2026-08-05 13:21:44,820 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:44,893 INFO - No problems found with issue 'SSH'
+2026-08-05 13:21:44,905 INFO - Creating issue: [externalId='autoid--1122479197898493218', summary='Autenticacao e Senhas']
+2026-08-05 13:21:44,971 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:44,981 INFO - Creating issue: [externalId='autoid--7795149589533003834', summary='Autenticacao e Senhas']
+2026-08-05 13:21:44,982 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:45,078 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,096 INFO - Creating issue: [externalId='autoid--3623902514597367161', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,098 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:45,185 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,194 INFO - Creating issue: [externalId='autoid-8598332767229464514', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,274 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,282 INFO - Creating issue: [externalId='autoid-1159805842334908662', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,361 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,372 INFO - Creating issue: [externalId='autoid--1277594173364735959', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,453 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,466 INFO - Creating issue: [externalId='autoid-1743245279202777602', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,548 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,562 INFO - Creating issue: [externalId='autoid--3777694969677459127', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,645 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,655 INFO - Creating issue: [externalId='autoid--2416390185749349863', summary='Autenticacao e Senhas']
+2026-08-05 13:21:45,766 INFO - No problems found with issue 'Autenticacao e Senhas'
+2026-08-05 13:21:45,791 INFO - Creating issue: [externalId='autoid--4575258764683481000', summary='Contas e Permissoes']
+2026-08-05 13:21:45,873 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:45,887 INFO - Creating issue: [externalId='autoid-3094166458706857005', summary='Contas e Permissoes']
+2026-08-05 13:21:45,962 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:45,979 INFO - Creating issue: [externalId='autoid--440852058243848060', summary='Contas e Permissoes']
+2026-08-05 13:21:46,051 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:46,060 INFO - Creating issue: [externalId='autoid--4612474218425154837', summary='Contas e Permissoes']
+2026-08-05 13:21:46,131 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:46,142 INFO - Creating issue: [externalId='autoid-8847194281935245640', summary='Contas e Permissoes']
+2026-08-05 13:21:46,213 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:46,228 INFO - Creating issue: [externalId='autoid-2504432749858214194', summary='Contas e Permissoes']
+2026-08-05 13:21:46,300 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:46,310 INFO - Creating issue: [externalId='autoid--108218662712807936', summary='Contas e Permissoes']
+2026-08-05 13:21:46,379 INFO - No problems found with issue 'Contas e Permissoes'
+2026-08-05 13:21:46,390 INFO - Creating issue: [externalId='autoid--4249996244604865086', summary='Sudo']
+2026-08-05 13:21:46,459 INFO - No problems found with issue 'Sudo'
+2026-08-05 13:21:46,471 INFO - Creating issue: [externalId='autoid-6677434487615685311', summary='Sudo']
+2026-08-05 13:21:46,545 INFO - No problems found with issue 'Sudo'
+2026-08-05 13:21:46,553 INFO - Creating issue: [externalId='autoid--3324224927939244492', summary='Sudo']
+2026-08-05 13:21:46,620 INFO - No problems found with issue 'Sudo'
+2026-08-05 13:21:46,630 INFO - Creating issue: [externalId='autoid-7162990607661064800', summary='Sudo']
+2026-08-05 13:21:46,632 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:46,721 INFO - No problems found with issue 'Sudo'
+2026-08-05 13:21:46,732 INFO - Creating issue: [externalId='autoid-4655406877941785897', summary='Logging']
+2026-08-05 13:21:46,734 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:46,823 INFO - No problems found with issue 'Logging'
+2026-08-05 13:21:46,834 INFO - Creating issue: [externalId='autoid--677228723641513510', summary='Logging']
+2026-08-05 13:21:46,836 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:46,923 INFO - No problems found with issue 'Logging'
+2026-08-05 13:21:46,939 INFO - Creating issue: [externalId='autoid-6641620528402165702', summary='Logging']
+2026-08-05 13:21:47,020 INFO - No problems found with issue 'Logging'
+2026-08-05 13:21:47,033 INFO - Creating issue: [externalId='autoid-9147828268285025497', summary='Auditoria']
+2026-08-05 13:21:47,101 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,111 INFO - Creating issue: [externalId='autoid--1648865466280677793', summary='Auditoria']
+2026-08-05 13:21:47,189 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,198 INFO - Creating issue: [externalId='autoid-8184863578314495881', summary='Auditoria']
+2026-08-05 13:21:47,199 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,274 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,284 INFO - Creating issue: [externalId='autoid-968145303293174897', summary='Auditoria']
+2026-08-05 13:21:47,286 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,378 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,386 INFO - Creating issue: [externalId='autoid-13939203324578228', summary='Auditoria']
+2026-08-05 13:21:47,388 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,474 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,484 INFO - Creating issue: [externalId='autoid-2594118614648478678', summary='Auditoria']
+2026-08-05 13:21:47,485 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,574 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,584 INFO - Creating issue: [externalId='autoid--305435712638406898', summary='Auditoria']
+2026-08-05 13:21:47,585 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,683 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,694 INFO - Creating issue: [externalId='autoid--8221833928742557901', summary='Auditoria']
+2026-08-05 13:21:47,695 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,771 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,779 INFO - Creating issue: [externalId='autoid-3440569996186777807', summary='Auditoria']
+2026-08-05 13:21:47,780 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,866 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,877 INFO - Creating issue: [externalId='autoid-3910538042928060340', summary='Auditoria']
+2026-08-05 13:21:47,878 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:47,965 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:47,976 INFO - Creating issue: [externalId='autoid-3072677146618027138', summary='Auditoria']
+2026-08-05 13:21:47,978 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,066 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:48,076 INFO - Creating issue: [externalId='autoid--723304668793202181', summary='Auditoria']
+2026-08-05 13:21:48,078 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,166 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:48,175 INFO - Creating issue: [externalId='autoid--6764753858688254947', summary='Auditoria']
+2026-08-05 13:21:48,176 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,266 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:48,276 INFO - Creating issue: [externalId='autoid--899421712716075435', summary='Auditoria']
+2026-08-05 13:21:48,277 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,351 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:48,362 INFO - Creating issue: [externalId='autoid--7044597778744345776', summary='Auditoria']
+2026-08-05 13:21:48,442 INFO - No problems found with issue 'Auditoria'
+2026-08-05 13:21:48,456 INFO - Creating issue: [externalId='autoid--1879184685710544850', summary='Integridade']
+2026-08-05 13:21:48,457 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,611 INFO - No problems found with issue 'Integridade'
+2026-08-05 13:21:48,620 INFO - Creating issue: [externalId='autoid--663217395437349343', summary='Contas e Arquivos']
+2026-08-05 13:21:48,622 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,726 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:48,750 INFO - Creating issue: [externalId='autoid-3281662910076461255', summary='Contas e Arquivos']
+2026-08-05 13:21:48,751 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:48,863 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:48,872 INFO - Creating issue: [externalId='autoid--5594281086472614728', summary='Contas e Arquivos']
+2026-08-05 13:21:48,964 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:48,975 INFO - Creating issue: [externalId='autoid--5553123933278295771', summary='Contas e Arquivos']
+2026-08-05 13:21:48,977 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,075 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,085 INFO - Creating issue: [externalId='autoid--6515092460601362313', summary='Contas e Arquivos']
+2026-08-05 13:21:49,086 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,185 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,193 INFO - Creating issue: [externalId='autoid--7573998235436202164', summary='Contas e Arquivos']
+2026-08-05 13:21:49,281 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,293 INFO - Creating issue: [externalId='autoid--7649797449604112819', summary='Contas e Arquivos']
+2026-08-05 13:21:49,295 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,390 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,398 INFO - Creating issue: [externalId='autoid--1248593316563789139', summary='Contas e Arquivos']
+2026-08-05 13:21:49,400 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,491 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,502 INFO - Creating issue: [externalId='autoid--3892016092384980404', summary='Contas e Arquivos']
+2026-08-05 13:21:49,591 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,601 INFO - Creating issue: [externalId='autoid-209212875955749852', summary='Contas e Arquivos']
+2026-08-05 13:21:49,688 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,700 INFO - Creating issue: [externalId='autoid--5664299444200226696', summary='Contas e Arquivos']
+2026-08-05 13:21:49,701 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,801 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,811 INFO - Creating issue: [externalId='autoid-816678451233753989', summary='Contas e Arquivos']
+2026-08-05 13:21:49,813 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:49,910 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:49,920 INFO - Creating issue: [externalId='autoid-5950896930145021665', summary='Contas e Arquivos']
+2026-08-05 13:21:50,004 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:50,014 INFO - Creating issue: [externalId='autoid--1291020681474767712', summary='Contas e Arquivos']
+2026-08-05 13:21:50,102 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:50,114 INFO - Creating issue: [externalId='autoid--2127376164208407309', summary='Contas e Arquivos']
+2026-08-05 13:21:50,115 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:50,226 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:50,239 INFO - Creating issue: [externalId='autoid--6773815126636306973', summary='Contas e Arquivos']
+2026-08-05 13:21:50,240 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:50,350 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:50,359 INFO - Creating issue: [externalId='autoid--524882857237961717', summary='Contas e Arquivos']
+2026-08-05 13:21:50,458 INFO - No problems found with issue 'Contas e Arquivos'
+2026-08-05 13:21:50,466 INFO - Creating issue: [externalId='autoid-132230595241793144', summary='Contas e Arquivos']
+2026-08-05 13:21:50,467 WARN - The value [ {null=Media} ] can't be added to the Custom Field [ Criticidade ]. The value [ {null=Media} ] can't be found or is in the incorrect format
+2026-08-05 13:21:50,571 INFO - No problems found with issue 'Contas e Arquivos'

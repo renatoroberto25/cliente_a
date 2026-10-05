@@ -1,0 +1,6 @@
+---
+rhel_06_time_sync_controls:
+  - id: 58
+    descricao: "Tempo / Sincronização"
+    severidade: WARN
+    perfil: "Full"

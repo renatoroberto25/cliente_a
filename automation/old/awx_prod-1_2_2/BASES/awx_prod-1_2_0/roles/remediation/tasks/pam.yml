@@ -1,0 +1,186 @@
+# ===== 90 - Cron/at restritos =====
+- name: Carregar variáveis HITSS
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/../vars/hitss.yml"
+
+- name: Detectar crontab
+  shell: command -v crontab
+  register: hitss_crontab_cmd
+  changed_when: false
+  failed_when: false
+
+- name: Detectar at
+  shell: command -v at
+  register: hitss_at_cmd
+  changed_when: false
+  failed_when: false
+
+- name: Pré-check política de cron
+  shell: |
+    set -eu
+    expected="{{ hitss_cron_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_crontab_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/cron.deny ] || [ ! -f /etc/cron.allow ]; then
+      echo "NEEDS_CHANGE"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/cron.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      echo "OK"
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: hitss_cron_pre
+  changed_when: false
+  failed_when: false
+
+- name: Pré-check política de at
+  shell: |
+    set -eu
+    expected="{{ hitss_at_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_at_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/at.deny ] || [ ! -f /etc/at.allow ]; then
+      echo "NEEDS_CHANGE"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/at.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      echo "OK"
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: hitss_at_pre
+  changed_when: false
+  failed_when: false
+
+- name: Aplicar política de cron
+  ansible.builtin.copy:
+    dest: /etc/cron.allow
+    content: "{{ (hitss_cron_allowed_users | default(['root'])) | join('\n') }}\n"
+    owner: root
+    group: root
+    mode: "0600"
+  register: hitss_cron_allow_apply
+  when: hitss_cron_pre.stdout | trim == "NEEDS_CHANGE"
+
+- name: Remover cron.deny
+  ansible.builtin.file:
+    path: /etc/cron.deny
+    state: absent
+  register: hitss_cron_deny_apply
+  when: hitss_cron_pre.stdout | trim == "NEEDS_CHANGE"
+
+- name: Aplicar política de at
+  ansible.builtin.copy:
+    dest: /etc/at.allow
+    content: "{{ (hitss_at_allowed_users | default(['root'])) | join('\n') }}\n"
+    owner: root
+    group: root
+    mode: "0600"
+  register: hitss_at_allow_apply
+  when: hitss_at_pre.stdout | trim == "NEEDS_CHANGE"
+
+- name: Remover at.deny
+  ansible.builtin.file:
+    path: /etc/at.deny
+    state: absent
+  register: hitss_at_deny_apply
+  when: hitss_at_pre.stdout | trim == "NEEDS_CHANGE"
+
+- name: Pós-check política de cron
+  shell: |
+    set -eu
+    expected="{{ hitss_cron_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_crontab_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/cron.deny ] || [ ! -f /etc/cron.allow ]; then
+      echo "FALHA"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/cron.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      if [ "{{ hitss_cron_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        echo "CHANGED"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: hitss_cron_post
+  changed_when: false
+  failed_when: false
+
+- name: Pós-check política de at
+  shell: |
+    set -eu
+    expected="{{ hitss_at_allowed_users | default(['root']) | join(' ') }}"
+
+    if [ "{{ hitss_at_cmd.rc }}" -ne 0 ]; then
+      echo "NA"
+      exit 0
+    fi
+
+    if [ -f /etc/at.deny ] || [ ! -f /etc/at.allow ]; then
+      echo "FALHA"
+      exit 0
+    fi
+
+    actual="$(awk 'NF && $1 !~ /^#/ {print $1}' /etc/at.allow | sort | xargs)"
+    desired="$(printf '%s\n' $expected | sort | xargs)"
+
+    if [ "$actual" = "$desired" ]; then
+      if [ "{{ hitss_at_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        echo "CHANGED"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: hitss_at_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado cron/at restritos (90)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][90]
+      {{
+        'FALHA'
+        if (
+          hitss_cron_post.stdout | trim == 'FALHA' or
+          hitss_at_post.stdout | trim == 'FALHA'
+        )
+        else 'CHANGED'
+        if (
+          hitss_cron_post.stdout | trim == 'CHANGED' or
+          hitss_at_post.stdout | trim == 'CHANGED'
+        )
+        else 'OK'
+      }}
+      cron={{ hitss_cron_post.stdout | trim }}
+      at={{ hitss_at_post.stdout | trim }}

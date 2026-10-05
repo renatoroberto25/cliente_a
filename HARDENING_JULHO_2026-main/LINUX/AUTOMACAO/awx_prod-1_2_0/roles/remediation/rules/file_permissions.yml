@@ -1,0 +1,76 @@
+file_permissions_rules:
+  - id: 185
+    descricao: "Verificar permissões de /etc/passwd"
+    perfil: "Light"
+
+  - id: 186
+    descricao: "Verificar permissões de /etc/passwd-"
+    perfil: "Light"
+
+  - id: 187
+    descricao: "Verificar permissões de /etc/shadow"
+    perfil: "Light"
+
+  - id: 188
+    descricao: "Verificar permissões de /etc/shadow-"
+    perfil: "Light"
+
+  - id: 189
+    descricao: "Verificar permissões de /etc/gshadow-"
+    perfil: "Light"
+
+  - id: 190
+    descricao: "Verificar permissões de /etc/gshadow"
+    perfil: "Light"
+
+  - id: 191
+    descricao: "Verificar permissões de /etc/group"
+    perfil: "Light"
+
+  - id: 192
+    descricao: "Verificar permissões de /etc/group-"
+    perfil: "Light"
+
+  - id: 193
+    descricao: "Verificar se contas usam shell nologin"
+    perfil: "Full"
+
+  - id: 194
+    descricao: "Verificar permissões de /etc/security/opasswd"
+    perfil: "Light"
+
+  - id: 195
+    descricao: "Verificar existência de arquivos órfãos (UID/GID sem dono)"
+    perfil: "Full"
+
+  - id: 196
+    descricao: "Verificar world-writable fora de áreas permitidas"
+    perfil: "Light"
+
+  - id: 197
+    descricao: "Verificar arquivos/diretórios sem owner ou group"
+    perfil: "Full"
+
+  - id: 198
+    descricao: "Verificar binários SUID/SGID indevidos"
+    perfil: "Full"
+
+  - id: 199
+    descricao: "Verificar se usuários possuem diretório home válido)"
+    perfil: "Full"
+
+  - id: 200
+    descricao: "Verificar ownership das homes dos usuários"
+    perfil: "Full"
+
+  - id: 201
+    descricao: "Verificar permissões das homes (<=750)"
+    perfil: "Full"
+
+  - id: 202
+    descricao: "Verificar dotfiles inseguros nas homes"
+    perfil: "Light"
+
+  - id: 203
+    descricao: "Verificar arquivos .forward/.netrc/.rhosts nas homes"
+    perfil: "Full"

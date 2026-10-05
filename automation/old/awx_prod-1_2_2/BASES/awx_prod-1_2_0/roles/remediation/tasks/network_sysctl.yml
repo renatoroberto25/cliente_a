@@ -1,0 +1,106 @@
+# Carregar regras network sysctl
+- name: Carregar regras network sysctl
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/network_sysctl.yml"
+
+# ===== PRÉ-CHECK =====
+- name: Pré-check sysctl rede (all)
+  command: sysctl -n {{ item.key }}
+  register: net_pre_all
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Pré-check sysctl rede (default)
+  command: sysctl -n {{ item.key_default }}
+  register: net_pre_def
+  loop: "{{ network_sysctl_rules | selectattr('key_default', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }} (default)"
+  changed_when: false
+  failed_when: false
+
+# ===== REMEDIAÇÃO =====
+- name: Aplicar sysctl runtime (all)
+  command: sysctl -w {{ item.key }}={{ item.expected }}
+  when: >
+    (net_pre_all.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') | trim) != item.expected
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+
+- name: Aplicar sysctl runtime (default)
+  command: sysctl -w {{ item.key_default }}={{ item.expected }}
+  when: >
+    item.key_default is defined and
+    (net_pre_def.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') | trim) != item.expected
+  loop: "{{ network_sysctl_rules | selectattr('key_default','defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }} (default)"
+
+- name: Persistir sysctl em /etc/sysctl.d/99-hitss-network.conf
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-network.conf
+    line: "{{ item.key }} = {{ item.expected }}"
+    create: true
+    state: present
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+
+- name: Persistir sysctl default em /etc/sysctl.d/99-hitss-network.conf
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-network.conf
+    line: "{{ item.key_default }} = {{ item.expected }}"
+    create: true
+    state: present
+  when: item.key_default is defined
+  loop: "{{ network_sysctl_rules | selectattr('key_default','defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }} (default)"
+
+# ===== PÓS-CHECK =====
+- name: Pós-check sysctl rede (all)
+  command: sysctl -n {{ item.key }}
+  register: net_post_all
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Pós-check sysctl rede (default)
+  command: sysctl -n {{ item.key_default }}
+  register: net_post_def
+  loop: "{{ network_sysctl_rules | selectattr('key_default', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }} (default)"
+  changed_when: false
+  failed_when: false
+
+# ===== RESULTADO =====
+- name: Resultado remediação network sysctl
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'OK'
+        if (
+          (item.expected == (all_val | trim))
+          and
+          (
+            item.key_default is not defined
+            or
+            (item.expected == (def_val | trim))
+          )
+        )
+        else 'FALHA'
+      }}
+  vars:
+    all_val: "{{ net_post_all.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') }}"
+    def_val: "{{ net_post_def.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') }}"
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"

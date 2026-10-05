@@ -1,0 +1,4 @@
+---
+- name: Auditar baseline RHEL vigente
+  ansible.builtin.include_tasks: rhel_audit.yml
+  when: ansible_facts.os_family == 'RedHat'

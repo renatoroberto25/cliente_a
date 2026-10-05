@@ -1,0 +1,320 @@
+- name: Pré-check UID 0 exclusivo (148)
+  shell: |
+    if awk -F: '$3==0 {print $1}' /etc/passwd | grep -qx 'root'; then
+      if [ "$(awk -F: '$3==0 {print $1}' /etc/passwd | wc -l)" -eq 1 ]; then
+        echo "OK"
+      else
+        echo "MANUAL"
+      fi
+    else
+      echo "MANUAL"
+    fi
+  register: remed_148
+  changed_when: false
+  failed_when: false
+
+- name: Resultado UID 0 exclusivo (148)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][148] {{ remed_148.stdout | trim }}
+
+- name: Pré-check GID 0 exclusivo (149)
+  shell: |
+    if awk -F: '$4==0 {print $1}' /etc/passwd | grep -qx 'root'; then
+      if [ "$(awk -F: '$4==0 {print $1}' /etc/passwd | wc -l)" -eq 1 ]; then
+        echo "OK"
+      else
+        echo "MANUAL"
+      fi
+    else
+      echo "MANUAL"
+    fi
+  register: remed_149
+  changed_when: false
+  failed_when: false
+
+- name: Resultado GID 0 exclusivo (149)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][149] {{ remed_149.stdout | trim }}
+
+- name: Pré-check contas de sistema bloqueadas (150)
+  shell: |
+    if awk -F: '$3 < 1000 && $1 != "root" && $7 !~ /(nologin|false)$/ {print $1}' /etc/passwd | grep -q .; then
+      echo "NEEDS_CHANGE"
+    else
+      echo "OK"
+    fi
+  register: remed_150_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar contas de sistema bloqueadas (150)
+  shell: |
+    if [ -x /sbin/nologin ]; then
+      shell_path="/sbin/nologin"
+    else
+      if [ -x /usr/sbin/nologin ]; then
+        shell_path="/usr/sbin/nologin"
+      else
+        if [ -x /bin/false ]; then
+          shell_path="/bin/false"
+        else
+          shell_path=""
+        fi
+      fi
+    fi
+
+    if [ -z "$shell_path" ]; then
+      echo "FALHA"
+    else
+      awk -F: '$3 < 1000 && $1 != "root" && $7 !~ /(nologin|false)$/ {print $1}' /etc/passwd > /tmp/hitss_150_users.txt
+
+      if [ -s /tmp/hitss_150_users.txt ]; then
+        if usermod -s "$shell_path" "$(head -n 1 /tmp/hitss_150_users.txt)" 2>/dev/null; then
+          if [ "$(wc -l < /tmp/hitss_150_users.txt)" -eq 1 ]; then
+            rm -f /tmp/hitss_150_users.txt
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        else
+          rm -f /tmp/hitss_150_users.txt
+          echo "FALHA"
+        fi
+      else
+        rm -f /tmp/hitss_150_users.txt
+        echo "FALHA"
+      fi
+    fi
+  register: remed_150_apply
+  changed_when: remed_150_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_150_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check contas de sistema bloqueadas (150)
+  shell: |
+    if awk -F: '$3 < 1000 && $1 != "root" && $7 !~ /(nologin|false)$/ {print $1}' /etc/passwd | grep -q .; then
+      echo "FALHA"
+    else
+      if [ "{{ remed_150_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_150_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    fi
+  register: remed_150
+  changed_when: false
+  failed_when: false
+
+- name: Resultado contas de sistema bloqueadas (150)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][150] {{ remed_150.stdout | trim }}
+
+- name: Pré-check shells válidos (151)
+  shell: |
+    if awk -F: '{print $7}' /etc/passwd | while read -r shell; do
+      grep -qx "$shell" /etc/shells || echo "$shell"
+    done | grep -q .; then
+      echo "NEEDS_CHANGE"
+    else
+      echo "OK"
+    fi
+  register: remed_151_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar shells válidos (151)
+  shell: |
+    if grep -qx '/sbin/nologin' /etc/shells; then
+      echo "CHANGED"
+    else
+      if [ -x /sbin/nologin ]; then
+        printf '%s\n' '/sbin/nologin' >> /etc/shells
+        echo "CHANGED"
+      else
+        if grep -qx '/usr/sbin/nologin' /etc/shells; then
+          echo "CHANGED"
+        else
+          if [ -x /usr/sbin/nologin ]; then
+            printf '%s\n' '/usr/sbin/nologin' >> /etc/shells
+            echo "CHANGED"
+          else
+            if grep -qx '/bin/false' /etc/shells; then
+              echo "CHANGED"
+            else
+              if [ -x /bin/false ]; then
+                printf '%s\n' '/bin/false' >> /etc/shells
+                echo "CHANGED"
+              else
+                echo "FALHA"
+              fi
+            fi
+          fi
+        fi
+      fi
+    fi
+  register: remed_151_apply
+  changed_when: remed_151_pre.stdout | trim == 'NEEDS_CHANGE' and remed_151_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_151_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check shells válidos (151)
+  shell: |
+    if awk -F: '{print $7}' /etc/passwd | while read -r shell; do
+      grep -qx "$shell" /etc/shells || echo "$shell"
+    done | grep -q .; then
+      echo "FALHA"
+    else
+      if [ "{{ remed_151_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_151_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    fi
+  register: remed_151
+  changed_when: false
+  failed_when: false
+
+- name: Resultado shells válidos (151)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][151] {{ remed_151.stdout | trim }}
+
+- name: Pré-check PATH do root seguro (152)
+  shell: |
+    if grep -R "^PATH=" /root /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | tr '=' '\n' | tr ':' '\n' | while read -r p; do [ "$p" = "." ] && echo "dot"; [ -d "$p" ] && test "$(stat -c %a "$p" 2>/dev/null | tail -c 1)" -ge 2 && echo "$p"; done | grep -q .; then
+      echo "MANUAL"
+    else
+      echo "OK"
+    fi
+  register: remed_152
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PATH do root seguro (152)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][152] {{ remed_152.stdout | trim }}
+
+- name: Pré-check umask restritiva (153)
+  shell: |
+    if grep -R "umask" /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | grep -E '0(2|7)7' >/dev/null 2>&1; then
+      echo "OK"
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: remed_153_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar umask restritiva (153)
+  shell: |
+    if [ -f /etc/profile.d/hitss-umask.sh ]; then
+      if grep -Eq '^\s*umask\s+027\s*$' /etc/profile.d/hitss-umask.sh; then
+        echo "FALHA"
+      else
+        printf '%s\n' 'umask 027' > /etc/profile.d/hitss-umask.sh
+        chmod 0644 /etc/profile.d/hitss-umask.sh
+        echo "CHANGED"
+      fi
+    else
+      printf '%s\n' 'umask 027' > /etc/profile.d/hitss-umask.sh
+      chmod 0644 /etc/profile.d/hitss-umask.sh
+      echo "CHANGED"
+    fi
+  register: remed_153_apply
+  changed_when: remed_153_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_153_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check umask restritiva (153)
+  shell: |
+    if grep -R "umask" /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | grep -E '0(2|7)7' >/dev/null 2>&1; then
+      if [ "{{ remed_153_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_153_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_153
+  changed_when: false
+  failed_when: false
+
+- name: Resultado umask restritiva (153)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][153] {{ remed_153.stdout | trim }}
+
+- name: Pré-check timeout de shell (154)
+  shell: |
+    if [ -f /etc/profile.d/hitss-tmout.sh ]; then
+      if grep -Eq '^[[:space:]]*TMOUT=900[[:space:]]*$' /etc/profile.d/hitss-tmout.sh && \
+         grep -Eq '^[[:space:]]*export TMOUT[[:space:]]*$' /etc/profile.d/hitss-tmout.sh && \
+         ! grep -Eq '^[[:space:]]*readonly TMOUT[[:space:]]*$' /etc/profile.d/hitss-tmout.sh; then
+        echo "OK"
+      else
+        echo "NEEDS_CHANGE"
+      fi
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: remed_154_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar timeout de shell (154)
+  shell: |
+    printf '%s\n' 'TMOUT=900' 'export TMOUT' > /etc/profile.d/hitss-tmout.sh
+    chown root:root /etc/profile.d/hitss-tmout.sh
+    chmod 0644 /etc/profile.d/hitss-tmout.sh
+    echo "CHANGED"
+  register: remed_154_apply
+  changed_when: remed_154_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_154_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check timeout de shell (154)
+  shell: |
+    if [ -f /etc/profile.d/hitss-tmout.sh ]; then
+      if grep -Eq '^[[:space:]]*TMOUT=900[[:space:]]*$' /etc/profile.d/hitss-tmout.sh && \
+         grep -Eq '^[[:space:]]*export TMOUT[[:space:]]*$' /etc/profile.d/hitss-tmout.sh && \
+         ! grep -Eq '^[[:space:]]*readonly TMOUT[[:space:]]*$' /etc/profile.d/hitss-tmout.sh; then
+        if [ "{{ remed_154_pre.stdout | trim }}" = "OK" ]; then
+          echo "OK"
+        else
+          if [ "{{ remed_154_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        fi
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_154
+  changed_when: false
+  failed_when: false
+
+- name: Resultado timeout de shell (154)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][154] {{ remed_154.stdout | trim }}

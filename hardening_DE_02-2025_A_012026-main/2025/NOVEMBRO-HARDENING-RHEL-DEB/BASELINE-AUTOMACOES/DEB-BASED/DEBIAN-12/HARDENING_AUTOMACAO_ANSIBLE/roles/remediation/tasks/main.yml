@@ -1,0 +1,349 @@
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 1 - 9 - Desativar módulos do kernel (cramfs freevxfs hfs hfsplus jffs2 overlay squashfs udf usb-storage)"
+  script: 01/01.sh
+  register: remed_1
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_1
+    - remed_hitss_1.x
+
+
+- name: "hitss 40 - 43 - Configuração AppArmor"
+  script: 40/40.sh
+  register: remed_40
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_40
+    - remed_hitss_3.x
+
+- name: "hitss 45 - Verifique se o acesso ao arquivo de configuração do bootloader está restrito"
+  script: 45/45.sh
+  register: remed_45
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_45
+    - remed_hitss_4.x
+
+- name: "hitss 46 - Verificações de segurança do kernel"
+  script: 46/46.sh
+  register: remed_46
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_46
+    - remed_hitss_5.x
+
+- name: "hitss 47 - Corrigir parâmetro ptrace_scope"
+  script: 46/47.sh
+  register: remed_47
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_47
+    - remed_hitss_5.x
+
+- name: "hitss 48 - Corrigir restrição de core dumps"
+  script: 46/48.sh
+  register: remed_48
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_48
+    - remed_hitss_5.x
+
+- name: "hitss 52 - 54 - Verificação de permissões dos arquivos de banner"
+  script: 52/52.sh
+  register: remed_52
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_52
+    - remed_hitss_6.x
+
+- name: "hitss 87 - 92 - Verificação de clientes inseguros"
+  script: 87/87.sh
+  register: remed_87
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_87
+    - remed_hitss_8.x
+
+- name: "hitss 93 - 99 - Configurar sincronização de tempo"
+  script: 93/93.sh
+  register: remed_93
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_93
+    - remed_hitss_9.x
+
+- name: "hitss 100 - 106 - Configurar sincronização de tempo"
+  script: 93/100.sh
+  register: remed_100
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_100
+    - remed_hitss_9.x
+
+- name: "hitss 107 - Configurar permissões do AT(Se em uso)"
+  script: 93/107.sh
+  register: remed_107
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_107
+    - remed_hitss_9.x
+
+- name: "hitss 108 - Configurações seguras de redes"
+  script: 108/108.sh
+  register: remed_108
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_108
+    - remed_hitss_10.x
+
+- name: "hitss 109 - 124 - Configurações seguras de redes"
+  script: 108/109.sh
+  register: remed_109
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_109
+    - remed_hitss_10.x
+
+- name: "hitss 125 - Configurações seguras de redes"
+  script: 108/125.sh
+  register: remed_125
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_125
+    - remed_hitss_10.x
+
+- name: "hitss 155 - 159 - Permissões seguras SSHD"
+  script: 155/155.sh
+  register: remed_155
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_155
+    - remed_hitss_11.x
+
+- name: "hitss 160 - 175 - Permissões seguras SSHD"
+  script: 155/160.sh
+  register: remed_160
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_160
+    - remed_hitss_11.x
+
+- name: "hitss 176 - Permissões seguras SSHD -  USEPAM"
+  script: 155/176.sh
+  register: remed_176
+  changed_when: false
+  failed_when: false
+  tags:
+    - remed_hitss_176
+
+- name: "hitss 177 - 183 - 186 - Configurações do sudo - libpam-pwquality"
+  script: 177/177.sh
+  register: remed_177
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_177
+    - remed_hitss_12.x
+
+- name: "hitss 187 - 190 - Configurações do PAM(módulos habilitados)"
+  script: 177/187.sh
+  register: remed_187
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_187
+    - remed_hitss_12.x
+
+- name: "hitss 187 - 190 - Configurações do PAM(módulos habilitados)"
+  script: 177/187.sh
+  register: remed_187
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_187
+    - remed_hitss_12.x
+
+- name: "hitss 191 - 208 - Configurações do PAM"
+  script: 177/191.sh
+  register: remed_191
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_191
+    - remed_hitss_12.x
+
+- name: "hitss 209 - 214 - Políticas de expiração e senhas"
+  script: 209/209.sh
+  register: remed_209
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_209
+    - remed_hitss_13.x
+
+- name: "hitss 215 - 220 - Root e UID/GID 0"
+  script: 209/215.sh
+  register: remed_215
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_215
+    - remed_hitss_13.x
+
+- name: "hitss 221 - 225 - Contas de sistema e ambiente padrão"
+  script: 209/221.sh
+  register: remed_221
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_221
+    - remed_hitss_13.x
+
+#aplicável se usar journald
+- name: "hitss 226 - 236 - Configuração principal do registro de logs journald"
+  script: 226/226.sh
+  register: remed_226
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_226
+    - remed_hitss_14.x
+
+#aplicável se usar rsyslog
+- name: "hitss 237 - 245 - Configurações rsyslog"
+  script: 237/237.sh
+  register: remed_237
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Full
+    - remed_hitss_237
+    - remed_hitss_15.x
+
+- name: "hitss 246 - 253 - Configurações auditd"
+  script: 246/246.sh
+  register: remed_246
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_246
+    - remed_hitss_16.x
+
+
+- name: "hitss 254 - 263 - Regras de auditoria de eventos específicos"
+  script: 246/254.sh
+  register: remed_254
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_254
+    - remed_hitss_16.x
+
+- name: "hitss 264 - 273 - Persistência, falha e integração de logs"
+  script: 246/264.sh
+  register: remed_264
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_264
+    - remed_hitss_16.x
+
+- name: "hitss 275 - 284 - Permissões e propriedades do auditd e suas ferramentas"
+  script: 246/275.sh
+  register: remed_275
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_275
+    - remed_hitss_16.x
+
+- name: "hitss 285 - 286 - Verifique se o AIDE está instalado e verificação periódica"
+  script: 285/285.sh
+  register: remed_285
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_285
+    - remed_hitss_17.x
+
+- name: "hitss 288 - 297 - Permissões e ownership de arquivos críticos"
+  script: 288/288.sh
+  register: remed_288
+  changed_when: false
+  failed_when: false
+  tags:    
+    - Light
+    - Full
+    - remed_hitss_288
+    - remed_hitss_18.x
+
+#######################
+#298 - 310 manual

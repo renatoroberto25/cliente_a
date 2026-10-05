@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+set -u
+
+echo "LIGHT - Remediacao: politica de autenticacao e senhas"
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "WARN: execute como root para aplicar remediacoes"
+    exit 0
+fi
+
+TS="$(date +%Y%m%d%H%M%S)"
+PWQUALITY="/etc/security/pwquality.conf"
+FAILLOCK="/etc/security/faillock.conf"
+LOGIN_DEFS="/etc/login.defs"
+PAM_FILES="/etc/pam.d/system-auth /etc/pam.d/password-auth"
+
+backup_file() {
+    local file="$1"
+    [ -e "$file" ] && cp -p "$file" "${file}.hitss.bak.${TS}" 2>/dev/null || true
+}
+
+ensure_file() {
+    local file="$1" dir
+    dir="$(dirname "$file")"
+    if [ ! -d "$dir" ]; then
+        echo "WARN: diretorio ausente: $dir"
+        return 1
+    fi
+    [ -e "$file" ] || touch "$file"
+}
+
+set_conf_value() {
+    local file="$1" key="$2" value="$3" sep="$4" pattern
+    pattern="${key//./\\.}"
+
+    ensure_file "$file" || return
+    backup_file "$file"
+
+    if [ "$sep" = "=" ]; then
+        if grep -Eq "^[[:space:]]*#?[[:space:]]*${pattern}[[:space:]]*=" "$file"; then
+            sed -i "s|^[[:space:]]*#\\?[[:space:]]*${pattern}[[:space:]]*=.*|${key} = ${value}|" "$file"
+        else
+            printf '%s = %s\n' "$key" "$value" >> "$file"
+        fi
+        echo "OK: ${key} = ${value} em $file"
+    else
+        if grep -Eq "^[[:space:]]*#?[[:space:]]*${pattern}[[:space:]]+" "$file"; then
+            sed -i "s|^[[:space:]]*#\\?[[:space:]]*${pattern}[[:space:]].*|${key}   ${value}|" "$file"
+        else
+            printf '%s   %s\n' "$key" "$value" >> "$file"
+        fi
+        echo "OK: ${key} ${value} em $file"
+    fi
+}
+
+ensure_pam_line() {
+    local file="$1" marker="$2" line="$3"
+    [ -f "$file" ] || {
+        echo "SKIP: $file nao encontrado"
+        return
+    }
+    backup_file "$file"
+    if grep -Eq "$marker" "$file"; then
+        echo "OK: $marker presente em $file"
+    else
+        printf '%s\n' "$line" >> "$file"
+        echo "OK: linha PAM adicionada em $file: $line"
+    fi
+}
+
+ensure_pam_unix_sha512() {
+    local file="$1"
+    [ -f "$file" ] || return
+    backup_file "$file"
+    if grep -Eq '^[[:space:]]*password[[:space:]]+(sufficient|required)[[:space:]]+pam_unix\.so.*\bsha512\b' "$file"; then
+        echo "OK: pam_unix sha512 presente em $file"
+        return
+    fi
+    if grep -Eq '^[[:space:]]*password[[:space:]]+(sufficient|required)[[:space:]]+pam_unix\.so' "$file"; then
+        sed -i '/^[[:space:]]*password[[:space:]]\+\(sufficient\|required\)[[:space:]]\+pam_unix\.so/ s/$/ sha512/' "$file"
+        echo "OK: sha512 adicionado em pam_unix em $file"
+    else
+        printf '%s\n' 'password    sufficient    pam_unix.so sha512 shadow try_first_pass use_authtok' >> "$file"
+        echo "OK: pam_unix sha512 adicionado em $file"
+    fi
+}
+
+echo "[130-134] Modulos PAM"
+for pam_file in $PAM_FILES; do
+    if grep -Eq 'pam_pwquality\.so' "$pam_file" 2>/dev/null; then
+        echo "OK: pam_pwquality presente em $pam_file"
+    else
+        echo "SKIP: pam_pwquality ausente em $pam_file; alterar a pilha PAM exige perfil authselect validado"
+    fi
+    if grep -Eq 'pam_pwhistory\.so' "$pam_file" 2>/dev/null; then
+        echo "OK: pam_pwhistory presente em $pam_file"
+    else
+        echo "SKIP: pam_pwhistory ausente em $pam_file; alterar a pilha PAM exige perfil authselect validado"
+    fi
+    if grep -Eq 'pam_faillock\.so' "$pam_file" 2>/dev/null; then
+        echo "OK: pam_faillock presente em $pam_file"
+    else
+        echo "SKIP: pam_faillock ausente em $pam_file; habilitar via authselect exige validacao de login"
+    fi
+    if grep -Eq 'pam_unix\.so.*(sha512|yescrypt)' "$pam_file" 2>/dev/null; then
+        echo "OK: hash forte presente em pam_unix em $pam_file"
+    else
+        echo "SKIP: hash do pam_unix nao alterado diretamente; usar perfil authselect validado"
+    fi
+done
+
+echo "[135-138] Regras de qualidade de senha"
+set_conf_value "$PWQUALITY" minlen 14 "="
+set_conf_value "$PWQUALITY" minclass 4 "="
+set_conf_value "$PWQUALITY" maxrepeat 3 "="
+set_conf_value "$PWQUALITY" maxsequence 3 "="
+set_conf_value "$PWQUALITY" dictcheck 1 "="
+
+echo "[139] Metodo de hash de senhas"
+set_conf_value "$LOGIN_DEFS" ENCRYPT_METHOD SHA512 "space"
+
+echo "[140] Historico de senhas"
+echo "INFO: remember=5 definido pela politica; ativacao do modulo PAM depende do perfil authselect"
+
+echo "[142] Politica de bloqueio faillock"
+set_conf_value "$FAILLOCK" unlock_time 900 "="
+
+echo "[143-145] Envelhecimento padrao de senhas"
+set_conf_value "$LOGIN_DEFS" PASS_MAX_DAYS 365 "space"
+set_conf_value "$LOGIN_DEFS" PASS_MIN_DAYS 1 "space"
+set_conf_value "$LOGIN_DEFS" PASS_WARN_AGE 7 "space"
+
+echo "[146] Inatividade de conta"
+if command -v useradd >/dev/null 2>&1; then
+    useradd -D -f 30 >/dev/null 2>&1 && echo "OK: INACTIVE=30 configurado em useradd -D" || echo "WARN: nao foi possivel configurar INACTIVE"
+else
+    echo "SKIP: useradd nao encontrado"
+fi
+
+echo "[147] Data da ultima troca de senha"
+echo "SKIP: alterar chage --lastday em contas existentes exige aprovacao operacional"
+
+echo "OK"
+exit 0

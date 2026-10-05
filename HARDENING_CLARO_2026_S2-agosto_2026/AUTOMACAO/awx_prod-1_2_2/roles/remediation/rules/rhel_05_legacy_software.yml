@@ -1,0 +1,10 @@
+---
+rhel_05_legacy_software_controls:
+  - id: 56
+    descricao: "Integridade / Binários"
+    severidade: INFO
+    perfil: "Light"
+  - id: 57
+    descricao: "Serviços / Sistema"
+    severidade: WARN
+    perfil: "Full"

@@ -1,0 +1,179 @@
+#!/usr/bin/env bash
+
+set -u
+
+[ -r /etc/os-release ] || { echo "ERRO: sistema DEB-like nao identificado." >&2; exit 2; }
+. /etc/os-release
+case "${ID:-} ${ID_LIKE:-}" in *debian*|*ubuntu*) ;; *) echo "ERRO: remediacao exclusiva para Debian-like." >&2; exit 2 ;; esac
+
+TS="${TS:-$(date +%Y%m%d-%H%M%S)}"
+HITSS_BACKUP_ROOT="${HITSS_BACKUP_ROOT:-/var/backups/hitss-hardening}"
+HITSS_BACKUP_ID="${HITSS_BACKUP_ID:-hitss_hardening_bkp_${TS}}"
+HITSS_BACKUP_DIR="${HITSS_BACKUP_DIR:-$HITSS_BACKUP_ROOT/$HITSS_BACKUP_ID}"
+HITSS_BACKUP_MANIFEST="${HITSS_BACKUP_MANIFEST:-$HITSS_BACKUP_DIR/manifest.tsv}"
+declare -A BACKED_UP=()
+
+require_root() {
+    if (( EUID != 0 )); then
+        echo "WARN: execute como root para aplicar remediacoes"
+        exit 0
+    fi
+}
+
+ensure_backup_session() {
+    mkdir -p "$HITSS_BACKUP_DIR/files" "$HITSS_BACKUP_DIR/recorded" || return 1
+    if [[ ! -e "$HITSS_BACKUP_DIR/session.info" ]]; then
+        {
+            printf 'id=%s\n' "$HITSS_BACKUP_ID"
+            printf 'created=%s\n' "$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+            printf 'host=%s\n' "$(hostname -s)"
+            printf 'status=complete\n'
+        } > "$HITSS_BACKUP_DIR/session.info" || return 1
+        chmod 0600 "$HITSS_BACKUP_DIR/session.info"
+    fi
+    touch "$HITSS_BACKUP_MANIFEST" || return 1
+    chmod 0600 "$HITSS_BACKUP_MANIFEST"
+}
+
+backup_file() {
+    local file="$1" backup marker state
+    [[ ${BACKED_UP[$file]+x} ]] && return 0
+    ensure_backup_session || return 1
+    marker="$(printf '%s' "$file" | sha256sum | awk '{print $1}')"
+    if [[ -e "$HITSS_BACKUP_DIR/recorded/file-$marker" ]]; then
+        BACKED_UP[$file]="$HITSS_BACKUP_DIR/files$file"
+        return 0
+    fi
+    backup="$HITSS_BACKUP_DIR/files$file"
+    if [[ -e "$file" || -L "$file" ]]; then
+        mkdir -p "$(dirname "$backup")" || return 1
+        cp -a -- "$file" "$backup" || return 1
+        state=PRESENT
+    else
+        state=ABSENT
+    fi
+    printf 'FILE\t%s\t%s\n' "$file" "$state" >> "$HITSS_BACKUP_MANIFEST" || return 1
+    : > "$HITSS_BACKUP_DIR/recorded/file-$marker"
+    BACKED_UP[$file]="$backup"
+    echo "INFO: backup registrado: $file ($HITSS_BACKUP_ID)"
+}
+
+restore_file() {
+    local backup="$1" file="${2:-}"
+    [[ -n "$file" ]] || { echo "WARN: destino de restauracao ausente"; return 1; }
+    [[ -e "$backup" || -L "$backup" ]] || { echo "WARN: backup ausente: $backup"; return 1; }
+    cp -a -- "$backup" "$file" && echo "OK: restaurado $file"
+}
+
+backup_metadata() {
+    local path="$1" marker mode uid gid
+    [[ -e "$path" || -L "$path" ]] || return 0
+    ensure_backup_session || return 1
+    marker="$(printf '%s' "$path" | sha256sum | awk '{print $1}')"
+    [[ -e "$HITSS_BACKUP_DIR/recorded/meta-$marker" ]] && return 0
+    mode="$(stat -c '%a' -- "$path")"; uid="$(stat -c '%u' -- "$path")"; gid="$(stat -c '%g' -- "$path")"
+    printf 'META\t%s\t%s:%s:%s\n' "$path" "$mode" "$uid" "$gid" >> "$HITSS_BACKUP_MANIFEST"
+    : > "$HITSS_BACKUP_DIR/recorded/meta-$marker"
+}
+
+ensure_file() {
+    local file="$1" mode="${2:-0644}" parent
+    parent="$(dirname "$file")"
+    if [[ ! -d "$parent" ]]; then backup_file "$parent" || return 1; fi
+    install -d -m 0755 "$parent" || return 1
+    if [[ ! -e "$file" ]]; then
+        backup_file "$file" || return 1
+        install -m "$mode" /dev/null "$file" || return 1
+    fi
+}
+
+ensure_line() {
+    local file="$1" line="$2"
+    ensure_file "$file" || return 1
+    grep -Fqx -- "$line" "$file" 2>/dev/null && return 0
+    backup_file "$file" || return 1
+    printf '%s\n' "$line" >> "$file"
+}
+
+set_kv() {
+    local file="$1" key="$2" value="$3" sep="${4:- = }" escaped
+    ensure_file "$file" || return 1
+    escaped=${key//./\.}
+    if grep -Eq "^[[:space:]]*${escaped}[[:space:]]*=" "$file"; then
+        grep -Eq "^[[:space:]]*${escaped}[[:space:]]*=[[:space:]]*${value}([[:space:]]|$)" "$file" && return 0
+        backup_file "$file" || return 1
+        sed -i "s|^[[:space:]]*${escaped}[[:space:]]*=.*|${key}${sep}${value}|" "$file"
+    else
+        backup_file "$file" || return 1
+        printf '%s%s%s\n' "$key" "$sep" "$value" >> "$file"
+    fi
+}
+
+set_sysctl() {
+    local id="$1" name="$2" key="$3" value="$4" file=/etc/sysctl.d/99-hitss-hardening.conf
+    echo "[$id] $name"
+    [[ -e "/proc/sys/${key//./\/}" ]] || { echo "SKIP: parametro nao suportado: $key"; return; }
+    backup_sysctl "$key"
+    if set_kv "$file" "$key" "$value" && set_kv /etc/sysctl.conf "$key" "$value" && sysctl -w "$key=$value" >/dev/null 2>&1; then
+        echo "OK: $key=$value"
+    else
+        echo "WARN: falha ao aplicar $key=$value"
+    fi
+}
+
+backup_sysctl() {
+    local key="$1" marker value
+    ensure_backup_session || return 1
+    marker="$(printf '%s' "$key" | sha256sum | awk '{print $1}')"
+    [[ -e "$HITSS_BACKUP_DIR/recorded/sysctl-$marker" ]] && return 0
+    value="$(sysctl -n "$key" 2>/dev/null)" || return 0
+    printf 'SYSCTL\t%s\t%s\n' "$key" "$value" >> "$HITSS_BACKUP_MANIFEST"
+    : > "$HITSS_BACKUP_DIR/recorded/sysctl-$marker"
+}
+
+backup_unit() {
+    local unit="$1" marker enabled active masked
+    ensure_backup_session || return 1
+    marker="$(printf '%s' "$unit" | sha256sum | awk '{print $1}')"
+    [[ -e "$HITSS_BACKUP_DIR/recorded/unit-$marker" ]] && return 0
+    enabled="$(systemctl is-enabled "$unit" 2>/dev/null || true)"
+    active="$(systemctl is-active "$unit" 2>/dev/null || true)"
+    masked=0; [[ "$enabled" == masked* ]] && masked=1
+    printf 'UNIT\t%s\t%s|%s|%s\n' "$unit" "${enabled:-disabled}" "${active:-inactive}" "$masked" >> "$HITSS_BACKUP_MANIFEST"
+    : > "$HITSS_BACKUP_DIR/recorded/unit-$marker"
+}
+
+disable_unit() {
+    local id="$1" name="$2" unit="$3"
+    echo "[$id] $name"
+    if ! systemctl list-unit-files "$unit" --no-legend 2>/dev/null | grep -q .; then
+        echo "OK: unidade ausente: $unit"
+    else
+        backup_unit "$unit"
+        if systemctl disable --now "$unit" >/dev/null 2>&1 && systemctl mask "$unit" >/dev/null 2>&1; then
+        echo "OK: $unit desabilitado e mascarado"
+        else
+            echo "WARN: falha ao desabilitar $unit"
+        fi
+    fi
+}
+
+purge_packages() {
+    local id="$1" name="$2"; shift 2
+    local installed=() pkg
+    echo "[$id] $name"
+    for pkg in "$@"; do dpkg-query -W -f='${db:Status-Abbrev}' "$pkg" 2>/dev/null | grep -q '^ii ' && installed+=("$pkg"); done
+    (( ${#installed[@]} )) || { echo "OK: pacotes ausentes"; return; }
+    [[ ${REMED_ALLOW_PACKAGE_REMOVAL:-0} == 1 ]] || { echo "SKIP: pacotes instalados: ${installed[*]}; defina REMED_ALLOW_PACKAGE_REMOVAL=1"; return; }
+    ensure_backup_session || { echo "WARN: falha ao preparar backup"; return; }
+    printf 'PACKAGES\t-\t%s\n' "${installed[*]}" >> "$HITSS_BACKUP_MANIFEST"
+    DEBIAN_FRONTEND=noninteractive apt-get purge -y "${installed[@]}" >/dev/null 2>&1 &&
+        echo "OK: pacotes removidos: ${installed[*]}" || echo "WARN: falha ao remover: ${installed[*]}"
+}
+
+manual() {
+    echo "[$1] $2"
+    echo "MANUAL: $3"
+}
+
+require_root

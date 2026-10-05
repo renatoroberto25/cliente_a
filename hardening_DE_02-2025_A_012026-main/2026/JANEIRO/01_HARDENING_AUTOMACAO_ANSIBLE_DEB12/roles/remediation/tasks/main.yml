@@ -1,0 +1,163 @@
+
+
+- name: "hitss 1 - 24 - Remediar módulos e hardening inicial"
+  script: 1-24.sh
+  register: remed_hitss_1_24
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_1_24
+
+- name: "hitss 35 - 43 - Remediar opções de montagem seguras"
+  script: 35-43.sh
+  register: remed_hitss_35_43
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_35_43
+
+- name: "hitss 44 - 48 - Remediar sticky bit e autofs"
+  script: 44-48.sh
+  register: remed_hitss_44_48
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_44_48
+
+- name: "hitss 49 - 51 - Remediar bootloader e modo de emergência"
+  script: 49-51.sh
+  register: remed_hitss_49_51
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_49_51
+
+- name: "hitss 52 - 57 - Remediar MAC e serviços legados"
+  script: 52-57.sh
+  register: remed_hitss_52_57
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_52_57
+
+- name: "hitss 58 - 60 - Remediar sincronização de tempo"
+  script: 58-60.sh
+  register: remed_hitss_58_60
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_58_60
+
+- name: "hitss 61 - 86 - Remediar serviços e exposição - Light"
+  script: 61-86_L.sh
+  register: remed_hitss_61_86
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_61_86_L
+
+- name: "hitss 61 - 86 - Remediar serviços e exposição - Full"
+  script: 61-86_F.sh
+  register: remed_hitss_61_86
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_61_86_F
+
+- name: "hitss 87 - 88 - Remediar assinaturas e patches"
+  script: 87-88.sh
+  register: remed_hitss_87_88
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_87_88
+
+- name: "hitss 89 - 90 - Remediar time sync e cron"
+  script: 89-90.sh
+  register: remed_hitss_89_90
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_89_90
+
+- name: "hitss 91 - 108 - Remediar hardening de rede"
+  script: 91-108.sh
+  register: remed_hitss_91_108
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_91_108
+
+- name: "hitss 109 - 129 - Remediar hardening do SSH"
+  script: 109-129.sh
+  register: remed_hitss_109_129
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_109_129
+
+- name: "hitss 130 - 147 - Remediar PAM e política de senhas"
+  script: 130-147.sh
+  register: remed_hitss_130_147
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_130_147
+
+- name: "hitss 148 - 160 - Remediar política de contas e aging"
+  script: 148-160.sh
+  register: remed_hitss_148_160
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_148_160
+
+- name: "hitss 161 - 181 - Logs do sistema e auditoria"
+  script: 161-181.sh
+  register: remed_hitss_161_181
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_161_181
+
+- name: "hitss 182 - 184 - Remediar AIDE e integridade"
+  script: 182-184.sh
+  register: remed_hitss_182_184
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_182_184
+
+- name: "hitss 185 - 194 - Remediar permissões de arquivos sensíveis"
+  script: 185-194.sh
+  register: remed_hitss_185_194
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - remed_hitss_185_194
+
+- name: "hitss 195 - 203 - Remediar segurança em home directories"
+  script: 195-203.sh
+  register: remed_hitss_195_203
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_195_203

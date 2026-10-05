@@ -1,0 +1,48 @@
+# Carregar regras network sysctl
+- name: Carregar regras network sysctl
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/network_sysctl.yml"
+
+# Coletar sysctl (all/default quando aplicável)
+- name: Coletar valores sysctl de rede
+  command: sysctl -n {{ item.key }}
+  register: net_sysctl_all
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Coletar valores sysctl default (quando aplicável)
+  command: sysctl -n {{ item.key_default }}
+  register: net_sysctl_def
+  loop: "{{ network_sysctl_rules | selectattr('key_default', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }} (default)"
+  changed_when: false
+  failed_when: false
+
+# Resultado auditoria network sysctl
+- name: Resultado auditoria network sysctl
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.id }}]
+      {{
+        'APROVADO'
+        if (
+          (item.expected == (all_val.stdout | default('') | trim))
+          and
+          (
+            item.key_default is not defined
+            or
+            (item.expected == (def_val.stdout | default('') | trim))
+          )
+        )
+        else 'REPROVADO'
+      }}
+  vars:
+    all_val: "{{ net_sysctl_all.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') }}"
+    def_val: "{{ net_sysctl_def.results | selectattr('item.id','equalto', item.id) | map(attribute='stdout') | list | first | default('') }}"
+  loop: "{{ network_sysctl_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"

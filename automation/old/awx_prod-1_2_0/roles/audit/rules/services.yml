@@ -1,0 +1,141 @@
+# roles/audit/rules/services.yml
+services_rules:
+  - id: 48
+    name: autofs
+    descricao: "Autofs desabilitado"
+    perfil: "Full"
+
+  - id: 56
+    name: prelink
+    descricao: "Prelink removido"
+    perfil: "Light"
+
+  - id: 57
+    name: xinetd
+    descricao: "xinetd removido"
+    perfil: "Full"
+
+  - id: 61
+    name: xorg-x11-server-common
+    descricao: "X11 ausente"
+    perfil: "Full"
+
+  - id: 62
+    name: avahi-daemon
+    descricao: "Avahi ausente"
+    perfil: "Full"
+
+  - id: 63
+    name: cups
+    descricao: "CUPS ausente"
+    perfil: "Full"
+
+  - id: 64
+    name: dhcpd
+    descricao: "DHCP server ausente"
+    perfil: "Full"
+
+  - id: 65
+    name: slapd
+    descricao: "LDAP server ausente"
+    perfil: "Full"
+
+  - id: 66
+    name: named
+    descricao: "DNS server ausente"
+    perfil: "Full"
+
+  - id: 67
+    name: vsftpd
+    descricao: "FTP server ausente"
+    perfil: "Full"
+
+  - id: 68
+    name: httpd
+    descricao: "HTTP server ausente"
+    perfil: "Full"
+
+  - id: 69
+    name: dovecot
+    descricao: "IMAP/POP3 server ausente"
+    perfil: "Full"
+
+  - id: 70
+    name: smb
+    descricao: "Samba ausente"
+    perfil: "Full"
+
+  - id: 71
+    name: squid
+    descricao: "Proxy HTTP ausente"
+    perfil: "Full"
+
+  - id: 72
+    name: snmpd
+    descricao: "SNMP ausente"
+    perfil: "Full"
+
+  - id: 73
+    name: ypserv
+    descricao: "NIS server ausente"
+    perfil: "Full"
+
+  - id: 74
+    name: telnet
+    descricao: "Telnet server ausente"
+    perfil: "Full"
+
+  - id: 75
+    name: postfix
+    descricao: "MTA em modo local-only"
+    perfil: "Full"
+
+  - id: 76
+    name: nfs-server
+    descricao: "NFS server controlado"
+    perfil: "Full"
+
+  - id: 77
+    name: rpcbind
+    descricao: "rpcbind controlado"
+    perfil: "Full"
+
+  - id: 78
+    name: rsyncd
+    descricao: "rsync daemon controlado"
+    perfil: "Full"
+
+  - id: 79
+    name: ypbind
+    descricao: "Cliente NIS ausente"
+    perfil: "Full"
+
+  - id: 80
+    name: rsh
+    descricao: "Cliente rsh ausente"
+    perfil: "Full"
+
+  - id: 81
+    name: talk
+    descricao: "Cliente talk ausente"
+    perfil: "Full"
+
+  - id: 82
+    name: telnet
+    descricao: "Cliente telnet ausente"
+    perfil: "Full"
+
+  - id: 83
+    name: sssd
+    descricao: "Cliente LDAP ausente"
+    perfil: "Full"
+
+  - id: 84
+    name: ksmtuned
+    descricao: "Serviços não essenciais removidos/mascarados"
+    perfil: "Full"
+
+  - id: 85
+    name: tftp
+    descricao: "TFTP server removido"
+    perfil: "Full"

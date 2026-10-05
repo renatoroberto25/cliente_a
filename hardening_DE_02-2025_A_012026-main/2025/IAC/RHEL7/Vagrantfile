@@ -1,0 +1,66 @@
+Vagrant.configure("2") do |config|
+
+  def provision_common(vm)
+    vm.vm.provision "shell", inline: <<-SHELL
+      echo "[V] Iniciando provisionamento comum..."
+
+      if command -v dnf >/dev/null 2>&1; then
+        echo "[+] Base RHEL/Oracle Linux detectada"
+        dnf install -y epel-release
+        dnf install -y openssh-server vim git btop curl wget bash-completion \
+          net-tools iproute lsof ansible
+      elif command -v yum >/dev/null 2>&1; then
+        echo "[+] Base RHEL detectada (YUM legacy)"
+        yum install -y epel-release
+        yum install -y openssh-server vim git btop curl wget bash-completion \
+          net-tools iproute lsof ansible
+      else
+        echo "[X] Gerenciador de pacotes não suportado."
+        exit 1
+      fi
+
+      systemctl enable sshd --now || true
+      timedatectl set-timezone America/Sao_Paulo || true
+      echo "[✔] Provisionamento concluído."
+    SHELL
+  end
+
+  data_criacao = Time.now.strftime("%Y%m%d")
+
+  config.vm.define "rhel7-soft-#{data_criacao}" do |soft|
+    soft.vm.box = "generic/rhel7"
+    soft.vm.hostname = "rhel7-soft-#{data_criacao}"
+
+    # NAT (NIC 1) é automático — não precisa configurar
+    # Host-only (NIC 2)
+    soft.vm.network "private_network", ip: "192.168.56.77", virtualbox__hostonly: "vboxnet0"
+
+    soft.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 1
+      vb.customize ["modifyvm", :id, "--vram", "64"]
+      vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    end
+
+    provision_common(soft)
+
+    %w[
+      cause_failures_block1.sh
+      cause_failures_block2.sh
+      cause_failures_block3.sh
+    ].each do |script|
+      soft.vm.provision "file", source: script, destination: "/tmp/#{script}"
+    end
+
+    soft.vm.provision "shell", inline: <<-SHELL
+      chmod +x /tmp/cause_failures_block*.sh
+
+      for i in 1 2 3; do
+        echo "[V] Executando cause_failures_block${i}.sh --cause"
+        /tmp/cause_failures_block${i}.sh --cause || true
+        echo "[✔] Bloco ${i} aplicado."
+      done
+    SHELL
+  end
+
+end

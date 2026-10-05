@@ -1,0 +1,2248 @@
+<check_type:"Unix">
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "1 Desabilitar módulo cramfs"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+cramfs\\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "2 Desabilitar módulo squashfs"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo squashfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+squashfs\\b' && ! lsmod | grep -q squashfs) || (! modinfo squashfs &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "3 Desabilitar módulo udf"
+  info        : "Média"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo udf &>/dev/null && modprobe --showconfig | grep-Pq '\\b(install|blacklist)\\h+udf\\b' && ! lsmod | grep -q udf) || (! modinfo udf &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "4 Desabilitar módulo hfs"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo hfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+hfs\\b' && ! lsmod | grep -q hfs) || (! modinfo hfs &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "5 Desabilitar módulo hfsplus"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo hfsplus &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+hfsplus\\b' && ! lsmod | grep -q hfsplus) || (! modinfo hfsplus &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "6 Desabilitar módulo jffs2"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo jffs2 &>/dev/null && modprobe --showconfig | grep-Pq '\\b(install|blacklist)\\h+jffs2\\b' && ! lsmod | grep -q jffs2) || (! modinfo jffs2 &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "7 Desabilitar módulo freevxfs"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo freevxfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+freevxfs\\b' && ! lsmod | grep -q freevxfs) || (! modinfo freevxfs &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "8 Desabilitar módulo overlayfs"
+  info        : "Média"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ( ! modinfo overlay &>/dev/null ) || ( modprobe --showconfig 2>/dev/null | grep -Eq '^[[:space:]]*(install|blacklist)[[:space:]]+overlay([[:space:]]|$)' && ! lsmod 2>/dev/null | grep -Eq '^[[:space:]]*overlay([[:space:]]|$)' ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "9 Desabilitar módulo usb-storage"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo usb-storage &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+usb_storage\\b' && ! lsmod | grep -q usb_storage) || (! modinfo usb-storage &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "10 Desabilitar módulo DCCP"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo dccp &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+dccp\\b' && ! lsmod | grep -q dccp) || (! modinfo dccp &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "11 Desabilitar módulo SCTP"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo sctp &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+sctp\\b' && ! lsmod | grep -q sctp) || (! modinfo sctp &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "12 Desabilitar módulo RDS"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo rds &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+rds\\b' && ! lsmod | grep -q rds) || (! modinfo rds &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "13 Desabilitar módulo TIPC"
+  info        : "Alta"
+  solution    : "Kernel Modules"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((modinfo tipc &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+tipc\\b' && ! lsmod | grep -q tipc) || (! modinfo tipc &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "14 Core dumps restritos"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n fs.suid_dumpable 2>/dev/null | grep -qx '0' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "15 ptrace_scope restrito"
+  info        : "Média"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ( sysctl -n kernel.yama.ptrace_scope 2>/dev/null | grep -Eqx '[1-3]' ) || ( ! sysctl -n kernel.yama.ptrace_scope &>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "16 NX/XD ativo"
+  info        : "Alta"
+  solution    : "Kernel Mitigacoes"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -qi ' nx ' /proc/cpuinfo 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "17 ASLR habilitado"
+  info        : "Média"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n kernel.randomize_va_space 2>/dev/null | grep -qx '2' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "18 IOMMU proteção"
+  info        : "Média"
+  solution    : "Kernel Mitigacoes"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ( grep -qiE 'DMAR|IOMMU' /proc/cpuinfo 2>/dev/null && grep -q 'iommu=on' /proc/cmdline 2>/dev/null ) || ( ! grep -qiE 'DMAR|IOMMU' /proc/cpuinfo 2>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "19 perf_event restrito"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n kernel.perf_event_paranoid 2>/dev/null | grep -Eqx '[2-3]' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "20 dmesg restrito"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n kernel.dmesg_restrict 2>/dev/null | grep -qx '1' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "21 user namespace desabilitado"
+  info        : "Baixa"
+  solution    : "Kernel Namespaces"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( ( sysctl -n user.max_user_namespaces 2>/dev/null | grep -qx '0' ) || ( ! sysctl -n user.max_user_namespaces &>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "22 protected_symlinks"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n fs.protected_symlinks 2>/dev/null | grep -qx '1' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "23 protected_hardlinks"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n fs.protected_hardlinks 2>/dev/null | grep -qx '1' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "24 suid_dumpable=0"
+  info        : "Alta"
+  solution    : "Kernel Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n fs.suid_dumpable 2>/dev/null | grep -qx '0' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "25 Partição dedicada para /tmp"
+  info        : "Média"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /tmp &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "26 Partição dedicada para /dev/shm"
+  info        : "Média"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /dev/shm &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "27 Partição dedicada para /var"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /var &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "28 Partição dedicada para /var/tmp"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /var/tmp &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "29 Partição dedicada para /var/log"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /var/log &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "30 Partição dedicada para /var/log/audit"
+  info        : "Média"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /var/log/audit &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "31 Partição dedicada para /home"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /home &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "32 Partição dedicada para /historico"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /historico &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "33 Partição dedicada para /crash"
+  info        : "Alta"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /crash &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "34 Partição dedicada para /UNIX"
+  info        : "Média"
+  solution    : "Particoes Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(findmnt -n /UNIX &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "35 Montagem segura de partições e mídia removível"
+  info        : "Alta"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( L=\"$(grep -E '^[[:space:]]*[^#]' /etc/fstab 2>/dev/null | grep -E '([[:space:]]|^)(/mnt|/media)([[:space:]]|$)' || true)\"; ( [ -z \"$L\" ] || ( echo \"$L\" | while IFS= read -r line; do echo \"$line\" | grep -qw nodev && echo \"$line\" | grep -qw nosuid && echo \"$line\" | grep -qw noexec || exit 1; done ) ) ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "36 Opções de montagem seguras em partições críticas - /var"
+  info        : "Alta"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /var -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "37 Opções de montagem seguras em /tmp"
+  info        : "Alta"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /tmp -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "38 Opções de montagem seguras em /dev/shm"
+  info        : "Alta"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /dev/shm -o OPTIONS 2>/dev/null)\"; echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "39 Opções de montagem seguras em /var/tmp"
+  info        : "Média"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /var/tmp -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "40 Opções de montagem seguras em /var/log"
+  info        : "Média"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /var/log -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "41 Opções de montagem seguras em /var/log/audit"
+  info        : "Média"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /var/log/audit -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev && echo \"$O\" | grep -qw nosuid && echo \"$O\" | grep -qw noexec ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "42 Opções de montagem seguras em /home"
+  info        : "Média"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( O=\"$(findmnt -n /home -o OPTIONS 2>/dev/null)\" && echo \"$O\" | grep -qw nodev ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "43 Opções de montagem seguras em mídias removíveis"
+  info        : "Alta"
+  solution    : "Opções de Montagem"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( L=\"$(grep -E '^[[:space:]]*[^#]' /etc/fstab 2>/dev/null | grep -E '([[:space:]]|^)(/media|/run/media)([[:space:]]|$)' || true)\"; ( [ -z \"$L\" ] || ( echo \"$L\" | grep -qw nodev && echo \"$L\" | grep -qw nosuid && echo \"$L\" | grep -qw noexec ) ) ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "44 Sticky bit em diretórios world-writable"
+  info        : "Alta"
+  solution    : "Diretorios Sticky Bit"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep . && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "45 Sticky bit em /tmp"
+  info        : "Alta"
+  solution    : "Diretorios Sticky Bit"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(stat -c \"%A\" /tmp | grep -q 't' && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "46 Sticky bit em /var/tmp"
+  info        : "Média"
+  solution    : "Diretorios Sticky Bit"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(stat -c \"%A\" /var/tmp | grep -q 't' && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "47 Sticky bit em /dev/shm"
+  info        : "Média"
+  solution    : "Diretorios Sticky Bit"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(stat -c \"%A\" /dev/shm | grep -q 't' && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "48 Autofs desabilitado"
+  info        : "Média"
+  solution    : "Serviços Sistema"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(! systemctl is-enabled autofs &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "49 Senha de bootloader configurada"
+  info        : "Alta"
+  solution    : "Seguranca de Boot"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -q 'password_pbkdf2' /boot/grub2/grub.cfg 2>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "50 Permissões seguras no arquivo do bootloader"
+  info        : "Alta"
+  solution    : "Seguranca de Boot"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(stat -Lc '%a %U %G' /boot/grub2/grub.cfg 2>/dev/null | grep -Eq '^(400|600) root root$' && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "51 Single user mode com autenticação"
+  info        : "Alta"
+  solution    : "Seguranca de Boot"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(! grep -q '^ExecStart=-/bin/sh' /usr/lib/systemd/system/emergency.service && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "52 MAC (SELinux/AppArmor) ativo"
+  info        : "Alta"
+  solution    : "MAC SELinux"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((getenforce 2>/dev/null | grep -Eq 'Enforcing|Permissive') && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "53 Política MAC definida"
+  info        : "Alta"
+  solution    : "MAC SELinux"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sestatus 2>/dev/null | grep -q 'Loaded policy name' && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "54 Serviços unconfined minimizados"
+  info        : "Alta"
+  solution    : "MAC SELinux"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( ( getenforce 2>/dev/null | grep -Eq 'Enforcing|Permissive' && ! ps -eZ 2>/dev/null | grep -q 'unconfined_service_t' ) || ( getenforce 2>/dev/null | grep -Eq 'Disabled' ) ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "55 Sem serviços sem restrições MAC"
+  info        : "Alta"
+  solution    : "MAC SELinux"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( ( getenforce 2>/dev/null | grep -Eq 'Enforcing|Permissive' && ! ps -eZ 2>/dev/null | grep -q 'unconfined_t' ) || ( getenforce 2>/dev/null | grep -Eq 'Disabled' ) ) >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "56 Prelink removido"
+  info        : "Média"
+  solution    : "Integridade Binarios"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(! rpm -q prelink &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "57 xinetd removido"
+  info        : "Média"
+  solution    : "Servicos Rede"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(! rpm -q xinetd &>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "58 Sincronização de tempo em uso"
+  info        : "Alta"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( systemctl is-enabled chronyd 2>/dev/null | grep -qx enabled && systemctl is-active chronyd 2>/dev/null | grep -qx active ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "59 Chrony configurado"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ! rpm -q chrony &>/dev/null || ( systemctl is-active --quiet chronyd &>/dev/null && grep -Eq '^[[:space:]]*(server|pool)[[:space:]]+' /etc/chrony.conf 2>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "60 NTP configurado"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ! rpm -q ntp &>/dev/null || ( systemctl is-enabled ntpd &>/dev/null && grep -q '^server' /etc/ntp.conf 2>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "61 X11 ausente em servidores"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q xorg-x11-server-common"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "62 Avahi ausente"
+  info        : "Média"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q avahi"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "63 CUPS ausente"
+  info        : "Média"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q cups"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "64 DHCP server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q dhcp-server"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "65 LDAP server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q openldap-servers"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "66 DNS server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q bind"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "67 FTP server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q vsftpd"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "68 HTTP server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q httpd"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "69 IMAP/POP3 server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q dovecot"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "70 Samba ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "rpm -q samba"
+  expect      : "(?i)is not installed$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "71 Proxy HTTP ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q squid &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "72 SNMP ausente"
+  info        : "Média"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q net-snmp &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "73 NIS server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q ypserv &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "74 Telnet server ausente"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q telnet-server &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "75 MTA em modo local-only"
+  info        : "Média"
+  solution    : "Serviços do Sistema"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ ! -f /etc/postfix/main.cf ] || grep -Eq '^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*(localhost|loopback-only)[[:space:]]*$' /etc/postfix/main.cf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "76 NFS server controlado"
+  info        : "Alta"
+  solution    : "Servicos MTA"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(systemctl is-enabled nfs-server &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "77 rpcbind controlado"
+  info        : "Alta"
+  solution    : "Servicos Rede"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(systemctl is-enabled rpcbind &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "78 rsync daemon controlado"
+  info        : "Média"
+  solution    : "Servicos Rede"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(systemctl is-enabled rsyncd &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "79 Cliente NIS ausente"
+  info        : "Média"
+  solution    : "Servicos Cliente"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q ypbind &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "80 Cliente rsh ausente"
+  info        : "Alta"
+  solution    : "Servicos Cliente"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q rsh &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "81 Cliente talk ausente"
+  info        : "Baixa"
+  solution    : "Servicos Cliente"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q talk &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "82 Cliente telnet ausente"
+  info        : "Média"
+  solution    : "Servicos Cliente"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q telnet &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "83 Cliente LDAP ausente"
+  info        : "Baixa"
+  solution    : "Servicos Cliente"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q openldap-clients &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "84 Serviços não essenciais removidos/mascarados"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(systemctl list-unit-files --state=enabled | grep -Eq 'avahi|cups|telnet|ftp|nis|tftp|xinetd' && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "85 TFTP server removido"
+  info        : "Alta"
+  solution    : "Servicos Rede"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q tftp-server &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "86 policykit endurecido"
+  info        : "Alta"
+  solution    : "Autorizacao Sistema"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'polkit.Result.YES|allow' /etc/polkit-1/rules.d/*.rules 2>/dev/null && echo \"FAIL\" || echo \"PASS\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "87 Assinaturas de pacotes habilitadas"
+  info        : "Alta"
+  solution    : "Atualizacoes Seguranca"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^gpgcheck\\s*=\\s*1' /etc/yum.conf /etc/yum.repos.d/*.repo 2>/dev/null && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+#88 não utilizado
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "89 Apenas um daemon de time sync"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         :  "count=0; systemctl is-active --quiet chronyd && count=$((count+1)); systemctl is-active --quiet ntpd && count=$((count+1)); systemctl is-active --quiet systemd-timesyncd && count=$((count+1)); [ \"$count\" -eq 1 ] && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "90 Cron/at seguros e restritos"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(stat -Lc '%a %U %G' /etc/cron.allow 2>/dev/null | grep -Eq '^640 root (root|crontab)$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "91 IP forwarding desabilitado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((sysctl -n net.ipv4.ip_forward | grep -q '^0$') && (sysctl -n net.ipv6.conf.all.forwarding | grep -q '^0$')) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "92 Redirecionamentos de pacotes desabilitados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.send_redirects | grep -q '^0$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "93 Source-routed packets bloqueados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.accept_source_route | grep -q '^0$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "94 ICMP redirects bloqueados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((sysctl -n net.ipv4.conf.all.accept_redirects | grep -q '^0$') && (sysctl -n net.ipv4.conf.all.secure_redirects | grep -q '^0$')) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "95 Reverse path filtering habilitado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.rp_filter | grep -Eq '^[12]$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "96 ICMP broadcast ignorado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "97 Respostas ICMP inválidas ignoradas"
+  info        : "Média"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "98 TCP SYN cookies habilitados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.tcp_syncookies | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "99 IPv6 desabilitado ou endurecido"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null | grep -Eq '^1$' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "100 ICMP timestamp-request drop"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "((iptables -L INPUT -n 2>/dev/null | grep -qi 'icmp type timestamp-request.*DROP') && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "101 ICMP timestamp-reply drop"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "((iptables -L INPUT -n 2>/dev/null | grep -qi 'icmp type timestamp-reply.*DROP') && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "102 Wireless/Bluetooth desabilitados"
+  info        : "Média"
+  solution    : "Wireless/Bluetooth"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(! lsmod | grep -Eq 'bluetooth|iwlwifi' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "103 Firewall com política default deny"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "((iptables -L INPUT -n 2>/dev/null | grep -q 'policy DROP') && (iptables -L FORWARD -n 2>/dev/null | grep -q 'policy DROP') && (iptables -L OUTPUT -n 2>/dev/null | grep -q 'policy DROP')) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "104 Apenas uma solução de firewall ativa"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "([ \"$(printf \"%s\n\" \"$(systemctl is-active firewalld >/dev/null 2>&1 && echo F)\" \"$(iptables -L >/dev/null 2>&1 && echo F)\" \"$(ip6tables -L >/dev/null 2>&1 && echo F)\" | grep -c F)\" -eq 1 ] && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "105 Regras básicas de firewall"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  #cmd         : "((iptables -L INPUT -n 2>/dev/null | grep -q 'lo .* ACCEPT') && (iptables -L INPUT -n | grep -Eq 'ESTABLISHED|RELATED') && (iptables -L OUTPUT -n | grep -q 'ACCEPT')) && echo \"PASS\"  || echo \"FAIL\" "
+  cmd         : "((iptables -S INPUT 2>/dev/null | grep -qE '^-A INPUT -i lo -j ACCEPT(\\s|$)' && iptables -S INPUT 2>/dev/null | grep -Eq '--ctstate (ESTABLISHED,RELATED|RELATED,ESTABLISHED)')) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "106 Regras explícitas para portas abertas"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(ss -tuln | awk 'NR>1 {print $5}' | sed 's/.*://g' | sort -u | grep -v '^$' | while read P; do iptables -L INPUT -n 2>/dev/null | grep -q \":${P} \" || exit 1; done && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "107 Regras de firewall persistentes"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(iptables-save 2>/dev/null | grep -q . && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "108 TLS mínimo 1.2/1.3"
+  info        : "Alta"
+  solution    : "Criptografia TLS"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( ( grep -Eq '(TLSv1\\.2|TLSv1\\.3)' /etc/crypto-policies/config 2>/dev/null ) || ( grep -Eq '(MinProtocol.*TLSv1\\.2|ssl_protocol.*TLSv1\\.2)' /etc/httpd/conf.d/* 2>/dev/null ) || ( grep -Eq 'ssl_protocol.*TLSv1\\.2' /etc/nginx/* 2>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "109 Permissoes seguras em sshd config e chaves"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( stat -c '%a %U:%G' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^[0-6][0-0][0-0] root:root$' && stat -c '%U:%G' /etc/ssh 2>/dev/null | grep -qx 'root:root' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "110 Controle de acesso via Allow/Deny"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(grep -Eq '^[[:space:]]*(AllowUsers|DenyUsers|AllowGroups|DenyGroups)' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "111 LogLevel adequado"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*LogLevel[[:space:]]+(INFO|VERBOSE)' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "112 X11Forwarding desabilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*X11Forwarding[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "113 MaxAuthTries limitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*MaxAuthTries[[:space:]]+[1-4]$' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "114 IgnoreRhosts habilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*IgnoreRhosts[[:space:]]+yes' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "115 HostbasedAuthentication desabilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*HostbasedAuthentication[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "116 PermitRootLogin restrito/desabilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*PermitRootLogin[[:space:]]+(no|prohibit-password)' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "117 PermitEmptyPasswords desabilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*PermitEmptyPasswords[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "118 PermitUserEnvironment desabilitado"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*PermitUserEnvironment[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "119 UsePAM habilitado"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*UsePAM[[:space:]]+yes' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "120 Idle timeout configurado"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((grep -Eq '^[[:space:]]*ClientAliveInterval[[:space:]]+([1-9][0-9]|[1-2][0-9]{2}|300)$' /etc/ssh/sshd_config) && (grep -Eq '^[[:space:]]*ClientAliveCountMax[[:space:]]+[1-3]$' /etc/ssh/sshd_config)) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "121 LoginGraceTime curto"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*LoginGraceTime[[:space:]]+([1-9][0-9]|[1-5][0-9]{2})s?$' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "122 MaxStartups/MaxSessions limitados"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((grep -Eq '^[[:space:]]*MaxStartups[[:space:]]+.+$' /etc/ssh/sshd_config) && (grep -Eq '^[[:space:]]*MaxSessions[[:space:]]+[1-9]+' /etc/ssh/sshd_config)) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "123 AllowTcpForwarding restrito"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*AllowTcpForwarding[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "124 Banner legal configurado"
+  info        : "Baixa"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^[[:space:]]*Banner[[:space:]]+/.*' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "125 Ciphers fortes"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*Ciphers[[:space:]]+.*(chacha20|aes256)' /etc/ssh/sshd_config 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "126 MACs fortes"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*MACs[[:space:]]+.*(hmac-sha2|umac)' /etc/ssh/sshd_config 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "127 KexAlgorithms fortes"
+  info        : "Alta"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*KexAlgorithms[[:space:]]+.*(curve25519|diffie-hellman-group-exchange-sha256)' /etc/ssh/sshd_config 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "128 Preferência moderna - double check"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*(Ciphers|KexAlgorithms)[[:space:]]+.*(chacha20|curve25519)' /etc/ssh/sshd_config 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "129 ForceCommand/Chroot"
+  info        : "Média"
+  solution    : "SSH Hardening"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(grep -Eq '^[[:space:]]*(ForceCommand|ChrootDirectory)[[:space:]]+' /etc/ssh/sshd_config && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "130 pwquality habilitado"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'pam_pwquality\\.so' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "132 pam_faillock habilitado"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Eq 'pam_faillock\\.so' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "133 pam_tally2 NÃO deve existir em RHEL 8/9"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ! grep -Eq 'pam_tally2\\.so' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "134 pam_pwhistory habilitado"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Eq 'pam_pwhistory\\.so' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "135 minlen ≥ 14"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eisq '^[[:space:]]*minlen[[:space:]]*=[[:space:]]*(1[4-9]|[2-9][0-9]|[1-9][0-9]{2,})([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "136 minclass ≥ 4"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eisq '^[[:space:]]*minclass[[:space:]]*=[[:space:]]*([4-9]|[1-9][0-9]+)([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "137 maxrepeat & maxsequence = 3"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ( grep -Eisq '^[[:space:]]*maxrepeat[[:space:]]*=[[:space:]]*3([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && ( grep -Eisq '^[[:space:]]*maxsequence[[:space:]]*=[[:space:]]*3([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "138 dictcheck != 0"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ! grep -Eisq '^[[:space:]]*dictcheck[[:space:]]*=[[:space:]]*0([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "139 Hashing sha512/yescrypt"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'pam_unix\\.so.*(sha512|yescrypt)' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "140 pwhistory remember ≥ 5"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Eq 'pam_pwhistory\\.so.*remember=([5-9]|[1-9][0-9]+)' /etc/pam.d/*auth 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "141 deny ≥ 5 (faillock)"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eiq '^[[:space:]]*deny[[:space:]]*=[[:space:]]*([5-9]|[1-9][0-9]+)([[:space:]]|$)' /etc/security/faillock.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "142 unlock_time ≥ 900"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eiq '^[[:space:]]*unlock_time[[:space:]]*=[[:space:]]*(9[0-9]{2}|[1-9][0-9]{3,})([[:space:]]|$)' /etc/security/faillock.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "143 PASS_MAX_DAYS ≤ 365"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( val=$(awk '\$1==\"PASS_MAX_DAYS\"{print \$2; exit}' /etc/login.defs 2>/dev/null); case \"$val\" in ''|*[!0-9]*) echo FAIL ;; *) [ \"$val\" -le 365 ] && echo PASS || echo FAIL ;; esac )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "144 PASS_MIN_DAYS ≥ 1"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^\\s*PASS_MIN_DAYS\\s+[1-9][0-9]*' /etc/login.defs && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "145 PASS_WARN_AGE ≥ 7"
+  info        : "Baixa"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(grep -Eq '^\\s*PASS_WARN_AGE\\s+([7-9]|[1-9][0-9]+)' /etc/login.defs && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "146 inactive ≥ 30 (para contas válidas)"
+  info        : "Média"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(awk -F: '$2~/^\\$/{print $1}' /etc/shadow | xargs -r -I{} chage -l {} | grep -Eq 'Inactive.*(3[0-9]|[4-9][0-9]+)' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "147 campo 3 != 0"
+  info        : "Baixa"
+  solution    : "Senhas e Contas"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(awk -F: '$2~/^\\$/{if($3==\"\"||$3==0) exit 1} END{exit 0}' /etc/shadow && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "148 root unico UID 0"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( awk -F: '($3==0&&$1!=\"root\"){exit 1}' /etc/passwd ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "149 root unico GID 0"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( [ \"$(grep \"^root:\" /etc/passwd | cut -d: -f4)\" -eq 0 ] ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "150 Contas de sistema travadas"
+  info        : "Alta"
+  solution    : "Senhas e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( awk -F: '($1!=\"root\" && $3<1000 && $7!=\"/sbin/nologin\" && $7!=\"/bin/false\"){exit 1}' /etc/passwd ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "152 PATH do root integro"
+  info        : "Média"
+  solution    : "Ambiente"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( echo \"$PATH\" | grep -Eq '(^|:)/sbin(:|$)' ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "153 Umask endurecida"
+  info        : "Média"
+  solution    : "Ambiente"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Riq '^\\s*umask\\s*0(2[0-7]|[0-1][0-7])' /etc/profile /etc/bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "154 Shell timeout padrao"
+  info        : "Média"
+  solution    : "Ambiente"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Riq 'TMOUT=.*([1-8][0-9][0-9]|900)' /etc/profile /etc/bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "155 sudo obrigatorio para admin"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Eq '^%.*ALL=\\(ALL\\)' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "156 sudo usa pty"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'Defaults\\s+use_pty' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "157 Log de sudo configurado"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'Defaults\\s+logfile=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "158 Reautenticacao nao desabilitada"
+  info        : "Média"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ! grep -Eq 'Defaults\\s+!authenticate' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "159 Timeout de autenticacao ajustado"
+  info        : "Média"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'Defaults\\s+timestamp_timeout=\\-?([0-9]|[1-9][0-9])' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "160 Comando su restrito"
+  info        : "Alta"
+  solution    : "Sudo"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^auth\\s+(required|requisite)\\s+pam_wheel\\.so' /etc/pam.d/su ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*\\**\\s*pass:?\\s*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "161 Stack de logs racionalizado"
+  info        : "Média"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( systemctl is-active rsyslog &>/dev/null || systemctl is-active systemd-journald &>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "162 Journald configurado"
+  info        : "Média"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( systemd-analyze cat-config systemd/journald.conf* 2>/dev/null | grep -Eq \"SystemMaxUse=\" ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "163 Rsyslog instalado e ativo"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( rpm -q rsyslog &>/dev/null && systemctl is-active rsyslog &>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "164 Logrotate para rsyslog"
+  info        : "Média"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq \"rsyslog\" /etc/logrotate.d/* 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "165 auditd instalado e rodando"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( rpm -q audit audit-libs &>/dev/null && systemctl is-active auditd &>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "166 Auditoria antes do auditd(Desde o boot)"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( ( grep -Eq '(^|[[:space:]])audit=1([[:space:]]|$)' /proc/cmdline 2>/dev/null ) || ( [ -x /sbin/grubby ] && /sbin/grubby --info=ALL 2>/dev/null | grep -Eq '(^|[[:space:]])audit=1([[:space:]]|$)' ) ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "167 Tamanho de armazenamento de audit log"
+  info        : "Média"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*max_log_file[[:space:]]*=[[:space:]]*[1-9]' /etc/audit/auditd.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "168 Logs de auditoria nao excluidos automaticamente"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq '^[[:space:]]*max_log_file_action[[:space:]]*=[[:space:]]*(keep_logs|rotate)' /etc/audit/auditd.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "169 Auditoria de alteracoes em data hora"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'adjtimex|settimeofday|clock_settime' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "170 Auditoria de alteracoes em contas grupos"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq '/etc/(passwd|shadow|group|gshadow)' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "171 Auditoria de alteracoes no ambiente de rede"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'sethostname|setdomainname|/etc/hosts|/etc/hostname' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "172 Auditoria de eventos MAC"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'mac_policy|MAC_POLICY_LOAD' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "173 Auditoria de login logout"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq \"/var/log/faillog|/var/log/lastlog|/var/run/utmp\" ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "174 Auditoria de permissoes DAC"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'chmod|chown|fchmod|fchown' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "175 Auditoria de acessos nao autorizados"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'EACCES|EPERM' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "176 Auditoria de comandos privilegiados"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( find / -xdev -perm -4000 -type f -print0 2>/dev/null | xargs -0 -r -I{} sh -c 'auditctl -l 2>/dev/null | grep -Fq \"{}\"' 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "177 Auditoria de mount unmount"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'mount|umount' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "178 Auditoria de delecao de arquivos"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq 'unlink|rename|rmdir|unlinkat|renameat' ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "179 Auditoria de kernel modules"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq \"init_module|finit_module|delete_module\" ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "180 Auditoria de sudoers logs de sudo"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq \"/etc/sudoers|/etc/sudoers.d\" ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "181 Configuracao de auditoria imutavel"
+  info        : "Alta"
+  solution    : "Auditoria e Logs"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( auditctl -l 2>/dev/null | grep -Eq \"^-e 2\" ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "182 AIDE instalado e inicializado"
+  info        : "Alta"
+  solution    : "Integridade"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( rpm -q aide &>/dev/null && [ -f /var/lib/aide/aide.db.gz ] ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "183 Verificacao de integridade agendada"
+  info        : "Média"
+  solution    : "Integridade"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( grep -Ersq 'aide(\\.wrapper)? .*(--check|--update|\\$AIDEARGS)' /etc/cron.* /etc/crontab /var/spool/cron 2>/dev/null || systemctl list-timers --all 2>/dev/null | grep -qi aime ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "184 Protecao dos binarios de auditoria"
+  info        : "Alta"
+  solution    : "Integridade"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( stat -Lc \"%a %U %G\" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules 2>/dev/null | awk '{if($1+0>750 || $2!=\"root\" || $3!=\"root\") exit 1}' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "185 Permissoes em etc passwd"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/passwd ] && stat -Lc \"%a %u %g\" /etc/passwd | grep -Eq '^64[0-9] 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "186 Permissoes em etc passwd-"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/passwd- ] && stat -Lc \"%a %u %g\" /etc/passwd- | grep -Eq '^64[0-9] 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "187 Permissoes em etc shadow"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/shadow ] && stat -Lc \"%a %u %g\" /etc/shadow | grep -Eq '^0+ 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "188 Permissoes em etc shadow-"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/shadow- ] && stat -Lc \"%a %u %g\" /etc/shadow- | grep -Eq '^0+ 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "189 Permissoes em etc gshadow-"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/gshadow- ] && stat -Lc \"%a %u %g\" /etc/gshadow- | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "190 Permissoes em etc gshadow"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/gshadow ] && stat -Lc \"%a %u %g\" /etc/gshadow | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "191 Permissoes em etc group"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/group ] && stat -Lc \"%a %u %g\" /etc/group | grep -Eq '^64[0-9] 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "192 Permissoes em etc group-"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/group- ] && stat -Lc \"%a %u %g\" /etc/group- | grep -Eq '^64[0-9] 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "193 nologin fora de etc shells"
+  info        : "Baixa"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( grep -Eq 'nologin' /etc/shells ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "194 Protecao de etc security opasswd"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( [ -f /etc/security/opasswd ] && stat -Lc \"%a %u %g\" /etc/security/opasswd | grep -Eq '^600 0 0$' ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "195 Controle de arquivos orfaos"
+  info        : "Média"
+  solution    : "Arquivos"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( find / -xdev \\( -nouser -o -nogroup \\) 2>/dev/null | grep -q . ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "196 Ausencia de world writable nao controlado"
+  info        : "Alta"
+  solution    : "Arquivos"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( find / -xdev -not -path \"/tmp/*\" -not -path \"/var/tmp/*\" -not -path \"/dev/shm/*\" -perm -0002 2>/dev/null | grep -q . ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "197 Ausencia de arquivos sem owner group"
+  info        : "Alta"
+  solution    : "Arquivos"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( find / -xdev \\( -nouser -o -nogroup \\) 2>/dev/null | grep -q . ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "198 SUID SGID revisados"
+  info        : "Alta"
+  solution    : "Permissionamento geral"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( find / -xdev \\( -perm -4000 -o -perm -2000 \\) 2>/dev/null | grep -q . ) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "199 Home para todos usuarios"
+  info        : "Alta"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( awk -F: '$3>=1000 && $1!=\"nfsnobody\" {print $6}' /etc/passwd | while read h; do [ -d \"$h\" ] || exit 1; done ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "200 Usuario dono da propria home"
+  info        : "Alta"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( awk -F: '$3>=1000 && $1!=\"nfsnobody\" {print $1,$6}' /etc/passwd | while read u h; do [ -d \"$h\" ] && [ \"$(stat -Lc %U \"$h\")\" = \"$u\" ] || exit 1; done ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "201 Permissoes de home igual ou menor 750"
+  info        : "Alta"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "( awk -F: '$3>=1000 && $1!=\"nfsnobody\"{print $6}' /etc/passwd | while read h; do [ -d \"$h\" ] && [ \"$(stat -Lc %a \"$h\")\" -le 750 ] || exit 1; done ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "202 Dotfiles nao group world writable"
+  info        : "Alta"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( awk -F: '$3>=1000 && $1!=\"nfsnobody\"{print $6}' /etc/passwd | while read h; do find \"$h\" -maxdepth 1 -type f -name \".*\" -perm /022 2>/dev/null | grep -q . && exit 1; done ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "203 Ausencia de forward netrc rhosts"
+  info        : "Alta"
+  solution    : "Sistema e Contas"
+  reference   : "BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "( awk -F: '$3>=1000 && $1!=\"nfsnobody\"{print $6}' /etc/passwd | while read h; do [ -e \"$h/.forward\" ] || [ -e \"$h/.netrc\" ] || [ -e \"$h/.rhosts\" ] && exit 1; done ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+</custom_item>
+
+#################################################################
+#################################################################
+#################################################################
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Verificação de existência do log de auditoria HITSS"
+      info        : "Detecta se o host já foi auditado anteriormente"
+      solution    : "Criar o log em /var/log/hitss-hardening.log na primeira execução"
+      reference   : "BASELINE HITSS"
+      see_also    : "/var/log/hitss-hardening.log"
+      cmd         : "[ -f /var/log/hitss-hardening.log ] && echo \"PASS\" || echo \"FAIL - host nunca auditado\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Registro de execução do pacote de auditoria HITSS via Tenable"
+      info        : "INFO"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "Perfil: Light"
+      cmd         : "echo \\\"$(date -Iseconds) - AUDIT - v1.0.1 - VIA TENABLE - host: $(hostname)\\\" >> /var/log/hitss-hardening.log && echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Leitura do último registro de auditoria HITSS"
+      info        : "Última execução registrada no log de hardening"
+      solution    : "Verificar se o log está sendo atualizado corretamente"
+      reference   : "TENABLE_AUDIT_RHELBASED_1.0.1"
+      see_also    : "/var/log/hitss-hardening.log"
+      cmd         : "tail -n 1 /var/log/hitss-hardening.log"
+      expect      : ".*"
+    </custom_item>
+
+#################################################################
+#################################################################
+#################################################################
+
+</check_type>

@@ -1,0 +1,22 @@
+---
+rhel_02_filesystem_controls:
+  - id: 35
+    descricao: "Partições / Montagem"
+    severidade: WARN
+    perfil: "Full"
+  - id: 36
+    descricao: "Partições / Montagem"
+    severidade: WARN
+    perfil: "Full"
+  - id: 40
+    descricao: "Partições / Montagem"
+    severidade: WARN
+    perfil: "Full"
+  - id: 41
+    descricao: "Partições / Montagem"
+    severidade: WARN
+    perfil: "Full"
+  - id: 42
+    descricao: "Partições / Montagem"
+    severidade: WARN
+    perfil: "Full"

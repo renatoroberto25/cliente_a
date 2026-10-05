@@ -1,0 +1,10 @@
+---
+rhel_11_wireless_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 102
+    descricao: "Rede / Wireless"
+    severidade: WARN
+    perfil: "Full"

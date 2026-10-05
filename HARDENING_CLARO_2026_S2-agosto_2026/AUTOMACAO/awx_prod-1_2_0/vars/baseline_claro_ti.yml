@@ -1,0 +1,546 @@
+---
+hitss_baseline_source: "05_Hardening_CLARO-TI_RHEL_JIRA.csv"
+hitss_controls:
+  - id: 1
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do CRAMFS não está disponível"
+  - id: 2
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do SQUASHFS não está disponível"
+  - id: 3
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do UDF não está disponível"
+  - id: 4
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do HFS não está disponível"
+  - id: 5
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do HFSPLUS não está disponível"
+  - id: 6
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do JFFS2 não está disponível"
+  - id: 7
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do FREEVXFS não está disponível"
+  - id: 8
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do OVERLAY não está disponível"
+  - id: 9
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do USB-STORAGE não está disponível"
+  - id: 10
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do DCCP não está disponível"
+  - id: 11
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do SCTP não está disponível"
+  - id: 12
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do RDS não está disponível"
+  - id: 13
+    perfil: "Full"
+    descricao: "Verifique se o módulo do kernel do TIPC não está disponível"
+  - id: 14
+    perfil: "Light"
+    descricao: "Verifique se core dumps estão restritos"
+  - id: 15
+    perfil: "Full"
+    descricao: "Verifique se ptrace_scope está restrito"
+  - id: 16
+    perfil: "Full"
+    descricao: "Verifique se NX/XD está ativo"
+  - id: 17
+    perfil: "Light"
+    descricao: "Verifique se ASLR está habilitado"
+  - id: 18
+    perfil: "Full"
+    descricao: "Verifique se IOMMU está ativo"
+  - id: 19
+    perfil: "Light"
+    descricao: "Verifique se perf_event está restrito"
+  - id: 20
+    perfil: "Light"
+    descricao: "Verifique se dmesg está restrito"
+  - id: 21
+    perfil: "Full"
+    descricao: "Verifique se user namespace está desabilitado"
+  - id: 22
+    perfil: "Light"
+    descricao: "Verifique se protected_symlinks está habilitado"
+  - id: 23
+    perfil: "Light"
+    descricao: "Verifique se protected_hardlinks está habilitado"
+  - id: 24
+    perfil: "Light"
+    descricao: "Verifique se suid_dumpable=0"
+  - id: 25
+    perfil: "Full"
+    descricao: "Partição dedicada para /tmp"
+  - id: 26
+    perfil: "Full"
+    descricao: "Partição dedicada para /dev/shm"
+  - id: 27
+    perfil: "Full"
+    descricao: "Partição dedicada para /var"
+  - id: 28
+    perfil: "Full"
+    descricao: "Partição dedicada para /var/tmp"
+  - id: 29
+    perfil: "Full"
+    descricao: "Partição dedicada para /var/log"
+  - id: 30
+    perfil: "Full"
+    descricao: "Partição dedicada para /var/log/audit"
+  - id: 31
+    perfil: "Full"
+    descricao: "Partição dedicada para /home"
+  - id: 32
+    perfil: "Full"
+    descricao: "Partição dedicada para /historico"
+  - id: 33
+    perfil: "Full"
+    descricao: "Partição dedicada para /crash"
+  - id: 34
+    perfil: "Full"
+    descricao: "Partição dedicada para /UNIX"
+  - id: 35
+    perfil: "Full"
+    descricao: "Montagem segura de partições e mídia removível"
+  - id: 36
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em partições críticas"
+  - id: 37
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /tmp"
+  - id: 38
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /dev/shm"
+  - id: 39
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /var/tmp"
+  - id: 40
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /var/log"
+  - id: 41
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /var/log/audit"
+  - id: 42
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em /home"
+  - id: 43
+    perfil: "Full"
+    descricao: "Opções de montagem seguras em mídias removíveis"
+  - id: 44
+    perfil: "Light"
+    descricao: "Sticky bit em diretórios world-writable"
+  - id: 45
+    perfil: "Light"
+    descricao: "Sticky bit em /tmp"
+  - id: 46
+    perfil: "Light"
+    descricao: "Sticky bit em /var/tmp"
+  - id: 47
+    perfil: "Light"
+    descricao: "Sticky bit em /dev/shm"
+  - id: 48
+    perfil: "Full"
+    descricao: "Autofs desabilitado"
+  - id: 49
+    perfil: "Full"
+    descricao: "Senha de bootloader configurada"
+  - id: 50
+    perfil: "Light"
+    descricao: "Permissões seguras no arquivo do bootloader"
+  - id: 51
+    perfil: "Full"
+    descricao: "Single user mode com autenticação"
+  - id: 56
+    perfil: "Light"
+    descricao: "Prelink removido"
+  - id: 57
+    perfil: "Full"
+    descricao: "xinetd removido"
+  - id: 58
+    perfil: "Full"
+    descricao: "Sincronização de tempo em uso"
+  - id: 61
+    perfil: "Full"
+    descricao: "X11 ausente"
+  - id: 62
+    perfil: "Full"
+    descricao: "Avahi ausente"
+  - id: 63
+    perfil: "Full"
+    descricao: "CUPS ausente"
+  - id: 64
+    perfil: "Full"
+    descricao: "DHCP server ausente"
+  - id: 65
+    perfil: "Full"
+    descricao: "LDAP server ausente"
+  - id: 66
+    perfil: "Full"
+    descricao: "DNS server ausente"
+  - id: 67
+    perfil: "Full"
+    descricao: "FTP server ausente"
+  - id: 68
+    perfil: "Full"
+    descricao: "HTTP server ausente"
+  - id: 69
+    perfil: "Full"
+    descricao: "IMAP/POP3 server ausente"
+  - id: 70
+    perfil: "Full"
+    descricao: "Samba ausente"
+  - id: 71
+    perfil: "Full"
+    descricao: "Proxy HTTP ausente"
+  - id: 72
+    perfil: "Full"
+    descricao: "SNMP ausente"
+  - id: 73
+    perfil: "Full"
+    descricao: "NIS server ausente"
+  - id: 74
+    perfil: "Full"
+    descricao: "Telnet server ausente"
+  - id: 75
+    perfil: "Full"
+    descricao: "MTA em modo local-only"
+  - id: 76
+    perfil: "Full"
+    descricao: "NFS server controlado"
+  - id: 77
+    perfil: "Full"
+    descricao: "rpcbind controlado"
+  - id: 78
+    perfil: "Full"
+    descricao: "rsync daemon controlado"
+  - id: 79
+    perfil: "Full"
+    descricao: "Cliente NIS ausente"
+  - id: 80
+    perfil: "Full"
+    descricao: "Cliente rsh ausente"
+  - id: 81
+    perfil: "Full"
+    descricao: "Cliente talk ausente"
+  - id: 82
+    perfil: "Full"
+    descricao: "Cliente telnet ausente"
+  - id: 83
+    perfil: "Full"
+    descricao: "Cliente LDAP ausente"
+  - id: 84
+    perfil: "Full"
+    descricao: "Serviços não essenciais removidos/mascarados"
+  - id: 85
+    perfil: "Full"
+    descricao: "TFTP server removido"
+  - id: 86
+    perfil: "Full"
+    descricao: "PolicyKit endurecido"
+  - id: 87
+    perfil: "Full"
+    descricao: "Assinaturas de pacotes habilitadas"
+  - id: 88
+    perfil: "Full"
+    descricao: "Patches de segurança aplicados - USO APENAS EM TEMPLATES"
+  - id: 89
+    perfil: "Full"
+    descricao: "Apenas um daemon de time sync"
+  - id: 90
+    perfil: "Full"
+    descricao: "Cron/at seguros e restritos"
+  - id: 91
+    perfil: "Full"
+    descricao: "IP forwarding desabilitado"
+  - id: 92
+    perfil: "Light"
+    descricao: "Redirecionamentos de pacotes desabilitados"
+  - id: 93
+    perfil: "Light"
+    descricao: "Source-routed packets bloqueados"
+  - id: 94
+    perfil: "Light"
+    descricao: "ICMP redirects bloqueados"
+  - id: 95
+    perfil: "Full"
+    descricao: "Reverse path filtering habilitado"
+  - id: 96
+    perfil: "Light"
+    descricao: "ICMP broadcast ignorado"
+  - id: 97
+    perfil: "Light"
+    descricao: "Respostas ICMP inválidas ignoradas"
+  - id: 98
+    perfil: "Light"
+    descricao: "TCP SYN cookies habilitados"
+  - id: 99
+    perfil: "Full"
+    descricao: "IPv6 desabilitado ou endurecido"
+  - id: 102
+    perfil: "Full"
+    descricao: "Wireless/Bluetooth desabilitados"
+  - id: 108
+    perfil: "Full"
+    descricao: "TLS mínimo 1.2/1.3"
+  - id: 109
+    perfil: "Light"
+    descricao: "Permissões seguras em sshd_config e chaves"
+  - id: 110
+    perfil: "Full"
+    descricao: "Controle de acesso via Allow/Deny"
+  - id: 111
+    perfil: "Light"
+    descricao: "LogLevel adequado"
+  - id: 112
+    perfil: "Full"
+    descricao: "X11Forwarding desabilitado"
+  - id: 113
+    perfil: "Light"
+    descricao: "MaxAuthTries limitado"
+  - id: 114
+    perfil: "Light"
+    descricao: "IgnoreRhosts habilitado"
+  - id: 115
+    perfil: "Full"
+    descricao: "HostbasedAuthentication desabilitado"
+  - id: 117
+    perfil: "Light"
+    descricao: "PermitEmptyPasswords desabilitado"
+  - id: 118
+    perfil: "Light"
+    descricao: "PermitUserEnvironment desabilitado"
+  - id: 119
+    perfil: "Full"
+    descricao: "UsePAM habilitado"
+  - id: 120
+    perfil: "Full"
+    descricao: "Idle timeout configurado"
+  - id: 121
+    perfil: "Light"
+    descricao: "LoginGraceTime curto"
+  - id: 122
+    perfil: "Full"
+    descricao: "MaxStartups/MaxSessions limitados"
+  - id: 123
+    perfil: "Full"
+    descricao: "AllowTcpForwarding restrito"
+  - id: 125
+    perfil: "Full"
+    descricao: "Ciphers fortes"
+  - id: 126
+    perfil: "Full"
+    descricao: "MACs fortes"
+  - id: 127
+    perfil: "Full"
+    descricao: "KexAlgorithms fortes"
+  - id: 128
+    perfil: "Full"
+    descricao: "Preferência moderna - double check"
+  - id: 129
+    perfil: "Full"
+    descricao: "ForceCommand/Chroot"
+  - id: 130
+    perfil: "Full"
+    descricao: "pwquality habilitado"
+  - id: 131
+    perfil: "Full"
+    descricao: "Verificar parâmetros do pam_pwquality"
+  - id: 132
+    perfil: "Full"
+    descricao: "pam_faillock habilitado"
+  - id: 133
+    perfil: "Full"
+    descricao: "pam_tally2 NÃO deve existir em RHEL 8/9"
+  - id: 134
+    perfil: "Full"
+    descricao: "pam_pwhistory habilitado"
+  - id: 135
+    perfil: "Full"
+    descricao: "minlen ≥ 14"
+  - id: 136
+    perfil: "Full"
+    descricao: "minclass ≥ 4"
+  - id: 137
+    perfil: "Full"
+    descricao: "maxrepeat & maxsequence = 3"
+  - id: 138
+    perfil: "Full"
+    descricao: "dictcheck != 0"
+  - id: 139
+    perfil: "Full"
+    descricao: "Hashing sha512/yescrypt"
+  - id: 140
+    perfil: "Full"
+    descricao: "pwhistory remember ≥ 5"
+  - id: 141
+    perfil: "Full"
+    descricao: "deny maior igual a 5 (faillock)"
+  - id: 142
+    perfil: "Full"
+    descricao: "unlock_time maior igual a 900"
+  - id: 143
+    perfil: "Full"
+    descricao: "PASS_MAX_DAYS ≤ 365"
+  - id: 144
+    perfil: "Full"
+    descricao: "PASS_MIN_DAYS maior igual a 1"
+  - id: 145
+    perfil: "Full"
+    descricao: "PASS_WARN_AGE maior igual a 7"
+  - id: 146
+    perfil: "Full"
+    descricao: "inactive maior igual a 30 (para contas válidas)"
+  - id: 147
+    perfil: "Full"
+    descricao: "campo 3 diferente 0"
+  - id: 148
+    perfil: "Full"
+    descricao: "Root é o único UID 0"
+  - id: 149
+    perfil: "Full"
+    descricao: "Root é o único GID 0"
+  - id: 150
+    perfil: "Full"
+    descricao: "Contas de sistema com shell interativo"
+  - id: 151
+    perfil: "Full"
+    descricao: "/sbin/nologin presente em /etc/shells"
+  - id: 152
+    perfil: "Full"
+    descricao: "PATH do root configurado"
+  - id: 153
+    perfil: "Full"
+    descricao: "umask 027"
+  - id: 154
+    perfil: "Full"
+    descricao: "TMOUT 900"
+  - id: 155
+    perfil: "Full"
+    descricao: "Ausência de regras amplas sudo"
+  - id: 156
+    perfil: "Light"
+    descricao: "sudo usa pty"
+  - id: 157
+    perfil: "Light"
+    descricao: "sudo logfile"
+  - id: 158
+    perfil: "Full"
+    descricao: "!authenticate ausente"
+  - id: 159
+    perfil: "Light"
+    descricao: "timestamp_timeout=5"
+  - id: 160
+    perfil: "Full"
+    descricao: "su restrito ao wheel"
+  - id: 162
+    perfil: "Light"
+    descricao: "Journald configurado persistente"
+  - id: 164
+    perfil: "Light"
+    descricao: "Logrotate para rsyslog"
+  - id: 166
+    perfil: "Full"
+    descricao: "Auditoria antes do auditd(se utilizado)"
+  - id: 167
+    perfil: "Light"
+    descricao: "Tamanho de armazenamento de audit log"
+  - id: 168
+    perfil: "Full"
+    descricao: "Logs de auditoria não excluídos automaticamente"
+  - id: 169
+    perfil: "Light"
+    descricao: "Auditoria de alterações em data/hora"
+  - id: 170
+    perfil: "Light"
+    descricao: "Auditoria de alterações em contas/grupos"
+  - id: 171
+    perfil: "Light"
+    descricao: "Auditoria de alterações no ambiente de rede"
+  - id: 173
+    perfil: "Light"
+    descricao: "Auditoria de login/logout"
+  - id: 174
+    perfil: "Light"
+    descricao: "Auditoria de permissões DAC"
+  - id: 175
+    perfil: "Light"
+    descricao: "Auditoria de acessos não autorizados"
+  - id: 176
+    perfil: "Full"
+    descricao: "Auditoria de comandos privilegiados"
+  - id: 177
+    perfil: "Light"
+    descricao: "Auditoria de mount/unmount"
+  - id: 178
+    perfil: "Light"
+    descricao: "Auditoria de deleção de arquivos"
+  - id: 179
+    perfil: "Light"
+    descricao: "Auditoria de kernel modules"
+  - id: 180
+    perfil: "Light"
+    descricao: "Auditoria de sudoers/logs de sudo"
+  - id: 181
+    perfil: "Full"
+    descricao: "Configuração de auditoria imutável"
+  - id: 185
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/passwd"
+  - id: 186
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/passwd-"
+  - id: 187
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/shadow"
+  - id: 188
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/shadow-"
+  - id: 189
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/gshadow-"
+  - id: 190
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/gshadow"
+  - id: 191
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/group"
+  - id: 192
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/group-"
+  - id: 193
+    perfil: "Full"
+    descricao: "Verificar se contas usam shell nologin"
+  - id: 194
+    perfil: "Light"
+    descricao: "Verificar permissões de /etc/security/opasswd"
+  - id: 195
+    perfil: "Full"
+    descricao: "Verificar existência de arquivos órfãos (UID/GID sem dono)"
+  - id: 196
+    perfil: "Light"
+    descricao: "Verificar world-writable fora de áreas permitidas"
+  - id: 197
+    perfil: "Full"
+    descricao: "Verificar arquivos/diretórios sem owner ou group"
+  - id: 198
+    perfil: "Full"
+    descricao: "Verificar binários SUID/SGID indevidos"
+  - id: 199
+    perfil: "Full"
+    descricao: "Verificar se usuários possuem diretório home válido)"
+  - id: 200
+    perfil: "Full"
+    descricao: "Verificar ownership das homes dos usuários"
+  - id: 201
+    perfil: "Full"
+    descricao: "Verificar permissões das homes (<=750)"
+  - id: 202
+    perfil: "Light"
+    descricao: "Verificar dotfiles inseguros nas homes"
+  - id: 203
+    perfil: "Full"
+    descricao: "Verificar arquivos .forward/.netrc/.rhosts nas homes"

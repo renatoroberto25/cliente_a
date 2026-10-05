@@ -1,0 +1,28 @@
+chmod 600 /opt/vault/tls/tls.key
+chmod 644 /opt/vault/tls/tls.crt
+root@deb12-sensor-20260831:/home/renato# openssl x509 -in /opt/vault/tls/tls.crt -noout -text | grep -A2 "Subject Alternative"
+            X509v3 Subject Alternative Name: 
+                DNS:tenable-sensor, DNS:deb12-sensor-20260831, IP Address:192.168.56.200, IP Address:127.0.0.1
+            X509v3 Subject Key Identifier: 
+root@deb12-sensor-20260831:/home/renato# export VAULT_ADDR='https://192.168.56.200:8200'
+export VAULT_SKIP_VERIFY=true
+vault status
+Key                Value
+---                -----
+Seal Type          shamir
+Initialized        false
+Sealed             true
+Total Shares       0
+Threshold          0
+Unseal Progress    0/0
+Unseal Nonce       n/a
+Version            2.0.4
+Build Date         2026-08-03T16:14:36Z
+Storage Type       file
+HA Enabled         false
+root@deb12-sensor-20260831:/home/renato# vault operator init -key-shares=3 -key-threshold=2
+Unseal Key 1: PGd/qDVxwYhn4bbzGreLff7jG56Bo/v5mstjcVSABJfn
+Unseal Key 2: O5ocOzKT1HLYlHe6IA+AbFPtR7CRrMHAATyWwpr8e1hR
+Unseal Key 3: EQt4iBi4Asn4NJVpdwXigo+5Qj9x9paFwsF3qiIit+4P
+
+Initial Root Token: hvs.02eGZ7WaQr3SV7w212Upcbz0

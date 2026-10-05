@@ -1,0 +1,22 @@
+Explicação do Script:
+
+check_pam_module(): Uma função auxiliar para verificar se um determinado módulo PAM está presente em um arquivo.
+Verificação do authselect: O script tenta obter o perfil ativo usando authselect current. Se um perfil for encontrado (e não for a mensagem de "nenhuma configuração"), ele assume que o authselect está em uso.
+Auditoria com authselect:
+Constrói os caminhos para os arquivos system-auth e password-auth dentro do diretório do perfil ativo em /etc/authselect/.
+Verifica a presença dos módulos PAM essenciais em ambos os arquivos usando a função check_pam_module.
+Reporta o status geral (APROVADO/REPROVADO) com base na presença de todos os módulos.
+Auditoria de PAM Direto:
+Se o authselect não estiver em uso, o script verifica a presença dos mesmos módulos PAM diretamente nos arquivos /etc/pam.d/system-auth e /etc/pam.d/password-auth.
+Reporta o status geral.
+Detecção Básica de IdM/AD: Uma verificação simples procura a linha auth sufficient pam_sss.so em qualquer arquivo dentro de /etc/pam.d/. Esta é uma indicação comum de que o SSSD (System Security Services Daemon) está sendo usado para autenticação, o que geralmente acontece em ambientes IdM ou AD. Esta detecção é básica e pode precisar ser mais sofisticada dependendo do seu ambiente.
+Saída: O script fornece mensagens informativas sobre o que está sendo verificado e o resultado da auditoria.
+Como Usar e Melhorar:
+
+Salve o script: Salve o código em um arquivo executável (por exemplo, audit_pam_modules.sh).
+Execute o script: bash audit_pam_modules.sh
+Melhorias:
+Detecção de IdM/AD: A detecção atual é muito simples. Para uma detecção mais robusta, você pode verificar a presença de arquivos de configuração específicos do ipa-client ou do realmd, ou verificar o status dos serviços sssd e krb5-kdc.
+Configuração Mínima do authselect: Você mencionou uma configuração mínima com authselect select custom/custom-profile with-pwhistory with-faillock without-nullok --backup=PAM_CONFIG_BACKUP --force. Este script de auditoria apenas verifica a presença dos módulos, não se a configuração foi feita dessa forma específica. Auditar a configuração exata do authselect (features habilitadas/desabilitadas) exigiria uma análise mais detalhada da saída de authselect current --details ou da estrutura dos arquivos de perfil.
+Flexibilidade dos Módulos: Se a lista de módulos a serem verificados puder variar, você pode tornar essa lista uma variável no script.
+Tratamento de Erros: Adicionar mais tratamento de erros (por exemplo, verificar se os arquivos PAM existem) pode tornar o script mais robusto.

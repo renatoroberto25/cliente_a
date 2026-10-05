@@ -1,0 +1,20 @@
+if ! modinfo cramfs &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+cramfs\b' && ! lsmod | grep -qw cramfs; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo squashfs &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+squashfs\b' && ! lsmod | grep -qw squashfs; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo udf &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+udf\b' && ! lsmod | grep -qw udf; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo hfs &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+hfs\b' && ! lsmod | grep -qw hfs; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo hfsplus &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+hfsplus\b' && ! lsmod | grep -qw hfsplus; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo jffs2 &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+jffs2\b' && ! lsmod | grep -qw jffs2; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo freevxfs &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+freevxfs\b' && ! lsmod | grep -qw freevxfs; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo overlay &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+overlay\b' && ! lsmod | grep -qw overlay; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo usb_storage &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+usb_storage\b' && ! lsmod | grep -qw usb_storage; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo dccp &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+dccp\b' && ! lsmod | grep -qw dccp; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo sctp &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+sctp\b' && ! lsmod | grep -qw sctp; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo rds &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+rds\b' && ! lsmod | grep -qw rds; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if ! modinfo tipc &>/dev/null; then echo "✅ APROVADO"; elif modprobe --showconfig 2>/dev/null | grep -Pq '^[[:space:]]*(install|blacklist)[[:space:]]+tipc\b' && ! lsmod | grep -qw tipc; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if [ "$(ulimit -c)" = "0" ] && sysctl -n fs.suid_dumpable 2>/dev/null | grep -q '^0$'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if sysctl -n kernel.yama.ptrace_scope 2>/dev/null | grep -q '^[1-3]$'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if grep -q 'nx' /proc/cpuinfo 2>/dev/null && dmesg 2>/dev/null | grep -qi 'NX.*active'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO (Possível ausência no hardware)"; fi
+if sysctl -n kernel.randomize_va_space 2>/dev/null | grep -q '^2$'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if grep -q 'iommu=on' /proc/cmdline 2>/dev/null; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if sysctl -n kernel.perf_event_paranoid 2>/dev/null | grep -q '^[2-3]$'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi
+if sysctl -n kernel.dmesg_restrict 2>/dev/null | grep -q '^1$'; then echo "✅ APROVADO"; else echo "⚠️ REPROVADO"; fi

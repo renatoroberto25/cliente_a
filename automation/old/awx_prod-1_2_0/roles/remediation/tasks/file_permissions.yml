@@ -1,0 +1,380 @@
+- name: Pré-check permissões passwd- (186)
+  shell: |
+    if [ -e /etc/passwd- ]; then
+      if stat -c '%a' /etc/passwd- 2>/dev/null | grep -Eq '^[0-6]44$'; then
+        echo "OK"
+      else
+        echo "NEEDS_CHANGE"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_186_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões passwd- (186)
+  shell: |
+    if chmod 0644 /etc/passwd- 2>/dev/null; then
+      echo "CHANGED"
+    else
+      echo "FALHA"
+    fi
+  register: remed_186_apply
+  changed_when: remed_186_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_186_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check permissões passwd- (186)
+  shell: |
+    if [ -e /etc/passwd- ]; then
+      if stat -c '%a' /etc/passwd- 2>/dev/null | grep -Eq '^[0-6]44$'; then
+        if [ "{{ remed_186_pre.stdout | trim }}" = "OK" ]; then
+          echo "OK"
+        else
+          if [ "{{ remed_186_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        fi
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_186
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões passwd- (186)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][186] {{ remed_186.stdout | trim }}
+
+- name: Pré-check permissões shadow (187)
+  shell: |
+    if stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "OK"
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: remed_187_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões shadow (187)
+  shell: |
+    if chown root:root /etc/shadow 2>/dev/null; then
+      if chmod 600 /etc/shadow 2>/dev/null; then
+        echo "CHANGED"
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_187_apply
+  changed_when: remed_187_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_187_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check permissões shadow (187)
+  shell: |
+    if stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      if [ "{{ remed_187_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_187_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_187
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões shadow (187)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][187] {{ remed_187.stdout | trim }}
+
+- name: Pré-check permissões shadow- (188)
+  shell: |
+    if [ -e /etc/shadow- ]; then
+      if stat -c '%a %U %G' /etc/shadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+        echo "OK"
+      else
+        echo "NEEDS_CHANGE"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_188_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões shadow- (188)
+  shell: |
+    if chown root:root /etc/shadow- 2>/dev/null; then
+      if chmod 600 /etc/shadow- 2>/dev/null; then
+        echo "CHANGED"
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_188_apply
+  changed_when: remed_188_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_188_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check permissões shadow- (188)
+  shell: |
+    if [ -e /etc/shadow- ]; then
+      if stat -c '%a %U %G' /etc/shadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+        if [ "{{ remed_188_pre.stdout | trim }}" = "OK" ]; then
+          echo "OK"
+        else
+          if [ "{{ remed_188_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        fi
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_188
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões shadow- (188)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][188] {{ remed_188.stdout | trim }}
+
+- name: Pré-check permissões gshadow- (189)
+  shell: |
+    if [ -e /etc/gshadow- ]; then
+      if stat -c '%a %U %G' /etc/gshadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+        echo "OK"
+      else
+        echo "NEEDS_CHANGE"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_189_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões gshadow- (189)
+  shell: |
+    if chown root:root /etc/gshadow- 2>/dev/null; then
+      if chmod 600 /etc/gshadow- 2>/dev/null; then
+        echo "CHANGED"
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_189_apply
+  changed_when: remed_189_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_189_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check permissões gshadow- (189)
+  shell: |
+    if [ -e /etc/gshadow- ]; then
+      if stat -c '%a %U %G' /etc/gshadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+        if [ "{{ remed_189_pre.stdout | trim }}" = "OK" ]; then
+          echo "OK"
+        else
+          if [ "{{ remed_189_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        fi
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_189
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões gshadow- (189)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][189] {{ remed_189.stdout | trim }}
+
+- name: Pré-check permissões gshadow (190)
+  shell: |
+    if stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "OK"
+    else
+      echo "NEEDS_CHANGE"
+    fi
+  register: remed_190_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões gshadow (190)
+  shell: |
+    if chown root:root /etc/gshadow 2>/dev/null; then
+      if chmod 600 /etc/gshadow 2>/dev/null; then
+        echo "CHANGED"
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_190_apply
+  changed_when: remed_190_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_190_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check permissões gshadow (190)
+  shell: |
+    if stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      if [ "{{ remed_190_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_190_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_190
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões gshadow (190)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][190] {{ remed_190.stdout | trim }}
+
+- name: Pré-check nologin fora de etc shells (193)
+  shell: |
+    if grep -Eq 'nologin' /etc/shells 2>/dev/null; then
+      echo "NEEDS_CHANGE"
+    else
+      echo "OK"
+    fi
+  register: remed_193_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar nologin fora de etc shells (193)
+  shell: |
+    if sed -i '/nologin/d' /etc/shells 2>/dev/null; then
+      echo "CHANGED"
+    else
+      echo "FALHA"
+    fi
+  register: remed_193_apply
+  changed_when: remed_193_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_193_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check nologin fora de etc shells (193)
+  shell: |
+    if grep -Eq 'nologin' /etc/shells 2>/dev/null; then
+      echo "FALHA"
+    else
+      if [ "{{ remed_193_pre.stdout | trim }}" = "OK" ]; then
+        echo "OK"
+      else
+        if [ "{{ remed_193_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+          echo "CHANGED"
+        else
+          echo "FALHA"
+        fi
+      fi
+    fi
+  register: remed_193
+  changed_when: false
+  failed_when: false
+
+- name: Resultado nologin fora de etc shells (193)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][193] {{ remed_193.stdout | trim }}
+
+- name: Pré-check proteger opasswd (194)
+  shell: |
+    if [ -e /etc/security/opasswd ]; then
+      if stat -c '%a %U %G' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) root root$'; then
+        echo "OK"
+      else
+        echo "NEEDS_CHANGE"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_194_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar proteger opasswd (194)
+  shell: |
+    if chown root:root /etc/security/opasswd 2>/dev/null; then
+      if chmod 600 /etc/security/opasswd 2>/dev/null; then
+        echo "CHANGED"
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_194_apply
+  changed_when: remed_194_apply.stdout | trim == 'CHANGED'
+  failed_when: false
+  when: remed_194_pre.stdout | trim == 'NEEDS_CHANGE'
+
+- name: Pós-check proteger opasswd (194)
+  shell: |
+    if [ -e /etc/security/opasswd ]; then
+      if stat -c '%a %U %G' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) root root$'; then
+        if [ "{{ remed_194_pre.stdout | trim }}" = "OK" ]; then
+          echo "OK"
+        else
+          if [ "{{ remed_194_apply.stdout | default('') | trim }}" = "CHANGED" ]; then
+            echo "CHANGED"
+          else
+            echo "FALHA"
+          fi
+        fi
+      else
+        echo "FALHA"
+      fi
+    else
+      echo "FALHA"
+    fi
+  register: remed_194
+  changed_when: false
+  failed_when: false
+
+- name: Resultado proteger opasswd (194)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][194] {{ remed_194.stdout | trim }}

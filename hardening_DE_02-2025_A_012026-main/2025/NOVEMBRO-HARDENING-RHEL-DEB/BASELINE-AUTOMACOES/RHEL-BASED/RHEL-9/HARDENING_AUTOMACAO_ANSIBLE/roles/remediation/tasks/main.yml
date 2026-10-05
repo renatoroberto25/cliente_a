@@ -1,0 +1,1782 @@
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 1 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 1"
+  script: 111/1111.sh
+  register: remediation_1111
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_1
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 2"
+  script: 111/1112.sh
+  register: remediation_1112
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_2
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 3"
+  script: 111/1113.sh
+  register: remediation_1113
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_3
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 4"
+  script: 111/1114.sh
+  register: remediation_1114
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_4
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 5"
+  script: 111/1115.sh
+  register: remediation_1115
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_5
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 6 - Nível 2"
+  script: 111/1116.sh
+  register: remediation_1116
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_6
+    - hardening_full
+
+- name: "Executar hardening HITSS 7- Nível 2"
+  script: 111/1117.sh
+  register: remediation_1117
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_7
+    - hardening_full
+
+- name: "Executar hardening HITSS 8"
+  script: 111/1118.sh
+  register: remediation_1118
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_8
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 9"
+  script: 111/1119.sh
+  register: remediation_1119
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_9
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 10 - 35"
+  script: 112/112.sh
+  register: remediation_112
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_10
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 36 - 39"
+  script: 121/121.sh
+  register: remediation_121
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_36
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 38 - Nível 2"
+  script: 121/1213.sh
+  register: remediation_1213
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_38
+    - hardening_full
+
+- name: "Executar hardening HITSS 40"
+  script: 122/122.sh
+  register: remediation_122
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_40
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 41"
+  script: 131/131.sh
+  register: remediation_131
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_41
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 45 - Nível 2"
+  script: 131/1315.sh
+  register: remediation_1315
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_45
+    - hardening_full
+
+- name: "Executar hardening HITSS 49"
+  script: 141/141.sh
+  register: remediation_141
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_49
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 50"
+  script: 142/142.sh
+  register: remediation_142
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_50
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 51"
+  script: 151/151.sh
+  register: remediation_151
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_51
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 52"
+  script: 152/152.sh
+  register: remediation_152
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_52
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 53"
+  script: 153/153.sh
+  register: remediation_153
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_53
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 54"
+  script: 154/154.sh
+  register: remediation_154
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_54
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 55"
+  script: 161/161.sh
+  register: remediation_161
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_55
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 56"
+  script: 162/162.sh
+  register: remediation_162
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_56
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 57"
+  script: 163/163.sh
+  register: remediation_163
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_57
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 58"
+  script: 164/164.sh
+  register: remediation_164
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_58
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 59"
+  script: 165/165.sh
+  register: remediation_165
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_59
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 60"
+  script: 166/166.sh
+  register: remediation_166
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_60
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 61"
+  script: 167/167.sh
+  register: remediation_167
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_61
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 62 a 67"
+  script: 171/171.sh
+  register: remediation_171
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_62
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 68"
+  script: 181/181.sh
+  register: remediation_181
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_68
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 69"
+  script: 181/182.sh
+  register: remediation_182
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_69
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 70"
+  script: 181/183.sh
+  register: remediation_183
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_70
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 71"
+  script: 181/184.sh
+  register: remediation_184
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_71
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 72"
+  script: 181/185.sh
+  register: remediation_185
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_72
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 73"
+  script: 181/186.sh
+  register: remediation_186
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_73
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 74"
+  script: 181/187.sh
+  register: remediation_187
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_74
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 75"
+  script: 181/188.sh
+  register: remediation_188
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_75
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 76"
+  script: 181/189.sh
+  register: remediation_189
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_76
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+- name: "Executar hardening HITSS 77"
+  script: 181/1810.sh
+  register: remediation_1810
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_77
+    - hardening_soft
+    - hardening_full
+    - remediation_1.x
+
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 2 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 78"
+  script: 211/211.sh
+  register: remediation_211
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_78
+    - hardening_soft
+    - hardening_full
+    - remediation_2.x
+
+
+- name: "Executar hardening HITSS 100 - Nível 2"
+  script: 221/221.sh
+  register: remediation_221
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_100
+    - hardening_full
+
+- name: "Executar hardening HITSS 105"
+  script: 231/231.sh
+  register: remediation_231
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_105
+    - hardening_soft
+    - hardening_full
+    - remediation_2.x
+
+
+- name: "Executar hardening HITSS 115"
+  script: 241/241.sh
+  register: remediation_241
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_115
+    - hardening_soft
+    - hardening_full
+    - remediation_2.x
+
+
+- name: "Executar hardening HITSS 116"
+  script: 242/242.sh
+  register: remediation_242
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_116
+    - hardening_soft
+    - hardening_full
+    - remediation_2.x
+
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 3 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 117"
+  script: 311/311.sh
+  register: remediation_311
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_117
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 118"
+  script: 312/312.sh
+  register: remediation_312
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_118
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 119"
+  script: 313/313.sh
+  register: remediation_313
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_119
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 120 - Nível 2"
+  script: 321/321.sh
+  register: remediation_321
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_120
+    - hardening_full
+
+- name: "Executar hardening HITSS 124"
+  script: 331/331.sh
+  register: remediation_331
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_124
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 125"
+  script: 332/332.sh
+  register: remediation_332
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_125
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 126"
+  script: 333/333.sh
+  register: remediation_333
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_126
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 127"
+  script: 334/334.sh
+  register: remediation_334
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_127
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 128"
+  script: 335/335.sh
+  register: remediation_335
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_128
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 129"
+  script: 336/336.sh
+  register: remediation_336
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_129
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 130"
+  script: 337/337.sh
+  register: remediation_337
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_130
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 131"
+  script: 338/338.sh
+  register: remediation_338
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_131
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 132"
+  script: 339/339.sh
+  register: remediation_339
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_132
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 133"
+  script: 331/3310.sh
+  register: remediation_3310
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_133
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+- name: "Executar hardening HITSS 134"
+  script: 331/3311.sh
+  register: remediation_3311
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_134
+    - hardening_soft
+    - hardening_full
+    - remediation_3.x
+
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 4 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 135"
+  script: 411/411.sh
+  register: remediation_411
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_135
+    - hardening_soft
+    - hardening_full
+    - remediation_4.x
+
+
+- name: "Executar hardening HITSS 136"
+  script: 412/412.sh
+  register: remediation_412
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_136
+    - hardening_soft
+    - hardening_full
+    - remediation_4.x
+
+
+- name: "Executar hardening HITSS 137"
+  script: 421/421.sh
+  register: remediation_421
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_137
+    - hardening_soft
+    - hardening_full
+    - remediation_4.x
+
+
+- name: "Executar hardening HITSS 138"
+  script: 422/422.sh
+  register: remediation_422
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_138
+    - hardening_soft
+    - hardening_full
+    - remediation_4.x
+
+
+######################################################################
+######################################################################
+######################################################################
+
+- name: "Executar hardening HITSS 139 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/431.sh
+  register: remediation_431
+  changed_when: false
+  failed_when: false
+  tags:
+    - nf_remediation_hitss_139
+
+- name: "Executar hardening HITSS 140 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/432.sh
+  register: remediation_432
+  changed_when: false
+  failed_when: false
+  tags:
+    - nf_remediation_hitss_140
+
+- name: "Executar hardening HITSS 141 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/433.sh
+  register: remediation_433
+  changed_when: false
+  failed_when: false
+  tags:
+    - nf_remediation_hitss_141
+
+- name: "Executar hardening HITSS 142 - EXCLUSIVAMENTE PARA NFTABLES"
+  script: 431/434.sh
+  register: remediation_434
+  changed_when: false
+  failed_when: false
+  tags:
+    - nfremediation_hitss_142
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 5 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 143"
+  script: 511/511.sh
+  register: remediation_511
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_143
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 144"
+  script: 512/512.sh
+  register: remediation_512
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_144
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 145"
+  script: 513/513.sh
+  register: remediation_513
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_145
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 146 - 147 - 148"
+  script: 514/514.sh
+  register: remediation_514
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_146
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 149 - 150 - 151"
+  script: 517/517.sh
+  register: remediation_517
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_149
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 152 - Nível 2 a 158"
+  script: 511/5110.sh
+  register: remediation_5110
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_152
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 159 a 164"
+  script: 511/5117.sh
+  register: remediation_5117
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_159
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 165"
+  script: 521/521.sh
+  register: remediation_521
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_165
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 166"
+  script: 522/522.sh
+  register: remediation_522
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_166
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar hardening HITSS 167"
+  script: 523/523.sh
+  register: remediation_523
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_167
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+#####################################################
+#⚠️ A remediação pode causar bloqueio de acesso, para serviços/usuários, por favor validar antes de aplicar
+#- name: "Executar hardening HITSS 168 - Nível 2"
+#  script: 524/524.sh
+#  register: remediation_524
+#  changed_when: false
+#  failed_when: false
+#  tags:
+#    - remediation_hitss_168
+#    - remediation_full
+#- name: "Exibir resultado do hardening HITSS 168 - Nível 2"
+#  debug:
+#    msg: "{{ remediation_524.stdout_lines }}"
+#  tags:
+#    - remediation_hitss_168
+#    - remediation_full
+#
+#- name: "Executar hardening HITSS 169 - Nível 2"
+#  script: 525/525.sh
+#  register: remediation_525
+#  changed_when: false
+#  failed_when: false
+#  tags:
+#    - remediation_hitss_169
+#    - remediation_full
+#- name: "Exibir resultado do hardening HITSS 169 - Nível 2"
+#  debug:
+#    msg: "{{ remediation_525.stdout_lines }}"
+#  tags:
+#    - remediation_hitss_169
+#    - remediation_full
+#
+#- name: "Executar hardening HITSS 170"
+#  script: 526/526.sh
+#  register: remediation_526
+#  changed_when: false
+#  failed_when: false
+#  tags:
+#    - remediation_hitss_170
+#    - hardening_full
+#- name: "Exibir resultado do hardening HITSS 170"
+#  debug:
+#    msg: "{{ remediation_526.stdout_lines }}"
+#  tags:
+#    - remediation_hitss_170
+#    - hardening_full
+#⚠️ A remediação pode causar bloqueio de acesso, para serviços/usuários, por favor validar antes de aplicar
+
+- name: "Executar remediation HITSS 171"
+  script: 527/527.sh
+  register: remediation_527
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_171
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 172 - 174"
+  script: 531/531.sh
+  register: remediation_531
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_172
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+#####################################################
+- name: "Executar remediation HITSS 175"
+  script: 532/5321.sh
+  register: remediation_5321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_175
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 176"
+  script: 532/5322.sh
+  register: remediation_5322
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_176
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 177"
+  script: 532/5323.sh
+  register: remediation_5323
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_177
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 178"
+  script: 532/5324.sh
+  register: remediation_5324
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_178
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 179"
+  script: 532/5325.sh
+  register: remediation_5325
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_179
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+#####################################################
+- name: "Executar remediation HITSS 180"
+  script: 533/53311.sh
+  register: remediation_53311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_180
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 181"
+  script: 533/53312.sh
+  register: remediation_53312
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_181
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 182 - Nível 2"
+  script: 533/53313.sh
+  register: remediation_53313
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_182
+    - hardening_full
+
+- name: "Executar remediation HITSS 183"
+  script: 533/53321.sh
+  register: remediation_53321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_183
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 190"
+  script: 533/53331.sh
+  register: remediation_53331
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_190
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 192"
+  script: 533/53333.sh
+  register: remediation_53333
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_192
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 193"
+  script: 533/53341.sh
+  register: remediation_53341
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_193
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 197 - 202"
+  script: 541/541.sh
+  register: remediation_541
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_197
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 203"
+  script: 542/5421.sh
+  register: remediation_5421
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_203
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 207"
+  script: 542/5425.sh
+  register: remediation_5425
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_207
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 208"
+  script: 542/5426.sh
+  register: remediation_5426
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_208
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+  
+- name: "Executar remediation HITSS 209"
+  script: 542/5427.sh
+  register: remediation_5427
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_209
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 210 - Bloqueio de contas"
+  script: 542/5428.sh
+  register: remediation_5428
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_210
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 211"
+  script: 543/5431.sh
+  register: remediation_5431
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_211
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 212"
+  script: 543/5432.sh
+  register: remediation_5432
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_212
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+- name: "Executar remediation HITSS 213"
+  script: 543/5433.sh
+  register: remediation_5433
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_213
+    - hardening_soft
+    - hardening_full
+    - remediation_5.x
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 6 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 214"
+  script: 611/611.sh
+  register: remediation_611
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_214
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar hardening HITSS 215"
+  script: 611/612.sh
+  register: remediation_612
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_215
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar hardening HITSS 216"
+  script: 611/613.sh
+  register: remediation_613
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_216
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar hardening HITSS 217"
+  script: 621/6211.sh
+  register: remediation_6211
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_217
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 218"
+  script: 621/6212.sh
+  register: remediation_6212
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_218
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 219"
+  script: 621/6213.sh
+  register: remediation_6213
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_219
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+- name: "Executar remediation HITSS 220"
+  script: 621/6214.sh
+  register: remediation_6214
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_220
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+- name: "Executar remediation HITSS 221"
+  script: 622/62211.sh
+  register: remediation_62211
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_221
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+  
+- name: "Executar remediation HITSS 225"
+  script: 622/6222.sh
+  register: remediation_6222
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_225
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 228"
+  script: 623/6231.sh
+  register: remediation_6231
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_228
+    - hardening_full
+
+- name: "Executar remediation HITSS 236"
+  script: 624/6241.sh
+  register: remediation_6241
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_236
+    - hardening_full
+
+- name: "Executar remediation HITSS 237"
+  script: 631/6311.sh
+  register: remediation_6311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_237
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 241"
+  script: 632/6321.sh
+  register: remediation_6321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_241
+    - hardening_full
+
+- name: "Executar remediation HITSS 245"
+  script: 633/6331.sh
+  register: remediation_6331
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_245
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 246"
+  script: 633/6332.sh
+  register: remediation_6332
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_246
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 247"
+  script: 633/6333.sh
+  register: remediation_6333
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_247
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 248"
+  script: 633/6334.sh
+  register: remediation_6334
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_248
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 249"
+  script: 633/6335.sh
+  register: remediation_6335
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_249
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 250"
+  script: 633/6336.sh
+  register: remediation_6336
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_250
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 251"
+  script: 633/6337.sh
+  register: remediation_6337
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_251
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 252"
+  script: 633/6338.sh
+  register: remediation_6338
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_252
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 253"
+  script: 633/6339.sh
+  register: remediation_6339
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_253
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 254"
+  script: 633/63310.sh
+  register: remediation_63310
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_254
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 255"
+  script: 633/63311.sh
+  register: remediation_63311
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_255
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 256"
+  script: 633/63312.sh
+  register: remediation_63312
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_256
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 257"
+  script: 633/63313.sh
+  register: remediation_63313
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_257
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 258"
+  script: 633/63314.sh
+  register: remediation_63314
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_258
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 259"
+  script: 633/63315.sh
+  register: remediation_63315
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_259
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 260"
+  script: 633/63316.sh
+  register: remediation_63316
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_260
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 261"
+  script: 633/63317.sh
+  register: remediation_63317
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_261
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 262"
+  script: 633/63318.sh
+  register: remediation_63318
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_262
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 263"
+  script: 633/63319.sh
+  register: remediation_63319
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_263
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 264"
+  script: 633/63320.sh
+  register: remediation_63320
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_264
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 265"
+  script: 633/63321.sh
+  register: remediation_63321
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_265
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 266"
+  script: 634/6341.sh
+  register: remediation_6341
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_266
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 267"
+  script: 634/6342.sh
+  register: remediation_6342
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_267
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 268"
+  script: 634/6343.sh
+  register: remediation_6343
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_268
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 269"
+  script: 634/6344.sh
+  register: remediation_6344
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_269
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 270"
+  script: 634/6345.sh
+  register: remediation_6345
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_270
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 271"
+  script: 634/6346.sh
+  register: remediation_6346
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_271
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 272 - 273"
+  script: 634/6347.sh
+  register: remediation_6347
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_272
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+- name: "Executar remediation HITSS 274 - 275"
+  script: 634/6349.sh
+  register: remediation_6349
+  changed_when: false
+  failed_when: false  # Evita falhas no Ansible
+  tags:
+    - remediation_hitss_274
+    - hardening_soft
+    - hardening_full
+    - remediation_6.x
+
+
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 7 #######################
+#####################################################################################
+
+- name: "Executar hardening HITSS 276"
+  script: 711/711.sh
+  register: remediation_711
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_276
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+
+- name: "Executar hardening HITSS 286"
+  script: 711/7111.sh
+  register: remediation_7111
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_286
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+
+- name: "Executar hardening HITSS 287"
+  script: 711/7112.sh
+  register: remediation_7112
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_287
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+
+- name: "Executar hardening HITSS 288"
+  script: 711/7113.sh
+  register: remediation_7113
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_288
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+
+- name: "Executar hardening HITSS 289"
+  script: 721/721.sh
+  register: remediation_721
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_289
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+- name: "Executar hardening HITSS 296"
+  script: 721/728.sh
+  register: remediation_728
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_296
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x
+
+- name: "Executar hardening HITSS 297"
+  script: 721/729.sh
+  register: remediation_729
+  changed_when: false
+  failed_when: false
+  tags:
+    - remediation_hitss_297
+    - hardening_soft
+    - hardening_full
+    - remediation_7.x

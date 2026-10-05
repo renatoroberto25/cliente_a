@@ -1,0 +1,25 @@
+Vagrant.configure("2") do |config|
+  data = Time.now.strftime("%Y%m%d")
+  name = "win2022-du-ha-#{data}"
+
+  config.vm.box = "gusztavvargadr/windows-server-2022-standard"
+  config.vm.box_version = "2601.0.0"
+
+  config.vm.hostname = name
+
+  config.vm.network "private_network", ip: "192.168.56.132"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = name
+    vb.memory = 4096
+    vb.cpus   = 2
+  end
+
+  config.vm.provision "shell",
+    name: "Aplicar baseline Windows Server 2022",
+    path: "scripts/apply-baseline.ps1",
+    args: ["C:\\vagrant\\OneDrive_1_27-07-2026\\SRV-W2K22-PADRAO-Full-CLARO_SEM_UAC.inf"],
+    privileged: false,
+    reboot: true
+
+end

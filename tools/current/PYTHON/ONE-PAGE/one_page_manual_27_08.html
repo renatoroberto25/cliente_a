@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One-page Hardening · CMDB manual</title><style>
+:root{--red:#d71920;--dark:#242424;--line:#e2e2e2;--muted:#6b6b6b}
+*{box-sizing:border-box}body{margin:0;background:#f5f5f5;color:var(--dark);font:14px/1.4 Arial,sans-serif}
+main{width:min(1120px,95vw);margin:24px auto;background:#fff;border-top:7px solid var(--red);padding:26px 30px;box-shadow:0 2px 10px #00000018}
+h1{margin:0;color:var(--dark);font-size:28px}.sub{color:var(--muted);margin:5px 0 22px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{border:1px solid var(--line);border-radius:7px;padding:15px}
+.card span{display:block;color:var(--muted);font-size:12px}.card strong{display:block;font-size:27px;margin-top:3px}
+.donut-card{display:flex;align-items:center;gap:14px;padding:11px 15px}.donut{width:76px;height:76px;flex:0 0 76px;border-radius:50%;position:relative}
+.baseline-donut{background:conic-gradient(#d71920 0 71.43%,#555 71.43% 100%)}.active-donut{background:conic-gradient(#d71920 0 62.09%,#555 62.09% 100%)}.eligible-donut{background:conic-gradient(#d71920 0 70.45%,#555 70.45% 100%)}.auditable-donut{background:conic-gradient(#d71920 0 80.43%,#555 80.43% 100%)}
+.donut::after{content:"";position:absolute;inset:13px;background:#fff;border-radius:50%}.donut-total{position:absolute;inset:0;z-index:1;display:grid!important;place-items:center;color:var(--dark)!important;font-size:22px!important;font-weight:bold}
+.donut-copy{min-width:0}.donut-title{font-weight:bold;color:var(--dark)!important;margin-bottom:7px}.legend{display:flex;flex-direction:column;gap:3px;color:var(--muted);font-size:11px}.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.linux{background:#d71920}.windows{background:#555}
+.highlight{background:#fff4f4;border-color:var(--red)}.highlight strong,.ok,.bad{color:var(--red)}
+h2{font-size:17px;color:var(--dark);margin:25px 0 9px}table{border-collapse:collapse;width:100%}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:right}
+th{background:#f3f3f3;border-top:2px solid var(--red);font-size:11px;text-transform:uppercase}th:first-child,td:first-child{text-align:left}
+.area-row{cursor:pointer}.area-row:hover,.area-row:focus{background:#fff7f7;outline:none}.chevron{display:inline-block;width:18px;color:var(--red);font-size:20px;line-height:12px;transition:transform .2s}.area-row[aria-expanded="true"] .chevron{transform:rotate(90deg)}
+.detail-row{display:none;background:#fafafa;color:#555}.detail-row.open{display:table-row}.detail-row td{padding-top:7px;padding-bottom:7px}.os-label{padding-left:26px!important;color:#555!important;font-size:12px!important}
+.note{margin-top:18px;padding:11px 13px;min-height:44px;background:#fff7f7;color:#4e4e4e;border-left:4px solid var(--red);outline:none}
+.note:focus{box-shadow:inset 0 0 0 1px #d7192066}.note:empty::before{content:attr(data-placeholder);color:var(--muted);font-style:italic}
+footer{color:var(--muted);font-size:11px;margin-top:18px}@media(max-width:700px){.cards{grid-template-columns:1fr 1fr}main{padding:20px 15px}.donut-card{grid-column:span 2}}
+</style></head><body><main>
+<h1>Hardening · capacidade entregue e adoção</h1><p class="sub">Visão executiva dos assets informados pelas equipes · fonte manual/Jira</p>
+<section class="cards">
+<div class="card donut-card"><div class="donut baseline-donut" role="img" aria-label="21 baselines: 15 Linux e 6 Windows"><span class="donut-total">21</span></div><div class="donut-copy"><span class="donut-title">Baselines por S/O</span><div class="legend"><span><i class="linux"></i>Linux · 15</span><span><i class="windows"></i>Windows · 6</span></div></div></div>
+<div class="card donut-card"><div class="donut active-donut" role="img" aria-label="11.010 assets totais: 6.836 Linux e 4.174 Windows"><span class="donut-total">11K</span></div><div class="donut-copy"><span class="donut-title">Assets totais</span><div class="legend"><span><i class="linux"></i>Linux · 6.836</span><span><i class="windows"></i>Windows · 4.174</span></div></div></div>
+<div class="card donut-card"><div class="donut eligible-donut" role="img" aria-label="5.888 elegíveis para hardening: 4.148 Linux e 1.740 Windows"><span class="donut-total">5K</span></div><div class="donut-copy"><span class="donut-title">Elegíveis para hardening</span><div class="legend"><span><i class="linux"></i>Linux · 4.148</span><span><i class="windows"></i>Windows · 1.740</span></div></div></div>
+<div class="card donut-card highlight"><div class="donut auditable-donut" role="img" aria-label="92 assets com agent: 74 Linux e 18 Windows"><span class="donut-total">92</span></div><div class="donut-copy"><span class="donut-title">Com agent</span><div class="legend"><span><i class="linux"></i>Linux · 74</span><span><i class="windows"></i>Windows · 18</span></div></div></div>
+</section>
+<h2>Cobertura por área</h2><table><thead><tr><th>Área</th><th>Assets por área</th><th>Elegíveis</th><th>Com agent</th><th>Sem agent</th><th>% agent x elegíveis</th></tr></thead><tbody><tr class='area-row' tabindex='0' role='button' aria-expanded='false' aria-controls='area-0'><td><span class='chevron' aria-hidden='true'>›</span><strong>Claro TI</strong></td><td>9.641</td><td>5.723</td><td class='ok'>84</td><td class='bad'>5.639</td><td>1,5%</td></tr><tr id='area-0-linux' class='detail-row' data-parent='area-0'><td><span class='os-label'>Linux</span></td><td>6.792</td><td>4.104</td><td class='ok'>69</td><td class='bad'>4.035</td><td>1,7%</td></tr><tr id='area-0-windows' class='detail-row' data-parent='area-0'><td><span class='os-label'>Windows</span></td><td>2.849</td><td>1.619</td><td class='ok'>15</td><td class='bad'>1.604</td><td>0,9%</td></tr><tr class='area-row' tabindex='0' role='button' aria-expanded='false' aria-controls='area-1'><td><span class='chevron' aria-hidden='true'>›</span><strong>BCC</strong></td><td>1.008</td><td>58</td><td class='ok'>4</td><td class='bad'>54</td><td>6,9%</td></tr><tr id='area-1-linux' class='detail-row' data-parent='area-1'><td><span class='os-label'>Linux</span></td><td>31</td><td>31</td><td class='ok'>1</td><td class='bad'>30</td><td>3,2%</td></tr><tr id='area-1-windows' class='detail-row' data-parent='area-1'><td><span class='os-label'>Windows</span></td><td>977</td><td>27</td><td class='ok'>3</td><td class='bad'>24</td><td>11,1%</td></tr><tr class='area-row' tabindex='0' role='button' aria-expanded='false' aria-controls='area-2'><td><span class='chevron' aria-hidden='true'>›</span><strong>StarOne</strong></td><td>124</td><td>28</td><td class='ok'>0</td><td class='bad'>28</td><td>0,0%</td></tr><tr id='area-2-linux' class='detail-row' data-parent='area-2'><td><span class='os-label'>Linux</span></td><td>6</td><td>6</td><td class='ok'>0</td><td class='bad'>6</td><td>0,0%</td></tr><tr id='area-2-windows' class='detail-row' data-parent='area-2'><td><span class='os-label'>Windows</span></td><td>118</td><td>22</td><td class='ok'>0</td><td class='bad'>22</td><td>0,0%</td></tr><tr class='area-row' tabindex='0' role='button' aria-expanded='false' aria-controls='area-3'><td><span class='chevron' aria-hidden='true'>›</span><strong>Engenharia Vídeo</strong></td><td>237</td><td>79</td><td class='ok'>4</td><td class='bad'>75</td><td>5,1%</td></tr><tr id='area-3-linux' class='detail-row' data-parent='area-3'><td><span class='os-label'>Linux</span></td><td>7</td><td>7</td><td class='ok'>4</td><td class='bad'>3</td><td>57,1%</td></tr><tr id='area-3-windows' class='detail-row' data-parent='area-3'><td><span class='os-label'>Windows</span></td><td>230</td><td>72</td><td class='ok'>0</td><td class='bad'>72</td><td>0,0%</td></tr></tbody></table>
+<div class="note" contenteditable="true" spellcheck="true" role="textbox" aria-label="Leitura executiva editável" data-placeholder="Clique aqui e escreva a leitura executiva..."></div>
+<footer>Fonte: status_baselines_todos_2026-08-27.xlsx · gerado em 27/08/2026 14:00</footer>
+</main><script>
+document.querySelectorAll('.area-row').forEach(row => {
+  const toggle = () => {
+    const open = row.getAttribute('aria-expanded') !== 'true';
+    row.setAttribute('aria-expanded', String(open));
+    document.querySelectorAll(`[data-parent="${row.getAttribute('aria-controls')}"]`).forEach(detail => detail.classList.toggle('open', open));
+  };
+  row.addEventListener('click', toggle);
+  row.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); } });
+});
+</script></body></html>

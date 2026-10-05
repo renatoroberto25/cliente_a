@@ -1,0 +1,98 @@
+# roles/audit/tasks/filesystem.yml
+- name: Carregar regras filesystem
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/filesystem.yml"
+
+- name: Verificar partição dedicada
+  command: "findmnt -no SOURCE {{ item.mount }}"
+  register: fs_dedicated
+  loop: "{{ filesystem_rules | selectattr('require', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado partição dedicada
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if (
+          item.rc == 0 and
+          (item.stdout | default('') | trim) not in ['', '/', 'rootfs']
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ fs_dedicated.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Verificar opções de mount
+  command: "findmnt -no OPTIONS {{ item.mount }}"
+  register: fs_opts
+  loop: "{{ filesystem_rules | selectattr('options', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado opções de mount
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if (
+          item.rc == 0 and
+          item.stdout is defined and
+          (item.item.options | difference((item.stdout | lower | trim).split(',')) | length) == 0
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ fs_opts.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Verificar sticky world-writable
+  shell: |
+    find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null
+  register: fs_sticky_world_writable
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sticky world-writable
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][44]
+      {{
+        'APROVADO'
+        if (fs_sticky_world_writable.stdout | default('') | trim) == ''
+        else 'REPROVADO'
+      }}
+
+- name: Verificar sticky bit por path
+  ansible.builtin.stat:
+    path: "{{ item.path }}"
+  register: fs_sticky
+  loop: "{{ filesystem_rules | selectattr('sticky', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sticky bit por path
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if (
+          item.stat.exists and
+          ((item.stat.mode | int(base=8)) // 1000) == 1
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ fs_sticky.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"

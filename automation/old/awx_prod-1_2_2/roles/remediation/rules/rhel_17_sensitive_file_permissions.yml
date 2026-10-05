@@ -1,0 +1,42 @@
+---
+rhel_17_sensitive_file_permissions_controls:
+  - id: 185
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 186
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 187
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 188
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 189
+    descricao: "Contas / Arquivos Críticos"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 190
+    descricao: "Contas / Arquivos Críticos"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 191
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 192
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Light"
+  - id: 193
+    descricao: "Contas / Arquivos Críticos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 194
+    descricao: "Contas / Arquivos Críticos"
+    severidade: BLOCK
+    perfil: "Light"

@@ -1,0 +1,318 @@
+Client Name: CLARO
+Baseline: SRV - Full
+Sofware Version: Windows Server 2016
+
+
+[Unicode]
+Unicode = yes
+
+[Version]
+signature="$CHICAGO$"
+Revision=1
+
+
+[System Access]
+MinimumPasswordLength = 14
+MinimumPasswordAge = 2
+MaximumPasswordAge = 60
+PasswordHistorySize = 24
+LockoutBadCount = 5
+ResetLockoutCount = 1440
+LockoutDuration = -1
+ForceLogoffWhenHourExpire = 1
+PasswordComplexity = 1
+ClearTextPassword = 0
+EnableGuestAccount = 0
+NewAdministratorName = EXEMPLO
+LSAAnonymousNameLookup = 0
+
+
+[Application Log]
+MaximumLogSize = 512000
+AuditLogRetentionPeriod = 0
+RestrictGuestAccess = 1
+
+[System Log]
+MaximumLogSize = 512000
+AuditLogRetentionPeriod = 0
+RestrictGuestAccess = 1
+
+[Security Log]
+MaximumLogSize = 2048000
+AuditLogRetentionPeriod = 0
+RestrictGuestAccess = 1
+
+[ServiceInstall]
+ServiceName    = Spooler
+DisplayName    = "Print Spooler"
+StartType      = 4
+ErrorControl   = 1
+ServiceType    = 0x110
+
+[Privilege Rights]
+SeNetworkLogonRight = *S-1-5-32-544,*S-1-5-11,*S-1-5-32-545
+SeChangeNotifyPrivilege = *S-1-5-11,*S-1-5-19,*S-1-5-20
+SeDebugPrivilege = 
+SeRemoteShutdownPrivilege = *S-1-5-32-544
+SeInteractiveLogonRight = *S-1-5-32-544
+SeShutdownPrivilege = *S-1-5-32-544
+SeRemoteInteractiveLogonRight = *S-1-5-32-544
+SeTrustedCredManAccessPrivilege =
+SeIncreaseQuotaPrivilege = *S-1-5-20,*S-1-5-19,*S-1-5-32-544
+SeBackupPrivilege = *S-1-5-32-544,*S-1-5-32-551
+SeSystemTimePrivilege = *S-1-5-19,*S-1-5-32-544
+SeCreatePagefilePrivilege = *S-1-5-32-544
+SeCreateTokenPrivilege =
+SeCreateGlobalPrivilege = *S-1-5-6,*S-1-5-20,*S-1-5-19,*S-1-5-32-544
+SeCreatePermanentPrivilege =
+SeCreateSymbolicLinkPrivilege = *S-1-5-32-544
+SeEnableDelegationPrivilege =
+SeAuditPrivilege = *S-1-5-20,*S-1-5-19
+SeImpersonatePrivilege = *S-1-5-6,*S-1-5-20,*S-1-5-19,*S-1-5-32-544
+SeIncreaseBasePriorityPrivilege = *S-1-5-32-544
+SeLoadDriverPrivilege = *S-1-5-32-544
+SeLockMemoryPrivilege =
+SeSecurityPrivilege = *S-1-5-32-544
+SeRelabelPrivilege =
+SeSystemEnvironmentPrivilege = *S-1-5-32-544
+SeManageVolumePrivilege = *S-1-5-32-544
+SeProfileSingleProcessPrivilege = *S-1-5-32-544
+SeSystemProfilePrivilege = *S-1-5-32-544,*S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420
+SeAssignPrimaryTokenPrivilege = *S-1-5-20,*S-1-5-19
+SeRestorePrivilege  = *S-1-5-32-544, *S-1-5-32-551
+SeTakeOwnershipPrivilege = *S-1-5-32-544
+SeTimeZonePrivilege = *S-1-5-19,*S-1-5-32-544
+SeMachineAccountPrivilege = *S-1-5-32-544
+SeTcbPrivilege =
+SeIncreaseWorkingSetPrivilege = *S-1-5-11
+SeDenyNetworkLogonRight = *S-1-5-32-546,Administrator
+SeDenyBatchLogonRight = *S-1-5-32-546
+SeDenyInteractiveLogonRight = *S-1-5-32-546
+SeDenyRemoteInteractiveLogonRight = *S-1-5-32-546
+
+
+[Registry Values]
+MACHINE\SOFTWARE\PSS\BASELINE=1,"SRV-W2K25-FULL-CLARO"
+MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy=4,1
+MACHINE\System\CurrentControlSet\Control\Terminal Server\TSUserEnabled=4,0
+MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-tcp\MinEncryptionLevel=4,3
+MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-tcp\fPromptforPassword=4,1
+MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-tcp\fInheritMaxSessionTime=4,0
+MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-tcp\fInheritMaxDisconnectionTime=4,0
+MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-tcp\fInheritMaxIdleTime=4,0
+MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services\FdisableClip=4,1
+MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services\DisablePasswordSaving=4,1
+MACHINE\software\microsoft\windows nt\currentversion\winlogon\sfcdisable=4,0
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\SfcScan=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableUIADesktopToggle=4,0
+MACHINE\Software\Microsoft\Driver Signing\Policy=3,02
+MACHINE\SYSTEM\CurrentControlSet\Services\Lanmanworkstation\Parameters\EnableSecuritySignature=4,1
+MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters\Hidden=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\LSA\Notification Packages=7,"rassfm,kdcsvc,scecli"
+MACHINE\SYSTEM\CurrentControlSet\Services\Lanmanworkstation\Parameters\RequireSecuritySignature=4,1
+MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\RequireSecuritySignature=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\Cdrom\Autorun=4,0
+MACHINE\SYSTEM\CurrentControlSet\Control\LSA\RestrictAnonymous=4,2
+MACHINE\SYSTEM\CurrentControlSet\Control\LSA\LMCompatibilityLevel=4,5
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FullPrivilegeAuditing=3,01
+MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\CachedLogonsCount=1,"0"
+MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\AutoShareServer=4,0
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\DontDisplayLastUserName=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\LSA\AuditBaseObjects=4,1
+MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\EnablePlainTextPassword=4,0
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateFloppies=1,"1"
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateCDROMS=1,"1"
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\SubmitControl=4,0
+MACHINE\SYSTEM\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\AddPrinterDrivers=4,1
+MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\EnableSecuritySignature=4,1
+MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SignSecureChannel=4,1
+MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters\RestrictNullSessAccess=4,1
+MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\SealSecureChannel=4,1
+MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RequireSignOrSeal=4,1
+MACHINE\System\CurrentControlSet\Control\Lsa\ForceGuest=4,0
+MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon=1,"0"
+MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\ClearPageFileAtShutdown=4,1
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\ShutdownWithoutLogon=4,0
+MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\NullSessionShares=7,""
+MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\NullSessionPipes=7,""
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableCAD=4,0
+MACHINE\Software\Microsoft\Windows\CurrentVersion\policies\system\LegalNoticeCaption=1,"Notificação de Segurança"
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText=1,"Acesso restrito apenas para usuários autorizados. Todas as atividades nesta estação podem ser monitoradas."
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDriveTypeAutoRun=4,255
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AllocateDASD=1,"0"
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole\SetCommand=4,0
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Setup\RecoveryConsole\SecurityLevel=4,0
+MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\DisablePasswordChange=4,0
+MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\AutoDisconnect=4,15
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScRemoveOption=1,"1"
+MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SecureBoot=4,1
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ForceUnlockLogon=4,1
+MACHINE\System\CurrentControlSet\Control\Lsa\DisableDomainCreds=4,1
+MACHINE\System\CurrentControlSet\Control\Lsa\EveryoneIncludesAnonymous=4,0
+MACHINE\System\CurrentControlSet\Control\Lsa\LimitBlankPasswordUse=4,1
+MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymousSAM=4,1
+MACHINE\System\CurrentControlSet\Control\Lsa\NoLMHash=4,1
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\PasswordExpiryWarning=4,7
+MACHINE\System\CurrentControlSet\Control\Session Manager\Kernel\ObCaseInsensitive=4,1
+MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\EnableForcedLogOff=4,1
+MACHINE\System\CurrentControlSet\Services\LDAP\LDAPClientIntegrity=4,2
+MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\MaximumPasswordAge=4,60
+MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters\RequireStrongKey=4,1
+MACHINE\Software\Policies\Microsoft\Cryptography\ForceKeyProtection=4,2
+MACHINE\System\CurrentControlSet\Control\GraphicsDrivers\DCI\Timeout=4,0
+MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems\optional=7,""
+MACHINE\System\CurrentControlSet\Control\FileSYSTEM\NtfsDisable8dot3NameCreation=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedPaths\Machine=7,""
+MACHINE\SYSTEM\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\Machine=7,""
+MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode=4,1
+MACHINE\System\CurrentControlSet\Services\Eventlog\Security\WarningLevel=4,90
+MACHINE\Software\Policies\Microsoft\Windows\Safer\CodeIdentifiers\AuthenticodeEnabled=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\UsbStor\Start=4,4
+MACHINE\System\CurrentControlSet\Control\StorageDevicePolicies\WriteProtect=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorAdmin=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ValidateAdminCodeSignatures=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableSecureUIAPaths=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\InactivityTimeoutSecs=4,900
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\NoConnectedUser=4,3
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\SmartScreenEnabled=1,"RequireAdmin"
+MACHINE\Software\Policies\Microsoft\Windows\CredUI\DisablePasswordReveal=4,1
+MACHINE\Software\Policies\Microsoft\Windows\System\DontEnumerateConnectedUsers=4,1
+MACHINE\Software\Policies\Microsoft\Windows\System\DisableLockScreenAppNotifications=4,1
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting=4,1
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\EnablePMTUDiscovery=4,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime=4,300000
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\NoNameReleaseOnDemand=4,1
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\PerformRouterDiscovery=4,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\SynAttackProtect=4,2
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxConnectResponseRetransmissions=4,2
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TCPMaxHalfOpen=4,500
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TCPMaxPortsExhausted=4,1
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxHalfOpenRetried=4,400
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxConnectRetransmissions=4,2
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmissions=4,3
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\IPEnableRouter=4,0
+MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters\EnableAddrMaskReply=4,0
+MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\EnableDeadGWDetect=4,0
+MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\EnableICMPRedirect=4,0
+MACHINE\System\CurrentControlSet\Services\AFD\Parameters\EnableDynamicBacklog=4,1
+MACHINE\System\CurrentControlSet\Services\AFD\Parameters\DynamicBacklogGrowthDelta=4,10
+MACHINE\System\CurrentControlSet\Services\AFD\Parameters\MaximumDynamicBacklog=4,20000
+MACHINE\System\CurrentControlSet\Services\AFD\Parameters\MinimumDynamicBacklog=4,20
+MACHINE\System\CurrentControlSet\Services\NetBT\Parameters\NoNameReleaseOnDemand=4,1
+MACHINE\System\CurrentControlSet\Services\NetBT\Parameters\EnablemulticastForwarding=4,0
+MACHINE\System\CurrentControlSet\Services\NetBT\Parameters\EnableFragmentChecking=4,1
+MACHINE\System\CurrentControlSet\Services\NetBT\Parameters\AllowUserRawAccess=4,0
+MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters\RefusePasswordChange=4,0
+MACHINE\Software\Policies\Microsoft\WindowsStore\RemoveWindowsStore=4,1
+MACHINE\Software\Policies\Microsoft\Windows\Explorer\NoUseStoreOpenwith=4,1
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableVirtualization=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\CredUi\EnableSecureCredentialPrompting=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\DisableRestrictedAdmin=4,0
+MACHINE\System\CurrentControlSet\Control\Lsa\pku2u\AllowOnlineID=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search\AllowIndexingEncryptedStoresOrItems=4,0
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorUser=4,1
+MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters\SmbServerNameHardeningLevel=4,2
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes=4,2147483647
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\CredUI\EnumerateAdministrators=4,0
+MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\allownullsessionfallback=4,0
+MACHINE\System\CurrentControlSet\Control\Lsa\UseMachineId=4,1
+MACHINE\System\CurrentControlSet\Services\Tcpip6\Parameters\DisableIPSourceRouting=4,2
+MACHINE\System\CurrentControlSet\Services\Tcpip6\Parameters\TcpMaxDataRetransmissions=4,3
+MACHINE\System\CurrentControlSet\Services\Tcpip6\Parameters\DisabledComponents=4,255
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\FilterAdministratorToken=4,0
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableInstallerDetection=4,1
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\PromptOnSecureDesktop=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableLPT=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisablePNPRedir=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableCpm=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableCdm=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableCcm=4,1
+MACHINE\Software\Policies\Microsoft\Windows NT\Printers\DisableHTTPPrinting=4,1
+MACHINE\Software\Policies\Microsoft\Windows\System\EnumerateLocalUsers=4,0
+MACHINE\System\CurrentControlSet\Control\Session Manager\ProtectionMode=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinServerSec=4,537395200
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0\NTLMMinClientSec=4,537395200
+MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod=4,0
+MACHINE\Software\Policies\Microsoft\WindowsStore\AutoDownload=4,2
+MACHINE\System\CurrentControlSet\Control\SecurityProviders\WDigest\UseLogonCredential=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows\PreviewBuilds\AllowBuildPreview=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\MitigationOptions\MitigationOptions_FontBocking=1,"1000000000000"
+MACHINE\SOFTWARE\Microsoft\Non-Driver Signing\Policy=3,02
+MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AEDebug\Auto=4,0
+MACHINE\SOFTWARE\Microsoft\Windows Script Host\Settings\TrustPolicy=4,2
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\BlockHostedAppAccessWinRT=4,1
+MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient\EnableMulticast=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\UserAuthentication=4,1
+MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\AppModel\StateManager\AllowSharedLocalAppData=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows\powershell\ExecutionPolicy=1,"AllSigned"
+MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search\AllowSearchToUseLocation=4,0
+MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Windows File Protection\SFCScan=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\NoDefaultAdminOwner=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AdditionalBaseNamedObjectsProtectionMode=4,1
+MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\EnhancedSecurityLevel=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\AFD\parameters\DisableAddressSharing=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\IPSEC\NoDefaultExempt=4,3
+MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\SMB1=4,0
+MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\DependOnService=7,"Bowser,MRxSmb20,NSI"
+MACHINE\SYSTEM\CurrentControlSet\Services\mrxsmb10\Start=4,4
+MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\LdapEnforceChannelBinding=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\Schema Update Allowed=4,0 
+MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\Sctrict Replication Consistency=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\RemoteAccess\Performance\Disable Performance Counters=4,1
+MACHINE\SYSTEM\CurrentControlSet\Services\tcpip\parameters\Secure Responses=4,4
+
+[Registry Keys]
+machine\system\currentcontrolset\control\securepipeservers\winreg,2,"D:PAR(ACIKA;;;SY)(ACIKA;;;BA)"
+
+[Service General Setting]
+TlntSvr,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+Dfsr,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+Spooler,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+SSDPSRV,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+SNMPTRAP,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+snmp,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+RasMan,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+RasAuto,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+Fax,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+SharedAccess,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+TapiSrv,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+Browser,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+RemoteAccess,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+IsmServ,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+TrkWks,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+NtFrs,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+KPSSVC,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+RemoteRegistry,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+ALG,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+Themes,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+HidServ,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+AudioSrv,4,""
+BITS,3,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+wuauserv,2,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCLCSWRPWPDTLOCRRC;;;AU)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+SysMain,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+UI0Detect,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+AeLookupSvc,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+MpsSvc,2,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmickvpexchange,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmicshutdown,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmicheartbeat,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmicrdv,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmictimesync,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+vmicvss,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+DeviceAssociationService,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+WSService,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+XblAuthManager,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+XblGameSave,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+DiagTrack,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+kdc,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+bthserv,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+UxSms,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+FontCache3.0.0.0,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+NtmsSvc,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+TabletInputService,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+MapsBroker,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+wbengine,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+seclogon,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"
+CscService,4,"D:AR(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AUFACCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)"

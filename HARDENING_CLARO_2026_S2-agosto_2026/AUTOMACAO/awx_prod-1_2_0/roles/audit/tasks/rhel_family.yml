@@ -1,0 +1,1144 @@
+# roles/audit/tasks/rhel_family.yml
+- name: Carregar regras RHEL family
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/rhel_family.yml"
+
+# ===== Bootloader (RHEL-like) =====
+- name: Verificar bootloader RHEL-like
+  block:
+    - name: Senha grub
+      command: grep -E '^password_pbkdf2' /boot/grub2/grub.cfg
+      register: bl_49
+      failed_when: false
+      changed_when: false
+
+    - name: Permissões grub.cfg
+      ansible.builtin.stat:
+        path: /boot/grub2/grub.cfg
+      register: bl_50
+      changed_when: false
+      failed_when: false
+
+    - name: Single user
+      command: grep -E 'SYSTEMD_SULOGIN|sulogin' /etc/sysconfig/init
+      register: bl_51
+      failed_when: false
+      changed_when: false
+
+- name: Resultado bootloader (RHEL)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.id }}]
+      {{ 'APROVADO' if item.ok else 'REPROVADO' }}
+  loop:
+    - { id: 49, ok: "{{ bl_49.rc | default(1) == 0 }}", descricao: "Senha de bootloader configurada" }
+    - { id: 50, ok: "{{ (bl_50.stat.exists | default(false)) and (bl_50.stat.pw_name | default('')) == 'root' and (bl_50.stat.mode | default('')) == '0600' }}", descricao: "Permissões seguras no arquivo do bootloader" }
+    - { id: 51, ok: "{{ bl_51.rc | default(1) == 0 }}", descricao: "Single user mode com autenticação" }
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+
+# ===== 58 – Time sync ativo =====
+- name: Verificar time sync ativo aprovado (RHEL)
+  shell: |
+    ACTIVE=""
+    if systemctl is-active chronyd >/dev/null 2>&1; then
+      ACTIVE="chronyd"
+    else
+      if systemctl is-active ntpd >/dev/null 2>&1; then
+        ACTIVE="ntpd"
+      else
+        if systemctl is-active systemd-timesyncd >/dev/null 2>&1; then
+          ACTIVE="systemd-timesyncd"
+        else
+          ACTIVE=""
+        fi
+      fi
+    fi
+    echo "$ACTIVE"
+  register: rhel_timesync_active
+  changed_when: false
+  failed_when: false
+
+- name: Resultado time sync ativo (58)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][58]
+      {{ 'APROVADO' if rhel_timesync_active.stdout | trim != '' else 'REPROVADO' }}
+
+# ===== 59 – Fontes NTP confiáveis =====
+- name: Verificar fontes NTP confiáveis com chrony (RHEL)
+  shell: |
+    if [ -f /etc/chrony.conf ]; then
+      grep -E '^(server|pool)[[:space:]]+' /etc/chrony.conf
+    else
+      echo ""
+    fi
+  register: rhel_timesync_sources_chrony
+  changed_when: false
+  failed_when: false
+
+- name: Verificar fontes NTP confiáveis com ntp (RHEL)
+  shell: |
+    if [ -f /etc/ntp.conf ]; then
+      grep -E '^(server|pool)[[:space:]]+' /etc/ntp.conf
+    else
+      echo ""
+    fi
+  register: rhel_timesync_sources_ntp
+  changed_when: false
+  failed_when: false
+
+- name: Verificar fontes NTP confiáveis com systemd-timesyncd (RHEL)
+  shell: |
+    if [ -f /etc/systemd/timesyncd.conf ]; then
+      grep -E '^[[:space:]]*NTP=' /etc/systemd/timesyncd.conf
+    else
+      echo ""
+    fi
+  register: rhel_timesync_sources_timesyncd
+  changed_when: false
+  failed_when: false
+
+- name: Verificar time sync habilitado no boot (RHEL)
+  shell: |
+    ENABLED=0
+    if systemctl is-enabled chronyd >/dev/null 2>&1; then
+      ENABLED=1
+    else
+      if systemctl is-enabled ntpd >/dev/null 2>&1; then
+        ENABLED=1
+      else
+        if systemctl is-enabled systemd-timesyncd >/dev/null 2>&1; then
+          ENABLED=1
+        else
+          ENABLED=0
+        fi
+      fi
+    fi
+    echo "$ENABLED"
+  register: rhel_timesync_boot
+  changed_when: false
+  failed_when: false
+
+- name: Verificar polkit ativo (RHEL)
+  command: systemctl is-enabled polkit
+  register: rhel_polkit
+  changed_when: false
+  failed_when: false
+
+- name: Resultado polkit seguro (86)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][86]
+      {{ 'APROVADO' if rhel_polkit.stdout in ['enabled', 'static'] else 'REPROVADO' }}
+
+# ===== 87 – gpgcheck ativo =====
+- name: Verificar gpgcheck ativo (RHEL)
+  command: grep -R '^[^#].*gpgcheck=1' /etc/yum.repos.d
+  register: rhel_gpgcheck
+  changed_when: false
+  failed_when: false
+
+- name: Resultado gpgcheck ativo (87)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][87]
+      {{ 'APROVADO' if rhel_gpgcheck.rc == 0 else 'REPROVADO' }}
+
+# ===== 88 – Patches aplicados =====
+- name: Verificar patches pendentes (RHEL)
+  command: yum check-update
+  register: rhel_patches
+  changed_when: false
+  failed_when: false
+
+- name: Resultado patches aplicados (88)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][88]
+      {{ 'APROVADO' if rhel_patches.rc != 100 else 'REPROVADO' }}
+
+# ===== 89 – Time sync único =====
+- name: Verificar time sync único (RHEL)
+  shell: |
+    ACTIVE=0
+    systemctl is-active chronyd >/dev/null 2>&1 && ACTIVE=$((ACTIVE+1))
+    systemctl is-active ntpd >/dev/null 2>&1 && ACTIVE=$((ACTIVE+1))
+    systemctl is-active systemd-timesyncd >/dev/null 2>&1 && ACTIVE=$((ACTIVE+1))
+    echo "$ACTIVE"
+  register: rhel_timesync_unique
+  changed_when: false
+  failed_when: false
+
+- name: Resultado time sync único (89)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][89]
+      {{ 'APROVADO' if rhel_timesync_unique.stdout | trim == '1' else 'REPROVADO' }}
+# ===== 108-129 – SSH =====
+- name: Verificar SSH - parametros efetivos (RHEL)
+  command: sshd -T
+  register: rhel_ssh_effective
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - diretório /etc/ssh (RHEL)
+  ansible.builtin.stat:
+    path: /etc/ssh
+  register: rhel_ssh_dir
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - arquivo sshd_config (RHEL)
+  ansible.builtin.stat:
+    path: /etc/ssh/sshd_config
+  register: rhel_ssh_cfg
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - Allow Deny (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^(allowusers|allowgroups|denyusers|denygroups)[[:space:]]+'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_110
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - MaxAuthTries (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^maxauthtries[[:space:]]+([1-4])$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_113
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - ClientAlive tunado (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^clientaliveinterval[[:space:]]+(300|600|900)$'; then
+      if sshd -T 2>/dev/null | grep -Eiq '^clientalivecountmax[[:space:]]+[0-3]$'; then
+        echo "1"
+      else
+        echo "0"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_120
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - LoginGraceTime restrito (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^logingracetime[[:space:]]+(30|60)$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_121
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - MaxStartups restrito (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^maxstartups[[:space:]]+10:30:60$'; then
+      echo "1"
+    else
+      if sshd -T 2>/dev/null | grep -Eiq '^maxstartups[[:space:]]+10$'; then
+        echo "1"
+      else
+        echo "0"
+      fi
+    fi
+  register: rhel_ssh_122
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - banner configurado (RHEL)
+  shell: |
+    BANNER_FILE="$(sshd -T 2>/dev/null | awk '/^banner / {print $2}')"
+    if [ -n "$BANNER_FILE" ]; then
+      if [ "$BANNER_FILE" != "none" ]; then
+        if [ -s "$BANNER_FILE" ]; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      else
+        echo "0"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_banner
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - Ciphers fortes apenas (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^ciphers[[:space:]]+'; then
+      if sshd -T 2>/dev/null | grep -Eiq '(cbc|3des|arcfour)'; then
+        echo "0"
+      else
+        echo "1"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_125
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - MACs fortes apenas (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^macs[[:space:]]+'; then
+      if sshd -T 2>/dev/null | grep -Eiq '(hmac-md5|hmac-sha1|umac-64)'; then
+        echo "0"
+      else
+        echo "1"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_126
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - KexAlgorithms fortes apenas (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq '^kexalgorithms[[:space:]]+'; then
+      if sshd -T 2>/dev/null | grep -Eiq '(diffie-hellman-group1-sha1|diffie-hellman-group14-sha1|diffie-hellman-group-exchange-sha1)'; then
+        echo "0"
+      else
+        echo "1"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_127
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - Preferencia por algoritmos modernos (RHEL)
+  shell: |
+    if sshd -T 2>/dev/null | grep -Eiq 'ciphers[[:space:]]+.*chacha20-poly1305@openssh.com'; then
+      echo "1"
+    else
+      if sshd -T 2>/dev/null | grep -Eiq 'kexalgorithms[[:space:]]+.*sntrup761x25519-sha512@openssh.com'; then
+        echo "1"
+      else
+        if sshd -T 2>/dev/null | grep -Eiq 'kexalgorithms[[:space:]]+.*curve25519-sha256'; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      fi
+    fi
+  register: rhel_ssh_128
+  changed_when: false
+  failed_when: false
+
+- name: Verificar SSH - ForceCommand/Chroot (RHEL)
+  shell: |
+    if grep -Eiq '^[[:space:]]*Match[[:space:]]+' /etc/ssh/sshd_config 2>/dev/null; then
+      if grep -Eiq '^[[:space:]]*ChrootDirectory[[:space:]]+' /etc/ssh/sshd_config 2>/dev/null; then
+        if grep -Eiq '^[[:space:]]*ForceCommand[[:space:]]+' /etc/ssh/sshd_config 2>/dev/null; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      else
+        echo "0"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_ssh_forcecommand
+  changed_when: false
+  failed_when: false
+
+- name: Resultado SSH (RHEL)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.id }}]
+      {{ 'APROVADO' if item.ok else 'REPROVADO' }}
+  loop:
+    - { id: 108, ok: "{{ rhel_ssh_effective.rc | default(1) == 0 and 'protocol 2' in (rhel_ssh_effective.stdout | lower) }}", descricao: "TLS minimo 1.2 1.3" }
+    - { id: 109, ok: "{{ (rhel_ssh_dir.stat.exists | default(false)) and (rhel_ssh_dir.stat.pw_name | default('')) == 'root' and (rhel_ssh_dir.stat.gr_name | default('')) == 'root' and (rhel_ssh_cfg.stat.exists | default(false)) and (rhel_ssh_cfg.stat.pw_name | default('')) == 'root' and (rhel_ssh_cfg.stat.gr_name | default('')) == 'root' and (rhel_ssh_cfg.stat.mode | default('')) in ['0600', '0640'] }}", descricao: "Permissões SSH seguras" }
+    - { id: 110, ok: "{{ (rhel_ssh_110.stdout | trim) == '1' }}", descricao: "Controle de acesso via Allow Deny" }
+    - { id: 111, ok: "{{ 'syslogfacility authpriv' in (rhel_ssh_effective.stdout | lower) }}", descricao: "SyslogFacility AUTHPRIV" }
+    - { id: 112, ok: "{{ 'x11forwarding no' in (rhel_ssh_effective.stdout | lower) }}", descricao: "X11Forwarding off" }
+    - { id: 113, ok: "{{ (rhel_ssh_113.stdout | trim) == '1' }}", descricao: "MaxAuthTries restrito" }
+    - { id: 114, ok: "{{ 'ignorerhosts yes' in (rhel_ssh_effective.stdout | lower) }}", descricao: "IgnoreRhosts yes" }
+    - { id: 115, ok: "{{ 'hostbasedauthentication no' in (rhel_ssh_effective.stdout | lower) }}", descricao: "HostbasedAuth off" }
+    - { id: 117, ok: "{{ 'permitemptypasswords no' in (rhel_ssh_effective.stdout | lower) }}", descricao: "EmptyPasswords off" }
+    - { id: 118, ok: "{{ 'permituserenvironment no' in (rhel_ssh_effective.stdout | lower) }}", descricao: "UserEnvironment off" }
+    - { id: 119, ok: "{{ 'usepam yes' in (rhel_ssh_effective.stdout | lower) }}", descricao: "UsePAM on" }
+    - { id: 120, ok: "{{ (rhel_ssh_120.stdout | trim) == '1' }}", descricao: "ClientAlive tunado" }
+    - { id: 121, ok: "{{ (rhel_ssh_121.stdout | trim) == '1' }}", descricao: "LoginGraceTime restrito" }
+    - { id: 122, ok: "{{ (rhel_ssh_122.stdout | trim) == '1' }}", descricao: "MaxStartups restrito" }
+    - { id: 123, ok: "{{ 'allowtcpforwarding no' in (rhel_ssh_effective.stdout | lower) or 'allowtcpforwarding local' in (rhel_ssh_effective.stdout | lower) }}", descricao: "AllowTcpForwarding restrito" }
+    - { id: 125, ok: "{{ (rhel_ssh_125.stdout | trim) == '1' }}", descricao: "Ciphers fortes apenas" }
+    - { id: 126, ok: "{{ (rhel_ssh_126.stdout | trim) == '1' }}", descricao: "MACs fortes apenas" }
+    - { id: 127, ok: "{{ (rhel_ssh_127.stdout | trim) == '1' }}", descricao: "KexAlgorithms fortes apenas" }
+    - { id: 128, ok: "{{ (rhel_ssh_128.stdout | trim) == '1' }}", descricao: "Preferencia por algoritmos modernos" }
+    - { id: 129, ok: "{{ (rhel_ssh_forcecommand.stdout | trim) == '1' }}", descricao: "ForceCommand Chroot SSH" }
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+
+- name: Verificar PAM complexidade (130)
+  shell: |
+    grep -R pam_pwquality.so /etc/pam.d 2>/dev/null
+  register: rhel_130
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PAM complexidade (130)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][130]
+      {{ 'APROVADO' if rhel_130.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar pwquality configurado (131)
+  shell: |
+    [ -f /etc/security/pwquality.conf ] && grep -Ev '^(#|$)' /etc/security/pwquality.conf
+  register: rhel_131
+  changed_when: false
+  failed_when: false
+
+- name: Resultado pwquality configurado (131)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][131]
+      {{ 'APROVADO' if rhel_131.stdout | trim != '' else 'REPROVADO' }}
+
+- name: Verificar pam_faillock (132)
+  shell: |
+    grep -R pam_faillock.so /etc/pam.d 2>/dev/null
+  register: rhel_132
+  changed_when: false
+  failed_when: false
+
+- name: Resultado pam faillock (132)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][132]
+      {{ 'APROVADO' if rhel_132.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar pam_tally2 (133)
+  shell: |
+    grep -R pam_tally2.so /etc/pam.d 2>/dev/null
+  register: rhel_133
+  changed_when: false
+  failed_when: false
+
+- name: Resultado pam tally2 (133)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][133]
+      {{ 'APROVADO' if rhel_133.rc == 0 else 'REPROVADO' }}
+
+
+- name: Verificar pam_pwhistory (134)
+  shell: |
+    grep -R pam_pwhistory.so /etc/pam.d 2>/dev/null
+  register: rhel_134
+  changed_when: false
+  failed_when: false
+
+- name: Resultado pwhistory (134)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][134]
+      {{ 'APROVADO' if rhel_134.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar minlen pwquality (135)
+  shell: |
+    grep -E '^minlen\s*=\s*[1-9]' /etc/security/pwquality.conf
+  register: rhel_135
+  changed_when: false
+  failed_when: false
+
+- name: Resultado senha mínima (135)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][135]
+      {{ 'APROVADO' if rhel_135.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar complexidade mínima (136)
+  shell: |
+    grep -E '^(dcredit|ucredit|lcredit|ocredit)' /etc/security/pwquality.conf
+  register: rhel_136
+  changed_when: false
+  failed_when: false
+
+- name: Resultado complexidade mínima (136)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][136]
+      {{ 'APROVADO' if rhel_136.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar sequência/repetição (137)
+  shell: |
+    grep -E '^maxrepeat|^maxsequence' /etc/security/pwquality.conf
+  register: rhel_137
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sequências (137)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][137]
+      {{ 'APROVADO' if rhel_137.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar dicionário pwquality (138)
+  shell: |
+    grep -E '^dictcheck\s*=\s*1' /etc/security/pwquality.conf
+  register: rhel_138
+  changed_when: false
+  failed_when: false
+
+- name: Resultado dicionário ativo (138)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][138]
+      {{ 'APROVADO' if rhel_138.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar hash forte (139)
+  command: authselect current
+  register: rhel_139
+  changed_when: false
+  failed_when: false
+
+- name: Resultado hash forte (139)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][139]
+      {{ 'APROVADO' if 'sha512' in (rhel_139.stdout | lower) else 'REPROVADO' }}
+
+- name: Verificar remember em PAM (140)
+  shell: |
+    grep -R 'remember=' /etc/pam.d 2>/dev/null
+  register: rhel_140
+  changed_when: false
+  failed_when: false
+
+- name: Resultado histórico de senhas (140)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][140]
+      {{ 'APROVADO' if rhel_140.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar deny em faillock (141)
+  shell: |
+    grep -E 'deny\s*=\s*[1-9]' /etc/security/faillock.conf 2>/dev/null
+  register: rhel_141
+  changed_when: false
+  failed_when: false
+
+- name: Resultado bloqueio tentativas (141)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][141]
+      {{ 'APROVADO' if rhel_141.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar unlock_time (142)
+  shell: |
+    grep -E '^unlock_time\s*=\s*[1-9]' /etc/security/faillock.conf
+  register: rhel_142
+  changed_when: false
+  failed_when: false
+
+- name: Resultado tempo desbloqueio (142)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][142]
+      {{ 'APROVADO' if rhel_142.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar PASS_MAX_DAYS (143)
+  command: grep PASS_MAX_DAYS /etc/login.defs
+  register: rhel_143
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PASS_MAX_DAYS (143)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][143]
+      {{ 'APROVADO' if rhel_143.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar PASS_MIN_DAYS (144)
+  command: grep PASS_MIN_DAYS /etc/login.defs
+  register: rhel_144
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PASS_MIN_DAYS (144)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][144]
+      {{ 'APROVADO' if rhel_144.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar PASS_WARN_AGE (145)
+  command: grep PASS_WARN_AGE /etc/login.defs
+  register: rhel_145
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PASS_WARN_AGE (145)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][145]
+      {{ 'APROVADO' if rhel_145.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar INACTIVE (146)
+  command: grep INACTIVE /etc/default/useradd
+  register: rhel_146
+  changed_when: false
+  failed_when: false
+
+- name: Resultado INACTIVE ajustado (146)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][146]
+      {{ 'APROVADO' if rhel_146.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar contas com senha expirada (147)
+  shell: |
+    passwd -S $(awk -F: '$2!="!" && $2!="*" {print $1}' /etc/shadow | head -n 1) >/dev/null 2>&1
+    echo $?
+  register: rhel_147
+  changed_when: false
+  failed_when: false
+
+- name: Resultado corrigir datas senha (147)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][147]
+      {{ 'APROVADO' if rhel_147.stdout | trim == '0' else 'REPROVADO' }}
+
+- name: Verificar sudo restrito (155)
+  shell: |
+    if grep -REq '^[[:space:]]*%wheel[[:space:]]+ALL=\(ALL\)[[:space:]]+ALL\b' /etc/sudoers /etc/sudoers.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_155
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sudo restrito (155)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][155]
+      {{ 'APROVADO' if rhel_155.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar sudo tty (156)
+  shell: |
+    if grep -REq '^[[:space:]]*Defaults[[:space:]]+requiretty\b' /etc/sudoers /etc/sudoers.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_156
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sudo tty (156)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][156]
+      {{ 'APROVADO' if rhel_156.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar sudo logging (157)
+  shell: |
+    if grep -REq '^[[:space:]]*Defaults[[:space:]]+logfile=' /etc/sudoers /etc/sudoers.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_157
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sudo logging (157)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][157]
+      {{ 'APROVADO' if rhel_157.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar reautenticacao sudo (158)
+  shell: |
+    if grep -Rqs 'Defaults\s\+!authenticate' /etc/sudoers /etc/sudoers.d 2>/dev/null; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: rhel_158
+  changed_when: false
+  failed_when: false
+
+- name: Resultado reautenticacao (158)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][158]
+      {{ 'APROVADO' if rhel_158.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar sudo timeout (159)
+  shell: |
+    if grep -REq '^[[:space:]]*Defaults[[:space:]]+timestamp_timeout=[1-9][0-9]*\b' /etc/sudoers /etc/sudoers.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_159
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sudo timeout (159)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][159]
+      {{ 'APROVADO' if rhel_159.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar su restrito (160)
+  shell: |
+    if grep -Eq '^[[:space:]]*auth[[:space:]]+required[[:space:]]+pam_wheel\.so' /etc/pam.d/su 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_160
+  changed_when: false
+  failed_when: false
+
+- name: Resultado su restrito (160)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][160]
+      {{ 'APROVADO' if rhel_160.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar journald persistente (162)
+  shell: |
+    if grep -Eq '^[[:space:]]*Storage=persistent\b' /etc/systemd/journald.conf 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_162
+  changed_when: false
+  failed_when: false
+
+- name: Verificar arquitetura logs (161)
+  shell: |
+    if systemctl is-enabled rsyslog 2>/dev/null | grep -qx enabled; then
+      if grep -Eq '^[[:space:]]*ForwardToSyslog=yes' /etc/systemd/journald.conf 2>/dev/null; then
+        echo "1"
+      else
+        if grep -Eq '^[[:space:]]*Storage=persistent' /etc/systemd/journald.conf 2>/dev/null; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      fi
+    else
+      if grep -Eq '^[[:space:]]*Storage=persistent' /etc/systemd/journald.conf 2>/dev/null; then
+        echo "1"
+      else
+        echo "0"
+      fi
+    fi
+  register: rhel_161
+  changed_when: false
+  failed_when: false
+
+- name: Resultado journald persistente (162)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][162]
+      {{ 'APROVADO' if rhel_162.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar rsyslog ativo (163)
+  shell: |
+    if systemctl is-enabled rsyslog 2>/dev/null | grep -qx enabled; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_163
+  changed_when: false
+  failed_when: false
+
+- name: Verificar rotação logs (164)
+  shell: |
+    if grep -Eq '^[[:space:]]*rotate[[:space:]]+[1-9][0-9]*' /etc/logrotate.conf 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_164
+  changed_when: false
+  failed_when: false
+
+- name: Resultado rotação logs (164)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][164]
+      {{ 'APROVADO' if rhel_164.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditd instalado (165)
+  shell: |
+    if rpm -q audit >/dev/null 2>&1; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_165
+  changed_when: false
+  failed_when: false
+
+- name: Verificar auditd boot (166)
+  shell: |
+    if systemctl is-enabled auditd 2>/dev/null | grep -qx enabled; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_166
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditd boot (166)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][166]
+      {{ 'APROVADO' if rhel_166.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar max_log_file (167)
+  shell: |
+    if grep -Eq '^[[:space:]]*max_log_file[[:space:]]*=[[:space:]]*[1-9][0-9]*' /etc/audit/auditd.conf 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_167
+  changed_when: false
+  failed_when: false
+
+- name: Resultado max_log_file (167)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][167]
+      {{ 'APROVADO' if rhel_167.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar retenção logs audit (168)
+  shell: |
+    if grep -Eq '^\s*max_log_file_action\s*=\s*(keep_logs|rotate)' /etc/audit/auditd.conf 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_168
+  changed_when: false
+  failed_when: false
+
+- name: Resultado retenção logs (168)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][168]
+      {{ 'APROVADO' if rhel_168.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria tempo (169)
+  shell: |
+    if grep -REq '\b(adjtimex|settimeofday|clock_settime)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_169
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria tempo (169)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][169]
+      {{ 'APROVADO' if rhel_169.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria contas (170)
+  shell: |
+    if grep -REq '(/etc/passwd|/etc/group|/etc/shadow)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_170
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria contas (170)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][170]
+      {{ 'APROVADO' if rhel_170.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria rede (171)
+  shell: |
+    if grep -REq '(/etc/sysconfig/network|/etc/hosts|/etc/resolv\.conf)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_171
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria rede (171)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][171]
+      {{ 'APROVADO' if rhel_171.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria MAC (172)
+  shell: |
+    if grep -REq '\b(setenforce|/etc/selinux|selinux-policy)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_172
+  changed_when: false
+  failed_when: false
+
+- name: Verificar auditoria login (173)
+  shell: |
+    if grep -REq '\b(login|logout|session)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_173
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria login (173)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][173]
+      {{ 'APROVADO' if rhel_173.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria DAC (174)
+  shell: |
+    if grep -REq '\b(chmod|chown|setxattr|fchmod)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_174
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria DAC (174)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][174]
+      {{ 'APROVADO' if rhel_174.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria acesso negado (175)
+  shell: |
+    if grep -REq '\b(EACCES|EPERM)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_175
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria acesso negado (175)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][175]
+      {{ 'APROVADO' if rhel_175.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria exec privilegiado (176)
+  shell: |
+    if grep -REq '\bexecve\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_176
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria exec privilegiado (176)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][176]
+      {{ 'APROVADO' if rhel_176.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria mount (177)
+  shell: |
+    if grep -REq '\b(mount|umount2)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_177
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria mount (177)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][177]
+      {{ 'APROVADO' if rhel_177.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria deleção (178)
+  shell: |
+    if grep -REq '\b(unlink|rename|rmdir|unlinkat|renameat)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_178
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria deleção (178)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][178]
+      {{ 'APROVADO' if rhel_178.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria módulos kernel (179)
+  shell: |
+    if grep -REq '\b(init_module|delete_module|finit_module)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_179
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria módulos kernel (179)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][179]
+      {{ 'APROVADO' if rhel_179.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar auditoria sudo (180)
+  shell: |
+    if grep -REq '(/etc/sudoers|/etc/sudoers\.d|sudo\.log)\b' /etc/audit/rules.d 2>/dev/null; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_180
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria sudo (180)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][180]
+      {{ 'APROVADO' if rhel_180.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar configuração de auditoria imutável (181)
+  shell: |
+    if auditctl -l 2>/dev/null | grep -Eq '^-e 2'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: rhel_181
+  changed_when: false
+  failed_when: false
+
+- name: Resultado configuração de auditoria imutável (181)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][181]
+      {{ 'APROVADO' if rhel_181.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar AIDE instalado e inicializado (182)
+  shell: |
+    if rpm -q aide >/dev/null 2>&1; then
+      if [ -f /var/lib/aide/aide.db.gz ]; then
+        echo "1"
+      else
+        if [ -f /var/lib/aide/aide.db.new.gz ]; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_182
+  changed_when: false
+  failed_when: false
+
+- name: Verificar verificação integridade (183)
+  shell: |
+    if grep -REq '\baide\b' /etc/cron.* /etc/crontab /var/spool/cron 2>/dev/null; then
+      echo "1"
+    else
+      if systemctl is-enabled aidecheck.service >/dev/null 2>&1; then
+        echo "1"
+      else
+        if systemctl is-enabled aidecheck.timer >/dev/null 2>&1; then
+          echo "1"
+        else
+          echo "0"
+        fi
+      fi
+    fi
+  register: rhel_183
+  changed_when: false
+  failed_when: false
+
+- name: Verificar proteção dos binários de auditoria (184)
+  shell: |
+    if [ -e /sbin/auditctl ]; then
+      if [ -e /sbin/aureport ]; then
+        if [ -e /sbin/ausearch ]; then
+          if [ -e /sbin/autrace ]; then
+            if [ -e /sbin/auditd ]; then
+              if [ -e /sbin/augenrules ]; then
+                if stat -Lc "%a %U %G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules 2>/dev/null | awk '{if($1+0>750 || $2!="root" || $3!="root") exit 1} END{exit 0}'; then
+                  echo "1"
+                else
+                  echo "0"
+                fi
+              else
+                echo "0"
+              fi
+            else
+              echo "0"
+            fi
+          else
+            echo "0"
+          fi
+        else
+          echo "0"
+        fi
+      else
+        echo "0"
+      fi
+    else
+      echo "0"
+    fi
+  register: rhel_184
+  changed_when: false
+  failed_when: false
+

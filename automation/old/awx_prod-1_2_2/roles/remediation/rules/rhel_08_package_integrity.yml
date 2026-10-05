@@ -1,0 +1,6 @@
+---
+rhel_08_package_integrity_controls:
+  - id: 87
+    descricao: "Pacotes / Repositórios"
+    severidade: WARN
+    perfil: "Full"

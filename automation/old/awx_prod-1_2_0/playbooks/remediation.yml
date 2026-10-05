@@ -1,0 +1,34 @@
+---
+- name: Remediation HITSS
+  hosts: all
+  become: yes
+  gather_facts: true
+
+  vars:
+    remed_ts: "{{ lookup('pipe', 'date +%Y%m%d_%H%M%S') }}"
+    hitss_hardening_version: "HARDENING HITSS v1.2.0"
+
+  roles:
+    - common
+    - remediation
+
+  post_tasks:
+    - name: Registrar execução da remediação HITSS (local do host)
+      ansible.builtin.lineinfile:
+        path: /var/log/hitss-hardening.log
+        line: >-
+          {{ ansible_date_time.iso8601 }}
+          - REMEDIATION
+          - {{ hitss_hardening_version }}
+          - VIA AUTOMACAO ANSIBLE
+          - host: {{ inventory_hostname }}
+          - os: {{ ansible_facts.distribution }}
+          - version: {{ ansible_facts.distribution_major_version }}
+          - family: {{ hitss_os_family }}
+          - tags: {{ (ansible_run_tags | default(['all'])) | join(',') }}
+        create: yes
+        owner: root
+        group: root
+        mode: "0600"
+        insertafter: EOF
+      tags: always

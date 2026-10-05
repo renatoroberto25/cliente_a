@@ -1,0 +1,36 @@
+---
+- name: "RHEL 12_crypto_policy - aplicar conteúdo técnico vigente"
+  ansible.builtin.shell: |
+    set -u
+    
+    echo "[108] Remediacao: politica de criptografia TLS"
+    
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "WARN: execute como root para avaliar remediacoes"
+        exit 0
+    fi
+    
+    echo "[108] TLS minimo 1.2/1.3"
+    if ! command -v update-crypto-policies >/dev/null 2>&1; then
+        echo "SKIP: update-crypto-policies nao disponivel neste sistema"
+    elif update-crypto-policies --show 2>/dev/null | grep -qx FUTURE; then
+        echo "OK: politica de criptografia ja esta em FUTURE"
+    else
+        echo "SKIP: alterar crypto policy para FUTURE e global e pode quebrar integracoes TLS legadas"
+    fi
+    
+    echo "OK"
+    exit 0
+  args:
+    executable: /bin/bash
+  register: rhel_12_crypto_policy_execucao
+  changed_when: false
+  failed_when: false
+
+- name: "RHEL 12_crypto_policy - registrar resultado do domínio"
+  ansible.builtin.set_fact:
+    resultado_controle:
+      id: "12_crypto_policy"
+      severidade: "WARN"
+      status: "{{ 'FAIL' if rhel_12_crypto_policy_execucao.rc != 0 else ('MANUAL' if 'SKIP:' in rhel_12_crypto_policy_execucao.stdout else 'CHANGED') }}"
+      detalhe: "{{ rhel_12_crypto_policy_execucao.stdout | default(rhel_12_crypto_policy_execucao.stderr, true) | trim }}"

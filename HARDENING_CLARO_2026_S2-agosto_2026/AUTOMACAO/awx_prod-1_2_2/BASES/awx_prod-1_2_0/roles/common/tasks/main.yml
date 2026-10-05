@@ -1,0 +1,20 @@
+---
+- name: Carregar baseline validado pela Claro TI
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/../vars/baseline_claro_ti.yml"
+
+- name: Definir IDs autorizados pelo cliente
+  ansible.builtin.set_fact:
+    hitss_control_ids: "{{ hitss_controls | map(attribute='id') | list }}"
+
+- name: Validar sistema operacional suportado
+  fail:
+    msg: >
+      SO não suportado pelo HITSS:
+      {{ ansible_facts.distribution }}
+      {{ ansible_facts.distribution_major_version }}
+  when: ansible_facts.os_family != 'RedHat'
+
+- name: Setar família HITSS simplificada
+  set_fact:
+    hitss_os_family: rhel

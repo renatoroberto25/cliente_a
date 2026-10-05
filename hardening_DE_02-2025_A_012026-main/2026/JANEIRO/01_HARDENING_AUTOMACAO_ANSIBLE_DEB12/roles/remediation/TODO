@@ -1,0 +1,2 @@
+find roles/{audit,remediation} -type f -name '*.sh' -exec sed -i 's/A/B/g' {} +
+

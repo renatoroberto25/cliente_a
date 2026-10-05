@@ -1,0 +1,73 @@
+---
+- name: "RHEL - 01_kernel"
+  ansible.builtin.include_tasks: rhel_01_kernel.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 02_filesystem"
+  ansible.builtin.include_tasks: rhel_02_filesystem.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 03_boot"
+  ansible.builtin.include_tasks: rhel_03_boot.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 04_system"
+  ansible.builtin.include_tasks: rhel_04_system.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 05_legacy_software"
+  ansible.builtin.include_tasks: rhel_05_legacy_software.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 06_time_sync"
+  ansible.builtin.include_tasks: rhel_06_time_sync.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 07_services"
+  ansible.builtin.include_tasks: rhel_07_services.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 08_package_integrity"
+  ansible.builtin.include_tasks: rhel_08_package_integrity.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 09_access_scheduling"
+  ansible.builtin.include_tasks: rhel_09_access_scheduling.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 10_network"
+  ansible.builtin.include_tasks: rhel_10_network.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 11_wireless"
+  ansible.builtin.include_tasks: rhel_11_wireless.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 12_crypto_policy"
+  ansible.builtin.include_tasks: rhel_12_crypto_policy.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 13_ssh"
+  ansible.builtin.include_tasks: rhel_13_ssh.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 14_auth_policy"
+  ansible.builtin.include_tasks: rhel_14_auth_policy.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 15_accounts_shell_sudo"
+  ansible.builtin.include_tasks: rhel_15_accounts_shell_sudo.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 16_logging_audit_integrity"
+  ansible.builtin.include_tasks: rhel_16_logging_audit_integrity.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 17_sensitive_file_permissions"
+  ansible.builtin.include_tasks: rhel_17_sensitive_file_permissions.yml
+  when: ansible_facts.os_family == 'RedHat'
+
+- name: "RHEL - 18_home_file_hygiene"
+  ansible.builtin.include_tasks: rhel_18_home_file_hygiene.yml
+  when: ansible_facts.os_family == 'RedHat'
+

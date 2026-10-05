@@ -1,0 +1,139 @@
+vamos por partes item por item checanco a diferença das lógica tentando entencer o sintaxe tenable e as saídas do shell script precedência etc
+
+Itens com maior probabilidade de erro de implementação:
+Item	Probabilidade de erro	Onde investigar primeiro
+166	ALTÍSSIMA	Lógica diferente audit vs shell
+<custom_item>
+  type        : CMD_EXEC
+  description : "166"
+  info        : "Alta"
+  solution    : "Audit"
+  reference   : "Garantir auditd antes de serviços críticos."
+  see_also    : "Light"
+  cmd         : "(systemctl list-dependencies multi-user.target 2>/dev/null | grep -qx auditd.service) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+echo -e "\n166 Garantir auditd inicializa antes de serviços críticos."
+( systemctl list-dependencies multi-user.target 2>/dev/null | grep -q auditd.service ) && echo "PASS" || echo "FAIL"
+
+
+57,62,63,72,77,78	ALTA	Checagem de serviços (enabled vs active vs masked)
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "57"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar ou remover xinetd quando não requerido."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled xinetd 2>/dev/null | grep -qx disabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "62"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Desabilitar avahi quando não requerido."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled avahi-daemon 2>/dev/null | grep -qx disabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "63"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar CUPS quando não requerido."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled cups 2>/dev/null | grep -qx disabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "72"
+  info        : "Média"
+  solution    : "Sistema"
+  reference   : "Desabilitar SNMP quando não requerido."
+  see_also    : "Light"
+  cmd         : "(systemctl is-enabled snmpd 2>/dev/null | grep -qx disabled) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "77"
+ info        : "Média"
+ solution    : "Sistema"
+ reference   : "Desabilitar rpcbind quando não requerido."
+ see_also    : "Light"
+ cmd         : "( systemctl is-enabled rpcbind 2>/dev/null | grep -qx disabled ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+ type        : CMD_EXEC
+ description : "78"
+ info        : "Alta"
+ solution    : "Sistema"
+ reference   : "Desabilitar rsync daemon quando não requerido."
+ see_also    : "Light"
+ cmd         : "( systemctl is-enabled rsyncd 2>/dev/null | grep -qx disabled ) && echo \"PASS\" || echo \"FAIL\""
+ expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+echo -e "\n57 Desabilitar ou remover xinetd quando não requerido."
+( ! systemctl is-enabled xinetd 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n62 Desabilitar avahi quando não requerido."
+( ! systemctl is-enabled avahi-daemon 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n63 Desabilitar CUPS quando não requerido."
+( ! systemctl is-enabled cups 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n72 Desabilitar SNMP quando não requerido."
+( ! systemctl is-enabled snmpd 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n77 Desabilitar rpcbind quando não requerido."
+( ! systemctl is-enabled rpcbind 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n78 Desabilitar rsync daemon quando não requerido."
+( ! systemctl is-enabled rsyncd 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"
+
+187	MÉDIA/ALTA	Permissões exatas esperadas
+<custom_item>
+  type        : CMD_EXEC
+  description : "187"
+  info        : "Alta"
+  solution    : "Permissões"
+  reference   : "Ajustar permissões de /etc/shadow."
+  see_also    : "Light"
+  cmd         : "( grep -REq '^\\s*umask\\s+0[2-7][2-7]\\b' /etc/profile /etc/bashrc 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+echo -e "\n187 Ajustar permissões de /etc/shadow."
+( stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo "PASS" || echo "FAIL"
+
+
+
+58	MÉDIA	Critério de serviço ativo
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "58"
+  info        : "Alta"
+  solution    : "Sistema"
+  reference   : "Habilitar serviço de sincronização de tempo aprovado."
+  see_also    : "Light"
+  cmd         : "( systemctl is-enabled chronyd 2>/dev/null | grep -qx enabled && systemctl is-active chronyd 2>/dev/null | grep -qx active ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+
+echo -e "\n58 Habilitar serviço de sincronização de tempo aprovado."
+( rpm -q chrony >/dev/null 2>&1 && systemctl is-enabled chronyd 2>/dev/null | grep -qx enabled ) && echo "PASS" || echo "FAIL"

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Audit – Visão Técnica</title>
+<!-- python3 -m http.server 8000 on this dir-->
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f6f7f9;
+  margin: 0;
+  padding: 30px;
+}
+h1 { margin-bottom: 4px; }
+.sub { color:#555; margin-bottom:20px; }
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(180px,1fr));
+  gap:16px;
+}
+
+.card {
+  background:#fff;
+  border:1px solid #d9e1ea;
+  border-radius:8px;
+  padding:16px;
+}
+
+.label { font-size:12px; color:#666; }
+.value { font-size:28px; font-weight:bold; margin-top:6px; }
+.ok { color:#16835d; }
+.bad { color:#b42318; }
+
+.alert {
+  margin-top:24px;
+  background:#fff;
+  border:1px solid #d9e1ea;
+  border-radius:8px;
+  padding:16px;
+}
+
+.table {
+  margin-top:30px;
+  background:#fff;
+  border:1px solid #d9e1ea;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+th,td {
+  padding:10px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}
+th {
+  background:#f0f4f8;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Compliance técnico</h1>
+<div class="sub">
+  Leitura local de <strong>audit-current.csv</strong> + <strong>baseline.csv</strong>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Total de controles</div>
+    <div class="value" id="total">-</div>
+  </div>
+  <div class="card">
+    <div class="label">Aprovados</div>
+    <div class="value ok" id="ok">-</div>
+  </div>
+  <div class="card">
+    <div class="label">Reprovados</div>
+    <div class="value bad" id="fail">-</div>
+  </div>
+  <div class="card">
+    <div class="label">Aderência</div>
+    <div class="value" id="pct">-</div>
+  </div>
+</div>
+
+<div id="alerta"></div>
+
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Tópico</th>
+        <th>Perfil</th>
+        <th>Criticidade</th>
+        <th>Resumo</th>
+      </tr>
+    </thead>
+    <tbody id="detalhes"></tbody>
+  </table>
+</div>
+
+<script>
+const META_ADERENCIA = 60;
+
+function parseCSV(text) {
+  const lines = text.trim().split(/\r?\n/);
+  const header = lines.shift().split(",");
+
+  return lines.map(l => {
+    const cols = l.split(",");
+    return { raw: cols };
+  });
+}
+
+async function carregar() {
+  const [auditResp, baseResp] = await Promise.all([
+    fetch("audit-current.csv",{cache:"no-store"}),
+    fetch("baseline.csv",{cache:"no-store"})
+  ]);
+
+  if (!auditResp.ok || !baseResp.ok) {
+    alert("Erro ao carregar CSVs");
+    return;
+  }
+
+  // AUDIT
+  const auditLines = (await auditResp.text()).trim().split(/\r?\n/);
+  auditLines.shift(); // header
+
+  const audit = auditLines.map(l => {
+    const [host,id,status] = l.split(",");
+    return { host, id, status };
+  });
+
+  // BASELINE
+  const baseLines = (await baseResp.text()).trim().split(/\r?\n/);
+  baseLines.shift(); // header
+
+  const baseline = {};
+  baseLines.forEach(l => {
+    const [id, topico, perfil, criticidade, resumo] = l.split(",");
+    baseline[id] = {
+      topico,
+      perfil,
+      criticidade,
+      resumo
+    };
+  });
+
+  let ok=0, fail=0;
+
+  audit.forEach(a=>{
+    if (a.status==="APROVADO") ok++;
+    if (a.status==="REPROVADO") fail++;
+  });
+
+  const total = ok+fail;
+  const pct = total ? Math.round(ok/total*100) : 0;
+
+  document.getElementById("total").textContent = total;
+  document.getElementById("ok").textContent = ok;
+  document.getElementById("fail").textContent = fail;
+  document.getElementById("pct").textContent = pct+"%";
+
+  document.getElementById("alerta").innerHTML = `
+    <div class="alert">
+      <strong class="${pct>=META_ADERENCIA?"ok":"bad"}">
+        Status da aderência: ${pct>=META_ADERENCIA?"Aceitável":"Abaixo da meta"}
+      </strong>
+      <div style="font-size:13px;color:#555;margin-top:6px;">
+        Mínimo aceitável: ${META_ADERENCIA}%, considerando ~40% de controles manuais.
+      </div>
+    </div>
+  `;
+
+  document.getElementById("detalhes").innerHTML = audit.map(a=>{
+    const b = baseline[a.id];
+    return `
+      <tr>
+        <td>${a.id}</td>
+        <td class="${a.status==="APROVADO"?"ok":"bad"}">${a.status}</td>
+        <td>${b ? b.topico : "<em>fora do baseline</em>"}</td>
+        <td>${b ? b.perfil : "-"}</td>
+        <td>${b ? b.criticidade : "-"}</td>
+        <td>${b ? b.resumo : "Controle legado ou não aplicável"}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+carregar();
+</script>
+
+</body>
+</html>

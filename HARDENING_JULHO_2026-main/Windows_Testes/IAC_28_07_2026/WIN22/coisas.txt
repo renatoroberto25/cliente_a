@@ -1,0 +1,9 @@
+renato.roberto.terceiros@claro.com.br
+renato.roberto.3@globalhitss.com.br
+renatorobertoglobalhitss@gmail.com
+https://corpclarobr.sharepoint.com/:f:/r/sites/USER-GestodeVulnerabilidade-Infra-GV-Infra/Documentos%20Compartilhados/GV-Infra/01%20-%20GV?csf=1&web=1&e=4ucDwj
+Z547089
+
+
+
+Invoke-WebRequest -Uri "https://sensor.cloud.tenable.com/install/agent/installer/ms-install-script.ps1" -OutFile "./ms-install-script.ps1"; & "./ms-install-script.ps1" -key "45b85b603d4f4ed07d445151eacc6db46715a19318c42da539327de707dedbac" -type "agent" -name "win2022-du-ha-20260727" -groups 'Lab_VM_Ozias'; Remove-Item -Path "./ms-install-script.ps1"a

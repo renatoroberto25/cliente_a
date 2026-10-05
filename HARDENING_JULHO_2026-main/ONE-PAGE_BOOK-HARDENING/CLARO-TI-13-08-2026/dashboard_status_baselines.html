@@ -1,0 +1,60 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Governança & Cobertura de Hardening</title>
+<style>
+:root{--bg:#f3f5f7;--card:#fff;--text:#17212b;--muted:#687582;--line:#d9e0e6;--blue:#185f91;--green:#27753c;--red:#b42318;--amber:#a15c00}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(1380px,95vw);margin:28px auto 50px}h1{margin:0;font-size:27px}h2{margin:0 0 14px;font-size:18px}.subtitle{margin:5px 0;color:var(--muted)}
+.callout{margin:18px 0;padding:14px 17px;border-left:4px solid var(--blue);background:#e9f2f8;color:#274b65}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:18px 0}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:8px}.card{padding:16px}.card span{display:block;color:var(--muted);font-size:12px}.card strong{display:block;margin-top:4px;font-size:25px}.card small{color:var(--muted)}.card.danger{border-color:#e3a6a1;background:#fff8f7}.card.danger strong{color:var(--red)}
+.panel{padding:18px;margin-bottom:15px}.funnel{display:grid;grid-template-columns:repeat(2,1fr);gap:0;align-items:stretch}.step{position:relative;padding:16px;border:1px solid var(--line);background:#f8fafb}.step:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:37%;z-index:2;color:var(--blue);font-size:20px}.step strong{display:block;font-size:22px}.step span{display:block;color:var(--muted);font-size:12px}.step.red strong{color:var(--red)}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{background:#edf1f4;color:#43515d;font-size:11px;text-transform:uppercase}.num{text-align:right;font-variant-numeric:tabular-nums}.ok{color:var(--green)}.danger{color:var(--red)}
+.telemetry{min-width:145px}.telemetry div{height:7px;background:#e1e6ea;border-radius:6px;overflow:hidden}.telemetry div span{display:block;height:100%;background:var(--red)}.telemetry small{display:block;text-align:right;color:var(--muted)}
+.chart{height:250px;position:relative;border-left:1px solid var(--line);border-bottom:1px solid var(--line);margin:25px 10px 35px 42px}.chart svg{width:100%;height:100%;overflow:visible}.chart-label{font-size:11px;fill:var(--muted)}.legend{display:flex;gap:20px;color:var(--muted);font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}footer{color:var(--muted);text-align:right;font-size:12px}
+@media(max-width:900px){.cards,.funnel{grid-template-columns:repeat(2,1fr)}.step::after{display:none}}@media(max-width:560px){.cards,.funnel{grid-template-columns:1fr}}
+</style></head><body><main>
+<header><h1>Governança & Cobertura de Hardening</h1><p class="subtitle">Visibilidade executiva do programa · posição de 13/08/2026</p></header>
+<div class="callout"><strong>Visão consolidada.</strong> Os perfis elegíveis possuem baseline disponível; a cobertura de auditoria considera os ativos com coleta ativa.</div>
+<section class="cards">
+ <div class="card"><span>Perfis com baseline</span><strong>100,0%</strong><small>19 de 19 perfis elegíveis</small></div>
+ <div class="card"><span>Ativos no escopo</span><strong>6.387</strong><small>Sistemas operacionais elegíveis</small></div>
+ <div class="card"><span>Ativos auditáveis</span><strong>88</strong><small>1,4% com agent</small></div>
+ <div class="card danger"><span>Ativos pendentes de auditoria</span><strong>6.299</strong><small>98,6% sem coleta ativa</small></div>
+</section>
+<section class="panel"><h2>Funil de prontidão</h2><div class="funnel">
+ <div class="step"><span>1 · Baselines disponíveis</span><strong>6.387 · 100,0%</strong><span>Ativos contemplados por perfis com baseline</span></div>
+ <div class="step red"><span>2 · Coleta ativa</span><strong>88 · 1,4%</strong><span>Ativos com agent e auditáveis</span></div>
+</div></section>
+<section class="panel"><h2>Status por equipe</h2><div class="table-wrap"><table>
+<thead><tr><th>Equipe</th><th>Responsável</th><th>Ativos no escopo</th><th>Com agent</th><th>Sem agent</th><th>Prontidão de telemetria</th></tr></thead><tbody><tr><td><strong>BCC</strong></td>
+        <td>NELSON AVILA</td>
+        <td class="num">3.041</td>
+        <td class="num ok">4</td>
+        <td class="num danger"><strong>3.037</strong></td>
+        <td class="telemetry"><div><span style="width:0.13%"></span></div><small>0,1%</small></td></tr><tr><td><strong>CLARO-TI</strong></td>
+        <td>ROGERS MAISONNETTE</td>
+        <td class="num">3.109</td>
+        <td class="num ok">83</td>
+        <td class="num danger"><strong>3.026</strong></td>
+        <td class="telemetry"><div><span style="width:2.67%"></span></div><small>2,7%</small></td></tr><tr><td><strong>STAR-ONE</strong></td>
+        <td>RUI FIGUEIROA</td>
+        <td class="num">129</td>
+        <td class="num ok">1</td>
+        <td class="num danger"><strong>128</strong></td>
+        <td class="telemetry"><div><span style="width:0.78%"></span></div><small>0,8%</small></td></tr><tr><td><strong>ENG-VIDEO</strong></td>
+        <td>DENILSON ROMANIUC</td>
+        <td class="num">108</td>
+        <td class="num ok">0</td>
+        <td class="num danger"><strong>108</strong></td>
+        <td class="telemetry"><div><span style="width:0.00%"></span></div><small>0,0%</small></td></tr></tbody></table></div></section>
+<section class="panel"><h2>Evolução dos ativos auditáveis</h2><div class="legend"><span><i class="dot" style="background:#185f91"></i>Ativos no escopo</span><span><i class="dot" style="background:#27753c"></i>Ativos auditáveis</span></div><div id="chart" class="chart"></div><p class="subtitle">Cada arquivo <code>status_baselines_tenable_DATA.xlsx</code> na pasta adiciona um ponto ao histórico.</p></section>
+<footer>Fonte: status_baselines_tenable_08_13_2026_16_49_05.xlsx</footer>
+<script>const history=[{"data": "2026-08-12T16:49:05", "rotulo": "12/08/2026", "ativos": 2200, "agentes": 0, "cobertura": 0.0}, {"data": "2026-08-13T16:49:05", "rotulo": "13/08/2026", "ativos": 6387, "agentes": 88, "cobertura": 1.38}];
+const chart=document.querySelector('#chart');
+if(!history.length){chart.textContent='Sem histórico disponível.'}else{
+ const w=1000,h=230,pad=20,max=Math.max(...history.map(x=>x.ativos),1);
+ const x=i=>history.length===1?w/2:pad+i*(w-2*pad)/(history.length-1);const y=v=>h-pad-v*(h-2*pad)/max;
+ const line=field=>history.map((d,i)=>`${i?'L':'M'}${x(i)},${y(d[field])}`).join(' ');
+ const dots=(field,color)=>history.map((d,i)=>`<circle cx="${x(i)}" cy="${y(d[field])}" r="5" fill="${color}"><title>${d.rotulo}: ${d[field].toLocaleString('pt-BR')}</title></circle>`).join('');
+ const labels=history.map((d,i)=>`<text x="${x(i)}" y="${h+17}" text-anchor="middle" class="chart-label">${d.rotulo}</text>`).join('');
+ chart.innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${line('ativos')}" fill="none" stroke="#185f91" stroke-width="3"/>${dots('ativos','#185f91')}<path d="${line('agentes')}" fill="none" stroke="#27753c" stroke-width="3"/>${dots('agentes','#27753c')}${labels}</svg>`;
+}</script></main></body></html>

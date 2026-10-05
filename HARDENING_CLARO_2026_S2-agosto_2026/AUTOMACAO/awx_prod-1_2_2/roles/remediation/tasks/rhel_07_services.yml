@@ -1,0 +1,102 @@
+---
+- name: "RHEL 07_services - aplicar conteúdo técnico vigente"
+  ansible.builtin.shell: |
+    set -u
+    
+    echo "[61-86] Remediacao: servicos e componentes opcionais"
+    
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "WARN: execute como root para avaliar remediacoes"
+        exit 0
+    fi
+    
+    pkg_absent_or_skip() {
+        local id="$1" pkg="$2" label="$3"
+        echo "[$id] $label"
+        if rpm -q "$pkg" >/dev/null 2>&1; then
+            echo "SKIP: pacote $pkg instalado; remocao/desativacao exige aprovacao do dono do servico"
+        else
+            echo "OK: pacote $pkg nao instalado"
+        fi
+    }
+    
+    service_inactive_or_skip() {
+        local id="$1" svc="$2" label="$3"
+        echo "[$id] $label"
+        if systemctl list-unit-files "$svc.service" >/dev/null 2>&1; then
+            if systemctl is-enabled "$svc" >/dev/null 2>&1 || systemctl is-active --quiet "$svc" >/dev/null 2>&1; then
+                echo "SKIP: servico $svc presente/ativo; parar, desabilitar ou mascarar exige aprovacao"
+            else
+                echo "OK: servico $svc presente, mas nao habilitado/ativo"
+            fi
+        else
+            echo "OK: unidade $svc nao encontrada"
+        fi
+    }
+    
+    pkg_absent_or_skip 61 xorg-x11-server-common "X11 ausente"
+    pkg_absent_or_skip 62 avahi "Avahi ausente"
+    pkg_absent_or_skip 63 cups "CUPS ausente"
+    pkg_absent_or_skip 64 dhcp-server "DHCP server ausente"
+    pkg_absent_or_skip 65 openldap-servers "LDAP server ausente"
+    pkg_absent_or_skip 66 bind "DNS server ausente"
+    pkg_absent_or_skip 67 vsftpd "FTP server ausente"
+    pkg_absent_or_skip 68 httpd "HTTP server ausente"
+    pkg_absent_or_skip 69 dovecot "IMAP/POP3 server ausente"
+    pkg_absent_or_skip 70 samba "Samba ausente"
+    pkg_absent_or_skip 71 squid "Proxy HTTP ausente"
+    pkg_absent_or_skip 72 net-snmp "SNMP ausente"
+    pkg_absent_or_skip 73 ypserv "NIS server ausente"
+    pkg_absent_or_skip 74 telnet-server "Telnet server ausente"
+    
+    echo "[75] MTA em modo local-only"
+    if [ ! -f /etc/postfix/main.cf ]; then
+        echo "OK: Postfix nao instalado/configurado"
+    elif grep -Eq '^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*(localhost|loopback-only)\b' /etc/postfix/main.cf 2>/dev/null; then
+        echo "OK: Postfix limitado a localhost/loopback-only"
+    else
+        echo "SKIP: Postfix nao esta local-only; alterar MTA pode quebrar envio de aplicacoes"
+    fi
+    
+    service_inactive_or_skip 76 nfs-server "NFS server controlado"
+    service_inactive_or_skip 77 rpcbind "rpcbind controlado"
+    service_inactive_or_skip 78 rsyncd "rsyncd controlado"
+    
+    pkg_absent_or_skip 79 ypbind "Cliente NIS ausente"
+    pkg_absent_or_skip 80 rsh "Cliente rsh ausente"
+    pkg_absent_or_skip 81 talk "Cliente talk ausente"
+    pkg_absent_or_skip 82 telnet "Cliente telnet ausente"
+    pkg_absent_or_skip 83 openldap-clients "Cliente LDAP ausente"
+    
+    echo "[84] Servicos nao essenciais habilitados"
+    echo "SKIP: lista de servicos nao essenciais depende do papel do servidor e deve ser aprovada por ambiente"
+    
+    pkg_absent_or_skip 85 tftp-server "TFTP server ausente"
+    
+    echo "[86] PolicyKit endurecido"
+    POLKIT_DIR="/etc/polkit-1/rules.d"
+    if [ ! -d "$POLKIT_DIR" ]; then
+        echo "OK: diretorio $POLKIT_DIR ausente"
+    elif ! ls "$POLKIT_DIR"/*.rules >/dev/null 2>&1; then
+        echo "OK: nenhum arquivo .rules encontrado em $POLKIT_DIR"
+    elif grep -RE 'polkit\.Result\.YES|allow' "$POLKIT_DIR"/*.rules >/dev/null 2>&1; then
+        echo "SKIP: regra permissiva de PolicyKit detectada; alteracao exige revisao da politica local"
+    else
+        echo "OK: nenhuma regra permissiva simples detectada em PolicyKit"
+    fi
+    
+    echo "OK"
+    exit 0
+  args:
+    executable: /bin/bash
+  register: rhel_07_services_execucao
+  changed_when: false
+  failed_when: false
+
+- name: "RHEL 07_services - registrar resultado do domínio"
+  ansible.builtin.set_fact:
+    resultado_controle:
+      id: "07_services"
+      severidade: "WARN"
+      status: "{{ 'FAIL' if rhel_07_services_execucao.rc != 0 else ('MANUAL' if 'SKIP:' in rhel_07_services_execucao.stdout else 'CHANGED') }}"
+      detalhe: "{{ rhel_07_services_execucao.stdout | default(rhel_07_services_execucao.stderr, true) | trim }}"

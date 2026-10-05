@@ -1,0 +1,39 @@
+---
+# ===== Kernel / Core =====
+- include_tasks: kernel_modules.yml
+  tags: [audit, baseline_kernel]
+
+- include_tasks: kernel_sysctl.yml
+  tags: [audit, baseline_kernel]
+
+# ===== Filesystem =====
+- include_tasks: filesystem.yml
+  tags: [audit, baseline_fs]
+
+# ===== Network =====
+- include_tasks: network_sysctl.yml
+  tags: [audit, baseline_network]
+
+- include_tasks: network.yml
+  tags: [audit, baseline_network]
+
+# ===== Services =====
+- include_tasks: services.yml
+  tags: [audit, baseline_services]
+
+# ===== Accounts / Access =====
+- include_tasks: accounts.yml
+  tags: [audit, baseline_accounts]
+
+# ===== PAM =====
+- include_tasks: pam.yml
+  tags: [audit, baseline_pam]
+
+# ===== File Permissions =====
+- include_tasks: file_permissions.yml
+  tags: [audit, file_permissions]
+
+# ===== Family Controls =====
+- include_tasks: rhel_family.yml
+  when: hitss_os_family == 'rhel'
+  tags: [audit, baseline_family]

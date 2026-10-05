@@ -1,0 +1,6 @@
+[servidores_rhel7_8_9]
+
+rhel7 ansible_host=192.168.56.37
+
+[all:vars]
+ansible_user=vagrant

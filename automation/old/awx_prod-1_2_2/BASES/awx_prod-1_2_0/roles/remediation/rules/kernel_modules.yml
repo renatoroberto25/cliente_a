@@ -1,0 +1,65 @@
+kernel_module_rules:
+  - id: 1
+    name: cramfs
+    descricao: "Verifique se o módulo do kernel do CRAMFS não está disponível"
+    perfil: "Full"
+
+  - id: 2
+    name: squashfs
+    descricao: "Verifique se o módulo do kernel do SQUASHFS não está disponível"
+    perfil: "Full"
+
+  - id: 3
+    name: udf
+    descricao: "Verifique se o módulo do kernel do UDF não está disponível"
+    perfil: "Full"
+
+  - id: 4
+    name: hfs
+    descricao: "Verifique se o módulo do kernel do HFS não está disponível"
+    perfil: "Full"
+
+  - id: 5
+    name: hfsplus
+    descricao: "Verifique se o módulo do kernel do HFSPLUS não está disponível"
+    perfil: "Full"
+
+  - id: 6
+    name: jffs2
+    descricao: "Verifique se o módulo do kernel do JFFS2 não está disponível"
+    perfil: "Full"
+
+  - id: 7
+    name: freevxfs
+    descricao: "Verifique se o módulo do kernel do FREEVXFS não está disponível"
+    perfil: "Full"
+
+  - id: 8
+    name: overlayfs
+    descricao: "Verifique se o módulo do kernel do OVERLAY não está disponível"
+    perfil: "Full"
+
+  - id: 9
+    name: usb_storage
+    descricao: "Verifique se o módulo do kernel do USB-STORAGE não está disponível"
+    perfil: "Full"
+
+  - id: 10
+    name: dccp
+    descricao: "Verifique se o módulo do kernel do DCCP não está disponível"
+    perfil: "Full"
+
+  - id: 11
+    name: sctp
+    descricao: "Verifique se o módulo do kernel do SCTP não está disponível"
+    perfil: "Full"
+
+  - id: 12
+    name: rds
+    descricao: "Verifique se o módulo do kernel do RDS não está disponível"
+    perfil: "Full"
+
+  - id: 13
+    name: tipc
+    descricao: "Verifique se o módulo do kernel do TIPC não está disponível"
+    perfil: "Full"

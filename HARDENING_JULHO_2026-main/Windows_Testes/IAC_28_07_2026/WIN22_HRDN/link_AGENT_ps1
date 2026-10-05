@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri "https://sensor.cloud.tenable.com/install/agent/installer/ms-install-script.ps1" -OutFile "./ms-install-script.ps1"; & "./ms-install-script.ps1" -key "45b85b603d4f4ed07d4451CHAVEc42da539327de707dedbac" -type "agent" -name "win2022" -groups 'Lab_VM_Ozias'; Remove-Item -Path "./ms-install-script.ps1"

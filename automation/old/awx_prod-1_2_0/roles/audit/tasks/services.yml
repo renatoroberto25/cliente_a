@@ -1,0 +1,29 @@
+# roles/audit/tasks/services.yml
+- name: Carregar regras services
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/services.yml"
+
+- name: Verificar serviços
+  command: systemctl is-active {{ item.name }}
+  register: services_check
+  loop: "{{ services_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditoria services
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.item.id }}]
+      {{
+        'APROVADO'
+        if (
+          item.stdout | default('') in ['inactive', 'failed']
+          or item.rc | default(1) != 0
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ services_check.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"

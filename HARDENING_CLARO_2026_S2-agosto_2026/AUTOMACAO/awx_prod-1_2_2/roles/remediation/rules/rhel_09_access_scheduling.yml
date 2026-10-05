@@ -1,0 +1,10 @@
+---
+rhel_09_access_scheduling_controls:
+  - id: 89
+    descricao: "Tempo / Sincronização"
+    severidade: WARN
+    perfil: "Full"
+  - id: 90
+    descricao: "Serviços / Agendadores"
+    severidade: BLOCK
+    perfil: "Full"

@@ -1,0 +1,1752 @@
+<check_type:"Unix">
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "002, Bloqueio squashfs, Baixa"
+  info        : "Verificar se módulo squashfs está bloqueado Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo squashfs >/dev/null 2>&1; then if modinfo squashfs >/dev/null 2>&1; then if modinfo squashfs >/dev/null 2>&1; then ( ! modinfo squashfs >/dev/null 2>&1 || { modprobe -n -v squashfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx squashfs; } ) && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "003, Bloqueio udf, Baixa"
+  info        : "Verifica se o módulo relacionado a Bloqueio udf está bloqueado e não carregado. Saída conforme quando atende `^install[[:space:]]+/bin/(true|false)`."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo udf >/dev/null 2>&1; then if modinfo udf >/dev/null 2>&1; then if modinfo udf >/dev/null 2>&1; then ( ! modinfo udf >/dev/null 2>&1 || { modprobe -n -v udf 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx udf; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "004, Bloqueio hfs, Baixa"
+  info        : "Verificar se módulo hfs está bloqueado"
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo hfs >/dev/null 2>&1; then if modinfo hfs >/dev/null 2>&1; then if modinfo hfs >/dev/null 2>&1; then ( ! modinfo hfs >/dev/null 2>&1 || { modprobe -n -v hfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx hfs; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "005, Bloqueio hfsplus, Baixa"
+  info        : "Verificar se módulo hfsplus está bloqueado"
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo hfsplus >/dev/null 2>&1; then if modinfo hfsplus >/dev/null 2>&1; then if modinfo hfsplus >/dev/null 2>&1; then ( ! modinfo hfsplus >/dev/null 2>&1 || { modprobe -n -v hfsplus 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx hfsplus; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "006, Bloqueio jffs2, Baixa"
+  info        : "Verificar se módulo jffs2 está bloqueado"
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo jffs2 >/dev/null 2>&1; then if modinfo jffs2 >/dev/null 2>&1; then if modinfo jffs2 >/dev/null 2>&1; then ( ! modinfo jffs2 >/dev/null 2>&1 || { modprobe -n -v jffs2 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx jffs2; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "007, Bloqueio freevxfs, Baixa"
+  info        : "Verificar se módulo freevxfs está bloqueado"
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo freevxfs >/dev/null 2>&1; then if modinfo freevxfs >/dev/null 2>&1; then if modinfo freevxfs >/dev/null 2>&1; then ( ! modinfo freevxfs >/dev/null 2>&1 || { modprobe -n -v freevxfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx freevxfs; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "008, Desabilitar o módulo overlayfs, Média"
+  info        : "Verifica se o módulo relacionado a Desabilitar o módulo overlayfs está bloqueado e não carregado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo overlay >/dev/null 2>&1; then if modinfo overlay >/dev/null 2>&1; then if modinfo overlay >/dev/null 2>&1; then ( ! modinfo overlay >/dev/null 2>&1 || { modprobe -n -v overlay 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx overlay; } ) && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "009, Bloqueio usb_storage, Média"
+  info        : "Verificar se usb_storage está bloqueado Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo usb_storage >/dev/null 2>&1; then if modinfo usb_storage >/dev/null 2>&1; then if modinfo usb_storage >/dev/null 2>&1; then ( ! modinfo usb_storage >/dev/null 2>&1 || { modprobe -n -v usb_storage 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx usb_storage; } ) && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "010, Bloqueio DCCP, Média"
+  info        : "Verifica se o módulo relacionado a Bloqueio DCCP está bloqueado e não carregado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo dccp >/dev/null 2>&1; then if modinfo dccp >/dev/null 2>&1; then if modinfo dccp >/dev/null 2>&1; then ( ! modinfo dccp >/dev/null 2>&1 || { modprobe -n -v dccp 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx dccp; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "011, Bloqueio SCTP, Média"
+  info        : "Verifica se o módulo relacionado a Bloqueio SCTP está bloqueado e não carregado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo sctp >/dev/null 2>&1; then if modinfo sctp >/dev/null 2>&1; then if modinfo sctp >/dev/null 2>&1; then ( ! modinfo sctp >/dev/null 2>&1 || { modprobe -n -v sctp 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx sctp; } ) && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi && echo PASS || echo NA; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "012, Bloqueio RDS, Média"
+  info        : "Verifica se o módulo relacionado a Bloqueio RDS está bloqueado e não carregado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo rds >/dev/null 2>&1; then if modinfo rds >/dev/null 2>&1; then if modinfo rds >/dev/null 2>&1; then ( ! modinfo rds >/dev/null 2>&1 || { modprobe -n -v rds 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx rds; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "013, Bloqueio TIPC, Média"
+  info        : "Verifica se o módulo relacionado a Bloqueio TIPC está bloqueado e não carregado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if modinfo tipc >/dev/null 2>&1; then if modinfo tipc >/dev/null 2>&1; then if modinfo tipc >/dev/null 2>&1; then ( ! modinfo tipc >/dev/null 2>&1 || { modprobe -n -v tipc 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx tipc; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "014, Core dumps restritos, Média"
+  info        : "Lê o parâmetro sysctl fs.suid_dumpable. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = \"0\" ] && grep -Eq '^[[:space:]]*fs\\.suid_dumpable[[:space:]]*=[[:space:]]*0([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='fs.suid_dumpable' -v expected='0' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "015, SUID dump off, Média"
+  info        : "Verificar valor de fs.suid_dumpable"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = \"0\" ] && grep -Eq '^[[:space:]]*fs\\.suid_dumpable[[:space:]]*=[[:space:]]*0([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='fs.suid_dumpable' -v expected='0' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "016, NX/XD ativo, Alta"
+  info        : "Procura a configuração de NX/XD ativo em /proc/cpuinfo. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Ajustar o controle 'NX/XD ativo' conforme a política aprovada para Debian-like 11+."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( case \"$(uname -m)\" in x86_64|i?86) grep -qw nx /proc/cpuinfo ;; *) grep -Eq '^CONFIG_STRICT_KERNEL_RWX=y' /boot/config-$(uname -r) 2>/dev/null ;; esac ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "017, ASLR habilitado, Alta"
+  info        : "Lê o parâmetro sysctl kernel.randomize_va_space. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n kernel.randomize_va_space 2>/dev/null)\" = \"2\" ] && grep -Eq '^[[:space:]]*kernel\\.randomize_va_space[[:space:]]*=[[:space:]]*2([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.randomize_va_space' -v expected='2' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "018, ASLR completo, Alta"
+  info        : "Lê o parâmetro sysctl kernel.randomize_va_space. Saída conforme quando atende `^2$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n kernel.randomize_va_space 2>/dev/null)\" = \"2\" ] && grep -Eq '^[[:space:]]*kernel\\.randomize_va_space[[:space:]]*=[[:space:]]*2([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.randomize_va_space' -v expected='2' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "019, perf_event restrito, Baixa"
+  info        : "Lê o parâmetro sysctl kernel.perf_event_paranoid. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( v=$(sysctl -n kernel.perf_event_paranoid 2>/dev/null); [ -n \"$v\" ] && [ \"$v\" -ge \"2\" ] && grep -Eq '^[[:space:]]*kernel\\.perf_event_paranoid[[:space:]]*=[[:space:]]*[2-9][0-9]*([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.perf_event_paranoid' -v expected='2' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit (value + 0) < (expected + 0) }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "020, dmesg restrito, Média"
+  info        : "Verificar dmesg_restrict"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n kernel.dmesg_restrict 2>/dev/null)\" = \"1\" ] && grep -Eq '^[[:space:]]*kernel\\.dmesg_restrict[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.dmesg_restrict' -v expected='1' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "021, Symlinks protegidos, Média"
+  info        : "Verificar protected_symlinks"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n fs.protected_symlinks 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*fs\\.protected_symlinks[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "022, Hardlinks protegidos, Média"
+  info        : "Verificar protected_hardlinks"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n fs.protected_hardlinks 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*fs\\.protected_hardlinks[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "023, Partição dedicada para /tmp, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /tmp em /tmp. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /tmp -o TARGET 2>/dev/null | grep -qx /tmp ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "024, Partição dedicada para /dev/shm, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /dev/shm em /dev/shm. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /dev/shm -o TARGET 2>/dev/null | grep -qx /dev/shm ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "025, Partição dedicada para /var, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /var em /var. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /var -o TARGET 2>/dev/null | grep -qx /var ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "026, Partição dedicada para /var/tmp, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /var/tmp em /var/tmp. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /var/tmp -o TARGET 2>/dev/null | grep -qx /var/tmp ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "027, Partição dedicada para /var/log, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /var/log em /var/log. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /var/log -o TARGET 2>/dev/null | grep -qx /var/log ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "028, Partição dedicada para /var/log/audit, Baixa"
+  info        : "Consulta regras auditd relacionadas a Partição dedicada para /var/log/audit. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /var/log/audit -o TARGET 2>/dev/null | grep -qx /var/log/audit ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "029, Partição dedicada para /home, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /home em /home. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /home -o TARGET 2>/dev/null | grep -qx /home ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "030, Partição dedicada para /historico, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /historico em /historico. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /historico -o TARGET 2>/dev/null | grep -qx /historico ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "031, Partição dedicada para /crash, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /crash em /crash. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /crash -o TARGET 2>/dev/null | grep -qx /crash ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "032, Partição dedicada para /UNIX, Baixa"
+  info        : "Pesquisa ocorrências de Partição dedicada para /UNIX em /UNIX. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( findmnt -rn -T /UNIX -o TARGET 2>/dev/null | grep -qx /UNIX ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "033, Nodev removíveis, Média"
+  info        : "Valida opções de montagem para Nodev removíveis. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(media|mnt)(/|$)'; then if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(media|mnt)(/|$)'; then if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(media|mnt)(/|$)'; then ( out=$(findmnt -rn -o TARGET,OPTIONS | awk '$1 ~ \"^/(media|mnt)(/|$)\"'); [ -z \"$out\" ] || { ! echo \"$out\" | grep -Ev 'nodev' | grep -q . && ! echo \"$out\" | grep -Ev 'nosuid' | grep -q . && ! echo \"$out\" | grep -Ev 'noexec' | grep -q .; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "034, Nodev partições críticas, Média"
+  info        : "Pesquisa ocorrências de Nodev partições críticas em /tmp, /log. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(home|tmp|var|var/tmp|var/log|var/log/audit)$'; then if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(home|tmp|var|var/tmp|var/log|var/log/audit)$'; then if findmnt -rn -o TARGET 2>/dev/null | grep -Eq '^/(home|tmp|var|var/tmp|var/log|var/log/audit)$'; then ( out=$(findmnt -rn -o TARGET,OPTIONS | awk '$1 ~ \"^/(home|tmp|var|var/tmp|var/log|var/log/audit)$\"'); [ -z \"$out\" ] || { ! echo \"$out\" | grep -Ev 'nodev' | grep -q . && ! echo \"$out\" | grep -Ev 'nosuid' | grep -q .; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "035, Segurança /var/log, Média"
+  info        : "Verificar opções de montagem de /var/log Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if findmnt -rn -T /var/log -o TARGET 2>/dev/null | grep -qx /var/log; then if findmnt -rn -T /var/log -o TARGET 2>/dev/null | grep -qx /var/log; then if findmnt -rn -T /var/log -o TARGET 2>/dev/null | grep -qx /var/log; then ( opts=$(findmnt -n -T /var/log -o OPTIONS 2>/dev/null); echo \"$opts\" | grep -qw nodev && echo \"$opts\" | grep -qw nosuid ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "036, Segurança audit log, Média"
+  info        : "Verificar opções de montagem de /var/log/audit Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if findmnt -rn -T /var/log/audit -o TARGET 2>/dev/null | grep -qx /var/log/audit; then if findmnt -rn -T /var/log/audit -o TARGET 2>/dev/null | grep -qx /var/log/audit; then if findmnt -rn -T /var/log/audit -o TARGET 2>/dev/null | grep -qx /var/log/audit; then ( opts=$(findmnt -n -T /var/log/audit -o OPTIONS 2>/dev/null); echo \"$opts\" | grep -qw nodev && echo \"$opts\" | grep -qw nosuid ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "037, Segurança /home, Média"
+  info        : "Verificar opções de montagem de /home Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if findmnt -rn -T /home -o TARGET 2>/dev/null | grep -qx /home; then if findmnt -rn -T /home -o TARGET 2>/dev/null | grep -qx /home; then if findmnt -rn -T /home -o TARGET 2>/dev/null | grep -qx /home; then ( findmnt -n -T /home -o OPTIONS 2>/dev/null | grep -qw nodev ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "038, Sticky world-writable, Média"
+  info        : "Executa o comando do audit para validar Sticky world-writable. Saída conforme quando atende `^0$`."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! find / -xdev -type d -perm -0002 ! -perm -1000 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "039, Sticky /tmp, Baixa"
+  info        : "Consulta permissões/propriedade de /tmp. Saída conforme quando atende `^1[0-7][0-7][0-7]$`."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /tmp 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "040, Sticky /var/tmp, Baixa"
+  info        : "Consulta permissões/propriedade de /var/tmp. Saída conforme quando atende `^1[0-7][0-7][0-7]$`."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /var/tmp 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "041, Sticky /dev/shm, Baixa"
+  info        : "Verificar sticky bit em /dev/shm"
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /dev/shm 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "042, Autofs desabilitado, Baixa"
+  info        : "Consulta o estado systemd de autofs. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Autofs desabilitado' conforme a política aprovada para Debian-like 11+."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in autofs.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in autofs.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in autofs.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in autofs.service; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "043, Senha no bootloader, Média"
+  info        : "Procura a configuração de Senha no bootloader em /boot/grub/grub.cfg. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( grep -REq '^[[:space:]]*password_pbkdf2[[:space:]]+' /boot/grub/grub.cfg /boot/grub/user.cfg 2>/dev/null ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "044, Permissões seguras no arquivo do bootloader, Alta"
+  info        : "Procura a configuração de Permissões seguras no arquivo do bootloader em /boot/grub/grub.cfg. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /boot/grub/grub.cfg ]; then if [ -f /boot/grub/grub.cfg ]; then if [ -f /boot/grub/grub.cfg ]; then ( stat -Lc '%a %u %g' /boot/grub/grub.cfg 2>/dev/null | grep -Eq '^(400|600) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "045, Single user mode com autenticação, Média"
+  info        : "Procura a configuração de Single user mode com autenticação em /bin/sh, /usr/lib/systemd/system/emergency.service. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( ! systemctl cat emergency.service rescue.service 2>/dev/null | grep -Eq 'ExecStart=-?/(bin|usr/bin)/(sh|bash)([[:space:]]|$)' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "046, Prelink removido, Baixa"
+  info        : "Verificar se prelink está instalado"
+  solution    : "Remover prelink quando presente. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "047, xinetd removido, Média"
+  info        : "Verifica pacote ou atualização exigida para xinetd removido. Saída conforme quando atende `^package xinetd is not installed$`."
+  solution    : "Ajustar o controle 'xinetd removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "048, Time sync ativo, Média"
+  info        : "Verificar serviço de tempo ativo"
+  solution    : "Habilitar serviço de sincronização de tempo aprovado. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( systemctl is-active --quiet chrony.service 2>/dev/null || systemctl is-active --quiet ntp.service 2>/dev/null || systemctl is-active --quiet ntpsec.service 2>/dev/null || systemctl is-active --quiet systemd-timesyncd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "049, Fontes NTP confiáveis, Média"
+  info        : "Procura a configuração de Fontes NTP confiáveis em /etc/chrony.conf. Saída conforme quando atende `^\\s*(server|pool)\\s+\\S+.*$`."
+  solution    : "Ajustar o controle 'Fontes NTP confiáveis' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( grep -REq '^[[:space:]]*(server|pool)[[:space:]]+[^[:space:]#]+' /etc/chrony/chrony.conf /etc/ntp.conf /etc/ntpsec/ntp.conf /etc/systemd/timesyncd.conf /etc/systemd/timesyncd.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "050, NTP desde o boot, Média"
+  info        : "Consulta o estado systemd de chrony, ntpsec ou systemd-timesyncd. Saída conforme quando atende `^enabled$`."
+  solution    : "Ajustar o controle 'NTP desde o boot' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( systemctl is-enabled --quiet chrony.service 2>/dev/null || systemctl is-enabled --quiet ntp.service 2>/dev/null || systemctl is-enabled --quiet ntpsec.service 2>/dev/null || systemctl is-enabled --quiet systemd-timesyncd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "051, X11 removido, Média"
+  info        : "Verificar presença de pacotes X11 Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Remover componentes X11 quando não necessários. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' xserver-xorg-core xserver-common gdm3 lightdm sddm 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xserver-xorg-core xserver-common gdm3 lightdm sddm 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xserver-xorg-core xserver-common gdm3 lightdm sddm 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' xserver-xorg-core xserver-common gdm3 lightdm sddm 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "052, Avahi desabilitado, Baixa"
+  info        : "Verificar status do avahi Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Desabilitar avahi quando não requerido. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in avahi-daemon.service avahi-daemon.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in avahi-daemon.service avahi-daemon.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in avahi-daemon.service avahi-daemon.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in avahi-daemon.service avahi-daemon.socket; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "053, CUPS desabilitado, Baixa"
+  info        : "Verifica pacote ou atualização exigida para CUPS desabilitado. Saída conforme quando atende `^package cups is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'CUPS desabilitado' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in cups.service cups.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in cups.service cups.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in cups.service cups.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in cups.service cups.socket; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "054, DHCP server ausente, Média"
+  info        : "Verifica pacote ou atualização exigida para DHCP server ausente. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'DHCP server ausente' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' isc-dhcp-server kea-dhcp4-server kea-dhcp6-server 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' isc-dhcp-server kea-dhcp4-server kea-dhcp6-server 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' isc-dhcp-server kea-dhcp4-server kea-dhcp6-server 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' isc-dhcp-server kea-dhcp4-server kea-dhcp6-server 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "055, LDAP server ausente, Média"
+  info        : "Verifica pacote ou atualização exigida para LDAP server ausente. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'LDAP server ausente' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' slapd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' slapd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' slapd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' slapd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "056, DNS server ausente, Média"
+  info        : "Verifica pacote ou atualização exigida para DNS server ausente. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'DNS server ausente' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' bind9 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' bind9 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' bind9 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' bind9 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "057, FTP server ausente, Alta"
+  info        : "Verifica pacote ou atualização exigida para FTP server ausente. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'FTP server ausente' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' vsftpd proftpd-basic pure-ftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' vsftpd proftpd-basic pure-ftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' vsftpd proftpd-basic pure-ftpd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' vsftpd proftpd-basic pure-ftpd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "058, HTTP server ausente, Média"
+  info        : "Verifica pacote ou atualização exigida para HTTP server ausente. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'HTTP server ausente' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' apache2 nginx lighttpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' apache2 nginx lighttpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' apache2 nginx lighttpd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' apache2 nginx lighttpd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "059, IMAP/POP3 removidos, Média"
+  info        : "Verificar presença de serviços IMAP POP3 Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Remover serviços IMAP/POP3 quando não aplicáveis. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' dovecot-imapd dovecot-pop3d cyrus-imapd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' dovecot-imapd dovecot-pop3d cyrus-imapd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' dovecot-imapd dovecot-pop3d cyrus-imapd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' dovecot-imapd dovecot-pop3d cyrus-imapd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "060, Samba removido, Média"
+  info        : "Verifica pacote ou atualização exigida para Samba removido. Saída conforme quando atende `^package samba is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Samba removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' samba 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' samba 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' samba 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' samba 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "061, Proxy HTTP removido, Média"
+  info        : "Verificar presença de proxy HTTP Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Remover proxy HTTP quando não aplicável. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' squid 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' squid 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' squid 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' squid 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "062, SNMP desabilitado, Média"
+  info        : "Consulta o estado systemd de snmpd. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'SNMP desabilitado' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in snmpd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in snmpd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in snmpd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in snmpd.service; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "063, Servidor NIS removido, Alta"
+  info        : "Verifica pacote ou atualização exigida para Servidor NIS removido. Saída conforme quando atende `^package ypserv is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Servidor NIS removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "064, Servidor Telnet removido, Alta"
+  info        : "Verificar presença de telnetd"
+  solution    : "Remover servidor Telnet. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "065, MTA local only, Média"
+  info        : "Verifica pacote ou atualização exigida para MTA local only. Saída conforme quando atende `^[[:space:]]*inet_interfaces[[:space:]]*=[[:space:]]*localhost([[:space:]]|$)|^$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'MTA local only' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${db:Status-Abbrev}' postfix 2>/dev/null | grep -q '^ii ' || postconf -h inet_interfaces 2>/dev/null | grep -Eq '^(loopback-only|localhost|127\\.0\\.0\\.1|::1)(,[[:space:]]*(localhost|127\\.0\\.0\\.1|::1))*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "066, NFS server desabilitado, Média"
+  info        : "Verificar presença de NFS server Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Desabilitar NFS server quando não aplicável. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in nfs-server.service nfs-kernel-server.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in nfs-server.service nfs-kernel-server.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in nfs-server.service nfs-kernel-server.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in nfs-server.service nfs-kernel-server.service; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "067, rpcbind desabilitado, Média"
+  info        : "Verifica pacote ou atualização exigida para rpcbind desabilitado. Saída conforme quando atende `^package rpcbind is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'rpcbind desabilitado' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in rpcbind.service rpcbind.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in rpcbind.service rpcbind.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in rpcbind.service rpcbind.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in rpcbind.service rpcbind.socket; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "068, rsync daemon desabilitado, Média"
+  info        : "Verificar presença do rsync daemon Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Desabilitar rsync daemon quando não requerido. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in rsync.service rsyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in rsync.service rsyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in rsync.service rsyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in rsync.service rsyncd.service; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "069, Cliente NIS removido, Média"
+  info        : "Verificar presença do cliente NIS"
+  solution    : "Remover cliente NIS. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "070, Cliente rsh removido, Alta"
+  info        : "Verifica pacote ou atualização exigida para Cliente rsh removido. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Ajustar o controle 'Cliente rsh removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "071, Cliente talk removido, Baixa"
+  info        : "Verificar presença de talk"
+  solution    : "Remover cliente talk. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "072, Cliente telnet removido, Média"
+  info        : "Verificar presença de cliente telnet"
+  solution    : "Remover cliente telnet. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "073, Cliente LDAP removido, Média"
+  info        : "Verifica pacote ou atualização exigida para Cliente LDAP removido. Saída conforme quando atende `^package openldap-clients is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Cliente LDAP removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' ldap-utils 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' ldap-utils 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' ldap-utils 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' ldap-utils 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "074, Serviços não essenciais habilitados, Média"
+  info        : "Consulta o estado systemd de Serviços não essenciais habilitados. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Serviços não essenciais habilitados' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in avahi-daemon.service cups.service tftpd-hpa.service vsftpd.service xinetd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in avahi-daemon.service cups.service tftpd-hpa.service vsftpd.service xinetd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in avahi-daemon.service cups.service tftpd-hpa.service vsftpd.service xinetd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then sh -c 'for s in avahi-daemon.service cups.service tftpd-hpa.service vsftpd.service xinetd.service; do systemctl is-enabled --quiet \"$s\" 2>/dev/null && { echo FAIL; exit 0; }; done; echo PASS'; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "075, Servidor TFTP removido, Alta"
+  info        : "Verifica pacote ou atualização exigida para Servidor TFTP removido. Saída conforme quando atende `^package tftp-server is not installed$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Servidor TFTP removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "076, PolicyKit sem autorizações locais irrestritas, Média"
+  info        : "Verifica regras locais do PolicyKit em /etc/polkit-1, suas permissões e concessões evidentemente irrestritas. Regras de fornecedor em /usr/share não são avaliadas."
+  solution    : "Remover concessões locais irrestritas ou limitá-las a ações e sujeitos aprovados. Corrigir proprietário para root e remover escrita por grupo/outros dos arquivos locais, preservando regras legítimas necessárias à função do servidor."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -d /etc/polkit-1 ] || dpkg-query -W -f='${db:Status-Abbrev}\\n' polkitd policykit-1 2>/dev/null | grep -q '^ii '; then ok=1; if find /etc/polkit-1 -type f \\( -name '*.rules' -o -name '*.pkla' \\) \\( ! -user root -o -perm /022 \\) -print -quit 2>/dev/null | grep -q .; then ok=0; fi; for f in /etc/polkit-1/rules.d/*.rules; do [ -f \"$f\" ] || continue; if grep -Eq 'polkit\\.Result\\.YES|return[[:space:]]+[\"'\"'\"']yes[\"'\"'\"']' \"$f\" 2>/dev/null; then grep -Eq 'action\\.id|subject\\.(isInGroup|user|local|active)' \"$f\" 2>/dev/null || ok=0; fi; done; for f in /etc/polkit-1/localauthority/*.d/*.pkla /etc/polkit-1/localauthority/*/*.d/*.pkla; do [ -f \"$f\" ] || continue; if grep -Eq '^[[:space:]]*Identity[[:space:]]*=[[:space:]]*unix-(user|group):\\*[[:space:]]*$' \"$f\" 2>/dev/null && grep -Eq '^[[:space:]]*Action[[:space:]]*=[[:space:]]*\\*[[:space:]]*$' \"$f\" 2>/dev/null && grep -Eq '^[[:space:]]*Result(Any|Inactive|Active)[[:space:]]*=[[:space:]]*yes[[:space:]]*$' \"$f\" 2>/dev/null; then ok=0; fi; done; [ \"$ok\" -eq 1 ] && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "077, Assinaturas dos repositórios APT verificadas, Alta"
+  info        : "Verifica pacote ou atualização exigida para GPG check habilitado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Ajustar o controle 'Assinaturas dos repositórios APT verificadas' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! grep -REiq 'trusted[[:space:]]*=[[:space:]]*yes|allow-insecure[[:space:]]*=[[:space:]]*yes' /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null && ! apt-config dump 2>/dev/null | grep -Eiq 'Acquire::AllowInsecureRepositories[[:space:]]+\"?(true|1)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "078, Atualizações de segurança aplicadas, Alta"
+  info        : "Verificar atualizações pendentes"
+  solution    : "Aplicar atualizações de segurança pendentes. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then ( ! apt-get -s -o Debug::NoLocking=1 upgrade 2>/dev/null | grep '^Inst ' | grep -Eiq '(debian-security|security\\.debian\\.org|security\\.ubuntu\\.com|[- ]security)' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "079, Sincronização de tempo única, Média"
+  info        : "Verificar serviços de tempo ativos"
+  solution    : "Manter apenas um mecanismo de sincronização ativo. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( n=0; for s in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl is-active --quiet \"$s\" 2>/dev/null && n=$((n+1)); done; [ \"$n\" -eq 1 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "081, Redirects desabilitados, Alta"
+  info        : "Verificar configuração de redirects"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv4.conf.default.send_redirects 2>/dev/null)\" = 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "082, Source-route bloqueado, Alta"
+  info        : "Lê o parâmetro sysctl net.ipv4.conf.all.accept_source_route, net.ipv4.conf.default.accept_source_route. Saída conforme quando atende `^0 0 [1-9][0-9]*$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv4.conf.default.accept_source_route 2>/dev/null)\" = 0 ] && { [ ! -e /proc/sys/net/ipv6/conf/all/accept_source_route ] || { [ \"$(sysctl -n net.ipv6.conf.all.accept_source_route 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv6.conf.default.accept_source_route 2>/dev/null)\" = 0 ]; }; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "083, ICMP redirects controlados nas interfaces ativas, Média"
+  info        : "Verifica accept_redirects em all e nas interfaces IPv4/IPv6 ativas. Os valores default são registrados como evidência para revisão e não causam reprovação isoladamente."
+  solution    : "Configurar accept_redirects=0 globalmente e nas interfaces ativas. Avaliar default=1 com o responsável de redes e definir default=0 quando houver criação dinâmica de interfaces ou quando não existir exceção aprovada."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "ipv4_default=$(sysctl -n net.ipv4.conf.default.accept_redirects 2>/dev/null || echo NA); ipv6_default=$(sysctl -n net.ipv6.conf.default.accept_redirects 2>/dev/null || echo NA); ok=1; [ \"$(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null)\" = \"0\" ] || ok=0; for path in /sys/class/net/*; do iface=${path##*/}; [ \"$iface\" = \"lo\" ] && continue; [ \"$(cat \"$path/operstate\" 2>/dev/null)\" = \"up\" ] || continue; [ \"$(cat \"/proc/sys/net/ipv4/conf/$iface/accept_redirects\" 2>/dev/null)\" = \"0\" ] || ok=0; if [ -e \"/proc/sys/net/ipv6/conf/$iface/accept_redirects\" ]; then [ \"$(cat \"/proc/sys/net/ipv6/conf/$iface/accept_redirects\" 2>/dev/null)\" = \"0\" ] || ok=0; fi; done; if [ -e /proc/sys/net/ipv6/conf/all/accept_redirects ]; then [ \"$(sysctl -n net.ipv6.conf.all.accept_redirects 2>/dev/null)\" = \"0\" ] || ok=0; fi; [ \"$ok\" -eq 1 ] && echo \"PASS ipv4_default=$ipv4_default ipv6_default=$ipv6_default\" || echo FAIL"
+  expect      : "(?i)^\\s*PASS(?:\\s+.*)?\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "084, Reverse path filtering habilitado, Alta"
+  info        : "Verificar rp_filter"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( v1=$(sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null); v2=$(sysctl -n net.ipv4.conf.default.rp_filter 2>/dev/null); echo \"$v1 $v2\" | grep -Eq '^[12] [12]$' ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "085, Broadcast ICMP ignorado, Baixa"
+  info        : "Verificar ignore_broadcasts"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.icmp_echo_ignore_broadcasts[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "086, ICMP bogus responses ignorado, Baixa"
+  info        : "Lê o parâmetro sysctl net.ipv4.icmp_ignore_bogus_error_responses. Saída conforme quando atende `^1 [1-9][0-9]*$`."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.icmp_ignore_bogus_error_responses[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "087, TCP syncookies habilitado, Alta"
+  info        : "Verificar tcp_syncookies"
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.tcp_syncookies[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "088, IPv6 desabilitado, Baixa"
+  info        : "Lê o parâmetro sysctl net.ipv6.conf.all.disable_ipv6. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null)\" = 1 ] && [ \"$(sysctl -n net.ipv6.conf.default.disable_ipv6 2>/dev/null)\" = 1 ] ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "089, Wireless e bluetooth ausentes, Média"
+  info        : "Executa o comando do audit para validar Wireless e bluetooth ausentes. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar o controle 'Wireless e bluetooth ausentes' conforme a política aprovada para Debian-like 11+."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( ! find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . && ! systemctl is-active --quiet bluetooth.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "090, Permissões do SSH, Alta"
+  info        : "Valida configuração SSH para Permissões do SSH. Saída conforme quando atende `^(600|640) root root \\| (700|750) root root$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( stat -Lc '%a %u %g' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' && stat -Lc '%a %u %g' /etc/ssh 2>/dev/null | grep -Eq '^(700|750|755) 0 0$' && ! find /etc/ssh/sshd_config.d -type f -perm /022 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "091, SyslogFacility do SSH seguro, Baixa"
+  info        : "Valida configuração SSH para SyslogFacility AUTHPRIV. Saída conforme quando atende `^[[:space:]]*SyslogFacility[[:space:]]+AUTHPRIV\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^syslogfacility[[:space:]]+(AUTH|AUTHPRIV)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "092, X11Forwarding desabilitado, Média"
+  info        : "Valida configuração SSH para X11Forwarding desabilitado. Saída conforme quando atende `^[[:space:]]*X11Forwarding[[:space:]]+no\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^x11forwarding[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "093, MaxAuthTries restritivo, Média"
+  info        : "Verificar valor de MaxAuthTries"
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( v=$(sshd -T 2>/dev/null | awk '$1==\"maxauthtries\"{print $2; exit}'); [ -n \"$v\" ] && [ \"$v\" -le 4 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "094, IgnoreRhosts habilitado, Alta"
+  info        : "Verificar parâmetro IgnoreRhosts"
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^ignorerhosts[[:space:]]+(yes)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "095, HostbasedAuthentication desabilitado, Alta"
+  info        : "Valida configuração SSH para HostbasedAuthentication desabilitado. Saída conforme quando atende `^[[:space:]]*HostbasedAuthentication[[:space:]]+no\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^hostbasedauthentication[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "096, PermitRootLogin restrito, Alta"
+  info        : "Valida configuração SSH para PermitRootLogin restrito. Saída conforme quando atende `^[[:space:]]*PermitRootLogin[[:space:]]+(no|prohibit-password)\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^permitrootlogin[[:space:]]+(no|prohibit-password)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "097, PermitEmptyPasswords desabilitado, Alta"
+  info        : "Verificar parâmetro PermitEmptyPasswords"
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^permitemptypasswords[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "098, PermitUserEnvironment desabilitado, Média"
+  info        : "Valida configuração SSH para PermitUserEnvironment desabilitado. Saída conforme quando atende `^[[:space:]]*PermitUserEnvironment[[:space:]]+no\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^permituserenvironment[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "099, UsePAM habilitado, Alta"
+  info        : "Verificar parâmetro UsePAM"
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^usepam[[:space:]]+(yes)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "100, ClientAlive configurado, Baixa"
+  info        : "Valida configuração SSH para ClientAlive configurado. Saída conforme quando atende `^[[:space:]]*ClientAliveInterval[[:space:]]+[1-9][0-9]*\\b.* \\| [[:space:]]*ClientAliveCountMax[[:space:]]+[1-9][0-9]*\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( i=$(sshd -T 2>/dev/null | awk '$1==\"clientaliveinterval\"{print $2; exit}'); c=$(sshd -T 2>/dev/null | awk '$1==\"clientalivecountmax\"{print $2; exit}'); [ -n \"$i\" ] && [ \"$i\" -ge 1 ] && [ \"$i\" -le 900 ] && [ -n \"$c\" ] && [ \"$c\" -ge 0 ] && [ \"$c\" -le 3 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "101, LoginGraceTime restrito, Média"
+  info        : "Verificar parâmetro LoginGraceTime"
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( v=$(sshd -T 2>/dev/null | awk '$1==\"logingracetime\"{print $2; exit}'); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 60 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "102, MaxStartups restrito, Média"
+  info        : "Valida configuração SSH para MaxStartups restrito. Saída conforme quando atende `^[[:space:]]*MaxStartups[[:space:]]+[0-9:]+.* \\| [[:space:]]*MaxSessions[[:space:]]+[0-9]+\\b.*$`."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( ms=$(sshd -T 2>/dev/null | awk '$1==\"maxsessions\"{print $2; exit}'); mu=$(sshd -T 2>/dev/null | awk '$1==\"maxstartups\"{print $2; exit}' | cut -d: -f1); [ -n \"$ms\" ] && [ \"$ms\" -le 10 ] && [ -n \"$mu\" ] && [ \"$mu\" -le 10 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "103, AllowTcpForwarding desabilitado, Média"
+  info        : "Valida configuração SSH para AllowTcpForwarding desabilitado. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^allowtcpforwarding[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "105, PAM complexidade, Alta"
+  info        : "Verificar presença do módulo de complexidade na stack PAM"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq '^[[:space:]]*password[[:space:]].*pam_pwquality\\.so' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "111, Sem repetição/sequência, Média"
+  info        : "Procura a configuração de Sem repetição/sequência em /etc/security/pwquality.conf. Saída conforme quando atende `^[[:space:]]*(maxrepeat|maxsequence)[[:space:]]*=[[:space:]]*[1-9]+.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*maxrepeat[[:space:]]*=[[:space:]]*[1-3]([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && grep -REq '^[[:space:]]*maxsequence[[:space:]]*=[[:space:]]*[1-3]([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "112, Dicionário ativo, Média"
+  info        : "Procura a configuração de Dicionário ativo em /etc/security/pwquality.conf. Saída conforme quando atende `^[[:space:]]*dictcheck[[:space:]]*=[[:space:]]*1\\b.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*dictcheck[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "113, Hash forte, Alta"
+  info        : "Verificar algoritmo configurado"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq '^[[:space:]]*password[[:space:]].*pam_unix\\.so.*(yescrypt|sha512)' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "116, PASS_MAX_DAYS, Alta"
+  info        : "Verificar PASS_MAX_DAYS"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_MAX_DAYS\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 365 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "117, PASS_MIN_DAYS, Baixa"
+  info        : "Procura a configuração de PASS_MIN_DAYS em /etc/login.defs. Saída conforme quando atende `^[[:space:]]*PASS_MIN_DAYS[[:space:]]+[0-9]+.*$`."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_MIN_DAYS\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "118, PASS_WARN_AGE, Baixa"
+  info        : "Procura a configuração de PASS_WARN_AGE em /etc/login.defs. Saída conforme quando atende `^[[:space:]]*PASS_WARN_AGE[[:space:]]+[1-9][0-9]*.*$`."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_WARN_AGE\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 7 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "119, INACTIVE configurado, Alta"
+  info        : "Verificar parâmetro INACTIVE"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(useradd -D 2>/dev/null | awk -F= '$1==\"INACTIVE\"{print $2}'); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 30 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "120, Datas de senha consistentes, Alta"
+  info        : "Procura a configuração de Datas de senha consistentes em /etc/shadow. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( now=$(($(date +%s)/86400)); awk -F: -v n=\"$now\" '$2 ~ /^\\$/ && $3>n {bad=1} END{exit bad}' /etc/shadow ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "121, Apenas root com UID 0, Alta"
+  info        : "Verificar contas com UID 0"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(awk -F: '$3==0{print $1}' /etc/passwd)\" = root ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "122, Apenas grupo root com GID 0, Alta"
+  info        : "Verificar grupos com GID 0"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( [ \"$(awk -F: '$3==0{print $1}' /etc/group)\" = root ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "123, Contas de sistema com shell inválido bloqueadas, Alta"
+  info        : "Verificar shells de contas de sistema"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$1 !~ /^(root|sync|shutdown|halt)$/ && $3<m && $7 !~ /(nologin|false)$/ {bad=1} END{exit bad}' /etc/passwd ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "124, /etc/shells validado, Baixa"
+  info        : "Procura a configuração de /etc/shells validado em /bin/bash, /bin/sh. Saída conforme quando atende `^$`."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( awk '!/^[[:space:]]*(#|$)/{print}' /etc/shells | while read -r s; do [ -x \"$s\" ] && [ \"$(stat -Lc %u \"$s\")\" -eq 0 ] && [ $((8#$(stat -Lc %a \"$s\") & 0022)) -eq 0 ] || exit 1; done ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "125, PATH do root sem diretório inseguro, Alta"
+  info        : "Verificar variável PATH do root"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( p=$(getent passwd root | cut -d: -f7); path=$(env -i HOME=/root \"$p\" -lc 'printf %s \"$PATH\"' 2>/dev/null); oldifs=$IFS; IFS=:; for d in $path; do [ -n \"$d\" ] && [ \"$d\" != . ] && [ -d \"$d\" ] && [ \"$(stat -Lc %u \"$d\")\" -eq 0 ] && [ $((8#$(stat -Lc %a \"$d\") & 0022)) -eq 0 ] || exit 1; done; IFS=$oldifs ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "126, Umask padrão restritiva, Alta"
+  info        : "Verificar valor de umask padrão"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( grep -REq '^[[:space:]]*umask[[:space:]]+0(27|77)([[:space:]]|$)' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "127, Timeout de shell, Baixa"
+  info        : "Procura a configuração de Timeout de shell em /etc/profile, /etc/bash.bashrc. Saída conforme quando atende `^[^:]+:[[:space:]]*TMOUT=[1-9][0-9]+.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( grep -REq '^[[:space:]]*TMOUT=([1-8]?[0-9]{1,2}|900)([[:space:]]|$)' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null && grep -REq '^[[:space:]]*(readonly|export)[[:space:]]+TMOUT' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "128, Administração privilegiada via sudo restrita, Alta"
+  info        : "Verificar configuração do sudoers"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( grep -REq '^[[:space:]]*%sudo[[:space:]]+ALL[[:space:]]*=[[:space:]]*\\(ALL(:ALL)?\\)[[:space:]]+ALL([[:space:]]|$)' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "129, Sudo com pseudo-TTY, Alta"
+  info        : "Verificar parâmetro requiretty ou equivalente"
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( grep -REq '^[[:space:]]*Defaults([[:space:]]+|:)[^#]*use_pty([[:space:],]|$)' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "131, Timeout de autenticação sudo, Baixa"
+  info        : "Procura a configuração de Timeout de autenticação sudo em /etc/sudoers. Saída conforme quando atende `^[[:space:]]*Defaults[[:space:]]+timestamp_timeout=[1-9][0-9]*\\b.*$`."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( v=$(grep -REh '^[[:space:]]*Defaults([[:space:]]+|:)[^#]*timestamp_timeout=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null | tail -1 | sed -E 's/.*timestamp_timeout=([0-9]+).*/\\1/'); [ -n \"$v\" ] && [ \"$v\" -ge 0 ] && [ \"$v\" -le 15 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "132, Uso de su restrito por grupo, Média"
+  info        : "Verifica se su está disponível e se existe regra PAM obrigatória de restrição por grupo. Registra a quantidade de regras e os grupos resolvidos, sem avaliar a quantidade de membros."
+  solution    : "Configurar em /etc/pam.d/su uma regra PAM obrigatória que restrinja o uso de su a grupo aprovado pelo responsável do sistema. Validar o grupo pelo mecanismo de identidade e testar o acesso com uma conta administrativa de contingência antes de encerrar a sessão."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "su_bin=$(command -v su 2>/dev/null); if [ -z \"$su_bin\" ] || [ ! -x \"$su_bin\" ]; then echo NA; elif [ ! -f /etc/pam.d/su ]; then echo FAIL; else wheel_rules=$(awk '!/^[[:space:]]*#/ && $1==\"auth\" && ($2==\"required\" || $2==\"requisite\") && $0 ~ /pam_wheel\\.so([[:space:]]|$)/' /etc/pam.d/su 2>/dev/null); succeed_rules=$(awk '!/^[[:space:]]*#/ && $1==\"auth\" && ($2==\"required\" || $2==\"requisite\") && $0 ~ /pam_succeed_if\\.so/ && $0 ~ /user[[:space:]]+ingroup[[:space:]]+[^[:space:]]+/' /etc/pam.d/su 2>/dev/null); rules=$(printf '%s\\n%s\\n' \"$wheel_rules\" \"$succeed_rules\" | sed '/^[[:space:]]*$/d'); rule_count=$(printf '%s\\n' \"$rules\" | grep -c .); if [ \"$rule_count\" -eq 0 ]; then echo FAIL; else ok=1; groups=''; explicit=$(printf '%s\\n' \"$wheel_rules\" | grep -oE 'group=[^[:space:]]+' | cut -d= -f2- | sort -u); succeed_groups=$(printf '%s\\n' \"$succeed_rules\" | sed -nE 's/.*user[[:space:]]+ingroup[[:space:]]+([^[:space:]]+).*/\\1/p' | sort -u); for group in $explicit $succeed_groups; do if getent group \"$group\" >/dev/null 2>&1; then groups=\"${groups}${groups:+,}$group\"; else ok=0; fi; done; implicit_count=$(printf '%s\\n' \"$wheel_rules\" | grep -c .); explicit_count=$(printf '%s\\n' \"$wheel_rules\" | grep -cE 'group=[^[:space:]]+'); if [ \"$implicit_count\" -gt \"$explicit_count\" ]; then if getent group wheel >/dev/null 2>&1; then implicit_group=wheel; else implicit_group=$(getent group 0 2>/dev/null | awk -F: 'NR==1{print $1}'); fi; if [ -n \"$implicit_group\" ]; then groups=\"${groups}${groups:+,}$implicit_group\"; else ok=0; fi; fi; [ \"$ok\" -eq 1 ] && echo \"PASS regras=$rule_count grupos=${groups:-grupo-padrao}\" || echo FAIL; fi; fi"
+  expect      : "(?i)^\\s*(PASS(?:\\s+.*)?|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "133, Journald persistente, Média"
+  info        : "Procura a configuração de Journald persistente em /etc/systemd/journald.conf. Saída conforme quando atende `^[[:space:]]*Storage=persistent\\b.*$`."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if systemctl --version >/dev/null 2>&1; then ( cfg=$(systemd-analyze cat-config systemd/journald.conf 2>/dev/null | awk -F= '/^[[:space:]]*Storage[[:space:]]*=/{gsub(/[[:space:]]/,\"\",$2); v=tolower($2)} END{print v}'); { [ \"$cfg\" = persistent ] || { { [ -z \"$cfg\" ] || [ \"$cfg\" = auto ]; } && [ -d /var/log/journal ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "134, Rsyslog habilitado, Média"
+  info        : "Consulta o estado systemd de rsyslog. Saída conforme quando atende `^enabled$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then ( systemctl is-enabled --quiet rsyslog.service 2>/dev/null && systemctl is-active --quiet rsyslog.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "135, Rotação de logs configurada, Baixa"
+  info        : "Verificar configuração de rotação"
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then ( dpkg-query -W -f='${db:Status-Abbrev}' logrotate 2>/dev/null | grep -q '^ii ' && grep -Eq '^[[:space:]]*rotate[[:space:]]+[1-9][0-9]*' /etc/logrotate.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "136, auditd habilitado, Alta"
+  info        : "Verificar presença e status do auditd"
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( dpkg-query -W -f='${db:Status-Abbrev}' auditd 2>/dev/null | grep -q '^ii ' && systemctl is-enabled --quiet auditd.service 2>/dev/null && systemctl is-active --quiet auditd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "137, Auditoria habilitada desde o boot, Alta"
+  info        : "Verificar ordem de inicialização Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( grep -qw audit=1 /proc/cmdline && grep -REq '^[[:space:]]*GRUB_CMDLINE_LINUX(_DEFAULT)?=.*audit=1' /etc/default/grub /etc/default/grub.d/*.cfg 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "138, max_log_file configurado, Média"
+  info        : "Verificar parâmetro max_log_file"
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( grep -Eq '^[[:space:]]*max_log_file[[:space:]]*=[[:space:]]*[1-9][0-9]*' /etc/audit/auditd.conf 2>/dev/null && grep -Eq '^[[:space:]]*max_log_file_action[[:space:]]*=[[:space:]]*(ROTATE|KEEP_LOGS)([[:space:]]|$)' /etc/audit/auditd.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "139, Auditoria de data e hora, Média"
+  info        : "Verificar regras de auditoria de time change Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- '/etc/localtime' $files 2>/dev/null && for s in adjtimex settimeofday clock_settime; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "140, Auditoria de contas e grupos, Média"
+  info        : "Verificar regras de auditoria relacionadas a contas"
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /etc/passwd /etc/group /etc/shadow /etc/gshadow; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "141, Auditoria de rede, Média"
+  info        : "Consulta regras auditd relacionadas a Auditoria de rede. Saída conforme quando atende `^.*(/etc/network ou /etc/netplan|/etc/hosts|/etc/resolv\\.conf)\\b.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /etc/hosts /etc/hostname /etc/resolv.conf; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "142, Auditoria de login, Média"
+  info        : "Verificar regras de auditoria de login Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /var/log/lastlog /var/log/wtmp /var/log/btmp; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "143, Auditoria de permissões, Média"
+  info        : "Consulta regras auditd relacionadas a Auditoria de permissões. Saída conforme quando atende `^.*\\b(chmod|chown|setxattr|fchmod)\\b.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in chmod fchmod fchmodat chown fchown fchownat lchown setxattr; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "144, Auditoria de EACCES e EPERM, Média"
+  info        : "Verificar regras de acesso negado Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- 'exit=-EACCES' $files 2>/dev/null && grep -REq -- 'exit=-EPERM' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "145, Auditoria de executáveis privilegiados, Média"
+  info        : "Verificar regras de execve privilegiado Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( grep -REq -- 'perm=x.*auid>=(1000|\\$UID_MIN).*auid!=(unset|-1|4294967295)' /etc/audit/rules.d/*.rules /etc/audit/audit.rules 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "146, Auditoria de mount, Média"
+  info        : "Consulta regras auditd relacionadas a Auditoria de mount. Saída conforme quando atende `^.*\\b(mount|umount2)\\b.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in mount umount2; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "147, Auditoria de unlink e rename, Média"
+  info        : "Consulta regras auditd relacionadas a Auditoria de unlink e rename. Saída conforme quando atende `^.*\\b(unlink|rename|rmdir|unlinkat|renameat)\\b.*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in unlink unlinkat rename renameat rmdir; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "148, Auditoria de módulos kernel, Média"
+  info        : "Verificar regras relacionadas a módulos Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in init_module finit_module delete_module; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done; grep -REq -- '-w[[:space:]]+/(usr/)?sbin/modprobe([[:space:]]|$)' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "149, Auditoria de sudo e sudoers, Média"
+  info        : "Verificar regras de auditoria de sudo Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii ' && command -v sudo >/dev/null 2>&1; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- 'path=/usr/bin/sudo|/usr/bin/sudo[[:space:]]' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/etc/sudoers([[:space:]]|$)' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/etc/sudoers.d/?([[:space:]]|$)' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/var/log/sudo\\.log([[:space:]]|$)' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "150, Auditoria imutável, Alta"
+  info        : "Consulta regras auditd relacionadas a Auditoria imutável. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( find /etc/audit/rules.d -maxdepth 1 -type f -name '*.rules' -print0 2>/dev/null | sort -z | xargs -0 awk '!/^[[:space:]]*(#|$)/{line=$0} END{exit line !~ /^[[:space:]]*-e[[:space:]]+2([[:space:]]|$)/}' 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "151, Verificação periódica de integridade, Média"
+  info        : "Verificar agendamento configurado Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Instalar aide, inicializar a base em estado confiável e agendar verificacao periódica por timer ou cron."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' aide 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' aide 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' aide 2>/dev/null | grep -q '^ii '; then ( dpkg-query -W -f='${db:Status-Abbrev}' aide 2>/dev/null | grep -q '^ii ' && { grep -REq 'aide(\\.wrapper)?[[:space:]].*(--check|--config)' /etc/cron.* /etc/crontab 2>/dev/null || systemctl list-timers --all 2>/dev/null | grep -Eiq 'aide.*(check|timer)'; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "152, Permissões de /etc/passwd, Média"
+  info        : "Verificar permissões de /etc/passwd"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /etc/passwd 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "153, Permissões de /etc/passwd-, Média"
+  info        : "Consulta permissões/propriedade de /etc/passwd-. Saída conforme quando atende `^[0-6]44$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -e /etc/passwd- ]; then if [ -e /etc/passwd- ]; then if [ -e /etc/passwd- ]; then ( [ ! -e /etc/passwd- ] || stat -Lc '%a %u %g' /etc/passwd- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "154, Permissões de /etc/shadow, Alta"
+  info        : "Verificar permissões de /etc/shadow"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600) 0 0$|^640 0 (0|[1-9][0-9]*)$' && { [ \"$(stat -Lc %g /etc/shadow)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/shadow)\" = shadow ]; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "155, Permissões de /etc/shadow-, Média"
+  info        : "Consulta permissões/propriedade de /etc/shadow-. Saída conforme quando atende `^000 root root$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -e /etc/shadow- ]; then if [ -e /etc/shadow- ]; then if [ -e /etc/shadow- ]; then ( [ ! -e /etc/shadow- ] || { stat -Lc '%a %u' /etc/shadow- | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/shadow-)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/shadow-)\" = shadow ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "156, Permissões de /etc/gshadow-, Média"
+  info        : "Consulta permissões/propriedade de /etc/gshadow-. Saída conforme quando atende `^000 root root$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -e /etc/gshadow- ]; then if [ -e /etc/gshadow- ]; then if [ -e /etc/gshadow- ]; then ( [ ! -e /etc/gshadow- ] || { stat -Lc '%a %u' /etc/gshadow- | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/gshadow-)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/gshadow-)\" = shadow ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "157, Permissões de /etc/gshadow, Alta"
+  info        : "Verificar permissões de /etc/gshadow"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/gshadow)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/gshadow)\" = shadow ]; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "158, Permissões de /etc/group, Média"
+  info        : "Consulta permissões/propriedade de /etc/group. Saída conforme quando atende `^[0-6]44$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( stat -Lc '%a %u %g' /etc/group 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "159, Permissões de /etc/group-, Média"
+  info        : "Consulta permissões/propriedade de /etc/group-. Saída conforme quando atende `^[0-6]44$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -e /etc/group- ]; then if [ -e /etc/group- ]; then if [ -e /etc/group- ]; then ( [ ! -e /etc/group- ] || stat -Lc '%a %u %g' /etc/group- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "160, Proteção de /etc/security/opasswd, Alta"
+  info        : "Verificar permissões de opasswd Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -e /etc/security/opasswd ]; then if [ -e /etc/security/opasswd ]; then if [ -e /etc/security/opasswd ]; then ( [ ! -e /etc/security/opasswd ] || stat -Lc '%a %u %g' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) 0 (0|[1-9][0-9]*)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "161, Arquivos órfãos inexistentes, Baixa"
+  info        : "Executa o comando do audit para validar Arquivos órfãos inexistentes. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! find / -xdev -nouser -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "162, Sticky bit em diretórios world writable, Média"
+  info        : "Verificar sticky bit em diretórios world writable"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! find / -xdev -type d -perm -0002 ! -perm -1000 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "163, Sem arquivos sem owner ou grupo, Média"
+  info        : "Executa o comando do audit para validar Sem arquivos sem owner ou grupo. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! find / -xdev \\( -nouser -o -nogroup \\) -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "164, SUID/SGID indevidos, Alta"
+  info        : "Pesquisa ocorrências de SUID/SGID indevidos em /usr/bin/sudo, /usr/bin/su. Saída conforme quando atende `(?i)^\\s*pass\\s*$`. Validar conforme a função, a arquitetura e as exceções aprovadas para o servidor."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "( ! find / -xdev -type f \\( -perm -4000 -o -perm -2000 \\) \\( ! -user root -o -perm -002 \\) -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "165, Usuários sem home inexistentes, Baixa"
+  info        : "Procura a configuração de Usuários sem home inexistentes em /sbin/nologin, /etc/passwd. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $6}' /etc/passwd | while read -r h; do [ -d \"$h\" ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "166, Ownership correto dos homes, Média"
+  info        : "Verificar ownership dos diretórios home"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $1 \" \" $6}' /etc/passwd | while read -r u h; do [ -d \"$h\" ] && [ \"$(stat -Lc %U \"$h\")\" = \"$u\" ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "167, Permissões de home restritivas, Média"
+  info        : "Verificar permissões dos diretórios home"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $6}' /etc/passwd | while read -r h; do [ -d \"$h\" ] && [ $((8#$(stat -Lc %a \"$h\") & 0027)) -eq 0 ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "168, Dotfiles sem permissão world writable, Baixa"
+  info        : "Pesquisa ocorrências de Dotfiles sem permissão world writable em /home. Saída conforme quando atende `(?i)^\\s*pass\\s*$`."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( ! find /home -xdev -maxdepth 2 -type f -name '.*' -perm -002 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "169, Sem arquivos .forward .netrc e .rhosts, Média"
+  info        : "Verificar presença desses arquivos"
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "03_Hardening_2026_DEBLIKE.xlsx"
+  see_also    : "03_Hardening_2026_DEBLIKE.xlsx"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( ! find /home -xdev -maxdepth 2 -type f \\( -name .forward -o -name .netrc -o -name .rhosts \\) -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "999, Verificacao de hardening aplicado (log local)"
+  info        : "Verifica se existe log local de execucao do hardening e mostra o ultimo registro."
+  solution    : "Executar a automacao de hardening para criar /var/log/hitss-hardening.log."
+  reference   : "EVIDENCIA_AUTOMACAO"
+  see_also    : "/var/log/hitss-hardening.log"
+  cmd         : "sh -c 'log=/var/log/hitss-hardening.log; [ -f \"$log\" ] || { echo \"FAIL | sem_log\"; exit; }; echo \"PASS | $(tail -n 1 \"$log\")\"'"
+  expect      : "(?i)^\\s*PASS\\s*\\|"
+</custom_item>
+
+</check_type>

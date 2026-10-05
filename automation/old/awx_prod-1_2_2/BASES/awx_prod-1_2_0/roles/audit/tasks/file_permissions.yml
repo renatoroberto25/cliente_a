@@ -1,0 +1,322 @@
+- name: Verificar permissões passwd (185)
+  shell: |
+    if stat -c '%a' /etc/passwd 2>/dev/null | grep -Eq '^[0-6]44$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_185
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões passwd (185)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][185]
+      {{ 'APROVADO' if fp_185.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões passwd- (186)
+  shell: |
+    if stat -c '%a' /etc/passwd- 2>/dev/null | grep -Eq '^[0-6]44$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_186
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões passwd- (186)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][186]
+      {{ 'APROVADO' if fp_186.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões shadow (187)
+  shell: |
+    if stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_187
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões shadow (187)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][187]
+      {{ 'APROVADO' if fp_187.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões shadow- (188)
+  shell: |
+    if stat -c '%a %U %G' /etc/shadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_188
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões shadow- (188)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][188]
+      {{ 'APROVADO' if fp_188.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões gshadow- (189)
+  shell: |
+    if stat -c '%a %U %G' /etc/gshadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_189
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões gshadow- (189)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][189]
+      {{ 'APROVADO' if fp_189.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões gshadow (190)
+  shell: |
+    if stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_190
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões gshadow (190)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][190]
+      {{ 'APROVADO' if fp_190.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões group (191)
+  shell: |
+    if stat -c '%a' /etc/group 2>/dev/null | grep -Eq '^[0-6]44$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_191
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões group (191)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][191]
+      {{ 'APROVADO' if fp_191.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões group- (192)
+  shell: |
+    if stat -c '%a' /etc/group- 2>/dev/null | grep -Eq '^[0-6]44$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_192
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões group- (192)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][192]
+      {{ 'APROVADO' if fp_192.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar nologin em shells (193)
+  shell: |
+    if grep -Eq 'nologin' /etc/shells 2>/dev/null; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_193
+  changed_when: false
+  failed_when: false
+
+- name: Resultado nologin (193)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][193]
+      {{ 'APROVADO' if fp_193.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar opasswd (194)
+  shell: |
+    if stat -c '%a %U %G' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) root root$'; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_194
+  changed_when: false
+  failed_when: false
+
+- name: Resultado opasswd (194)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][194]
+      {{ 'APROVADO' if fp_194.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar arquivos órfãos (195)
+  shell: |
+    if find / -xdev -nouser 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_195
+  changed_when: false
+  failed_when: false
+
+- name: Resultado órfãos (195)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][195]
+      {{ 'APROVADO' if fp_195.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar sticky bit (196)
+  shell: |
+    if find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_196
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sticky bit (196)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][196]
+      {{ 'APROVADO' if fp_196.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar arquivos sem grupo (197)
+  shell: |
+    if find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_197
+  changed_when: false
+  failed_when: false
+
+- name: Resultado arquivos sem grupo (197)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][197]
+      {{ 'APROVADO' if fp_197.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar SUID SGID (198)
+  shell: |
+    if find / -xdev \( -perm -4000 -o -perm -2000 \) 2>/dev/null | grep -q .; then
+      echo "1"
+    else
+      echo "0"
+    fi
+  register: fp_198
+  changed_when: false
+  failed_when: false
+
+- name: Resultado SUID SGID (198)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][198]
+      {{ 'APROVADO' if fp_198.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar home ausente (199)
+  shell: |
+    if awk -F: '($3>=1000 && $7!="/sbin/nologin" && $7!="/bin/false"){print $1":"$6}' /etc/passwd | while IFS=: read u d; do [ -d "$d" ] || echo "$u"; done | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_199
+  changed_when: false
+  failed_when: false
+
+- name: Resultado home ausente (199)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][199]
+      {{ 'APROVADO' if fp_199.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar ownership home (200)
+  shell: |
+    if awk -F: '($3>=1000 && $7!="/sbin/nologin" && $7!="/bin/false"){print $1":"$6}' /etc/passwd | while IFS=: read u d; do [ -d "$d" ] && [ "$(stat -c %U "$d")" = "$u" ] || echo "$u"; done | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_200
+  changed_when: false
+  failed_when: false
+
+- name: Resultado ownership home (200)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][200]
+      {{ 'APROVADO' if fp_200.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar permissões home (201)
+  shell: |
+    if find /home -mindepth 1 -maxdepth 1 -type d -perm /027 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_201
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões home (201)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][201]
+      {{ 'APROVADO' if fp_201.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar dotfiles (202)
+  shell: |
+    if find /home -maxdepth 2 -type f -name ".*" -perm -002 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_202
+  changed_when: false
+  failed_when: false
+
+- name: Resultado dotfiles (202)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][202]
+      {{ 'APROVADO' if fp_202.stdout | trim == '1' else 'REPROVADO' }}
+
+- name: Verificar arquivos trust (203)
+  shell: |
+    if find /home -maxdepth 2 -type f \( -name ".forward" -o -name ".netrc" -o -name ".rhosts" \) 2>/dev/null | grep -q .; then
+      echo "0"
+    else
+      echo "1"
+    fi
+  register: fp_203
+  changed_when: false
+  failed_when: false
+
+- name: Resultado arquivos trust (203)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][203]
+      {{ 'APROVADO' if fp_203.stdout | trim == '1' else 'REPROVADO' }}

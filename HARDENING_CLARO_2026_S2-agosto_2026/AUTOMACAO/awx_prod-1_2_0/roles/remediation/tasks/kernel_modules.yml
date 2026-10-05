@@ -1,0 +1,102 @@
+- name: Carregar regras de módulos de kernel
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/kernel_modules.yml"
+
+- name: Pré-check módulo carregado
+  ansible.builtin.stat:
+    path: "/sys/module/{{ item.name }}"
+  register: remed_kernel_loaded_pre
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Pré-check bloqueio persistente em modprobe.d
+  shell: >
+    grep -RE "^(install {{ item.name }}|blacklist {{ item.name }})"
+    /etc/modprobe.d || true
+  register: remed_kernel_blocked_pre
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Remediar bloqueio persistente de módulo
+  ansible.builtin.copy:
+    dest: "/etc/modprobe.d/hitss-{{ item.name }}.conf"
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      install {{ item.name }} /bin/false
+      blacklist {{ item.name }}
+  register: remed_kernel_block_apply
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }} - {{ item.descricao }}"
+  when: >
+    (
+      remed_kernel_blocked_pre.results[index0].stdout | default('') | trim
+    ) == ''
+
+- name: Remediar descarregamento do módulo
+  command: "modprobe -r {{ item.name }}"
+  register: remed_kernel_unload_apply
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: remed_kernel_unload_apply.rc == 0
+  failed_when: false
+  when: remed_kernel_loaded_pre.results[index0].stat.exists
+
+- name: Pós-check módulo carregado
+  ansible.builtin.stat:
+    path: "/sys/module/{{ item.name }}"
+  register: remed_kernel_loaded_post
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Pós-check bloqueio persistente em modprobe.d
+  shell: >
+    grep -RE "^(install {{ item.name }}|blacklist {{ item.name }})"
+    /etc/modprobe.d || true
+  register: remed_kernel_blocked_post
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado remediação kernel modules
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'OK'
+        if (
+          remed_kernel_loaded_post.results[index0].stat.exists == false
+          and (remed_kernel_blocked_post.results[index0].stdout | default('') | trim) | length > 0
+          and remed_kernel_loaded_pre.results[index0].stat.exists == false
+          and (remed_kernel_blocked_pre.results[index0].stdout | default('') | trim) | length > 0
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            remed_kernel_loaded_post.results[index0].stat.exists == false
+            and (remed_kernel_blocked_post.results[index0].stdout | default('') | trim) | length > 0
+          )
+          else 'FALHA'
+        )
+      }}
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }} - {{ item.descricao }}"

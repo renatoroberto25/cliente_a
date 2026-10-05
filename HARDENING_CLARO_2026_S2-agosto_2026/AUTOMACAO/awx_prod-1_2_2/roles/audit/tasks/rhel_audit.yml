@@ -1,0 +1,33 @@
+---
+- name: Carregar controles vigentes do audit RHEL
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/rhel_controls.yml"
+
+- name: Inicializar resultados da auditoria RHEL
+  ansible.builtin.set_fact:
+    resultados_controles: []
+
+- name: Executar critérios técnicos do baseline RHEL
+  ansible.builtin.shell: "{{ item.comando }}"
+  args:
+    executable: /bin/bash
+  register: rhel_audit_execucao
+  loop: "{{ rhel_audit_controls }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Registrar resultado explícito por controle RHEL
+  ansible.builtin.set_fact:
+    resultado_controle:
+      id: "{{ item.item.id }}"
+      severidade: "{{ item.item.severidade }}"
+      status: "{{ 'PASS' if (item.stdout | trim) == 'PASS' else 'FAIL' }}"
+      detalhe: >-
+        {{ item.item.descricao if (item.stdout | trim) == 'PASS' else item.item.descricao ~ ': ' ~ ((item.stdout | default(item.stderr, true)) | trim) }}
+    resultados_controles: >-
+      {{ resultados_controles + [{'id': item.item.id | string, 'severidade': item.item.severidade, 'status': ('PASS' if (item.stdout | trim) == 'PASS' else 'FAIL'), 'detalhe': (item.item.descricao if (item.stdout | trim) == 'PASS' else item.item.descricao ~ ': ' ~ ((item.stdout | default(item.stderr, true)) | trim))}] }}
+  loop: "{{ rhel_audit_execucao.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"

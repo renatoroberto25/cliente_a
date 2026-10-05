@@ -1,0 +1,45 @@
+# Carregar regras do baseline de kernel modules
+- name: Carregar regras de módulos de kernel
+  include_vars:
+    file: "{{ role_path }}/rules/kernel_modules.yml"
+
+# Verificar se o módulo está carregado no kernel
+- name: Verificar se módulo de kernel está carregado
+  ansible.builtin.stat:
+    path: "/sys/module/{{ item.name }}"
+  register: kernel_loaded
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+# Verificar se há bloqueio persistente em modprobe.d
+- name: Verificar bloqueio persistente em modprobe.d
+  shell: >
+    grep -RE "^(install {{ item.name }}|blacklist {{ item.name }})"
+    /etc/modprobe.d || true
+  register: kernel_blocked
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+# Resultado da auditoria dos módulos de kernel
+- name: Resultado auditoria kernel modules
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][{{ item.id }}]
+      {{
+        'APROVADO'
+        if (
+          not kernel_loaded.results[index0].stat.exists
+          and (kernel_blocked.results[index0].stdout | default('')) | length > 0
+        )
+        else 'REPROVADO'
+      }}
+  loop: "{{ kernel_module_rules }}"
+  loop_control:
+    index_var: index0
+    label: "{{ item.id }}"

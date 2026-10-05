@@ -1,0 +1,27 @@
+- name: Carregar regras network
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/network.yml"
+
+- name: Verificar IPv6 desabilitado (99)
+  ansible.builtin.command: sysctl -n net.ipv6.conf.all.disable_ipv6
+  register: ipv6_status
+  changed_when: false
+  failed_when: false
+
+- name: Resultado remediação IPv6 (99)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][99]
+      {{ 'OK' if ipv6_status.stdout | trim == '1' else 'MANUAL' }}
+
+- name: Verificar Wireless/Bluetooth desabilitados (102)
+  ansible.builtin.shell: lsmod | grep -Eq 'bluetooth|iwlwifi'
+  register: wireless_status
+  changed_when: false
+  failed_when: false
+
+- name: Resultado remediação Wireless/Bluetooth (102)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][102]
+      {{ 'OK' if wireless_status.rc != 0 else 'MANUAL' }}

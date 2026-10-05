@@ -1,0 +1,106 @@
+---
+rhel_07_services_controls:
+  - id: 61
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 62
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: INFO
+    perfil: "Full"
+  - id: 63
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: INFO
+    perfil: "Full"
+  - id: 64
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 65
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 66
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 67
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 68
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 69
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 70
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 71
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 72
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 73
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 74
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 75
+    descricao: "Serviços / MTA"
+    severidade: WARN
+    perfil: "Full"
+  - id: 76
+    descricao: "Serviços / Rede"
+    severidade: WARN
+    perfil: "Full"
+  - id: 77
+    descricao: "Serviços / Rede"
+    severidade: WARN
+    perfil: "Full"
+  - id: 78
+    descricao: "Serviços / Rede"
+    severidade: WARN
+    perfil: "Full"
+  - id: 79
+    descricao: "Serviços / Clientes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 80
+    descricao: "Serviços / Clientes"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 81
+    descricao: "Serviços / Clientes"
+    severidade: INFO
+    perfil: "Full"
+  - id: 82
+    descricao: "Serviços / Clientes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 83
+    descricao: "Serviços / Clientes"
+    severidade: WARN
+    perfil: "Full"
+  - id: 84
+    descricao: "Serviços / Superfície de Ataque"
+    severidade: WARN
+    perfil: "Full"
+  - id: 85
+    descricao: "Serviços / Rede"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 86
+    descricao: "Autorização / PolicyKit"
+    severidade: BLOCK
+    perfil: "Full"

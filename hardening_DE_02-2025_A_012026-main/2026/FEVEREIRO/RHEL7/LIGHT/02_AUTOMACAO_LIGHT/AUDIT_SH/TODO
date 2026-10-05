@@ -1,0 +1,17 @@
+  986  grep -i cmd AUDIT_RHEL7_1_203_V1.0.8.audit
+  987  grep cmd AUDIT_RHEL7_1_203_V1.0.8.audit
+  988  grep cmd AUDIT_RHEL7_1_203_V1.0.8.audit| wc -c
+  989  grep cmd AUDIT_RHEL7_1_203_V1.0.8.audit| wc -l
+  990  grep "cmd         " AUDIT_RHEL7_1_203_V1.0.8.audit| wc -l
+  991  grep "cmd         " AUDIT_RHEL7_LIGHT_V101.audit| wc -l
+  992  grep "cmd         " AUDIT_RHEL7_LIGHT_V101.audit
+  993  GIT STATUS
+  994  git status
+  995  ll
+  996  vim mod2.txt
+  997  vim mod1.txt
+  998  diff mod1.txt mod2.txt
+  999  diff mod1.txt mod2.txt | grep '^>'
+
+
+

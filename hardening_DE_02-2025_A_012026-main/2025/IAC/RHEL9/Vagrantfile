@@ -1,0 +1,75 @@
+Vagrant.configure("2") do |config|
+  data = Time.now.strftime("%Y%m%d")
+  name = "rhel9-soft-#{data}"
+
+  # ESCOLHA UMA LINHA:
+  config.vm.box = "generic/rhel9"
+  config.vm.hostname = name
+
+  # Não fixe vboxnet0: deixa o Vagrant escolher a host-only correta
+  # Troque o IP se você já tiver outra VM usando .99
+  config.vm.network "private_network", ip: "192.168.56.99"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = name
+    vb.memory = 2049
+    vb.cpus   = 1
+    vb.customize ["modifyvm", :id, "--vram", "64"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+  end
+
+  # ESSENCIAL: deixa o Vagrant gerenciar chave e usuário vagrant
+  config.ssh.insert_key = true
+  # Opcional (se você quer previsibilidade de método)
+  config.ssh.forward_agent = false
+
+config.vm.provision "shell", privileged: true, inline: <<-SHELL
+  set -e
+
+  echo "[V] Provisionamento..."
+
+  # Verificação de rede
+  echo "[INFO] Testando conectividade externa..."
+  if ping -c 3 1.1.1.1 >/dev/null 2>&1; then
+    echo "[OK] Conexão ativa. Verificando DNS..."
+    if ping -c 1 google.com >/dev/null 2>&1; then
+      echo "[OK] DNS funcionando. Instalando epel-release..."
+      dnf -y install epel-release || echo "[WARN] Falha ao instalar epel-release, seguindo sem ele."
+    else
+      echo "[WARN] DNS falhou. Pulando epel-release."
+    fi
+  else
+    echo "[WARN] Sem acesso à internet. Pulando epel-release."
+  fi
+
+  # Pacotes principais
+  echo "[INFO] Instalando pacotes principais..."
+  dnf -y install openssh-server vim git btop curl wget bash-completion \
+    net-tools iproute lsof afetch || echo "[WARN] Algum pacote falhou."
+
+  systemctl enable --now sshd || true
+  timedatectl set-timezone America/Sao_Paulo || true
+
+  # Banner de login
+  cat > /etc/issue.net << 'EOF'
+************************************************************
+*        ACESSO RESTRITO — SISTEMA MONITORADO HITSS        *
+************************************************************
+Uso exclusivo de pessoal autorizado.
+Atividades são monitoradas e auditadas.
+EOF
+  chmod 644 /etc/issue.net
+
+  # Criação do usuário renato
+  USER="renato"
+  PASS="C9p5au9naa@2025"
+  if ! id -u "$USER" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash "$USER"
+  fi
+  echo "$USER:$PASS" | chpasswd
+  usermod -aG wheel "$USER"
+
+  echo "[OK] Provisionamento finalizado."
+SHELL
+
+end

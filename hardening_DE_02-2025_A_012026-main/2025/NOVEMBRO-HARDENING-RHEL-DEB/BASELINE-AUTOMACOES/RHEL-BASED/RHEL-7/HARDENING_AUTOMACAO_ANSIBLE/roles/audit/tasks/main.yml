@@ -1,0 +1,219 @@
+#####################################################################################
+################### SCRIPTS DE HARDENING - AUDITORIA TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 1 - 8 - Configurar os Módulos do Kernel do Sistema de Arquivos"
+  script: 1/1.sh
+  register: audit_1
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_1
+    - audit_hitss_1.x
+
+- name: "hitss 29 - Ensure gpgcheck is globally activated"
+  script: 29/29.sh
+  register: audit_1_2
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_1_2
+    - audit_hitss_1.x
+
+- name: "hitss 30 - 31 - Presença e configuração do AIDE"
+  script: 30/30.sh
+  register: audit_2
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_2
+    - audit_hitss_2.x
+
+- name: "hitss 32 - 34 - Bootloader e modo single-user"
+  script: 32/32.sh
+  register: audit_3
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_3
+    - audit_hitss_3.x
+
+- name: "hitss 35 - 38 - Core dumps, NX, ASLR, Prelink"
+  script: 35/35.sh
+  register: audit_4
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_4
+    - audit_hitss_4.x
+
+- name: "hitss 39 - 46 - Selinux e relacionados"
+  script: 39/39.sh
+  register: audit_5
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_5
+    - audit_hitss_5.x
+
+- name: "hitss 47 - 56 -  Banners e permissões"
+  script: 47/47.sh
+  register: audit_6
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_6
+    - audit_hitss_6.x
+
+- name: "hitss 58 - 79 -  Serviços e pacotes"
+  script: 58/58.sh
+  register: audit_7
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_7
+    - audit_hitss_7.x
+
+- name: "hitss 80 - 85 -  Serviços e pacotes"
+  script: 80/80.sh
+  register: audit_8
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_8
+    - audit_hitss_8.x
+
+- name: "hitss 86 – 98 - Verificações de IPv6 e parâmetros de rede"
+  script: 86/86.sh
+  register: audit_9
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_9
+    - audit_hitss_9.x
+
+- name: "hitss 99 – 100 - Verificações de módulos de kernel DCCP e SCTP"
+  script: 86/99.sh
+  register: audit_9
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_9
+    - audit_hitss_9.x
+
+- name: "hitss 101 – 107 - Verificações do Firewalld e configuração de zonas"
+  script: 86/101.sh
+  register: audit_9
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_9
+    - audit_hitss_9.x
+
+- name: "hitss 108 – 133 - Verificações de nftables, iptables e ip6tables"
+  script: 86/108.sh
+  register: audit_9
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_9
+    - audit_hitss_9.x
+
+- name: "hitss 134 – 140 - Verificações básicas do auditd"
+  script: 134/134.sh
+  register: audit_10
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_10
+    - audit_hitss_10.x
+
+- name: "hitss 141 – 155 - Verificações de regras e eventos auditáveis"
+  script: 134/141.sh
+  register: audit_10
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_10
+    - audit_hitss_10.x
+
+- name: "hitss 156 – 166 - Verificações de logging e integridade"
+  script: 134/156.sh
+  register: audit_10
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_10
+    - audit_hitss_10.x
+
+- name: "hitss 167 - 175 - Verificações de configuração do agendador Cron e At"
+  script: 167/167.sh
+  register: audit_11
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_11
+    - audit_hitss_11.x
+
+- name: "hitss 177 - 178 - Verificações de configuração do sudo"
+  script: 177/177.sh
+  register: audit_12
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_12
+    - audit_hitss_12.x
+
+- name: "hitss 179 - 200 - Verificações de configuração do SSH"
+  script: 179/179.sh
+  register: audit_13
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_13
+    - audit_hitss_13.x
+
+- name: "hitss 201 - 204 - Auditoria de políticas de senha (pwquality, faillock, PAM)"
+  script: 201/201.sh
+  register: audit_14
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_14
+    - audit_hitss_14.x
+
+- name: "hitss 205 - 209 - Políticas de expiração e bloqueio de senha"
+  script: 205/205.sh
+  register: audit_15
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_15
+    - audit_hitss_15.x
+
+- name: "hitss 210 - 215 - Verificações de segurança de contas e ambiente de login"
+  script: 210/210.sh
+  register: audit_16
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_16
+    - audit_hitss_16.x
+
+- name: "hitss 216 - 229 - Verificações de permissões de arquivos de sistema(ETC)"
+  script: 216/216.sh
+  register: audit_17
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_17
+    - audit_hitss_17.x
+
+- name: "hitss 230 - 246 - Integridade de contas e diretórios de usuários"
+  script: 230/230.sh
+  register: audit_18
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_18
+    - audit_hitss_18.x

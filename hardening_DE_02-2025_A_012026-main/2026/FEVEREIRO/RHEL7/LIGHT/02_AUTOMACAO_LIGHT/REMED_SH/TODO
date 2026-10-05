@@ -1,0 +1,53 @@
+
+echo -e "\n169 Configurar auditoria de alteração de data e hora."
+( grep -REq '\b(adjtimex|settimeofday|clock_settime)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n170 Configurar auditoria de alteração de contas e grupos."
+( grep -REq '(/etc/passwd|/etc/group|/etc/shadow)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n171 Configurar auditoria de alterações de rede."
+( grep -REq '(/etc/sysconfig/network|/etc/hosts|/etc/resolv\.conf)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n172 Configurar auditoria de eventos MAC quando aplicável."
+( grep -REq '\b(setenforce|/etc/selinux|selinux-policy)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n173 Configurar auditoria de login e logout."
+( grep -REq '\b(login|logout|session)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n174 Configurar auditoria de permissões DAC."
+( grep -REq '\b(chmod|chown|setxattr|fchmod)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n175 Configurar auditoria de tentativas de acesso não autorizado."
+( grep -REq '\b(EACCES|EPERM)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n176 Configurar auditoria de execuções privilegiadas."
+( grep -REq '\bexecve\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n177 Configurar auditoria de mount e unmount."
+( grep -REq '\b(mount|umount2)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n178 Configurar auditoria de deleção de arquivos."
+( grep -REq '\b(unlink|rename|rmdir|unlinkat|renameat)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n179 Configurar auditoria de carga e descarga de módulos de kernel."
+( grep -REq '\b(init_module|delete_module|finit_module)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n180 Configurar auditoria de sudo e sudoers."
+( grep -REq '(/etc/sudoers|/etc/sudoers\.d|sudo\.log)\b' /etc/audit/rules.d 2>/dev/null ) && echo "PASS" || echo "FAIL"
+
+187 Ajustar permissões de /etc/shadow.
+188 Ajustar permissões de /etc/shadow-.
+189 Ajustar permissões de /etc/gshadow-.
+190 Ajustar permissões de /etc/gshadow.
+
+echo -e "\n187 Ajustar permissões de /etc/shadow."
+( stat -c '%a %U %G' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n188 Ajustar permissões de /etc/shadow-."
+( stat -c '%a %U %G' /etc/shadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n189 Ajustar permissões de /etc/gshadow-."
+( stat -c '%a %U %G' /etc/gshadow- 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo "PASS" || echo "FAIL"
+
+echo -e "\n190 Ajustar permissões de /etc/gshadow."
+( stat -c '%a %U %G' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) root root$' ) && echo "PASS" || echo "FAIL"

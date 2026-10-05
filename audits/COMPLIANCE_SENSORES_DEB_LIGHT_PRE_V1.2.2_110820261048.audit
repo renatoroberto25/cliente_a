@@ -1,0 +1,1414 @@
+<check_type:"Unix">
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "001, Bloqueio cramfs, Alta"
+  info        : "Reduz superfície de ataque removendo suporte a filesystem legado raramente necessário."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo cramfs >/dev/null 2>&1; then if modinfo cramfs >/dev/null 2>&1; then if modinfo cramfs >/dev/null 2>&1; then ( ! modinfo cramfs >/dev/null 2>&1 || { modprobe -n -v cramfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx cramfs; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "004, Bloqueio hfs, Alta"
+  info        : "Remove suporte a filesystem Apple antigo que não é necessário em servidores Linux."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo hfs >/dev/null 2>&1; then if modinfo hfs >/dev/null 2>&1; then if modinfo hfs >/dev/null 2>&1; then ( ! modinfo hfs >/dev/null 2>&1 || { modprobe -n -v hfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx hfs; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "005, Bloqueio hfsplus, Alta"
+  info        : "Remove suporte a filesystem Apple moderno que não agrega em ambiente de servidor."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo hfsplus >/dev/null 2>&1; then if modinfo hfsplus >/dev/null 2>&1; then if modinfo hfsplus >/dev/null 2>&1; then ( ! modinfo hfsplus >/dev/null 2>&1 || { modprobe -n -v hfsplus 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx hfsplus; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "006, Bloqueio jffs2, Alta"
+  info        : "Elimina suporte a filesystem embarcado pouco usado e potencialmente mal auditado."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo jffs2 >/dev/null 2>&1; then if modinfo jffs2 >/dev/null 2>&1; then if modinfo jffs2 >/dev/null 2>&1; then ( ! modinfo jffs2 >/dev/null 2>&1 || { modprobe -n -v jffs2 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx jffs2; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "007, Bloqueio freevxfs, Alta"
+  info        : "Remove filesystem obsoleto pouco testado em cenários modernos de produção."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo freevxfs >/dev/null 2>&1; then if modinfo freevxfs >/dev/null 2>&1; then if modinfo freevxfs >/dev/null 2>&1; then ( ! modinfo freevxfs >/dev/null 2>&1 || { modprobe -n -v freevxfs 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx freevxfs; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "010, Bloqueio DCCP, Alta"
+  info        : "Protocolo pouco usado adiciona codigo de rede desnecessario."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo dccp >/dev/null 2>&1; then if modinfo dccp >/dev/null 2>&1; then if modinfo dccp >/dev/null 2>&1; then ( ! modinfo dccp >/dev/null 2>&1 || { modprobe -n -v dccp 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx dccp; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "012, Bloqueio RDS, Alta"
+  info        : "Remove suporte a transporte RDS raramente necessário."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo rds >/dev/null 2>&1; then if modinfo rds >/dev/null 2>&1; then if modinfo rds >/dev/null 2>&1; then ( ! modinfo rds >/dev/null 2>&1 || { modprobe -n -v rds 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx rds; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "013, Bloqueio TIPC, Alta"
+  info        : "Evita exposicao de protocolo de cluster pouco utilizado."
+  solution    : "Criar regra em /etc/modprobe.d com install /bin/false e blacklist; descarregar o módulo somente após validar dependências."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if modinfo tipc >/dev/null 2>&1; then if modinfo tipc >/dev/null 2>&1; then if modinfo tipc >/dev/null 2>&1; then ( ! modinfo tipc >/dev/null 2>&1 || { modprobe -n -v tipc 2>/dev/null | grep -Eq '^install[[:space:]]+(/usr)?/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx tipc; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "014, Core dumps restritos, Alta"
+  info        : "Restringe a geração de core dumps para evitar vazamento de informações sensíveis."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = \"0\" ] && grep -Eq '^[[:space:]]*fs\\.suid_dumpable[[:space:]]*=[[:space:]]*0([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='fs.suid_dumpable' -v expected='0' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "015, SUID dump off, Alta"
+  info        : "Evita que processos SUID gerem dumps com conteúdo sensível gravado em disco."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = \"0\" ] && grep -Eq '^[[:space:]]*fs\\.suid_dumpable[[:space:]]*=[[:space:]]*0([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='fs.suid_dumpable' -v expected='0' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "016, NX/XD ativo, Alta"
+  info        : "Garante que a execução de código em áreas de memória não é permitida."
+  solution    : "Ajustar o controle 'NX/XD ativo' conforme a política aprovada para Debian-like 11+."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( case \"$(uname -m)\" in x86_64|i?86) grep -qw nx /proc/cpuinfo ;; *) grep -Eq '^CONFIG_STRICT_KERNEL_RWX=y' /boot/config-$(uname -r) 2>/dev/null ;; esac ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "017, ASLR habilitado, Alta"
+  info        : "Randomização de espaço de memória dificulta exploits baseados em endereço fixo."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n kernel.randomize_va_space 2>/dev/null)\" = \"2\" ] && grep -Eq '^[[:space:]]*kernel\\.randomize_va_space[[:space:]]*=[[:space:]]*2([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.randomize_va_space' -v expected='2' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "018, ASLR completo, Alta"
+  info        : "Dificulta exploração de vulnerabilidades que dependem de previsibilidade de endereços."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n kernel.randomize_va_space 2>/dev/null)\" = \"2\" ] && grep -Eq '^[[:space:]]*kernel\\.randomize_va_space[[:space:]]*=[[:space:]]*2([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.randomize_va_space' -v expected='2' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "020, dmesg restrito, Alta"
+  info        : "Impede que usuários não privilegiados acessem informações internas do kernel."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n kernel.dmesg_restrict 2>/dev/null)\" = \"1\" ] && grep -Eq '^[[:space:]]*kernel\\.dmesg_restrict[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.d/99-hitss-hardening.conf 2>/dev/null && awk -F= -v key='kernel.dmesg_restrict' -v expected='1' '{ name=$1; gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",name); if (name==key) { value=$2; sub(/[[:space:]]*[#;].*$/,\"\",value); gsub(/^[[:space:]]+|[[:space:]]+$/,\"\",value) } } END { exit value != expected }' /etc/sysctl.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "021, Symlinks protegidos, Alta"
+  info        : "Evita a criação de symlinks que possam ser usados para acessar arquivos fora do diretório permitido."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n fs.protected_symlinks 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*fs\\.protected_symlinks[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "022, Hardlinks protegidos, Alta"
+  info        : "Mitiga abuso de hardlinks para burlar controles de permissões."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n fs.protected_hardlinks 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*fs\\.protected_hardlinks[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "038, Sticky world-writable, Alta"
+  info        : "Impede exclusão de arquivos por usuários não proprietários em diretórios compartilhados."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( ! find / -xdev -type d -perm -0002 ! -perm -1000 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "039, Sticky /tmp, Média"
+  info        : "Protege arquivos temporários contra exclusão indevida por outros usuários."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /tmp 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "040, Sticky /var/tmp, Média"
+  info        : "Garante proteção semelhante ao /tmp para área temporária persistente."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /var/tmp 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "041, Sticky /dev/shm, Média"
+  info        : "Protege memória compartilhada contra manipulação indevida quando exigido."
+  solution    : "Ajustar /etc/fstab ou unidade .mount com as opções requeridas; executar em janela com plano de rollback e validação de boot."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /dev/shm 2>/dev/null | grep -Eq '^1[0-7][0-7][0-7] 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "044, Permissões seguras no arquivo do bootloader, Alta"
+  info        : "Garante que o arquivo do bootloader tenha permissões seguras configuradas."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /boot/grub/grub.cfg ]; then if [ -f /boot/grub/grub.cfg ]; then if [ -f /boot/grub/grub.cfg ]; then ( stat -Lc '%a %u %g' /boot/grub/grub.cfg 2>/dev/null | grep -Eq '^(400|600) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "045, Single user mode com autenticação, Média"
+  info        : "Garante que o modo de usuário único tenha autenticação configurada. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in emergency.service rescue.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( ! systemctl cat emergency.service rescue.service 2>/dev/null | grep -Eq 'ExecStart=-?/(bin|usr/bin)/(sh|bash)([[:space:]]|$)' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "046, Prelink removido, Média"
+  info        : "Evita inconsistências com mecanismos modernos de proteção de memória."
+  solution    : "Remover prelink quando presente. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' prelink 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "047, xinetd removido, Alta"
+  info        : "Remove gerenciador de serviços legado potencialmente vulnerável."
+  solution    : "Ajustar o controle 'xinetd removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' xinetd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "048, Time sync ativo, Alta"
+  info        : "Garante integridade temporal para logs e auditoria."
+  solution    : "Habilitar serviço de sincronização de tempo aprovado. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( systemctl is-active --quiet chrony.service 2>/dev/null || systemctl is-active --quiet ntp.service 2>/dev/null || systemctl is-active --quiet ntpsec.service 2>/dev/null || systemctl is-active --quiet systemd-timesyncd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "049, Fontes NTP confiáveis, Média"
+  info        : "Evita manipulação de tempo por fontes não autorizadas."
+  solution    : "Ajustar o controle 'Fontes NTP confiáveis' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( grep -REq '^[[:space:]]*(server|pool)[[:space:]]+[^[:space:]#]+' /etc/chrony/chrony.conf /etc/ntp.conf /etc/ntpsec/ntp.conf /etc/systemd/timesyncd.conf /etc/systemd/timesyncd.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "050, NTP desde o boot, Alta"
+  info        : "Garante correção de tempo desde inicialização do sistema."
+  solution    : "Ajustar o controle 'NTP desde o boot' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( systemctl is-enabled --quiet chrony.service 2>/dev/null || systemctl is-enabled --quiet ntp.service 2>/dev/null || systemctl is-enabled --quiet ntpsec.service 2>/dev/null || systemctl is-enabled --quiet systemd-timesyncd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "063, Servidor NIS removido, Alta"
+  info        : "Evita exposição de serviço NIS legado no ambiente. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar o controle 'Servidor NIS removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' nis ypserv 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "064, Servidor Telnet removido, Alta"
+  info        : "Evita exposição de serviço de acesso remoto inseguro."
+  solution    : "Remover servidor Telnet. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' telnetd inetutils-telnetd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "065, MTA local only, Média"
+  info        : "Reduz exposição do serviço de correio para conexões remotas desnecessárias. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar o controle 'MTA local only' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' postfix 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${db:Status-Abbrev}' postfix 2>/dev/null | grep -q '^ii ' || postconf -h inet_interfaces 2>/dev/null | grep -Eq '^(loopback-only|localhost|127\\.0\\.0\\.1|::1)(,[[:space:]]*(localhost|127\\.0\\.0\\.1|::1))*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "069, Cliente NIS removido, Alta"
+  info        : "Evita uso de cliente NIS legado no ambiente."
+  solution    : "Remover cliente NIS. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' nis 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "070, Cliente rsh removido, Alta"
+  info        : "Evita uso de cliente rsh inseguro no ambiente."
+  solution    : "Ajustar o controle 'Cliente rsh removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' rsh-client rsh-redone-client 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "071, Cliente talk removido, Alta"
+  info        : "Evita uso de cliente talk legado no ambiente."
+  solution    : "Remover cliente talk. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' talk inetutils-talk 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "072, Cliente telnet removido, Alta"
+  info        : "Evita uso de cliente telnet inseguro no ambiente."
+  solution    : "Remover cliente telnet. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' telnet inetutils-telnet 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "075, Servidor TFTP removido, Alta"
+  info        : "Evita exposição de serviço TFTP inseguro no ambiente. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar o controle 'Servidor TFTP removido' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -q '^ii '; then ( ! dpkg-query -W -f='${binary:Package} ${db:Status-Abbrev}\\n' tftpd-hpa atftpd 2>/dev/null | grep -Eq '[[:space:]]ii[[:space:]]*$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "076, PolicyKit endurecido, Alta"
+  info        : "Evita regras permissivas no PolicyKit fora do baseline aprovado."
+  solution    : "Configurar polkit conforme baseline aprovado. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -d /etc/polkit-1 ] || dpkg-query -W -f='${db:Status-Abbrev}\\n' polkitd policykit-1 2>/dev/null | grep -q '^ii '; then if [ -d /etc/polkit-1 ] || dpkg-query -W -f='${db:Status-Abbrev}\\n' polkitd policykit-1 2>/dev/null | grep -q '^ii '; then if [ -d /etc/polkit-1 ] || dpkg-query -W -f='${db:Status-Abbrev}\\n' polkitd policykit-1 2>/dev/null | grep -q '^ii '; then ( ! grep -RE 'polkit\\.Result\\.YES|[[:space:]]allow[[:space:]]*;' /etc/polkit-1/rules.d/*.rules /usr/share/polkit-1/rules.d/*.rules 2>/dev/null | grep -vE '^[^:]+:[[:space:]]*(//|#)' | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "077, Assinaturas dos repositórios APT verificadas, Alta"
+  info        : "Impede instalação de pacotes provenientes de repositórios APT sem assinatura válida."
+  solution    : "Ajustar o controle 'Assinaturas dos repositórios APT verificadas' conforme a política aprovada para Debian-like 11+. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( ! grep -REiq 'trusted[[:space:]]*=[[:space:]]*yes|allow-insecure[[:space:]]*=[[:space:]]*yes' /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null && ! apt-config dump 2>/dev/null | grep -Eiq 'Acquire::AllowInsecureRepositories[[:space:]]+\"?(true|1)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "078, Atualizações de segurança aplicadas, Alta"
+  info        : "Reduz exposicao a vulnerabilidades corrigidas pelos repositorios oficiais."
+  solution    : "Aplicar atualizações de segurança pendentes. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then if find /var/lib/apt/lists -maxdepth 1 -type f -mtime -1 -print -quit 2>/dev/null | grep -q .; then ( ! apt-get -s -o Debug::NoLocking=1 upgrade 2>/dev/null | grep '^Inst ' | grep -Eiq '(debian-security|security\\.debian\\.org|security\\.ubuntu\\.com|[- ]security)' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "079, Sincronização de tempo única, Alta"
+  info        : "Evita conflito entre mecanismos simultâneos de sincronização de tempo."
+  solution    : "Manter apenas um mecanismo de sincronização ativo. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if for u in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( n=0; for s in chrony.service ntp.service ntpsec.service systemd-timesyncd.service; do systemctl is-active --quiet \"$s\" 2>/dev/null && n=$((n+1)); done; [ \"$n\" -eq 1 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "080, Cron e at restritos, Alta"
+  info        : "Restringir cron e at a usuários autorizados."
+  solution    : "Restringir o uso de cron e at por usuários locais. Usar apt/dpkg e systemctl; não remover serviço que corresponda a função aprovada do host."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if for u in cron.service cron.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1 || command -v at >/dev/null 2>&1; then if for u in cron.service cron.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1 || command -v at >/dev/null 2>&1; then if for u in cron.service cron.socket; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1 || command -v at >/dev/null 2>&1; then ( [ -f /etc/cron.allow ] && grep -qx root /etc/cron.allow && [ ! -e /etc/cron.deny ] && { ! command -v at >/dev/null 2>&1 || { [ -f /etc/at.allow ] && grep -qx root /etc/at.allow && [ ! -e /etc/at.deny ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "081, Redirects desabilitados, Alta"
+  info        : "Impede redirecionamento malicioso de tráfego na rede."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv4.conf.default.send_redirects 2>/dev/null)\" = 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "082, Source-route bloqueado, Alta"
+  info        : "Evita manipulação do caminho de pacotes por atacante."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv4.conf.default.accept_source_route 2>/dev/null)\" = 0 ] && { [ ! -e /proc/sys/net/ipv6/conf/all/accept_source_route ] || { [ \"$(sysctl -n net.ipv6.conf.all.accept_source_route 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv6.conf.default.accept_source_route 2>/dev/null)\" = 0 ]; }; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "083, ICMP redirects desabilitados, Alta"
+  info        : "Evita aceitação de redirecionamentos ICMP maliciosos."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv4.conf.default.accept_redirects 2>/dev/null)\" = 0 ] && { [ ! -e /proc/sys/net/ipv6/conf/all/accept_redirects ] || { [ \"$(sysctl -n net.ipv6.conf.all.accept_redirects 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv6.conf.default.accept_redirects 2>/dev/null)\" = 0 ]; }; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "085, Broadcast ICMP ignorado, Alta"
+  info        : "Reduz exposição a ataques via broadcast ICMP."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.icmp_echo_ignore_broadcasts[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "086, ICMP bogus responses ignorado, Alta"
+  info        : "Ignora respostas ICMP inválidas ou malformadas."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.icmp_ignore_bogus_error_responses[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "087, TCP syncookies habilitado, Alta"
+  info        : "Ajuda a mitigar ataques SYN flood."
+  solution    : "Persistir o parâmetro em /etc/sysctl.d/99-hardening.conf e aplicar com sysctl --system após validar a rede e a carga de trabalho."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null)\" = \"1\" ] && grep -REq '^[[:space:]]*net\\.ipv4\\.tcp_syncookies[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/sysctl.conf /etc/sysctl.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "089, Wireless e bluetooth ausentes, Média"
+  info        : "Reduz exposição de interfaces sem fio quando não necessárias. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar o controle 'Wireless e bluetooth ausentes' conforme a política aprovada para Debian-like 11+."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then if find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . || for u in bluetooth.service; do systemctl list-unit-files \"$u\" --no-legend 2>/dev/null | grep -q . && exit 0; done; exit 1; then ( ! find /sys/class/net -maxdepth 2 -type d -path '*/wireless' -print -quit 2>/dev/null | grep -q . && ! systemctl is-active --quiet bluetooth.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "090, Permissões do SSH, Alta"
+  info        : "Protege arquivos e diretório do serviço SSH contra alteração indevida."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( stat -Lc '%a %u %g' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' && stat -Lc '%a %u %g' /etc/ssh 2>/dev/null | grep -Eq '^(700|750|755) 0 0$' && ! find /etc/ssh/sshd_config.d -type f -perm /022 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "091, SyslogFacility do SSH seguro, Média"
+  info        : "Encaminha eventos SSH para facility de autenticação apropriada no Debian/Ubuntu."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^syslogfacility[[:space:]]+(AUTH|AUTHPRIV)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "093, MaxAuthTries restritivo, Alta"
+  info        : "Limita tentativas de autenticação por conexão SSH."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( v=$(sshd -T 2>/dev/null | awk '$1==\"maxauthtries\"{print $2; exit}'); [ -n \"$v\" ] && [ \"$v\" -le 4 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "094, IgnoreRhosts habilitado, Alta"
+  info        : "Impede uso de mecanismos rhosts inseguros na autenticação SSH."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^ignorerhosts[[:space:]]+(yes)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "095, HostbasedAuthentication desabilitado, Alta"
+  info        : "Evita autenticação baseada em host no SSH."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^hostbasedauthentication[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "097, PermitEmptyPasswords desabilitado, Alta"
+  info        : "Impede autenticação SSH com senha vazia."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^permitemptypasswords[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "098, PermitUserEnvironment desabilitado, Alta"
+  info        : "Impede influência de variáveis de ambiente definidas pelo usuário na sessão SSH."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^permituserenvironment[[:space:]]+(no)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "099, UsePAM habilitado, Alta"
+  info        : "Integra o SSH à stack PAM definida pela política."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( sshd -T 2>/dev/null | grep -Eiq '^usepam[[:space:]]+(yes)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "100, ClientAlive configurado, Média"
+  info        : "Encerra sessões inativas reduzindo risco de hijacking."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( i=$(sshd -T 2>/dev/null | awk '$1==\"clientaliveinterval\"{print $2; exit}'); c=$(sshd -T 2>/dev/null | awk '$1==\"clientalivecountmax\"{print $2; exit}'); [ -n \"$i\" ] && [ \"$i\" -ge 1 ] && [ \"$i\" -le 900 ] && [ -n \"$c\" ] && [ \"$c\" -ge 0 ] && [ \"$c\" -le 3 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "101, LoginGraceTime restrito, Média"
+  info        : "Limita tempo disponível para autenticação reduzindo exposição a brute force."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( v=$(sshd -T 2>/dev/null | awk '$1==\"logingracetime\"{print $2; exit}'); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 60 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "102, MaxStartups restrito, Média"
+  info        : "Limita conexões simultâneas prevenindo exaustão de recursos."
+  solution    : "Aplicar em /etc/ssh/sshd_config.d/99-hardening.conf, validar com sshd -t e sshd -T e recarregar ssh somente com sessão de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then if command -v sshd >/dev/null 2>&1 && [ -f /etc/ssh/sshd_config ]; then ( ms=$(sshd -T 2>/dev/null | awk '$1==\"maxsessions\"{print $2; exit}'); mu=$(sshd -T 2>/dev/null | awk '$1==\"maxstartups\"{print $2; exit}' | cut -d: -f1); [ -n \"$ms\" ] && [ \"$ms\" -le 10 ] && [ -n \"$mu\" ] && [ \"$mu\" -le 10 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "105, PAM complexidade, Alta"
+  info        : "Garante aplicação de requisitos mínimos de robustez de senha."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq '^[[:space:]]*password[[:space:]].*pam_pwquality\\.so' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "106, pwquality configurado, Alta"
+  info        : "Define critérios técnicos mínimos para criação de senhas seguras."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq 'pam_pwquality\\.so' /etc/pam.d/common-password 2>/dev/null && grep -REq '^[[:space:]]*(minlen|minclass|[duloc]credit)[[:space:]]*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "107, pam_faillock habilitado, Alta"
+  info        : "Garante que o pam_faillock esteja habilitado. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq 'pam_faillock\\.so.*preauth' /etc/pam.d/common-auth 2>/dev/null && grep -Eq 'pam_faillock\\.so.*authfail' /etc/pam.d/common-auth 2>/dev/null && grep -Eq 'pam_faillock\\.so' /etc/pam.d/common-account 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "108, pwhistory configurado, Alta"
+  info        : "Evita reutilização de senhas previamente utilizadas. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq '^[[:space:]]*password[[:space:]].*pam_pwhistory\\.so' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "109, Senha mínima, Alta"
+  info        : "Aumenta entropia mínima exigida para contas locais."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(grep -REh '^[[:space:]]*minlen[[:space:]]*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null | tail -1 | awk -F= '{gsub(/[[:space:]]/,\"\",$2); print $2}'); [ -n \"$v\" ] && [ \"$v\" -ge 14 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "110, Complexidade mínima, Alta"
+  info        : "Exige combinação de classes de caracteres reduzindo previsibilidade."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*minclass[[:space:]]*=[[:space:]]*[4-9]([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null || { for c in dcredit ucredit lcredit ocredit; do grep -REq \"^[[:space:]]*$c[[:space:]]*=[[:space:]]*-[1-9]\" /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null || exit 1; done; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "111, Sem repetição/sequência, Média"
+  info        : "Impede uso de padrões triviais repetitivos ou sequenciais. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*maxrepeat[[:space:]]*=[[:space:]]*[1-3]([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && grep -REq '^[[:space:]]*maxsequence[[:space:]]*=[[:space:]]*[1-3]([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "112, Dicionário ativo, Média"
+  info        : "Evita uso de palavras comuns facilmente descobertas. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*dictcheck[[:space:]]*=[[:space:]]*1([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "113, Hash forte, Alta"
+  info        : "Protege senhas armazenadas contra ataques offline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq '^[[:space:]]*password[[:space:]].*pam_unix\\.so.*(yescrypt|sha512)' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "114, Histórico de senhas, Alta"
+  info        : "Evita reuso imediato de credenciais antigas. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -Eq 'pam_pwhistory\\.so.*remember=([5-9]|[1-9][0-9]+)' /etc/pam.d/common-password 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "115, Tempo desbloqueio, Alta"
+  info        : "Define período de bloqueio adequado equilibrando segurança e usabilidade. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( grep -REq '^[[:space:]]*unlock_time[[:space:]]*=[[:space:]]*([1-9][0-9]{0,2}|[1-9][0-9]{3,})([[:space:]]|$)' /etc/security/faillock.conf /etc/pam.d/common-auth 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "116, PASS_MAX_DAYS, Alta"
+  info        : "Força renovação periódica de credenciais."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_MAX_DAYS\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 365 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "117, PASS_MIN_DAYS, Média"
+  info        : "Evita trocas sucessivas de senha para burlar histórico."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_MIN_DAYS\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "118, PASS_WARN_AGE, Média"
+  info        : "Notifica usuários antes da expiração evitando bloqueios inesperados."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(awk '$1==\"PASS_WARN_AGE\"{print $2; exit}' /etc/login.defs); [ -n \"$v\" ] && [ \"$v\" -ge 7 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "119, INACTIVE configurado, Alta"
+  info        : "Define inativação automática de contas locais após expiração da senha."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( v=$(useradd -D 2>/dev/null | awk -F= '$1==\"INACTIVE\"{print $2}'); [ -n \"$v\" ] && [ \"$v\" -ge 1 ] && [ \"$v\" -le 30 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "120, Datas de senha consistentes, Alta"
+  info        : "Evita contas locais ativas com data de última troca de senha no futuro."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( now=$(($(date +%s)/86400)); awk -F: -v n=\"$now\" '$2 ~ /^\\$/ && $3>n {bad=1} END{exit bad}' /etc/shadow ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "121, Apenas root com UID 0, Alta"
+  info        : "Evita existência de contas privilegiadas adicionais com UID 0."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(awk -F: '$3==0{print $1}' /etc/passwd)\" = root ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "122, Apenas grupo root com GID 0, Alta"
+  info        : "Evita existência de grupos privilegiados adicionais com GID 0."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( [ \"$(awk -F: '$3==0{print $1}' /etc/group)\" = root ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "123, Contas de sistema com shell inválido bloqueadas, Alta"
+  info        : "Evita login interativo em contas de sistema."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$1 !~ /^(root|sync|shutdown|halt)$/ && $3<m && $7 !~ /(nologin|false)$/ {bad=1} END{exit bad}' /etc/passwd ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "124, /etc/shells validado, Média"
+  info        : "Evita exposição de shells não aprovados no sistema."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( awk '!/^[[:space:]]*(#|$)/{print}' /etc/shells | while read -r s; do [ -x \"$s\" ] && [ \"$(stat -Lc %u \"$s\")\" -eq 0 ] && [ $((8#$(stat -Lc %a \"$s\") & 0022)) -eq 0 ] || exit 1; done ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "125, PATH do root sem diretório inseguro, Alta"
+  info        : "Evita uso de diretório corrente no PATH do root."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( p=$(getent passwd root | cut -d: -f7); path=$(env -i HOME=/root \"$p\" -lc 'printf %s \"$PATH\"' 2>/dev/null); oldifs=$IFS; IFS=:; for d in $path; do [ -n \"$d\" ] && [ \"$d\" != . ] && [ -d \"$d\" ] && [ \"$(stat -Lc %u \"$d\")\" -eq 0 ] && [ $((8#$(stat -Lc %a \"$d\") & 0022)) -eq 0 ] || exit 1; done; IFS=$oldifs ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "126, Umask padrão restritiva, Alta"
+  info        : "Define criação padrão de arquivos e diretórios com permissões mais restritivas."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( grep -REq '^[[:space:]]*umask[[:space:]]+0(27|77)([[:space:]]|$)' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "127, Timeout de shell, Média"
+  info        : "Encerra sessões inativas de shell reduzindo exposição por abandono de terminal. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( grep -REq '^[[:space:]]*TMOUT=([1-8]?[0-9]{1,2}|900)([[:space:]]|$)' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null && grep -REq '^[[:space:]]*(readonly|export)[[:space:]]+TMOUT' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo PASS || echo NA && echo PASS || echo NA && echo PASS || echo NA"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "128, Administração privilegiada via sudo restrita, Alta"
+  info        : "Centraliza privilégio administrativo em grupo autorizado."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( grep -REq '^[[:space:]]*%sudo[[:space:]]+ALL[[:space:]]*=[[:space:]]*\\(ALL(:ALL)?\\)[[:space:]]+ALL([[:space:]]|$)' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "129, Sudo com pseudo-TTY, Alta"
+  info        : "Reduz riscos de execução de sudo sem terminal controlado e melhora a rastreabilidade."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( grep -REq '^[[:space:]]*Defaults([[:space:]]+|:)[^#]*use_pty([[:space:],]|$)' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "130, Logging de sudo habilitado, Alta"
+  info        : "Registra uso de sudo em arquivo dedicado para auditoria. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( grep -REq '^[[:space:]]*Defaults([[:space:]]+|:)[^#]*logfile=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "131, Timeout de autenticação sudo, Média"
+  info        : "Limita tempo de reaproveitamento de credencial sudo."
+  solution    : "Ajustar /etc/pam.d/common-* e arquivos em /etc/security; validar login local, SSH e sudo com conta administrativa de contingencia."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then if command -v sudo >/dev/null 2>&1 && [ -f /etc/sudoers ]; then ( v=$(grep -REh '^[[:space:]]*Defaults([[:space:]]+|:)[^#]*timestamp_timeout=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null | tail -1 | sed -E 's/.*timestamp_timeout=([0-9]+).*/\\1/'); [ -n \"$v\" ] && [ \"$v\" -ge 0 ] && [ \"$v\" -le 15 ] ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "133, Journald persistente, Alta"
+  info        : "Mantém persistência de logs locais no journald."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if systemctl --version >/dev/null 2>&1; then ( cfg=$(systemd-analyze cat-config systemd/journald.conf 2>/dev/null | awk -F= '/^[[:space:]]*Storage[[:space:]]*=/{gsub(/[[:space:]]/,\"\",$2); v=tolower($2)} END{print v}'); { [ \"$cfg\" = persistent ] || { { [ -z \"$cfg\" ] || [ \"$cfg\" = auto ]; } && [ -d /var/log/journal ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "134, Rsyslog habilitado, Alta"
+  info        : "Garante serviço rsyslog habilitado para coleta e encaminhamento de logs. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' rsyslog 2>/dev/null | grep -q '^ii '; then ( systemctl is-enabled --quiet rsyslog.service 2>/dev/null && systemctl is-active --quiet rsyslog.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "135, Rotação de logs configurada, Média"
+  info        : "Mantém retenção e renovação periódica dos logs locais."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' logrotate 2>/dev/null | grep -q '^ii '; then ( dpkg-query -W -f='${db:Status-Abbrev}' logrotate 2>/dev/null | grep -q '^ii ' && grep -Eq '^[[:space:]]*rotate[[:space:]]+[1-9][0-9]*' /etc/logrotate.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "136, auditd habilitado, Alta"
+  info        : "Garante serviço de auditoria habilitado no sistema."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( dpkg-query -W -f='${db:Status-Abbrev}' auditd 2>/dev/null | grep -q '^ii ' && systemctl is-enabled --quiet auditd.service 2>/dev/null && systemctl is-active --quiet auditd.service 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "137, Auditoria habilitada desde o boot, Alta"
+  info        : "Garante coleta de eventos desde o início do boot por meio do parâmetro audit=1. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Ajustar /etc/default/grub ou /etc/default/grub.d, executar update-grub e validar console e boot antes de reiniciar."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( grep -qw audit=1 /proc/cmdline && grep -REq '^[[:space:]]*GRUB_CMDLINE_LINUX(_DEFAULT)?=.*audit=1' /etc/default/grub /etc/default/grub.d/*.cfg 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "138, max_log_file configurado, Alta"
+  info        : "Define tamanho máximo do arquivo de auditoria antes de ação rotativa."
+  solution    : "Ajustar journald, rsyslog, logrotate ou auditd conforme o item; validar retenção, espaco e inicialização do serviço."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( grep -Eq '^[[:space:]]*max_log_file[[:space:]]*=[[:space:]]*[1-9][0-9]*' /etc/audit/auditd.conf 2>/dev/null && grep -Eq '^[[:space:]]*max_log_file_action[[:space:]]*=[[:space:]]*(ROTATE|KEEP_LOGS)([[:space:]]|$)' /etc/audit/auditd.conf 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "139, Auditoria de data e hora, Alta"
+  info        : "Registra alterações relevantes de data e hora no sistema. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- '/etc/localtime' $files 2>/dev/null && for s in adjtimex settimeofday clock_settime; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "140, Auditoria de contas e grupos, Alta"
+  info        : "Registra alterações em arquivos críticos de contas e grupos."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /etc/passwd /etc/group /etc/shadow /etc/gshadow; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "141, Auditoria de rede, Alta"
+  info        : "Registra alterações em arquivos críticos de configuração de rede. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /etc/hosts /etc/hostname /etc/resolv.conf; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "142, Auditoria de login, Alta"
+  info        : "Registra eventos de autenticação e sessão. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for f in /var/log/lastlog /var/log/wtmp /var/log/btmp; do grep -REq -- \"-w[[:space:]]+$f([[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "143, Auditoria de permissões, Média"
+  info        : "Registra mudanças relevantes de permissões e propriedades. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in chmod fchmod fchmodat chown fchown fchownat lchown setxattr; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "144, Auditoria de EACCES e EPERM, Alta"
+  info        : "Registra negações de acesso relevantes para investigação. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- 'exit=-EACCES' $files 2>/dev/null && grep -REq -- 'exit=-EPERM' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "146, Auditoria de mount, Média"
+  info        : "Registra operações de montagem e desmontagem de sistemas de arquivos. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in mount umount2; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "147, Auditoria de unlink e rename, Média"
+  info        : "Registra remoções e renomeações relevantes de arquivos e diretórios. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in unlink unlinkat rename renameat rmdir; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "148, Auditoria de módulos kernel, Alta"
+  info        : "Registra carga e remoção de módulos do kernel. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii '; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; for s in init_module finit_module delete_module; do grep -REq -- \"(^|[,[:space:]])$s([,[:space:]]|$)\" $files 2>/dev/null || exit 1; done; grep -REq -- '-w[[:space:]]+/(usr/)?sbin/modprobe([[:space:]]|$)' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "149, Auditoria de sudo e sudoers, Alta"
+  info        : "Registra alterações e uso relacionados à delegação administrativa. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Adicionar regra em /etc/audit/rules.d/50-hardening.rules e carregar com augenrules --load; medir volume antes de tornar imutavel."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if dpkg-query -W -f='${db:Status-Abbrev}\\n' auditd 2>/dev/null | grep -q '^ii ' && command -v sudo >/dev/null 2>&1; then ( files='/etc/audit/rules.d/*.rules /etc/audit/audit.rules'; grep -REq -- 'path=/usr/bin/sudo|/usr/bin/sudo[[:space:]]' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/etc/sudoers([[:space:]]|$)' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/etc/sudoers.d/?([[:space:]]|$)' $files 2>/dev/null && grep -REq -- '-w[[:space:]]+/var/log/sudo\\.log([[:space:]]|$)' $files 2>/dev/null ) && echo PASS || echo FAIL; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "152, Permissões de /etc/passwd, Alta"
+  info        : "Protege o arquivo principal de contas locais contra alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /etc/passwd 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "153, Permissões de /etc/passwd-, Média"
+  info        : "Protege a cópia de segurança de contas locais contra alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -e /etc/passwd- ]; then if [ -e /etc/passwd- ]; then if [ -e /etc/passwd- ]; then ( [ ! -e /etc/passwd- ] || stat -Lc '%a %u %g' /etc/passwd- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "154, Permissões de /etc/shadow, Alta"
+  info        : "Protege o arquivo de senhas locais contra leitura ou alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /etc/shadow 2>/dev/null | grep -Eq '^(000|400|600) 0 0$|^640 0 (0|[1-9][0-9]*)$' && { [ \"$(stat -Lc %g /etc/shadow)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/shadow)\" = shadow ]; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "155, Permissões de /etc/shadow-, Média"
+  info        : "Protege a cópia de segurança de senhas locais contra leitura ou alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -e /etc/shadow- ]; then if [ -e /etc/shadow- ]; then if [ -e /etc/shadow- ]; then ( [ ! -e /etc/shadow- ] || { stat -Lc '%a %u' /etc/shadow- | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/shadow-)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/shadow-)\" = shadow ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "156, Permissões de /etc/gshadow-, Média"
+  info        : "Protege a cópia de segurança de grupos sensíveis contra leitura ou alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -e /etc/gshadow- ]; then if [ -e /etc/gshadow- ]; then if [ -e /etc/gshadow- ]; then ( [ ! -e /etc/gshadow- ] || { stat -Lc '%a %u' /etc/gshadow- | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/gshadow-)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/gshadow-)\" = shadow ]; }; } ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "157, Permissões de /etc/gshadow, Alta"
+  info        : "Protege o arquivo de grupos sensíveis contra leitura ou alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u' /etc/gshadow 2>/dev/null | grep -Eq '^(000|400|600|640) 0$' && { [ \"$(stat -Lc %g /etc/gshadow)\" -eq 0 ] || [ \"$(stat -Lc %G /etc/gshadow)\" = shadow ]; } ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "158, Permissões de /etc/group, Média"
+  info        : "Protege o arquivo principal de grupos locais contra alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( stat -Lc '%a %u %g' /etc/group 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "159, Permissões de /etc/group-, Média"
+  info        : "Protege a cópia de segurança de grupos locais contra alteração indevida."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -e /etc/group- ]; then if [ -e /etc/group- ]; then if [ -e /etc/group- ]; then ( [ ! -e /etc/group- ] || stat -Lc '%a %u %g' /etc/group- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "160, Proteção de /etc/security/opasswd, Alta"
+  info        : "Protege o histórico de senhas locais contra leitura ou alteração indevida. A aplicabilidade depende da função do servidor e deve ser registrada no aceite do baseline."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -e /etc/security/opasswd ]; then if [ -e /etc/security/opasswd ]; then if [ -e /etc/security/opasswd ]; then ( [ ! -e /etc/security/opasswd ] || stat -Lc '%a %u %g' /etc/security/opasswd 2>/dev/null | grep -Eq '^(600|640) 0 (0|[1-9][0-9]*)$' ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "161, Arquivos órfãos inexistentes, Média"
+  info        : "Evita presença de arquivos locais sem proprietário válido."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( ! find / -xdev -nouser -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "162, Sticky bit em diretórios world writable, Alta"
+  info        : "Impede exclusão indevida em diretórios compartilhados com escrita global."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( ! find / -xdev -type d -perm -0002 ! -perm -1000 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "163, Sem arquivos sem owner ou grupo, Média"
+  info        : "Evita presença de arquivos locais sem owner ou grupo válido."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "( ! find / -xdev \\( -nouser -o -nogroup \\) -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "165, Usuários sem home inexistentes, Média"
+  info        : "Evita contas locais interativas sem diretório home válido."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $6}' /etc/passwd | while read -r h; do [ -d \"$h\" ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "166, Ownership correto dos homes, Alta"
+  info        : "Garante que cada diretório home pertença ao usuário esperado."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $1 \" \" $6}' /etc/passwd | while read -r u h; do [ -d \"$h\" ] && [ \"$(stat -Lc %U \"$h\")\" = \"$u\" ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "167, Permissões de home restritivas, Alta"
+  info        : "Evita diretórios home com permissões excessivas."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( uid_min=$(awk '$1==\"UID_MIN\"{print $2; exit}' /etc/login.defs); awk -F: -v m=\"${uid_min:-1000}\" '$3>=m && $7 !~ /(nologin|false)$/ {print $6}' /etc/passwd | while read -r h; do [ -d \"$h\" ] && [ $((8#$(stat -Lc %a \"$h\") & 0027)) -eq 0 ] || exit 1; done ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "168, Dotfiles sem permissão world writable, Média"
+  info        : "Evita exposição ou alteração indevida de arquivos ocultos em home."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( ! find /home -xdev -maxdepth 2 -type f -name '.*' -perm -002 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "169, Sem arquivos .forward .netrc e .rhosts, Alta"
+  info        : "Evita mecanismos legados inseguros em diretórios home."
+  solution    : "Corrigir proprietário e permissões preservando root:shadow onde previsto no Debian; revisar cada achado antes de alterar arquivos de aplicacao."
+  reference   : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  see_also    : "01_Baseline_DEBLIKE_FULL_v1.0.0"
+  cmd         : "if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then if [ -f /etc/pam.d/common-password ] && [ -f /etc/shadow ] && grep -Eq 'pam_unix\\.so' /etc/pam.d/common-password 2>/dev/null && awk -F: 'NR==FNR {shell[$1]=$7; next} $2 ~ /^\\$(y|[156])\\$/ && shell[$1] !~ /(nologin|false)$/ {ok=1} END{exit !ok}' /etc/passwd /etc/shadow; then ( ! find /home -xdev -maxdepth 2 -type f \\( -name .forward -o -name .netrc -o -name .rhosts \\) -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL; else echo NA; fi; else echo NA; fi; else echo NA; fi"
+  expect      : "(?i)^\\s*(PASS|NA)\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "999, Verificacao de hardening aplicado (log local)"
+  info        : "Verifica se existe log local de execucao do hardening e mostra o ultimo registro."
+  solution    : "Executar a automacao de hardening para criar /var/log/hitss-hardening.log."
+  reference   : "BASELINE"
+  see_also    : "/var/log/hitss-hardening.log"
+  cmd         : "sh -c 'log=/var/log/hitss-hardening.log; [ -f \"$log\" ] || { echo \"FAIL | sem_log\"; exit; }; echo \"PASS | $(tail -n 1 \"$log\")\"'"
+  expect      : "(?i)^\\s*PASS\\s*\\|"
+</custom_item>
+
+</check_type>

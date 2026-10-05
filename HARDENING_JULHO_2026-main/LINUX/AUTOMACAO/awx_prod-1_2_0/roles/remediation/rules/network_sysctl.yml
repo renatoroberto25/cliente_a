@@ -1,0 +1,52 @@
+network_sysctl_rules:
+  - id: 91
+    key: net.ipv4.ip_forward
+    expected: "0"
+    descricao: "IP forwarding desabilitado"
+    perfil: "Full"
+
+  - id: 92
+    key: net.ipv4.conf.all.send_redirects
+    expected: "0"
+    key_default: net.ipv4.conf.default.send_redirects
+    descricao: "Redirecionamentos de pacotes desabilitados"
+    perfil: "Light"
+
+  - id: 93
+    key: net.ipv4.conf.all.accept_source_route
+    expected: "0"
+    key_default: net.ipv4.conf.default.accept_source_route
+    descricao: "Source-routed packets bloqueados"
+    perfil: "Light"
+
+  - id: 94
+    key: net.ipv4.conf.all.accept_redirects
+    expected: "0"
+    key_default: net.ipv4.conf.default.accept_redirects
+    descricao: "ICMP redirects bloqueados"
+    perfil: "Light"
+
+  - id: 95
+    key: net.ipv4.conf.all.rp_filter
+    expected: "1"
+    key_default: net.ipv4.conf.default.rp_filter
+    descricao: "Reverse path filtering habilitado"
+    perfil: "Full"
+
+  - id: 96
+    key: net.ipv4.icmp_echo_ignore_broadcasts
+    expected: "1"
+    descricao: "ICMP broadcast ignorado"
+    perfil: "Light"
+
+  - id: 97
+    key: net.ipv4.icmp_ignore_bogus_error_responses
+    expected: "1"
+    descricao: "Respostas ICMP inválidas ignoradas"
+    perfil: "Light"
+
+  - id: 98
+    key: net.ipv4.tcp_syncookies
+    expected: "1"
+    descricao: "TCP SYN cookies habilitados"
+    perfil: "Light"

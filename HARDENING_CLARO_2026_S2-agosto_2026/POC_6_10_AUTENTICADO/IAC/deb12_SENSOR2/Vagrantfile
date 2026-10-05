@@ -1,0 +1,58 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  DATA = Time.now.strftime("%Y%m%d")
+  VM_NAME = "deb12-sensor2-#{DATA}"
+  VM_IP = "192.168.56.210"
+  VM_USER = "renato"
+  VM_PASS = "C9p5au8naa@2025"
+  config.vm.box = "debian/bookworm64"
+  config.vm.hostname = VM_NAME
+  config.vm.network "private_network", ip: VM_IP, name: "vboxnet1"
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = VM_NAME
+    vb.memory = "4096"
+    vb.cpus = 2
+  end
+  config.ssh.insert_key = false
+  config.ssh.forward_agent = false
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+set -e
+timedatectl set-timezone America/Sao_Paulo
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y sudo curl ca-certificates openssh-server
+if ! id -u "#{VM_USER}" >/dev/null 2>&1; then
+  useradd -m -s /bin/bash "#{VM_USER}"
+  echo "#{VM_USER}:#{VM_PASS}" | chpasswd
+fi
+usermod -aG sudo "#{VM_USER}"
+echo "#{VM_USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/#{VM_USER}"
+chmod 440 "/etc/sudoers.d/#{VM_USER}"
+configure_ssh() {
+  mkdir -p "$1/.ssh"
+  cat > "$1/.ssh/authorized_keys" <<'EOF'
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBQosqCek+0A91VxyYJNES7bRRo3FxaXcxsD4gEJRgEo renatoroberto25
+EOF
+  chown -R "$2:$2" "$1/.ssh"
+  chmod 700 "$1/.ssh"
+  chmod 600 "$1/.ssh/authorized_keys"
+}
+configure_ssh /home/vagrant vagrant
+configure_ssh /home/#{VM_USER} #{VM_USER}
+systemctl enable --now ssh
+[ -f /vagrant/instala_sensor.sh ] || { echo "[ERRO] /vagrant/instala_sensor.sh não encontrado."; exit 1; }
+chmod +x /vagrant/instala_sensor.sh
+/vagrant/instala_sensor.sh
+cat > /etc/issue.net <<'EOF'
+************************************************************
+* ACESSO RESTRITO — SISTEMA MONITORADO HITSS              *
+************************************************************
+Uso exclusivo de pessoal autorizado.
+EOF
+chmod 644 /etc/issue.net
+ip -br addr
+ip route
+SHELL
+end

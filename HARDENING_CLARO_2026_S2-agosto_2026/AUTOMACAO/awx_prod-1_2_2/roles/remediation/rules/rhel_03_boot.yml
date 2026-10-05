@@ -1,0 +1,14 @@
+---
+rhel_03_boot_controls:
+  - id: 49
+    descricao: "Boot / Segurança"
+    severidade: WARN
+    perfil: "Full"
+  - id: 50
+    descricao: "Boot / Segurança"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 51
+    descricao: "Boot / Segurança"
+    severidade: WARN
+    perfil: "Full"

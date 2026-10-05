@@ -1,0 +1,51 @@
+﻿ID,Controle,Criticidade,Motivo da exclusão
+2,Bloqueio squashfs,Baixa,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+3,Bloqueio udf,Baixa,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+8,Desabilitar o módulo overlayfs,Média,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+9,Bloqueio usb_storage,Média,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+11,Bloqueio SCTP,Média,"Bloqueio pode afetar imagens, containers, mídias ou protocolos utilizados pelo ambiente."
+19,perf_event restrito,Baixa,Restrição de perf pode interferir em diagnóstico e observabilidade.
+23,Partição dedicada para /tmp,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+24,Partição dedicada para /dev/shm,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+25,Partição dedicada para /var,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+26,Partição dedicada para /var/tmp,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+27,Partição dedicada para /var/log,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+28,Partição dedicada para /var/log/audit,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+29,Partição dedicada para /home,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+30,Partição dedicada para /historico,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+31,Partição dedicada para /crash,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+32,Partição dedicada para /UNIX,Baixa,Exige layout de armazenamento específico; manter no FULL para provisionamento ou adequação estrutural.
+33,Nodev removíveis,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+34,Nodev partições críticas,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+35,Segurança /var/log,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+36,Segurança audit log,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+37,Segurança /home,Média,Exige alteração de opções de montagem e avaliação de dependências do ambiente.
+42,Autofs desabilitado,Baixa,Desabilitar autofs pode interromper montagens utilizadas pelas aplicações.
+43,Senha no bootloader,Média,Senha de bootloader exige gestão de credenciais e alinhamento da recuperação por console.
+51,X11 removido,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+52,Avahi desabilitado,Baixa,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+53,CUPS desabilitado,Baixa,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+54,DHCP server ausente,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+55,LDAP server ausente,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+56,DNS server ausente,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+57,FTP server ausente,Alta,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+58,HTTP server ausente,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+59,IMAP/POP3 removidos,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+60,Samba removido,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+61,Proxy HTTP removido,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+62,SNMP desabilitado,Média,Remove ou desabilita componente que pode fazer parte da função do servidor; depende de inventário da aplicação.
+66,NFS server desabilitado,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+67,rpcbind desabilitado,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+68,rsync daemon desabilitado,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+73,Cliente LDAP removido,Média,"Pode afetar compartilhamentos, transferência de arquivos ou integração com diretório."
+74,Serviços não essenciais habilitados,Média,"Controle agregado volta a exigir ausência de serviços retirados individualmente do LIGHT, como Avahi, CUPS e FTP."
+84,Reverse path filtering habilitado,Alta,Filtragem reversa estrita depende da topologia e pode afetar tráfego com roteamento assimétrico.
+88,IPv6 desabilitado,Baixa,Desativar IPv6 exige avaliação das dependências de rede e aplicações.
+92,X11Forwarding desabilitado,Média,Desabilitar encaminhamento SSH pode interromper fluxos administrativos ou de aplicações.
+96,PermitRootLogin restrito,Alta,"Restrição de acesso root por SSH depende do modelo de acesso administrativo; retirada segue o critério operacional do LIGHT RHEL, sem impor acesso root habilitado."
+103,AllowTcpForwarding desabilitado,Média,Desabilitar encaminhamento SSH pode interromper fluxos administrativos ou de aplicações.
+132,Uso de su restrito,Alta,Restrição de su exige alinhamento prévio dos grupos e procedimentos administrativos.
+145,Auditoria de executáveis privilegiados,Média,Auditoria de executáveis privilegiados exige inventário e revisão dos binários e do volume de eventos.
+150,Auditoria imutável,Alta,Imutabilidade limita alterações de auditoria até reinicialização; manter no FULL.
+151,Verificação periódica de integridade,Média,Verificação periódica com AIDE exige preparação da base e planejamento de execução e tratamento dos resultados.
+164,SUID/SGID indevidos,Alta,Tratamento de SUID/SGID exige avaliação dos executáveis legítimos e allowlist por ambiente.

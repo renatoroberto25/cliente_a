@@ -1,0 +1,175 @@
+﻿ID,Controle,Criticidade
+1,Verifique se o módulo do kernel do CRAMFS não está disponível,Baixa
+2,Verifique se o módulo do kernel do SQUASHFS não está disponível,Baixa
+3,Verifique se o módulo do kernel do UDF não está disponível,Baixa
+4,Verifique se o módulo do kernel do HFS não está disponível,Baixa
+5,Verifique se o módulo do kernel do HFSPLUS não está disponível,Baixa
+6,Verifique se o módulo do kernel do JFFS2 não está disponível,Baixa
+7,Verifique se o módulo do kernel do FREEVXFS não está disponível,Baixa
+8,Verifique se o módulo do kernel do OVERLAY não está disponível,Média
+9,Verifique se o módulo do kernel do USB-STORAGE não está disponível,Média
+10,Verifique se o módulo do kernel do DCCP não está disponível,Média
+11,Verifique se o módulo do kernel do SCTP não está disponível,Média
+12,Verifique se o módulo do kernel do RDS não está disponível,Média
+13,Verifique se o módulo do kernel do TIPC não está disponível,Média
+14,Verifique se core dumps estão restritos,Média
+15,Verifique se ptrace_scope está restrito,Média
+16,Verifique se NX/XD está ativo,Alta
+17,Verifique se ASLR está habilitado,Alta
+18,Verifique se IOMMU está ativo,Alta
+19,Verifique se perf_event está restrito,Baixa
+20,Verifique se dmesg está restrito,Baixa
+21,Verifique se user namespace está desabilitado,Média
+22,Verifique se protected_symlinks está habilitado,Média
+23,Verifique se protected_hardlinks está habilitado,Média
+24,Verifique se suid_dumpable=0,Média
+25,Partição dedicada para /tmp,Baixa
+26,Partição dedicada para /dev/shm,Baixa
+27,Partição dedicada para /var,Baixa
+28,Partição dedicada para /var/tmp,Baixa
+29,Partição dedicada para /var/log,Baixa
+30,Partição dedicada para /var/log/audit,Baixa
+31,Partição dedicada para /home,Baixa
+32,Partição dedicada para /historico,Baixa
+33,Partição dedicada para /crash,Baixa
+34,Partição dedicada para /UNIX,Baixa
+35,Montagem segura de partições e mídia removível,Média
+36,Opções de montagem seguras em partições críticas,Média
+40,Opções de montagem seguras em /var/log,Média
+41,Opções de montagem seguras em /var/log/audit,Média
+42,Opções de montagem seguras em /home,Média
+44,Sticky bit em diretórios world-writable,Média
+45,Sticky bit em /tmp,Baixa
+46,Sticky bit em /var/tmp,Baixa
+47,Sticky bit em /dev/shm,Baixa
+48,Autofs desabilitado,Baixa
+49,Senha de bootloader configurada,Média
+50,Permissões seguras no arquivo do bootloader,Alta
+51,Single user mode com autenticação,Média
+56,Prelink removido,Baixa
+57,xinetd removido,Média
+58,Sincronização de tempo em uso,Média
+61,X11 ausente,Média
+62,Avahi ausente,Baixa
+63,CUPS ausente,Baixa
+64,DHCP server ausente,Média
+65,LDAP server ausente,Média
+66,DNS server ausente,Média
+67,FTP server ausente,Alta
+68,HTTP server ausente,Média
+69,IMAP/POP3 server ausente,Média
+70,Samba ausente,Média
+71,Proxy HTTP ausente,Média
+72,SNMP ausente,Média
+73,NIS server ausente,Alta
+74,Telnet server ausente,Alta
+75,MTA em modo local-only,Média
+76,NFS server controlado,Média
+77,rpcbind controlado,Média
+78,rsync daemon controlado,Média
+79,Cliente NIS ausente,Média
+80,Cliente rsh ausente,Alta
+81,Cliente talk ausente,Baixa
+82,Cliente telnet ausente,Média
+83,Cliente LDAP ausente,Média
+84,Serviços não essenciais removidos/mascarados,Média
+85,TFTP server removido,Alta
+86,PolicyKit endurecido,Alta
+87,Assinaturas de pacotes habilitadas,Média
+89,Apenas um daemon de time sync,Média
+90,Cron/at seguros e restritos,Alta
+91,IP forwarding desabilitado,Alta
+92,Redirecionamentos de pacotes desabilitados,Alta
+93,Source-routed packets bloqueados,Alta
+94,ICMP redirects bloqueados,Alta
+95,Reverse path filtering habilitado,Alta
+96,ICMP broadcast ignorado,Baixa
+97,Respostas ICMP inválidas ignoradas,Baixa
+98,TCP SYN cookies habilitados,Alta
+99,IPv6 desabilitado ou endurecido,Baixa
+102,Wireless/Bluetooth desabilitados,Média
+108,TLS mínimo 1.2/1.3,Alta
+109,Permissões seguras em sshd_config e chaves,Alta
+110,Controle de acesso via Allow/Deny,Alta
+111,LogLevel adequado,Média
+112,X11Forwarding desabilitado,Média
+113,MaxAuthTries limitado,Média
+114,IgnoreRhosts habilitado,Alta
+115,HostbasedAuthentication desabilitado,Alta
+117,PermitEmptyPasswords desabilitado,Alta
+118,PermitUserEnvironment desabilitado,Média
+119,UsePAM habilitado,Alta
+120,Idle timeout configurado,Baixa
+121,LoginGraceTime curto,Média
+122,MaxStartups/MaxSessions limitados,Média
+123,AllowTcpForwarding restrito,Média
+125,Ciphers fortes,Alta
+126,MACs fortes,Alta
+127,KexAlgorithms fortes,Alta
+130,pwquality habilitado,Alta
+131,Verificar parâmetros do pam_pwquality,Alta
+132,pam_faillock habilitado,Alta
+133,pam_tally2 NÃO deve existir em RHEL 8/9,Alta
+134,pam_pwhistory habilitado,Alta
+135,minlen ≥ 14,Alta
+136,minclass ≥ 4,Alta
+137,maxrepeat & maxsequence = 3,Média
+138,dictcheck != 0,Média
+139,Hashing sha512/yescrypt,Alta
+140,pwhistory remember ≥ 5,Alta
+141,deny maior ou igual a 5 (faillock),Alta
+142,unlock_time maior ou igual a 900,Alta
+143,PASS_MAX_DAYS ≤ 365,Alta
+144,PASS_MIN_DAYS maior ou igual a 1,Baixa
+145,PASS_WARN_AGE maior ou igual a 7,Baixa
+146,inactive maior ou igual a 30 (para contas válidas),Alta
+147,campo 3 diferente 0,Alta
+148,Root é o único UID 0,Alta
+149,Root é o único GID 0,Alta
+150,Contas de sistema com shell interativo,Alta
+151,/sbin/nologin presente em /etc/shells,Baixa
+152,PATH do root configurado,Alta
+153,umask 027,Alta
+154,TMOUT 900,Baixa
+155,Acesso sudo amplo somente ao wheel,Alta
+156,sudo usa pty,Alta
+157,sudo logfile,Alta
+158,!authenticate ausente,Alta
+159,timestamp_timeout=5,Baixa
+160,su restrito ao wheel,Alta
+162,Journald configurado persistente,Média
+164,Logrotate para rsyslog,Baixa
+166,Auditoria antes do auditd (se utilizado),Alta
+167,Tamanho de armazenamento de audit log,Média
+168,Logs de auditoria não excluídos automaticamente,Alta
+169,Auditoria de alterações em data/hora,Média
+170,Auditoria de alterações em contas/grupos,Média
+171,Auditoria de alterações no ambiente de rede,Média
+173,Auditoria de login/logout,Média
+174,Auditoria de permissões DAC,Média
+175,Auditoria de acessos não autorizados,Média
+176,Auditoria de comandos privilegiados,Alta
+177,Auditoria de mount/unmount,Média
+178,Auditoria de deleção de arquivos,Média
+179,Auditoria de kernel modules,Média
+180,Auditoria de sudoers/logs de sudo,Média
+181,Configuração de auditoria imutável,Alta
+185,Verificar permissões de /etc/passwd,Média
+186,Verificar permissões de /etc/passwd-,Média
+187,Verificar permissões de /etc/shadow,Média
+188,Verificar permissões de /etc/shadow-,Média
+189,Verificar permissões de /etc/gshadow-,Alta
+190,Verificar permissões de /etc/gshadow,Alta
+191,Verificar permissões de /etc/group,Média
+192,Verificar permissões de /etc/group-,Média
+193,Verificar se contas usam shell nologin,Média
+194,Verificar permissões de /etc/security/opasswd,Alta
+195,Verificar existência de arquivos órfãos (UID/GID sem dono),Baixa
+196,Verificar world-writable fora de áreas permitidas,Média
+197,Verificar arquivos/diretórios sem owner ou group,Média
+198,Verificar binários SUID/SGID indevidos,Alta
+199,Verificar se usuários possuem diretório home válido,Baixa
+200,Verificar ownership das homes dos usuários,Média
+201,Verificar permissões das homes (<=750),Média
+202,Verificar dotfiles inseguros nas homes,Baixa
+203,Verificar arquivos .forward/.netrc/.rhosts nas homes,Média

@@ -1,0 +1,67 @@
+# roles/audit/rules/kernel_sysctl.yml
+kernel_sysctl_rules:
+  - id: 14
+    key: fs.suid_dumpable
+    expected: "0"
+    descricao: "Verifique se core dumps estão restritos"
+    perfil: "Light"
+
+  - id: 15
+    key: fs.suid_dumpable
+    expected: "0"
+    descricao: "Verifique se ptrace_scope está restrito"
+    perfil: "Full"
+
+  - id: 16
+    cmd: "dmesg | grep -Ei 'NX.*active|XD.*active|Execute Disable.*active' || journalctl -k | grep -Ei 'NX.*active|XD.*active|Execute Disable.*active'"
+    descricao: "Verifique se NX/XD está ativo"
+    perfil: "Full"
+
+  - id: 17
+    key: kernel.randomize_va_space
+    expected_min: 1
+    descricao: "Verifique se ASLR está habilitado"
+    perfil: "Light"
+
+  - id: 18
+    key: kernel.randomize_va_space
+    expected: "2"
+    descricao: "Verifique se IOMMU está ativo"
+    perfil: "Full"
+
+  - id: 19
+    key: kernel.perf_event_paranoid
+    expected_min: "2"
+    descricao: "Verifique se perf_event está restrito"
+    perfil: "Light"
+
+  - id: 20
+    key: kernel.perf_event_paranoid
+    expected: "3"
+    descricao: "Verifique se dmesg está restrito"
+    perfil: "Light"
+
+  - id: 21
+    key: kernel.dmesg_restrict
+    expected: "1"
+    descricao: "Verifique se user namespace está desabilitado"
+    perfil: "Full"
+
+  - id: 22
+    requires:
+      - fs.protected_symlinks
+      - fs.protected_hardlinks
+    descricao: "Verifique se protected_symlinks está habilitado"
+    perfil: "Light"
+
+  - id: 23
+    key: fs.protected_symlinks
+    expected: "1"
+    descricao: "Verifique se protected_hardlinks está habilitado"
+    perfil: "Light"
+
+  - id: 24
+    key: fs.protected_hardlinks
+    expected: "1"
+    descricao: "Verifique se suid_dumpable=0"
+    perfil: "Light"

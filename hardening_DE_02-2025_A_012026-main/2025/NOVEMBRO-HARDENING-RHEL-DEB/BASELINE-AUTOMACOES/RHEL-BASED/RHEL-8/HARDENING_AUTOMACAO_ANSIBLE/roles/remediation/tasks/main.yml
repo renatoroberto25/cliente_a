@@ -1,0 +1,613 @@
+#####################################################################################
+################## SCRIPTS DE HARDENING - REMEDIAÇÃO TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 1 - Remediar módulo do kernel do cramfs"
+  script: 1/1.sh
+  register: remed_1
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_1
+    - remed_hitss_1.x
+
+- name: "hitss 2 - Remediar módulo do kernel do freevxfs"
+  script: 1/2.sh
+  register: remed_2
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_2
+    - remed_hitss_1.x
+
+- name: "hitss 3 - Remediar módulo do kernel do hfs"
+  script: 1/3.sh
+  register: remed_3
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_3
+    - remed_hitss_1.x
+
+- name: "hitss 4 - Remediar módulo do kernel do hfsplus"
+  script: 1/4.sh
+  register: remed_4
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_4
+    - remed_hitss_1.x
+
+- name: "hitss 5 - Remediar módulo do kernel do jffs2"
+  script: 1/5.sh
+  register: remed_5
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_5
+    - remed_hitss_1.x
+
+- name: "hitss 6 - Remediar módulo do kernel do squashfs"
+  script: 1/6.sh
+  register: remed_6
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_6
+    - remed_hitss_1.x
+
+- name: "hitss 7 - Remediar módulo do kernel do udf"
+  script: 1/7.sh
+  register: remed_7
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_7
+    - remed_hitss_1.x
+
+- name: "hitss 8 - Remediar módulo do kernel do USB"
+  script: 1/8.sh
+  register: remed_8
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_8
+    - remed_hitss_1.x
+
+- name: "hitss 9 - 34 - Opções de montagem seguras"
+  script: 9/9.sh
+  register: remed_9
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_9
+    - remed_hitss_1.x
+
+- name: "hitss 35 - 39 - Opções de montagem seguras"
+  script: 35/35.sh
+  register: remed_35
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_35
+    - remed_hitss_2.x
+
+- name: "hitss 40 - Verifique se o bootloader possui senha configurada"
+  script: 40/40.sh
+  register: remed_40
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_40
+    - remed_hitss_3.x
+
+- name: "hitss 41 - Verifique se o bootloader possui senha configurada"
+  script: 40/41.sh
+  register: remed_41
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_41
+    - remed_hitss_3.x
+
+- name: "hitss 42 - Verifique se a randomização do layout do espaço de endereço (ASLR) está ativada"
+  script: 40/42.sh
+  register: remed_42
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_42
+    - remed_hitss_3.x
+
+- name: "hitss 43 - 45 Verificar se ptrace_scope está restrito, backtraces ecore dump storage desabilitados"
+  script: 40/43.sh
+  register: remed_43
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_43
+    - remed_hitss_3.x
+
+- name: "hitss 46 - 50 Verificar Controle de acesso via SELINUX"
+  script: 46/46.sh
+  register: remed_46
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_46
+    - remed_hitss_4.x
+
+- name: "hitss 51 - 53 Verificações complementares SELINUX: Serviços confinados, mctrans e setroubleshoot"
+  script: 46/51.sh
+  register: remed_51
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_51
+    - remed_hitss_4.x
+
+- name: "hitss 54 - 57 - Verificar políticas de criptografias"
+  script: 54/54.sh
+  register: remed_54
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_54
+    - remed_hitss_5.x
+
+- name: "hitss 58 - Verificar há informações sensíveis dos arquivos de banner"
+  script: 58/58.sh
+  register: remed_58
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_58
+    - remed_hitss_6.x
+
+- name: "hitss 61 - Verificar permissões e proprietário dos arquivos de banner"
+  script: 58/61.sh
+  register: remed_61
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_61
+    - remed_hitss_6.x
+
+- name: "hitss 67 - 68 - Acesso e configuração de arquivos de banner e GDM"
+  script: 58/67.sh
+  register: remed_67
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_67
+    - remed_hitss_6.x
+
+- name: "hitss 69 - 73 - Verificar parâmetros avançados do GDM (se aplicável)"
+  script: 69/69.sh
+  register: remed_69
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_69
+    - remed_hitss_6.x
+
+- name: "hitss 74 - 78 - Verificar sincronização de tempo e serviços desnecessários"
+  script: 74/74.sh
+  register: remed_74
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_74
+    - remed_hitss_7.x
+
+- name: "hitss 79 - 102 - Serviços e pacotes não recomendados"
+  script: 74/79.sh
+  register: remed_79
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_79
+    - remed_hitss_7.x
+
+- name: "hitss 104 - 110 - Recursos de rede e módulos de kernel"
+  script: 104/104.sh
+  register: remed_104
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_104
+    - remed_hitss_8.x
+
+- name: "hitss 111 - 118 - Parâmetros de rede (IPv4 - sysctl)"
+  script: 104/111.sh
+  register: remed_111
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_111
+    - remed_hitss_8.x
+
+- name: "hitss 119 - 121 - Parâmetros de rede (IPv4 - sysctl)"
+  script: 104/119.sh
+  register: remed_119
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_119
+    - remed_hitss_8.x
+
+- name: "hitss 129 - 136 - Cron, configurações e Permissões"
+  script: 129/129.sh
+  register: remed_129
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_129
+    - remed_hitss_10.x
+
+- name: "hitss 137 - AT, configurações e Permissões"
+  script: 129/137.sh
+  register: remed_137
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_137
+    - remed_hitss_10.x
+
+- name: "hitss 138 - SSH - Acesso, autenticação, autorização e configuração do sshd_config"
+  script: 138/138.sh
+  register: remed_138
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_138
+    - remed_hitss_11.x
+
+- name: "hitss 161 - 169 Configurações sudo e su"
+  script: 160/161.sh
+  register: remed_160
+  changed_when: false
+  failed_when: false
+  tags:
+    - remed_hitss_160
+    - remed_hitss_12.x
+##########################################
+#Bloqueia inclusive acesso via ansible
+- name: "hitss 170 - 190 Configurar módulos de autenticação plugáveis"
+  script: 170/170.sh
+  register: remed_170
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_170
+    - remed_hitss_13.x
+##########################################
+- name: "hitss 191 - 195 Políticas de senha PAM"
+  script: 191/191.sh
+  register: remed_191
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_191
+    - remed_hitss_14.x
+
+- name: "hitss 196 - 200 - Configurar contas de root e de sistema/ambiente"
+  script: 191/196.sh
+  register: remed_196
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_196
+    - remed_hitss_14.x
+
+- name: "hitss 201 - 202 - Configurar ambiente padrão do usuário"
+  script: 191/201.sh
+  register: remed_201
+  changed_when: false
+  failed_when: false
+  tags:
+    - Full
+    - remed_hitss_201
+    - remed_hitss_14.x
+
+#configurar loghost antes
+- name: "hitss 203 - 209 - Configuração rsyslog"
+  script: 203/203.sh
+  register: remed_203
+  changed_when: false
+  failed_when: false
+  tags:
+    - remed_hitss_203
+    - remed_hitss_15.x
+
+- name: "hitss 220 - Configuração do remedd e Logs"
+  script: 220/220.sh
+  register: remed_220
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_220
+    - remed_hitss_17.x
+
+- name: "hitss 229 - Garantir que as alterações no escopo de administração do sistema (sudoers) sejam coletadas"
+  script: 229/229.sh
+  register: remed_229
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_229
+    - remed_hitss_18.x
+
+- name: "hitss 230 - Garantir que as ações de outro usuário sejam sempre registradas"
+  script: 229/230.sh
+  register: remed_230
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_230
+    - remed_hitss_18.x
+
+- name: "hitss 231 - Garantir que os eventos que modificam o arquivo de log sudo sejam coletados"
+  script: 229/231.sh
+  register: remed_231
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_231
+    - remed_hitss_18.x
+
+- name: "hitss 232 - Garantir que os eventos que modificam as informações de data e hora sejam coletados"
+  script: 229/232.sh
+  register: remed_232
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_232
+    - remed_hitss_18.x
+
+- name: "hitss 233 - Garantir que os eventos que modificam o ambiente de rede do sistema sejam coletados"
+  script: 229/233.sh
+  register: remed_233
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_233
+    - remed_hitss_18.x
+
+- name: "hitss 234 - Garantir que o uso de comandos privilegiados seja coletado"
+  script: 229/234.sh
+  register: remed_234
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_234
+    - remed_hitss_18.x
+
+- name: "hitss 235 - Garantir que as tentativas malsucedidas de acesso a arquivos sejam coletadas"
+  script: 229/235.sh
+  register: remed_235
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_235
+    - remed_hitss_18.x
+
+- name: "hitss 236 - Garantir que os eventos que modificam as informações de usuários/grupos sejam coletados"
+  script: 229/236.sh
+  register: remed_236
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_236
+    - remed_hitss_18.x
+
+- name: "hitss 237 - Garantir que os eventos de modificação de permissão de controle de acesso discricionário sejam coletados"
+  script: 229/237.sh
+  register: remed_237
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_237
+    - remed_hitss_18.x
+
+- name: "hitss 238 - Garantir que as montagens bem-sucedidas do sistema de arquivos sejam coletadas"
+  script: 229/238.sh
+  register: remed_238
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_238
+    - remed_hitss_18.x
+
+- name: "hitss 239 - Garantir que as informações de início de sessão sejam coletadas"
+  script: 229/239.sh
+  register: remed_239
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_239
+    - remed_hitss_18.x
+
+- name: "hitss 240 - Garantir que os eventos de login e logout sejam coletados"
+  script: 229/240.sh
+  register: remed_240
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_240
+    - remed_hitss_18.x
+
+- name: "hitss 241 - Garantir que os eventos de exclusão de arquivos pelos usuários sejam coletados"
+  script: 229/241.sh
+  register: remed_241
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_241
+    - remed_hitss_18.x
+
+- name: "hitss 242 - Garantir que os eventos que modificam os Controles de Acesso Obrigatórios do sistema sejam coletados"
+  script: 229/242.sh
+  register: remed_242
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_242
+    - remed_hitss_18.x
+
+- name: "hitss 243 - 249 - Configuração de remedoria e monitoramento de comandos críticos"
+  script: 229/243.sh
+  register: remed_243
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_243
+    - remed_hitss_18.x
+
+
+- name: "hitss 250 - 256 - Configurar acesso ao arquivo remedd"
+  script: 250/250.sh
+  register: remed_250
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_250
+    - remed_hitss_19.x
+
+- name: "hitss 257 - 259 - Configurar acesso ao arquivo remedd"
+  script: 250/257.sh
+  register: remed_257
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_257
+    - remed_hitss_19.x
+
+- name: "hitss 260 - 262 - Configurar verificação de integridade"
+  script: 260/260.sh
+  register: remed_260
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_260
+    - remed_hitss_20.x
+
+
+- name: "hitss 263 - 272 - Permissões de arquivo do sistema"
+  script: 263/263.sh
+  register: remed_263
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_263
+    - remed_hitss_21.x
+
+- name: "hitss 273 - 287 - Configurações de usuários e grupos locais"
+  script: 273/273.sh
+  register: remed_273
+  changed_when: false
+  failed_when: false
+  tags:
+    - Light
+    - Full
+    - remed_hitss_273
+    - remed_hitss_22.x

@@ -1,0 +1,15 @@
+---
+- name: restart ssh
+  service:
+    name: "{{ 'ssh' if hitss_os_family == 'deb' else 'sshd' }}"
+    state: restarted
+
+- name: restart systemd-journald
+  service:
+    name: systemd-journald
+    state: restarted
+
+- name: reload audit rules
+  command: augenrules --load
+  changed_when: false
+  failed_when: false

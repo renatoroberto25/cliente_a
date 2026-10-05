@@ -1,0 +1,382 @@
+- name: Carregar regras sysctl kernel
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/kernel_sysctl.yml"
+
+- name: Pré-check sysctl kernel
+  command: sysctl -n {{ item.key }}
+  register: remed_kernel_sysctl_pre
+  loop: >-
+    {{
+      kernel_sysctl_rules
+      | selectattr('key', 'defined')
+      | rejectattr('key', 'none')
+      | rejectattr('cmd', 'defined')
+      | list
+    }}
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Remediar sysctl fs.suid_dumpable
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^fs\\.suid_dumpable\\s*="
+    line: "fs.suid_dumpable = 0"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_fs_suid_dumpable_file
+  changed_when: remed_fs_suid_dumpable_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.suid_dumpable')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '0'
+
+- name: Aplicar sysctl runtime fs.suid_dumpable
+  command: sysctl -w fs.suid_dumpable=0
+  register: remed_fs_suid_dumpable_runtime
+  changed_when: remed_fs_suid_dumpable_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.suid_dumpable')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '0'
+
+- name: Remediar sysctl kernel.randomize_va_space
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^kernel\\.randomize_va_space\\s*="
+    line: "kernel.randomize_va_space = 2"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_kernel_randomize_file
+  changed_when: remed_kernel_randomize_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.randomize_va_space')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '2'
+
+- name: Aplicar sysctl runtime kernel.randomize_va_space
+  command: sysctl -w kernel.randomize_va_space=2
+  register: remed_kernel_randomize_runtime
+  changed_when: remed_kernel_randomize_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.randomize_va_space')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '2'
+
+- name: Remediar sysctl kernel.perf_event_paranoid
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^kernel\\.perf_event_paranoid\\s*="
+    line: "kernel.perf_event_paranoid = 3"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_kernel_perf_file
+  changed_when: remed_kernel_perf_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.perf_event_paranoid')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '3'
+
+- name: Aplicar sysctl runtime kernel.perf_event_paranoid
+  command: sysctl -w kernel.perf_event_paranoid=3
+  register: remed_kernel_perf_runtime
+  changed_when: remed_kernel_perf_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.perf_event_paranoid')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '3'
+
+- name: Remediar sysctl kernel.dmesg_restrict
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^kernel\\.dmesg_restrict\\s*="
+    line: "kernel.dmesg_restrict = 1"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_kernel_dmesg_file
+  changed_when: remed_kernel_dmesg_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.dmesg_restrict')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Aplicar sysctl runtime kernel.dmesg_restrict
+  command: sysctl -w kernel.dmesg_restrict=1
+  register: remed_kernel_dmesg_runtime
+  changed_when: remed_kernel_dmesg_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'kernel.dmesg_restrict')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Remediar sysctl fs.protected_symlinks
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^fs\\.protected_symlinks\\s*="
+    line: "fs.protected_symlinks = 1"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_fs_symlinks_file
+  changed_when: remed_fs_symlinks_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.protected_symlinks')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Aplicar sysctl runtime fs.protected_symlinks
+  command: sysctl -w fs.protected_symlinks=1
+  register: remed_fs_symlinks_runtime
+  changed_when: remed_fs_symlinks_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.protected_symlinks')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Remediar sysctl fs.protected_hardlinks
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.d/99-hitss-kernel.conf
+    regexp: "^fs\\.protected_hardlinks\\s*="
+    line: "fs.protected_hardlinks = 1"
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  register: remed_fs_hardlinks_file
+  changed_when: remed_fs_hardlinks_file.changed
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.protected_hardlinks')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Aplicar sysctl runtime fs.protected_hardlinks
+  command: sysctl -w fs.protected_hardlinks=1
+  register: remed_fs_hardlinks_runtime
+  changed_when: remed_fs_hardlinks_runtime.rc == 0
+  failed_when: false
+  when: >
+    (
+      remed_kernel_sysctl_pre.results
+      | selectattr('item.key', 'equalto', 'fs.protected_hardlinks')
+      | map(attribute='stdout')
+      | map('trim')
+      | first
+    ) != '1'
+
+- name: Pós-check sysctl kernel
+  command: sysctl -n {{ item.key }}
+  register: remed_kernel_sysctl_post
+  loop: >-
+    {{
+      kernel_sysctl_rules
+      | selectattr('key', 'defined')
+      | rejectattr('key', 'none')
+      | rejectattr('cmd', 'defined')
+      | list
+    }}
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Construir mapa sysctl pós-check
+  ansible.builtin.set_fact:
+    remed_kernel_sysctl_results: >-
+      {{
+        dict(
+          remed_kernel_sysctl_post.results
+          | map(attribute='item.key')
+          | zip(
+              remed_kernel_sysctl_post.results
+              | map(attribute='stdout') | map('default', '') | map('trim')
+            )
+        )
+      }}
+  changed_when: false
+  no_log: false
+
+- name: Resultado remediação sysctl kernel
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.item.id }}]
+      {{
+        'OK'
+        if (
+          (item.item.expected is defined and (item.stdout | default('') | trim) == (item.item.expected | string))
+          or
+          (item.item.expected_min is defined and ((item.stdout | default('0') | trim | int) >= (item.item.expected_min | int)))
+        )
+        and
+        (
+          (
+            item.item.expected is defined
+            and
+            (
+              remed_kernel_sysctl_pre.results
+              | selectattr('item.id', 'equalto', item.item.id)
+              | map(attribute='stdout')
+              | map('trim')
+              | first
+            ) == (item.item.expected | string)
+          )
+          or
+          (
+            item.item.id == 17
+            and
+            (
+              remed_kernel_sysctl_pre.results
+              | selectattr('item.key', 'equalto', 'kernel.randomize_va_space')
+              | map(attribute='stdout')
+              | map('trim')
+              | first
+              | int
+            ) >= 1
+          )
+          or
+          (
+            item.item.id == 19
+            and
+            (
+              remed_kernel_sysctl_pre.results
+              | selectattr('item.key', 'equalto', 'kernel.perf_event_paranoid')
+              | map(attribute='stdout')
+              | map('trim')
+              | first
+              | int
+            ) >= 2
+          )
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            (item.item.expected is defined and (item.stdout | default('') | trim) == (item.item.expected | string))
+            or
+            (item.item.expected_min is defined and ((item.stdout | default('0') | trim | int) >= (item.item.expected_min | int)))
+          )
+          else 'FALHA'
+        )
+      }}
+  loop: "{{ remed_kernel_sysctl_post.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Pré-check comandos kernel sem sysctl
+  shell: "{{ item.cmd }}"
+  register: remed_kernel_cmd_pre
+  loop: "{{ kernel_sysctl_rules | selectattr('cmd', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado remediação comandos kernel
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.item.id }}]
+      {{
+        'OK'
+        if item.rc == 0
+        else 'MANUAL'
+      }}
+  loop: "{{ remed_kernel_cmd_pre.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Resultado remediação protected links (22)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][22]
+      {{
+        'OK'
+        if (
+          remed_kernel_sysctl_results['fs.protected_symlinks'] | default('0') == '1'
+          and
+          remed_kernel_sysctl_results['fs.protected_hardlinks'] | default('0') == '1'
+          and
+          (
+            remed_kernel_sysctl_pre.results
+            | selectattr('item.key', 'equalto', 'fs.protected_symlinks')
+            | map(attribute='stdout')
+            | map('trim')
+            | first
+          ) == '1'
+          and
+          (
+            remed_kernel_sysctl_pre.results
+            | selectattr('item.key', 'equalto', 'fs.protected_hardlinks')
+            | map(attribute='stdout')
+            | map('trim')
+            | first
+          ) == '1'
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            remed_kernel_sysctl_results['fs.protected_symlinks'] | default('0') == '1'
+            and
+            remed_kernel_sysctl_results['fs.protected_hardlinks'] | default('0') == '1'
+          )
+          else 'FALHA'
+        )
+      }}

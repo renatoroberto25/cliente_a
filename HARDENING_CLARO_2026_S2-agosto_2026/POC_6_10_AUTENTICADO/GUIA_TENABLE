@@ -1,0 +1,15 @@
+Base — Compliance Checks Reference (principal)
+https://docs.tenable.com/nessus/compliance-checks-reference/Content/GettingStarted.htm
+Explica sintaxe de arquivos .audit.
+
+Unix Configuration Audit (checks de config — o que você vai usar mais)
+https://docs.tenable.com/nessus/compliance-checks-reference/Content/UnixConfigurationAuditComplianceFileReference.htm
+
+Unix Content Audit (busca de conteúdo sensível em arquivos)
+https://docs.tenable.com/nessus/compliance-checks-reference/Content/UnixContentAuditComplianceFileReference.htm
+
+Custom Items (lista completa de tipos de check: FILE_CHECK, FILE_CONTENT_CHECK, CHECK_ACCOUNT etc.)
+https://docs.tenable.com/nessus/compliance-checks-reference/Content/CustomItems.htm
+
+Manage/Upload Audit Files (Security Center)
+https://docs.tenable.com/security-center/Content/manage-audit-files.htm

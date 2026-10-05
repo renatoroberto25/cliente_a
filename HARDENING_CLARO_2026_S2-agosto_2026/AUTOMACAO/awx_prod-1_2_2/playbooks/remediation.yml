@@ -1,0 +1,21 @@
+---
+- name: Remediation HITSS RHEL
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars_files:
+    - ../vars/hitss.yml
+
+  pre_tasks:
+    - name: Bloquear famílias diferentes de RedHat
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.os_family == 'RedHat'
+          - ansible_facts.distribution_major_version | int in [7, 8, 9]
+          - ansible_facts.user_id == 'root'
+        fail_msg: "Remediation requer RHEL-like 7, 8 ou 9 com privilégio root."
+
+  roles:
+    - common
+    - remediation

@@ -1,0 +1,101 @@
+- name: Verificar usuários com UID 0 (148)
+  shell: |
+    awk -F: '$3==0 {print $1}' /etc/passwd
+  register: uid0_users
+  changed_when: false
+  failed_when: false
+
+- name: Resultado UID 0 exclusivo (148)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][148]
+      {{ 'APROVADO' if uid0_users.stdout.strip() == 'root' else 'REPROVADO' }}
+
+- name: Verificar usuários com GID 0 (149)
+  shell: |
+    awk -F: '$4==0 {print $1}' /etc/passwd
+  register: gid0_users
+  changed_when: false
+  failed_when: false
+
+- name: Resultado GID 0 exclusivo (149)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][149]
+      {{ 'APROVADO' if gid0_users.stdout.strip() == 'root' else 'REPROVADO' }}
+
+- name: Verificar contas de sistema com shell inválido (150)
+  shell: |
+    awk -F: '$3 < 1000 && $7 !~ /(nologin|false)$/ {print $1 ":" $7}' /etc/passwd
+  register: system_shells
+  changed_when: false
+  failed_when: false
+
+- name: Resultado contas de sistema bloqueadas (150)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][150]
+      {{ 'APROVADO' if system_shells.stdout == '' else 'REPROVADO' }}
+
+
+- name: Verificar usuários com shell fora de /etc/shells (151)
+  shell: |
+    awk -F: '{print $7}' /etc/passwd | while read shell; do
+      grep -qx "$shell" /etc/shells || echo "$shell"
+    done
+  register: invalid_shells
+  changed_when: false
+  failed_when: false
+
+- name: Resultado shells válidos (151)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][151]
+      {{ 'APROVADO' if invalid_shells.stdout == '' else 'REPROVADO' }}
+
+- name: Verificar PATH inseguro configurado para root (152)
+  shell: |
+    grep -R "^PATH=" /root /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | \
+    tr '=' '\n' | tr ':' '\n' | \
+    while read p; do
+      [ "$p" = "." ] && echo "dot"
+      [ -d "$p" ] && test "$(stat -c %a "$p" 2>/dev/null | tail -c 1)" -ge 2 && echo "$p"
+    done
+  register: path_root_insecure
+  changed_when: false
+  failed_when: false
+
+- name: Resultado PATH root seguro (152)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][152]
+      {{ 'APROVADO' if path_root_insecure.stdout == '' else 'REPROVADO' }}
+
+
+
+- name: Verificar umask global restritiva (153)
+  shell: |
+    grep -R "umask" /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | grep -E '0(2|7)7'
+  register: umask_check
+  changed_when: false
+  failed_when: false
+
+- name: Resultado umask restritiva (153)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][153]
+      {{ 'APROVADO' if umask_check.rc == 0 else 'REPROVADO' }}
+
+- name: Verificar TMOUT configurado (154)
+  shell: |
+    grep -R "TMOUT" /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null | grep -E 'readonly TMOUT|export TMOUT'
+  register: tmout_check
+  changed_when: false
+  failed_when: false
+
+- name: Resultado timeout de shell (154)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][AUDIT][154]
+      {{ 'APROVADO' if tmout_check.rc == 0 else 'REPROVADO' }}
+

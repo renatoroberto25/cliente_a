@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+set -u
+
+echo "[35-43] Remediacao: opcoes de montagem em fstab"
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "WARN: execute como root para aplicar remediacoes"
+    exit 0
+fi
+
+TS="$(date +%Y%m%d%H%M%S)"
+FSTAB="/etc/fstab"
+
+backup_file() {
+    local file="$1"
+    [ -e "$file" ] && cp -p "$file" "${file}.hitss.bak.${TS}" 2>/dev/null || true
+}
+
+has_fstab_entry() {
+    local target="$1"
+    awk -v tgt="$target" '$0 !~ /^[[:space:]]*#/ && $2 == tgt { found=1 } END { exit(found ? 0 : 1) }' "$FSTAB"
+}
+
+current_opts() {
+    local target="$1"
+    awk -v tgt="$target" '$0 !~ /^[[:space:]]*#/ && $2 == tgt { print $4; exit }' "$FSTAB"
+}
+
+opts_present() {
+    local current="$1" desired="$2" opt
+    for opt in $(printf '%s\n' "$desired" | tr ',' ' '); do
+        printf ',%s,' "$current" | grep -q ",${opt}," || return 1
+    done
+}
+
+apply_fstab_opts() {
+    local id="$1" target="$2" desired="$3" label="$4"
+    local current tmp
+
+    echo "[$id] $label"
+
+    if [ ! -f "$FSTAB" ]; then
+        echo "WARN: $FSTAB nao existe"
+        return
+    fi
+
+    if ! has_fstab_entry "$target"; then
+        echo "SKIP: $target sem entrada em fstab; script nao cria particao nem montagem"
+        return
+    fi
+
+    current="$(current_opts "$target")"
+    if opts_present "$current" "$desired"; then
+        echo "OK: $target ja possui $desired"
+        return
+    fi
+
+    backup_file "$FSTAB"
+    tmp="${FSTAB}.hitss.tmp.${TS}.$$"
+    awk -v tgt="$target" -v desired="$desired" '
+        function hasopt(list, opt) {
+            return ("," list ",") ~ ("," opt ",")
+        }
+        function merge_opts(current, desired,    n,i,opt,out) {
+            out=current
+            if (out == "" || out == "defaults") {
+                out="defaults"
+            }
+            n=split(desired, parts, ",")
+            for (i=1; i<=n; i++) {
+                opt=parts[i]
+                if (opt != "" && ! hasopt(out, opt)) {
+                    out=out "," opt
+                }
+            }
+            return out
+        }
+        $0 !~ /^[[:space:]]*#/ && $2 == tgt {
+            $4=merge_opts($4, desired)
+            changed=1
+        }
+        { print }
+        END { if (!changed) exit 2 }
+    ' "$FSTAB" > "$tmp"
+
+    if [ $? -eq 0 ] && command -v findmnt >/dev/null 2>&1 && findmnt --verify --tab-file "$tmp" >/dev/null 2>&1; then
+        if mv "$tmp" "$FSTAB"; then
+            echo "OK: $target ajustado com $desired em fstab; aplicar em janela com remount ou reboot"
+        else
+            rm -f "$tmp"
+            echo "WARN: falha ao substituir $FSTAB"
+        fi
+    else
+        rm -f "$tmp"
+        echo "WARN: alteracao rejeitada pela validacao do fstab; original preservado"
+    fi
+}
+
+echo "[35] Nodev removiveis"
+apply_fstab_opts 35 /media nodev,nosuid,noexec "Midia removivel /media"
+apply_fstab_opts 35 /run/media nodev,nosuid,noexec "Midia removivel /run/media"
+apply_fstab_opts 35 /mnt nodev,nosuid,noexec "Midia removivel /mnt"
+
+echo "[36] Nodev particoes criticas"
+apply_fstab_opts 36 /var nodev,nosuid "Particao critica /var"
+
+apply_fstab_opts 40 /var/log nodev,nosuid "Seguranca /var/log"
+apply_fstab_opts 41 /var/log/audit nodev,nosuid "Seguranca /var/log/audit"
+apply_fstab_opts 42 /home nodev "Seguranca /home"
+
+echo "[43] Midias removiveis"
+echo "INFO: controle consolidado no item 35 para /media, /run/media e /mnt"
+
+echo "OK"
+exit 0

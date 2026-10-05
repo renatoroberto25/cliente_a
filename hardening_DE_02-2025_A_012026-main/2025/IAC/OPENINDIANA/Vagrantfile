@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  data_criacao = Time.now.strftime("%Y%m%d")
+
+  config.vm.define "oi-zones-#{data_criacao}" do |oi|
+    oi.vm.box = "openindiana/hipster"
+    oi.vm.hostname = "oi-zones-#{data_criacao}"
+
+    oi.vm.network "private_network",
+      ip: "192.168.56.181",
+      virtualbox__hostonly: "vboxnet0"
+
+    oi.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 2
+      vb.customize ["modifyvm", :id, "--vram", "64"]
+      vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    end
+
+    oi.vm.provision "shell", privileged: true, inline: <<-SHELL
+      echo "[V] Preparando zones no OpenIndiana..."
+
+      pkg refresh || true
+      pkg install -v system/zones || exit 1
+      pkg install -v brand/ipkg || true
+
+      echo "[V] Ajustando timezone..."
+      svccfg -s timezone:default setprop timezone/localtime = astring: "Brazil/East" || true
+      svcadm refresh timezone:default || true
+
+      echo "[V] Criando dataset ZFS para zones..."
+      if ! zfs list rpool/zones >/dev/null 2>&1; then
+        zfs create -o mountpoint=/zones rpool/zones
+      fi
+
+      echo "[V] Descobrindo NIC física e criando VNIC (Crossbow)..."
+      NIC=$(dladm show-phys -po LINK | head -n 1)
+      dladm show-link
+      dladm create-vnic -l "${NIC}" vnic0 || true
+
+      echo "[V] Configurando zone mínima 'testzone'..."
+      zonecfg -z testzone "create; set ip-type=exclusive; set autoboot=true; \
+        add net; set physical=vnic0; end; \
+        add dataset; set name=rpool/zones; end; \
+        add attr; set name=comment; set type=string; set value='lab-min'; end"
+
+      echo "[V] Instalando zone..."
+      zoneadm -z testzone install || exit 1
+
+      echo "[V] Iniciando zone..."
+      zoneadm -z testzone boot
+
+      echo "[✔] Zone 'testzone' pronta. Use 'zlogin testzone' para acessar."
+    SHELL
+  end
+
+end

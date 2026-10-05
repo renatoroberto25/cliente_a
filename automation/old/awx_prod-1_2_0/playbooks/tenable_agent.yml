@@ -1,0 +1,13 @@
+- name: Instalar e validar Tenable Agent
+  hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: Executar script de instalacao do Tenable Agent
+      ansible.builtin.script: "{{ playbook_dir }}/../utils/03_instala_agent.sh"
+      register: tenable_agent_script
+
+    - name: Exibir resumo do Tenable Agent
+      ansible.builtin.debug:
+        msg: "{{ tenable_agent_script.stdout_lines | select('match', '^(\\[OK\\]|\\[WARN\\]|\\[ERRO\\]|Running:|Linked to:|Link status:)') | list }}"

@@ -1,0 +1,637 @@
+# 1 Desabilitar módulo cramfs
+(modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+cramfs\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 2 Desabilitar módulo squashfs
+(modinfo squashfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+squashfs\b' && ! lsmod | grep -q squashfs) || (! modinfo squashfs &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 3 Desabilitar módulo udf
+(modinfo udf &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+udf\b' && ! lsmod | grep -q udf) || (! modinfo udf &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 4 Desabilitar módulo hfs
+(modinfo hfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+hfs\b' && ! lsmod | grep -q hfs) || (! modinfo hfs &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 5 Desabilitar módulo hfsplus
+(modinfo hfsplus &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+hfsplus\b' && ! lsmod | grep -q hfsplus) || (! modinfo hfsplus &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 6 Desabilitar módulo jffs2
+(modinfo jffs2 &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+jffs2\b' && ! lsmod | grep -q jffs2) || (! modinfo jffs2 &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 7 Desabilitar módulo freevxfs
+(modinfo freevxfs &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+freevxfs\b' && ! lsmod | grep -q freevxfs) || (! modinfo freevxfs &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 8 Desabilitar módulo overlayfs
+(modinfo overlay &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+overlay\b' && ! lsmod | grep -q overlay) || (! modinfo overlay &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 9 Desabilitar módulo usb-storage
+(modinfo usb-storage &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+usb_storage\b' && ! lsmod | grep -q usb_storage) || (! modinfo usb-storage &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 10 Desabilitar módulo DCCP
+(modinfo dccp &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+dccp\b' && ! lsmod | grep -q dccp) || (! modinfo dccp &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 11 Desabilitar módulo SCTP
+(modinfo sctp &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+sctp\b' && ! lsmod | grep -q sctp) || (! modinfo sctp &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 12 Desabilitar módulo RDS
+(modinfo rds &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+rds\b' && ! lsmod | grep -q rds) || (! modinfo rds &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 13 Desabilitar módulo TIPC
+(modinfo tipc &>/dev/null && modprobe --showconfig | grep -Pq '\b(install|blacklist)\h+tipc\b' && ! lsmod | grep -q tipc) || (! modinfo tipc &>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 14 Core dumps restritos
+(ulimit -c 0 && sysctl -n fs.suid_dumpable | grep -q '^0$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 15 ptrace_scope restrito
+(sysctl -n kernel.yama.ptrace_scope | grep -q '^[1-3]$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 16 NX/XD ativo
+(grep -q 'nx' /proc/cpuinfo && dmesg | grep -qi 'NX.*active') && echo "✅ APROVADO" || echo "⚠️ REPROVADO (Possível ausência no hardware)"
+
+# 17 ASLR habilitado
+(sysctl -n kernel.randomize_va_space | grep -q '^2$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 18 IOMMU proteção
+(grep -q 'iommu=on' /proc/cmdline) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 19 perf_event restrito
+(sysctl -n kernel.perf_event_paranoid | grep -q '^[2-3]$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 20 dmesg restrito
+(sysctl -n kernel.dmesg_restrict | grep -q '^1$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 21 user namespace desabilitado
+(sysctl -n kernel.unprivileged_userns_clone | grep -q '^0$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO (Possível ausência do recurso no kernel)"
+
+# 22 protected_symlinks
+(sysctl -n fs.protected_symlinks | grep -q '^1$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 23 protected_hardlinks
+(sysctl -n fs.protected_hardlinks | grep -q '^1$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 24 suid_dumpable=0
+(sysctl -n fs.suid_dumpable | grep -q '^0$') && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 25 Partição dedicada para /tmp
+(findmnt -kn /tmp >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 26 Partição dedicada para /dev/shm
+(findmnt -kn /dev/shm >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 27 Partição dedicada para /var
+(findmnt -kn /var >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 28 Partição dedicada para /var/tmp
+(findmnt -kn /var/tmp >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 29 Partição dedicada para /var/log
+(findmnt -kn /var/log >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 30 Partição dedicada para /var/log/audit
+(findmnt -kn /var/log/audit >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 31 Partição dedicada para /home
+(findmnt -kn /home >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 32 Partição dedicada para /historico
+(findmnt -kn /historico >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 33 Partição dedicada para /crash
+(findmnt -kn /crash >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 34 Partição dedicada para /UNIX
+(findmnt -kn /UNIX >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 35 Montagem segura de partições e mídia removível
+(grep -E 'nodev|nosuid|noexec' /etc/fstab >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 36 Opções de montagem seguras em /var
+(findmnt -n /var | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 37 Opções de montagem seguras em /tmp
+(findmnt -n /tmp | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 38 Opções de montagem seguras em /dev/shm
+(findmnt -n /dev/shm | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 39 Opções de montagem seguras em /var/tmp
+(findmnt -n /var/tmp | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 40 Opções de montagem seguras em /var/log
+(findmnt -n /var/log | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 41 Opções de montagem seguras em /var/log/audit
+(findmnt -n /var/log/audit | grep -Eq 'nodev|nosuid|noexec' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 42 Opções de montagem seguras em /home
+(findmnt -n /home | grep -qw nodev && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 43 Opções de montagem seguras em mídias removíveis
+(grep -E 'nodev|nosuid|noexec' /etc/fstab | grep -E '/media|/run/media' >/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 44 Sticky bit em diretórios world-writable
+(find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null | grep . && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 45 Sticky bit em /tmp
+(stat -c "%A" /tmp | grep -q 't' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 46 Sticky bit em /var/tmp
+(stat -c "%A" /var/tmp | grep -q 't' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 47 Sticky bit em /dev/shm
+(stat -c "%A" /dev/shm | grep -q 't' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 48 Autofs desabilitado em servidores
+(systemctl is-enabled autofs &>/dev/null && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 49 Senha de bootloader configurada  (NA para Ubuntu 16.04)
+echo "N/A - Controle de senha de bootloader não validado neste baseline em Ubuntu 16.04"
+
+# 50 Permissões seguras no arquivo do bootloader
+(stat -Lc '%a %U %G' /boot/grub/grub.cfg 2>/dev/null | grep -Eq '^(400|600) root root$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 51 Single user mode com autenticação
+(grep -q '^ExecStart=-/bin/sh' /lib/systemd/system/emergency.service && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 52 MAC (SELinux/AppArmor) ativo  -> AppArmor
+([ -f /sys/module/apparmor/parameters/enabled ] && grep -qi '^Y' /sys/module/apparmor/parameters/enabled && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 53 Política MAC definida (perfis AppArmor carregados)
+(command -v aa-status &>/dev/null && aa-status 2>/dev/null | grep -qi 'profiles are loaded' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 54 Serviços unconfined minimizados (AppArmor)
+(command -v aa-status &>/dev/null && aa-status 2>/dev/null | grep -qi 'processes are unconfined' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 55 Sem serviços sem restrições MAC (AppArmor)
+(command -v aa-status &>/dev/null && aa-status 2>/dev/null | grep -qi '0 processes are unconfined' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 56 Prelink removido
+(dpkg -l prelink 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 57 xinetd removido
+(dpkg -l xinetd 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 58 Sincronização de tempo em uso (NTP)
+(systemctl is-active ntp.service &>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 59 NTP instalado e habilitado
+(dpkg -l ntp 2>/dev/null | grep -q '^ii' && systemctl is-enabled ntp.service &>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 60 NTP configurado
+(dpkg -l ntp 2>/dev/null | grep -q '^ii' && grep -q '^server' /etc/ntp.conf 2>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 61 X11 ausente em servidores
+(dpkg -l xserver-xorg-core 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 62 Avahi ausente
+(dpkg -l avahi-daemon 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 63 CUPS ausente
+(dpkg -l cups 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 64 DHCP server ausente
+(dpkg -l isc-dhcp-server 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 65 LDAP server ausente
+(dpkg -l slapd 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 66 DNS server ausente
+(dpkg -l bind9 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 67 FTP server ausente
+(dpkg -l vsftpd 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 68 HTTP server ausente
+(dpkg -l apache2 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 69 IMAP/POP3 server ausente
+(dpkg -l dovecot-core 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 70 Samba ausente
+(dpkg -l samba 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 71 Proxy HTTP ausente
+(dpkg -l squid 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 72 SNMP ausente
+(dpkg -l snmpd 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 73 NIS server ausente
+(dpkg -l nis 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 74 Telnet server ausente
+(dpkg -l telnetd 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 75 MTA em modo local-only (postfix)
+(grep -q '^inet_interfaces = loopback-only' /etc/postfix/main.cf 2>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 76 NFS server controlado
+(systemctl is-enabled nfs-kernel-server &>/dev/null && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 77 rpcbind controlado
+(systemctl is-enabled rpcbind &>/dev/null && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 78 rsync daemon controlado
+(systemctl is-enabled rsync &>/dev/null && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 79 Cliente NIS ausente
+(dpkg -l nis 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 80 Cliente rsh ausente
+(dpkg -l rsh-client 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 81 Cliente talk ausente
+(dpkg -l talk 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 82 Cliente telnet ausente
+(dpkg -l telnet 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 83 Cliente LDAP ausente
+(dpkg -l ldap-utils 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 84 Serviços não essenciais removidos/mascarados
+(systemctl list-unit-files --state=enabled | grep -Eq 'avahi|cups|telnet|ftp|nis|tftp|xinetd' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 85 TFTP server removido
+(dpkg -l tftpd-hpa 2>/dev/null | grep -q '^ii' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 86 policykit endurecido
+(grep -E 'polkit.Result.YES|allow' /etc/polkit-1/rules.d/*.rules 2>/dev/null && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 87 Assinaturas de pacotes habilitadas (APT não AllowUnauthenticated=1)
+(! grep -Rsiq 'AllowUnauthenticated\s*"1"' /etc/apt/apt.conf /etc/apt/apt.conf.d 2>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 88 Patches de segurança aplicados (sem updates pendentes em geral)
+(apt-get -s upgrade 2>/dev/null | grep -q '^Inst ' && echo "⚠️ REPROVADO (atualizações pendentes)" || echo "✅ APROVADO")
+
+# 89 Apenas um daemon de time sync (NTP apenas)
+(systemctl is-active ntp.service &>/dev/null && ! systemctl is-active systemd-timesyncd.service &>/dev/null && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 90 Cron/at seguros e restritos
+(stat -Lc '%a %U %G' /etc/cron.allow 2>/dev/null | grep -Eq '^640 root (root|crontab)$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 91 IP forwarding desabilitado
+(sysctl -n net.ipv4.ip_forward 2>/dev/null | grep -q '^0$' && sysctl -n net.ipv6.conf.all.forwarding 2>/dev/null | grep -q '^0$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 92 Redirecionamentos de pacotes desabilitados
+(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -q '^0$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 93 Source-routed packets bloqueados
+(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -q '^0$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 94 ICMP redirects bloqueados
+(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -q '^0$' && sysctl -n net.ipv4.conf.all.secure_redirects 2>/dev/null | grep -q '^0$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 95 Reverse path filtering habilitado
+(sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -Eq '^[12]$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 96 ICMP broadcast ignorado
+(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -q '^1$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 97 Respostas ICMP inválidas ignoradas
+(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null | grep -q '^1$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 98 TCP SYN cookies habilitados
+(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -q '^1$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 99 IPv6 desabilitado ou endurecido
+(sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null | grep -q '^1$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 100 ICMP timestamp-request drop (iptables ou UFW)
+(if systemctl is-active ufw &>/dev/null; then \
+  ufw status numbered 2>/dev/null | grep -qi 'icmp.*timestamp-request.*DENY'; \
+else \
+  iptables -L INPUT -v -n 2>/dev/null | grep -q 'icmp type timestamp-request.*DROP'; \
+fi && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 101 ICMP timestamp-reply drop
+(if systemctl is-active ufw &>/dev/null; then \
+  ufw status numbered 2>/dev/null | grep -qi 'icmp.*timestamp-reply.*DENY'; \
+else \
+  iptables -L INPUT -v -n 2>/dev/null | grep -q 'icmp type timestamp-reply.*DROP'; \
+fi && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 102 Wireless/Bluetooth desabilitados em servidores
+(lsmod | grep -Eq 'bluetooth|iwlwifi' && echo "⚠️ REPROVADO" || echo "✅ APROVADO")
+
+# 103 Firewall com política default deny (UFW ou iptables)
+(if systemctl is-active ufw &>/dev/null; then \
+  ufw status verbose 2>/dev/null | grep -qi 'Default: deny (incoming)'; \
+else \
+  iptables -L INPUT   -n 2>/dev/null | grep -q "policy DROP" && \
+  iptables -L FORWARD -n 2>/dev/null | grep -q "policy DROP"; \
+fi && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 104 Apenas uma solução de firewall ativa (UFW OU iptables)
+(if systemctl is-active ufw &>/dev/null; then \
+  echo ufw; \
+else \
+  iptables -L 2>/dev/null >/dev/null && echo iptables; \
+fi | wc -l | grep -q '^1$' && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 105 Regras básicas de firewall
+(if systemctl is-active ufw &>/dev/null; then \
+  ufw status numbered 2>/dev/null | grep -qi 'ALLOW IN .* on lo'; \
+else \
+  iptables -L INPUT -n 2>/dev/null | grep -q "lo .* ACCEPT" && \
+  iptables -L INPUT -n | grep -Eq "ESTABLISHED|RELATED" && \
+  iptables -L OUTPUT -n | grep -q "ACCEPT"; \
+fi && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 106 Regras explícitas para portas abertas
+(ss -tuln | awk 'NR>1 {print $5}' | sed 's/.*://g' | sort -u | grep -v '^$' | while read P; do iptables -L INPUT -n 2>/dev/null | grep -q ":${P} " || exit 1; done && exit 0) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 107 Regras de firewall persistentes (iptables)
+(iptables-save 2>/dev/null | grep -q "." && echo "✅ APROVADO" || echo "⚠️ REPROVADO")
+
+# 108 TLS mínimo 1.2/1.3 (Apache/NGINX)
+(grep -R Eq "(MinProtocol.*TLSv1\.2|SSLProtocol.*TLSv1\.2)" /etc/apache2 2>/dev/null || \
+ grep -R Eq "ssl_protocols.*TLSv1\.2" /etc/nginx 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 109 Permissões seguras em sshd_config e chaves
+([ "$(stat -c %a /etc/ssh/sshd_config)" -le 600 ] && [ "$(stat -c %U:%G /etc/ssh)" = "root:root" ]) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 110 Controle de acesso via Allow/Deny
+(grep -Eq '^[[:space:]]*(AllowUsers|DenyUsers|AllowGroups|DenyGroups)' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 111 LogLevel adequado no SSH
+(grep -Eq '^[[:space:]]*LogLevel[[:space:]]+(INFO|VERBOSE)' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 112 X11Forwarding desabilitado
+(grep -Eq '^[[:space:]]*X11Forwarding[[:space:]]+no' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 113 MaxAuthTries limitado
+(grep -Eq '^[[:space:]]*MaxAuthTries[[:space:]]+[1-4]$' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 114 IgnoreRhosts habilitado
+(grep -Eq '^[[:space:]]*IgnoreRhosts[[:space:]]+yes' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 115 HostbasedAuthentication desabilitado
+(grep -Eq '^[[:space:]]*HostbasedAuthentication[[:space:]]+no' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 116 PermitRootLogin restrito/desabilitado
+(grep -Eq '^[[:space:]]*PermitRootLogin[[:space:]]+(no|prohibit-password)' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 117 PermitEmptyPasswords desabilitado
+(grep -Eq '^[[:space:]]*PermitEmptyPasswords[[:space:]]+no' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 118 PermitUserEnvironment desabilitado
+(grep -Eq '^[[:space:]]*PermitUserEnvironment[[:space:]]+no' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 119 UsePAM habilitado
+(grep -Eq '^[[:space:]]*UsePAM[[:space:]]+yes' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 120 Idle timeout configurado
+(grep -Eq '^[[:space:]]*ClientAliveInterval[[:space:]]+([1-9][0-9]|[1-2][0-9]{2}|300)$' /etc/ssh/sshd_config && \
+ grep -Eq '^[[:space:]]*ClientAliveCountMax[[:space:]]+[1-3]$' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 121 LoginGraceTime curto
+(grep -Eq '^[[:space:]]*LoginGraceTime[[:space:]]+([1-9][0-9]|[1-5][0-9]{2})s?$' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 122 MaxStartups/MaxSessions limitados
+(grep -Eq '^[[:space:]]*MaxStartups[[:space:]]+.+$' /etc/ssh/sshd_config && \
+ grep -Eq '^[[:space:]]*MaxSessions[[:space:]]+[1-9]+' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 123 AllowTcpForwarding restrito
+(grep -Eq '^[[:space:]]*AllowTcpForwarding[[:space:]]+no' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 124 Banner legal configurado
+(grep -Eq '^[[:space:]]*Banner[[:space:]]+/.*' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 125 Ciphers fortes apenas
+(grep -Eq '^[[:space:]]*Ciphers[[:space:]]+.*(chacha20|aes256).*' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 126 MACs fortes apenas
+(grep -Eq '^[[:space:]]*MACs[[:space:]]+.*(hmac-sha2|umac).*' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 127 KexAlgorithms fortes apenas
+(grep -Eq '^[[:space:]]*KexAlgorithms[[:space:]]+.*(curve25519|diffie-hellman-group-exchange-sha256).*' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 128 Preferência por algoritmos modernos
+(grep -Eq '^[[:space:]]*(Ciphers|KexAlgorithms)[[:space:]]+.*(chacha20|curve25519).*' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 129 ForceCommand/Chroot SSH
+(grep -Eq '^[[:space:]]*(ForceCommand|ChrootDirectory)[[:space:]]+' /etc/ssh/sshd_config) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 130 pwquality habilitado
+(grep -Eq 'pwquality' /etc/pam.d/*auth 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 131 pam_pwquality habilitado
+(grep -Eq 'pam_pwquality\.so' /etc/pam.d/*auth 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 132 pam_faillock habilitado
+(grep -Eq 'pam_faillock\.so' /etc/pam.d/*auth 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 133 pam_tally2 habilitado
+(grep -Eq 'pam_tally2\.so' /etc/pam.d/*auth 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 134 pam_pwhistory habilitado
+(grep -Eq 'pam_pwhistory\.so' /etc/pam.d/*auth 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 135 Tamanho mínimo de senha
+(grep -Psiq '^\s*minlen\s*=\s*(1[4-9]|[2-9][0-9]+)' /etc/security/pwquality.conf* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 136 Complexidade mínima de senha
+(grep -Psiq '^\s*minclass\s*=\s*[4-9]' /etc/security/pwquality.conf* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 137 Limite de caracteres sequenciais/repetidos
+(grep -Psiq '^\s*maxrepeat\s*=\s*[1-3]' /etc/security/pwquality.conf* && \
+ grep -Psiq '^\s*maxsequence\s*=\s*[1-3]' /etc/security/pwquality.conf* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 138 Uso de dicionário/wordlist
+(! grep -Psiq '^\s*dictcheck\s*=\s*0\b' /etc/security/pwquality.conf* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 139 Hashing forte de senhas
+(grep -Eq 'pam_unix\.so.*(sha512|yescrypt)' /etc/pam.d/*auth ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 140 Histórico e reuse de senhas
+(grep -Eq 'pam_pwhistory\.so.*remember=[5-9]' /etc/pam.d/*auth ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 141 Bloqueio por tentativas inválidas
+(grep -Pi 'pam_faillock\.so.*\bdeny\s*=\s*([5-9]|[1-9][0-9]+)' /etc/security/faillock.conf 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 142 Tempo de unlock configurado
+(grep -Pi '^\s*unlock_time\s*=\s*(0|9[0-9]{2}|[1-9][0-9]{3,})' /etc/security/faillock.conf 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 143 Expiração de senha configurada
+(grep -Eq '^\s*PASS_MAX_DAYS\s+[0-9]+' /etc/login.defs && awk '/PASS_MAX_DAYS/{print $2}' /etc/login.defs | awk '$1<=365' | grep -q . ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 144 Mínimo de dias entre trocas
+(grep -Eq '^\s*PASS_MIN_DAYS\s+[1-9][0-9]*' /etc/login.defs ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 145 Aviso prévio de expiração
+(grep -Eq '^\s*PASS_WARN_AGE\s+([7-9]|[1-9][0-9]+)' /etc/login.defs ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 146 Inactive lock configurado
+(awk -F: '$2~/^\$/{print $1}' /etc/shadow | xargs -r -I{} chage -l {} | grep -Eq 'Inactive.*(3[0-9]|[4-9][0-9]+)' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 147 Datas de última troca no passado
+(awk -F: '$2~/^\$/{if($3==""||$3==0) exit 1} END{exit 0}' /etc/shadow ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 148 root único UID 0
+(awk -F: '($3==0&&$1!="root"){exit 1}' /etc/passwd ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 149 root único GID 0
+([ "$(grep "^root:" /etc/passwd | cut -d: -f4)" -eq 0 ] ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 150 Contas de sistema travadas
+(awk -F: '($1!="root" && $3<1000 && $7!="/usr/sbin/nologin" && $7!="/bin/false"){exit 1}' /etc/passwd ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 151 nologin não listado como shell
+(! grep -Eq ':/usr/sbin/nologin$' /etc/shells ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 152 PATH do root íntegro
+(echo "$PATH" | grep -Eq '(^|:)/sbin(:|$)' ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 153 Umask endurecida
+(grep -Riq '^\s*umask\s*0(2[0-7]|[0-1][0-7])' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 154 Shell timeout padrão
+(grep -Riq 'TMOUT=.*([1-8][0-9][0-9]|900)' /etc/profile /etc/bash.bashrc /etc/profile.d/*.sh 2>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 155 sudo obrigatório para admin
+(grep -Eq '^%.*ALL=\(ALL\)' /etc/sudoers /etc/sudoers.d/* ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 156 sudo usa pty
+(grep -Eq 'Defaults\s+requiretty' /etc/sudoers /etc/sudoers.d/* ) && echo "⚠️ REPROVADO" || echo "⚠️ REPROVADO"
+
+# 157 Log de sudo configurado
+(grep -Eq 'Defaults\s+logfile=' /etc/sudoers /etc/sudoers.d/* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 158 Reautenticação não desabilitada
+(! grep -Eq 'Defaults\s+!authenticate' /etc/sudoers /etc/sudoers.d/* ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 159 Timeout de autenticação ajustado
+(grep -Eq 'Defaults\s+timestamp_timeout=\-?([0-9]|[1-9][0-9])' /etc/sudoers /etc/sudoers.d/* ) && echo "⚠️ REPROVADO" || echo "⚠️ REPROVADO"
+
+# 160 Comando su restrito
+(grep -Eq '^auth\s+(required|requisite)\s+pam_wheel\.so' /etc/pam.d/su ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 161 Stack de logs racionalizado
+(systemctl is-active rsyslog &>/dev/null || systemctl is-active systemd-journald &>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 162 Journald configurado
+(systemd-analyze cat-config systemd/journald.conf* 2>/dev/null | grep -Eq 'SystemMaxUse=' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 163 Rsyslog instalado e ativo
+(dpkg -l rsyslog 2>/dev/null | grep -q '^ii' && systemctl is-active rsyslog &>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 164 Logrotate para rsyslog
+(grep -Eq 'rsyslog' /etc/logrotate.d/* 2>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 165 auditd instalado e rodando
+(dpkg -l auditd 2>/dev/null | grep -q '^ii' && systemctl is-active auditd &>/dev/null ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 166 Auditoria antes do auditd
+(grep -Eq '\baudit=1\b' /proc/cmdline 2>/dev/null || grep -Eq '\baudit=1\b' /etc/default/grub 2>/dev/null) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 167 Tamanho de armazenamento de audit log
+(grep -Eq '^\s*max_log_file\s*=\s*[1-9]' /etc/audit/auditd.conf ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 168 Logs de auditoria não excluídos automaticamente
+(grep -Eq '^\s*max_log_file_action\s*=\s*(keep_logs|rotate)' /etc/audit/auditd.conf ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 169 Auditoria de alterações em data/hora
+(auditctl -l 2>/dev/null | grep -Eq 'adjtimex|settimeofday|clock_settime' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 170 Auditoria de alterações em contas/grupos
+(auditctl -l 2>/dev/null | grep -Eq '/etc/(passwd|shadow|group|gshadow)' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 171 Auditoria de alterações no ambiente de rede
+(auditctl -l 2>/dev/null | grep -Eq 'sethostname|setdomainname|/etc/hosts|/etc/hostname' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 172 Auditoria de eventos MAC
+(auditctl -l 2>/dev/null | grep -Eq 'mac_policy|MAC_POLICY_LOAD' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 173 Auditoria de login/logout
+(auditctl -l 2>/dev/null | grep -Eq '/var/log/faillog|/var/log/lastlog|/var/run/utmp' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 174 Auditoria de permissão DAC
+(auditctl -l 2>/dev/null | grep -Eq 'chmod|chown|fchmod|fchown' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 175 Auditoria de acessos não autorizados
+(auditctl -l 2>/dev/null | grep -Eq 'EACCES|EPERM' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 176 Auditoria de comandos privilegiados
+(find / -xdev -perm -4000 2>/dev/null | xargs -r -I{} auditctl -l 2>/dev/null | grep -q {} ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 177 Auditoria de mount/unmount
+(auditctl -l 2>/dev/null | grep -Eq 'mount|umount' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 178 Auditoria de deleção de arquivos
+(auditctl -l 2>/dev/null | grep -Eq 'unlink|rename|rmdir|unlinkat|renameat' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 179 Auditoria de kernel modules
+(auditctl -l 2>/dev/null | grep -Eq 'init_module|finit_module|delete_module' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 180 Auditoria de sudoers/logs de sudo
+(auditctl -l 2>/dev/null | grep -Eq '/etc/sudoers|/etc/sudoers.d' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 181 Configuração de auditoria imutável
+(auditctl -s 2>/dev/null | grep -Eq '^enabled 2' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 182 AIDE instalado e inicializado
+(dpkg -l aide 2>/dev/null | grep -q '^ii' && [ -f /var/lib/aide/aide.db.gz ] ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 183 Verificação de integridade agendada
+(grep -Ersq 'aide(\.wrapper)? .*(--check|--update|\$AIDEARGS)' /etc/cron.* /etc/crontab /var/spool/cron 2>/dev/null || \
+ systemctl list-timers --all 2>/dev/null | grep -qi aide ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 184 Proteção dos binários de auditoria
+(stat -Lc "%a %U %G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules 2>/dev/null | \
+ awk '{if($1+0>750 || $2!="root" || $3!="root") exit 1}' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 185 Permissões em /etc/passwd
+([ -f /etc/passwd ] && stat -Lc "%a %u %g" /etc/passwd | grep -Eq '^64[0-9] 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 186 Permissões em /etc/passwd-
+([ -f /etc/passwd- ] && stat -Lc "%a %u %g" /etc/passwd- | grep -Eq '^64[0-9] 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 187 Permissões em /etc/shadow
+([ -f /etc/shadow ] && stat -Lc "%a %u %g" /etc/shadow | grep -Eq '^0+ 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 188 Permissões em /etc/shadow-
+([ -f /etc/shadow- ] && stat -Lc "%a %u %g" /etc/shadow- | grep -Eq '^0+ 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 189 Permissões em /etc/gshadow-
+([ -f /etc/gshadow- ] && stat -Lc "%a %u %g" /etc/gshadow- | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 190 Permissões em /etc/gshadow
+([ -f /etc/gshadow ] && stat -Lc "%a %u %g" /etc/gshadow | grep -Eq '^(600|60[0-9]|[0-5][0-9]{2}) 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 191 Permissões em /etc/group
+([ -f /etc/group ] && stat -Lc "%a %u %g" /etc/group | grep -Eq '^64[0-9] 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 192 Permissões em /etc/group-
+([ -f /etc/group- ] && stat -Lc "%a %u %g" /etc/group- | grep -Eq '^64[0-9] 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 193 nologin fora de /etc/shells
+(grep -Eq 'nologin' /etc/shells ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 194 Proteção de /etc/security/opasswd
+([ -f /etc/security/opasswd ] && stat -Lc "%a %u %g" /etc/security/opasswd | grep -Eq '^600 0 0$' ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 195 Controle de arquivos órfãos
+(find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q . ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 196 Ausência de world-writable não controlado
+(find / -xdev -not -path "/tmp/*" -not -path "/var/tmp/*" -not -path "/dev/shm/*" -perm -0002 2>/dev/null | grep -q . ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 197 Ausência de arquivos sem owner/group
+(find / -xdev \( -nouser -o -nogroup \) 2>/dev/null | grep -q . ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 198 SUID/SGID revisados
+(find / -xdev \( -perm -4000 -o -perm -2000 \) 2>/dev/null | grep -q . ) && echo "⚠️ REPROVADO" || echo "✅ APROVADO"
+
+# 199 Home para todos usuários
+(awk -F: '$3>=1000 && $1!="nfsnobody" {print $6}' /etc/passwd | while read h; do [ -d "$h" ] || exit 1; done ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 200 Usuário dono da própria home
+(awk -F: '$3>=1000 && $1!="nfsnobody" {print $1,$6}' /etc/passwd | while read u h; do [ -d "$h" ] && [ "$(stat -Lc %U "$h")" = "$u" ] || exit 1; done ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 201 Permissões de home igual ou menor 750
+(awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd | while read h; do [ -d "$h" ] && [ "$(stat -Lc %a "$h")" -le 750 ] || exit 1; done ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 202 Dotfiles não group/world-writable
+(awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd | while read h; do find "$h" -maxdepth 1 -type f -name ".*" -perm /022 2>/dev/null | grep -q . && exit 1; done ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"
+
+# 203 Ausência de .forward/.netrc/.rhosts
+(awk -F: '$3>=1000 && $1!="nfsnobody"{print $6}' /etc/passwd | while read h; do [ -e "$h/.forward" ] || [ -e "$h/.netrc" ] || [ -e "$h/.rhosts" ] && exit 1; done ) && echo "✅ APROVADO" || echo "⚠️ REPROVADO"

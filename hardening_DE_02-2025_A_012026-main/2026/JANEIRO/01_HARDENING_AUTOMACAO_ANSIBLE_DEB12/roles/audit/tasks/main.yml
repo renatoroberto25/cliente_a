@@ -1,0 +1,183 @@
+#####################################################################################
+################### SCRIPTS DE HARDENING - AUDITORIA TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 1 - 13 - Configurar módulos e hardening inicial"
+  script: 1-13.sh
+  register: audit_1
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_1
+    - audit_hitss_1_13
+
+- name: "hitss 14 - 24 - Kernel hardening e sysctl"
+  script: 14-24.sh
+  register: audit_14
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_14
+    - audit_hitss_14_24
+
+- name: "hitss 25 - 34 - Partições dedicadas"
+  script: 25-34.sh
+  register: audit_25
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_25
+    - audit_hitss_25_34
+
+- name: "hitss 35 - 43 - Opções de montagem seguras"
+  script: 35-43.sh
+  register: audit_35
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_35
+    - audit_hitss_35_43
+
+- name: "hitss 44 - 48 - Sticky bit e Autofs"
+  script: 44-48.sh
+  register: audit_44
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_44
+    - audit_hitss_44_48
+
+- name: "hitss 49 - 51 - Bootloader e modo de emergência"
+  script: 49-51.sh
+  register: audit_49
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_49
+    - audit_hitss_49_51
+
+- name: "hitss 49 - 51 - Bootloader e modo de emergência"
+  script: 49-51.sh
+  register: audit_49
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_49
+    - audit_hitss_49_51
+
+- name: "hitss 52 - 57 - SELinux/AppArmor e serviços legados"
+  script: 52-57.sh
+  register: audit_52
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_52
+    - audit_hitss_52_57
+
+- name: "hitss 58 - 60 - Sincronização de tempo"
+  script: 58-60.sh
+  register: audit_58
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_58
+    - audit_hitss_58_60
+
+- name: "hitss 61 - 86 - Serviços desnecessários e exposição reduzida"
+  script: 61-86.sh
+  register: audit_61
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_61
+    - audit_hitss_61_86
+
+- name: "hitss 87 - 88 - Assinaturas e patches"
+  script: 87-88.sh
+  register: audit_87
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_87
+    - audit_hitss_87_88
+
+- name: "hitss 89 - 90 - Daemons de time sync e cron"
+  script: 89-90.sh
+  register: audit_89
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_89
+    - audit_hitss_89_90
+
+- name: "hitss 91 - 108 - Hardening de rede"
+  script: 91-108.sh
+  register: audit_91
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_91
+    - audit_hitss_91_108
+
+- name: "hitss 109 - 129 - Hardening do SSH"
+  script: 109-129.sh
+  register: audit_109
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_109
+    - audit_hitss_109_129
+
+- name: "hitss 130 - 147 - Hardening PAM e política de senhas"
+  script: 130-147.sh
+  register: audit_130
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_130
+    - audit_hitss_130_147
+
+- name: "hitss 148 - 160 - Política de contas, shadow e aging"
+  script: 148-160.sh
+  register: audit_148
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_148
+    - audit_hitss_148_160
+
+- name: "hitss 161 - 181 - Logs do sistema e auditoria"
+  script: 161-181.sh
+  register: audit_161
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_161
+    - audit_hitss_161_181
+
+- name: "hitss 182 - 184 - Variáveis de ambiente e PATH seguro"
+  script: 182-184.sh
+  register: audit_182
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_182
+    - audit_hitss_182_184
+
+- name: "hitss 185 - 194 - Permissões em arquivos sensíveis"
+  script: 185-194.sh
+  register: audit_185
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_185
+    - audit_hitss_185_194
+
+- name: "hitss 195 - 203 - Segurança em home directories"
+  script: 195-203.sh
+  register: audit_195
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_195
+    - audit_hitss_195_203

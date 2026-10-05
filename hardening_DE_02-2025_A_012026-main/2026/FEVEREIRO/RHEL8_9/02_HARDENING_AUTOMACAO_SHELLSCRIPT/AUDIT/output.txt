@@ -1,0 +1,684 @@
+sudo ./all_in_ONE.sh
+[sudo] password for renato:
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/fs/cramfs/cramfs.ko.xz
+license:        GPL
+alias:          fs-cramfs
+rhelversion:    8.9
+srcversion:     72205E37E2E1B07C044A00A
+depends:
+intree:         Y
+name:           cramfs
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      70:D9:EF:1D:3A:B1:AF:3A:82:45:83:4A:E0:F6:9A:28:5A:3A:78:61:
+                6F:AC:F7:48:CF:DE:3B:C4:16:70:6A:A2:CA:F7:1C:9E:81:E3:07:80:
+                A5:50:45:9F:69:4F:CD:65:43:6D:DC:AF:A7:3D:54:89:20:8C:BF:F3:
+                80:D3:56:E5:CA:61:0B:8E:A4:64:65:AE:EE:17:D6:58:70:DB:53:C1:
+                A0:FC:45:37:84:C9:1A:E5:FE:AD:19:34:61:51:69:59:15:7E:2C:D8:
+                0C:34:95:F1:FF:A0:10:20:EC:DE:7E:28:62:AA:65:8C:88:B0:F8:B9:
+                92:BC:5B:0C:B7:55:32:5D:21:D2:66:A4:2D:CD:6D:39:96:5C:DD:F5:
+                F1:34:ED:ED:E0:AE:7C:6C:87:B4:6F:AA:8C:FC:55:CE:0D:8B:1C:75:
+                DA:84:7E:8D:1B:3A:4C:5D:A4:D2:C8:95:4E:47:98:5B:B6:8C:83:A3:
+                6D:73:F8:57:66:2C:C4:9E:22:F6:CF:BD:88:8F:BB:8C:4A:14:96:1E:
+                E3:85:95:59:B8:F3:EA:3E:EC:65:C1:60:79:BC:A8:2A:51:DF:1C:59:
+                96:FE:48:AB:7F:B0:B5:B7:80:DC:25:3B:60:79:41:C0:79:97:6E:9A:
+                B8:61:18:D1:A0:61:3E:EE:3A:22:2B:4D:51:94:54:E9:34:78:5F:EE:
+                48:D9:E4:2E:12:97:63:65:39:EF:15:8A:46:9A:DF:3C:79:19:CB:06:
+                EC:0D:61:38:BB:3F:05:74:D3:81:3C:E4:15:DF:8C:94:9C:19:CC:00:
+                5D:6E:C8:36:8B:02:DF:00:42:58:FC:71:FC:00:E3:C0:4B:BB:45:4B:
+                2B:83:CC:40:D1:7C:60:46:B8:1B:FD:A2:FA:FE:7D:A7:59:63:FB:06:
+                FA:55:FA:8B:31:3D:E9:7F:D6:87:8E:24:51:B6:1B:26:B4:47:2B:7A:
+                5F:09:6F:FB:DA:A9:4F:32:51:8E:08:E6:8A:49:8F:01:4F:DF:3C:AC:
+                B4:D1:65:77
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/fs/squashfs/squashfs.ko.xz
+license:        GPL
+author:         Phillip Lougher <phillip@squashfs.org.uk>
+description:    squashfs 4.0, a compressed read-only filesystem
+alias:          fs-squashfs
+rhelversion:    8.9
+srcversion:     86C780BE5214B920199CBA1
+depends:
+intree:         Y
+name:           squashfs
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      6E:DA:25:26:E6:83:FB:F4:7E:77:38:B4:55:71:DE:C9:F7:64:FF:17:
+                F4:6F:2E:0B:5C:F1:DC:41:ED:04:7B:BD:D9:E8:3B:7C:AD:1D:09:F0:
+                1A:7F:F8:ED:25:5A:9E:90:DB:03:26:8D:7F:33:46:B7:9D:6E:94:51:
+                AF:6A:96:F9:E3:A6:89:FD:39:63:F1:CC:40:0E:AA:0E:95:AA:18:A1:
+                CB:19:7F:EB:19:FF:32:DD:0E:8E:7C:B1:D1:97:45:68:61:79:C5:47:
+                55:44:E4:AC:AB:93:23:DD:73:9A:1F:35:A2:62:CC:C0:FC:DF:4E:D4:
+                D0:1C:25:DC:24:8F:D6:99:4E:06:D9:94:6D:23:95:9E:A6:90:69:F6:
+                EA:48:6B:0B:4E:2B:F4:B6:70:C9:6D:5B:0D:8F:E4:AB:FC:39:DA:DE:
+                E3:E1:E2:5F:70:BA:24:DE:0F:04:31:71:28:84:E1:8A:FE:9C:14:D0:
+                46:E0:F4:89:22:16:FC:98:EE:44:E2:72:96:84:5C:64:56:73:DC:13:
+                59:CB:F2:C9:95:D5:DE:E2:0C:32:3D:5C:AB:84:D8:C9:F2:53:06:BE:
+                56:E0:D1:6D:B9:D0:E3:2F:6F:4A:F7:74:65:A7:73:A4:C4:4E:F5:82:
+                37:F6:97:F9:2B:78:14:0D:52:7A:29:14:DA:B8:7C:A7:E8:E4:6F:8A:
+                FE:A3:31:17:A2:41:B1:18:3B:57:12:17:8F:2C:86:34:4B:57:1D:06:
+                C3:FE:5F:37:E9:94:E4:04:7E:5F:00:99:8F:4D:02:4E:FF:6B:D0:70:
+                32:F5:83:DE:51:5D:95:CB:41:2C:6C:22:53:82:79:B0:E4:25:34:B3:
+                78:46:EA:50:29:FD:86:0B:8B:AF:37:6E:D7:4D:2B:AB:1F:6F:FF:2C:
+                DB:C7:F1:38:9A:34:51:7C:D4:7C:F6:FA:4A:FF:5D:5C:AE:47:38:8D:
+                DE:EA:27:0D:8E:08:7C:4D:EF:E6:7D:4C:A0:00:FD:18:EC:3C:CD:49:
+                98:54:7C:9D
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/fs/udf/udf.ko.xz
+license:        GPL
+description:    Universal Disk Format Filesystem
+author:         Ben Fennema
+alias:          fs-udf
+rhelversion:    8.9
+srcversion:     6C4D840B1A902666194A313
+depends:        crc-itu-t,cdrom
+intree:         Y
+name:           udf
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      66:60:24:61:84:37:68:69:F6:39:05:62:CB:73:93:A6:6A:E4:CD:76:
+                1F:F0:8D:AA:50:31:1E:1A:B0:FB:90:DC:40:5F:F3:4A:89:71:E4:29:
+                F9:C3:6A:41:51:D4:A9:2E:A2:E7:CE:F7:BC:D6:3E:E1:0B:64:3F:A4:
+                5F:AC:85:82:E1:42:E8:BE:56:A3:21:81:0B:60:EB:44:AC:83:E4:17:
+                07:FD:C4:52:27:0C:64:7B:4A:F8:7F:FC:EB:73:6B:CE:15:88:BA:36:
+                77:AA:F0:A3:F9:CD:94:2F:17:2A:04:E3:5A:EE:21:26:43:99:FF:C1:
+                E9:0F:85:5A:AE:3E:28:DB:11:A6:64:12:C5:0B:87:F4:2B:DD:4C:27:
+                F2:14:4F:E6:12:7E:3A:B9:A8:10:B5:04:91:30:05:FE:05:71:BA:61:
+                F1:13:BC:7A:CB:92:E6:7F:55:5E:5A:25:84:09:3A:AC:C1:5E:1E:04:
+                DE:A8:7D:94:D8:17:13:75:F4:00:BC:A4:22:95:79:48:FD:8B:5C:62:
+                A7:4B:14:14:72:CB:2C:09:65:E6:72:90:FD:84:5E:67:5E:FF:6B:71:
+                5A:20:C8:C7:9B:1D:6C:05:08:ED:18:CB:71:EB:98:DE:B3:A8:24:E1:
+                C1:12:D8:63:5F:A6:B1:CF:02:8F:CD:EA:E8:70:F9:ED:4F:40:E7:BE:
+                60:2A:46:56:C5:DF:4F:FE:0F:AA:1D:A3:59:43:16:4D:D5:2E:83:EC:
+                B7:A7:AA:B0:62:5F:1F:AC:8A:F3:E1:43:3B:63:B5:FA:CA:CA:7D:B2:
+                52:AC:7B:8A:8B:62:9A:53:A7:DE:97:E0:17:9D:D2:3C:DC:9E:23:C5:
+                13:E7:45:F4:67:F1:06:A8:52:6D:5B:7C:42:F2:FA:F2:BD:6B:AD:30:
+                EE:31:7C:48:CC:E0:B7:64:5E:C3:3E:5B:B9:DC:75:4F:BA:42:33:14:
+                C3:1B:59:05:9D:B3:62:1C:C7:53:26:13:93:C6:27:C5:16:8E:7F:BB:
+                50:2A:F2:A7
+modinfo: ERROR: Module hfs not found.
+modinfo: ERROR: Module hfs not found.
+modinfo: ERROR: Module hfsplus not found.
+modinfo: ERROR: Module hfsplus not found.
+modinfo: ERROR: Module jffs2 not found.
+modinfo: ERROR: Module jffs2 not found.
+modinfo: ERROR: Module freevxfs not found.
+modinfo: ERROR: Module freevxfs not found.
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/fs/overlayfs/overlay.ko.xz
+alias:          fs-overlay
+license:        GPL
+description:    Overlay filesystem
+author:         Miklos Szeredi <miklos@szeredi.hu>
+rhelversion:    8.9
+srcversion:     1C38BA1F18C74E26D3E61EB
+depends:
+intree:         Y
+name:           overlay
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      90:94:0D:4D:76:AF:31:2C:65:F5:41:EF:1F:EB:A3:DA:95:2F:D9:C4:
+                36:36:CD:22:47:3C:13:BA:00:B9:14:04:B9:4C:5B:4F:C4:B2:10:CB:
+                2A:F1:8D:48:B4:ED:CC:F6:EA:08:C0:57:83:8B:F8:92:98:F4:D1:7F:
+                98:42:39:CE:96:5A:36:DA:32:C1:07:63:10:21:89:C7:C0:91:F9:4E:
+                0A:D2:9B:EC:3A:7A:0D:D5:33:B6:4F:9F:28:35:50:B6:D2:CB:07:46:
+                4D:B2:D6:64:E3:25:FB:61:04:F0:0F:42:11:A4:BA:AA:08:21:98:62:
+                F0:1A:E9:D8:CB:7B:99:76:83:23:0C:E1:3F:E1:9B:81:C9:F6:6B:64:
+                24:78:9C:06:06:0E:37:5B:A3:00:67:1F:EE:54:AE:8D:BE:B8:41:50:
+                30:71:E7:5C:A7:15:2C:74:80:5F:2C:69:5D:A8:E9:37:F1:30:5D:1D:
+                1B:7F:0D:9F:07:A1:22:6D:32:7F:FD:ED:7B:E4:A5:A9:5B:90:C9:33:
+                CD:AB:B8:AE:40:47:B6:77:47:7F:63:50:5A:07:05:E6:2F:B7:82:E4:
+                75:B6:69:13:EA:B9:7B:32:D4:14:22:CE:63:D2:BD:5D:EB:3B:52:E6:
+                6B:A8:A2:39:73:B9:EE:DF:96:BC:6D:1D:39:CC:D7:1D:49:96:3F:82:
+                B9:FF:00:04:52:BC:F7:7C:10:6E:2B:D3:12:78:37:3B:EC:4C:92:4D:
+                6D:E8:7C:B8:61:C9:EC:FB:4A:8F:44:2F:AC:7E:BB:BD:E0:20:38:AD:
+                49:94:9F:1C:88:E0:2F:96:D6:1B:A4:24:75:31:BB:7A:5B:E5:F8:4D:
+                4D:FA:B6:16:A1:74:12:79:BD:41:DA:DA:AF:8B:48:5F:9D:5C:8E:8D:
+                F8:3B:EE:E1:22:6F:C6:A6:78:2B:72:21:17:78:35:AC:7F:ED:AC:FD:
+                24:85:2D:80:34:52:14:4B:95:84:91:6E:D2:1B:D9:E8:B3:AA:07:C3:
+                AB:B5:AD:BE
+parm:           check_copy_up:Obsolete; does nothing
+parm:           redirect_max:Maximum length of absolute redirect xattr value (ushort)
+parm:           redirect_dir:Default to on or off for the redirect_dir feature (bool)
+parm:           redirect_always_follow:Follow redirects even if redirect_dir feature is turned off (bool)
+parm:           index:Default to on or off for the inodes index feature (bool)
+parm:           nfs_export:Default to on or off for the NFS export feature (bool)
+parm:           xino_auto:Auto enable xino feature (bool)
+parm:           metacopy:Default to on or off for the metadata only copy up feature (bool)
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/drivers/usb/storage/usb-storage.ko.xz
+license:        GPL
+description:    USB Mass Storage driver for Linux
+author:         Matthew Dharm <mdharm-usb@one-eyed-alien.net>
+rhelversion:    8.9
+srcversion:     45A9A58752BB26B02C2465C
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc06ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc05ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc04ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc03ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc02ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc01ip50in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc06ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc05ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc04ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc03ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc02ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc01ip00in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc06ip01in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc05ip01in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc04ip01in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc03ip01in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc02ip01in*
+alias:          usb:v*p*d*dc*dsc*dp*ic08isc01ip01in*
+alias:          usb:v4971p8024d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4971p8017d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4971p1012d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v357Dp7788d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2537p1068d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2109p0711d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v17EFp3899d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v154BpF00Dd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v154BpF00Bd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0583d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0578d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0567d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0539d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v13FDp3940d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0BC2p331Ad*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0B05p1932d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0984p0301d0128dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Fp1061d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Fp105Fd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp087Dd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:vED10p7636d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:vED06p4500d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:vC251p4003d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4971p8024d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4146pBA01d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4102p1059d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v4102p1020d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v357Dp7788d0114dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v3340pFFFFd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2CA3p0031d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2735p100Bd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v22B8p6426d0101dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v22B8p3010d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2116p0320d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v2027pA001d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1FC9p0117d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1E74p4621d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1E68p001Bd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1DE1pC102d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1B1Cp1AB5d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v19D2p1225d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1949p0004d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1908p3335d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1908p1320d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1908p1315d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1822p0001d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v177Fp0400d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v174Cp55AAd0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1652p6600d0201dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1645p0007d01[0-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1645p0007d013[0-3]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp9561d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp2567d0117dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp2566d0114dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp2329d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0578d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v152Dp0567d011[4-7]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v14CDp6600d0201dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v13FEp3600d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v13FDp3609d0209dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1370p6828d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v132Bp000Bd0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Fd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Ed0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Dd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Cd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Bd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p143Ad0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1439d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1438d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1437d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1436d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1435d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1434d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1433d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1432d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1431d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1430d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Fd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Ed0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Dd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Cd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Bd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p142Ad0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1429d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1428d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1427d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1426d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1425d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1424d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1423d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1422d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1421d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1420d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Fd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Ed0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Dd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Cd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Bd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p141Ad0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1419d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1418d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1417d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1416d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1415d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1414d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1413d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1412d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1411d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1410d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Fd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Ed0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Dd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Cd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Bd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p140Ad0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1409d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1408d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1407d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1406d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1405d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1404d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1403d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1402d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1401d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1004d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1003d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v12D1p1001d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1210p0003d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1199p0FFFd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1186p3E04d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v10D6p2200d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1058p070Ad*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1058p0704d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1019p0C55d00*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1019p0C55d010*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v1019p0C55d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCEpE092d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCEpE031d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCEpE030d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCEpD0E1d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCEpD008d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0FCAp8004d0201dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0F88p042Ed0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0F19p0105d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0F19p0103d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0ED1p7636d0103dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0EA0p6828d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0EA0p2168d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0ED1p6660d0[1-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0ED1p6660d0300dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0E21p0520d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0DDAp0301d0012dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0DDAp0001d0012dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0DD8pD202d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0DD8p1060d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0DC4p0073d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p5200d01*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p5200d00[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p5200d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p5200d000[1-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p410Ad[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p410Ad0[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p410Ad00[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D96p410Ad000[1-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0C45p1060d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0D49p7310d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0BC2p3332d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0BC2p3010d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0BC2p2300d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pD357d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pD257d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pD157d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pD058d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pD057d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0pC100d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p8304d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p8302d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p8300d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7A05d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7A01d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7901d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7706d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7701d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7501d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p7401d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0AF0p6971d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0ACEp20FFd0101dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0ACEp2011d0101dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0A17p0004d1000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Cp6000d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Cp3350d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Cp1132d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Ap1200d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Ap1050d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v090Ap1001d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v08CAp3103d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v08BDp1100d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v085Ap0028d01[0-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v085Ap0028d013[0-3]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v085Ap0026d01[0-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v085Ap0026d013[0-3]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0851p1543d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0851p1542d0002dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v084Dp0011d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v084BpA001d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0840p0085d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0840p0084d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0840p0082d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0839p000Ad0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07CFp1167d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07CFp1001d[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07C4pA4A5d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07C4pA400d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07AFp0005d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07AFp0004d01[0-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07AFp0004d013[0-3]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v07ABpFCCDd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0781p0100d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0781p0002d0009dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0781p0001d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0727p0306d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v071Bp3203d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v071Bp32BBd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v071Bp3203d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v06CAp2003d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v069Bp3004d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0693p0005d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0686p4017d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0686p4011d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp3507d00[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp3507d010[0-1]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp3507d000[1-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp2507d00[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp2507d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp2507d000[1-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp2317d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v067Bp1063d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v066Fp8000d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0644p0000d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0636p0003d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05E3p0723d9451dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05E3p0702d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05E3p0701d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05DCpB002d00*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05DCpB002d010*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05DCpB002d011[0-3]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05C6p1000d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ACp120Ad*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ACp1205d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ACp1204d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ACp1203d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ACp1202d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ABp0060d1110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v05ABp0060d110[4-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Fp0651d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Fp0643d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Bp0040d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v059Bp0001d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0595p4343d[0-1]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0595p4343d2[0-1]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0595p4343d220*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0595p4343d2210dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v058Fp6387d0141dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v057Bp0022d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v057Bp0000d0[0-2]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v055Dp2020d0[0-1]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v055Dp2020d020*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v055Dp2020d0210dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp02A5d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp016Ad*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0099d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp006Dd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0069d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0058d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0032d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed0500dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed02*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed030*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed01[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed0310dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Ed010[6-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Dd0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Cd1*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Cd0[6-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Cd05[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Cd2000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp002Cd050[1-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0025d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d05*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d060*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d0610dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d0[2-3]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d04[0-4]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d01[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d0450dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v054Cp0010d010[6-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v052Bp1911d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v052Bp1905d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v052Bp1807d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v052Bp1804d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v052Bp1801d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0525pA4A5d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0525pA140d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v050Dp0115d0133dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04FCp80C2d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E8p5136d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E8p5122d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E8p507Cd0220dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0101d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p000Fd*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p000Cd0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p000Bd0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p000Ad0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0009d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0007d01*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0007d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0006d0205dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0006d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0002d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04E6p0001d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04DAp2373d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04DAp2372d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04DAp0D05d0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04DAp0901d01*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04DAp0901d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04CEp0002d026Cdc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04CBp0100d[0-1]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04CBp0100d2[0-1]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04CBp0100d220*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04CBp0100d2210dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04B8p0602d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04B8p0601d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04B3p4001d0110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04B0p0301d0010dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04A5p3010d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v04A4p0004d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0482p0107d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0482p0103d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0482p0101d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0482p0100d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0480pD010d[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0480pD010d0[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v046BpFF40d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v045EpFFFFd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0457p0151d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0457p0150d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0451p5416d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p06AAd1110dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p05AFd0742dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p04B9d0350dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0495d0370dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0492d[1-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0492d0[5-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0492d04[6-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0492d045[2-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p047Cd0[4-5]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p047Cd060*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p047Cd03[7-9]*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p047Cd0610dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p044Ed0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0446d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0444d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0434d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0433d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p042Ed0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0019d060*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0019d0610dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0421p0019d059[2-9]dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0420p0001d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0419pAAF6d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0419pAAF5d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0419pAACEd0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0419p0100d0100dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0411p001Cd0113dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v040Dp6205d0003dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v0409p0040d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03F3p0001d*dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03F0p4002d0001dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03F0p070Cd0000dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03F0p0107d0200dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03EEp6906d0003dc*dsc*dp*ic*isc*ip*in*
+alias:          usb:v03EBp2002d0100dc*dsc*dp*ic*isc*ip*in*
+depends:
+intree:         Y
+name:           usb_storage
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      91:20:F2:E2:9F:7E:4A:43:58:D9:00:95:88:38:7B:CE:DD:47:7D:00:
+                C1:E4:72:43:50:E6:E3:AC:46:43:A0:EB:36:70:08:07:31:9D:C0:8C:
+                2A:8D:26:B2:0C:AA:7A:0E:17:29:9E:89:C7:16:C6:32:E0:60:F7:D1:
+                E5:49:5C:79:5A:81:4F:E9:9B:EE:08:C5:05:82:86:4A:D8:D2:65:6F:
+                69:CA:62:23:5B:8E:D7:1A:40:EE:C4:5E:D2:6B:7F:2B:E6:97:0B:41:
+                72:59:1D:CA:D3:2B:F2:F2:36:8A:AB:A1:F4:FA:CB:0C:DD:7A:96:AB:
+                3C:38:14:4F:7D:14:E6:39:CC:DF:89:7A:9A:6F:62:52:CD:2B:8B:C1:
+                07:F5:D1:82:D4:DF:81:D2:3C:D9:17:1F:23:1C:12:6A:09:DB:8A:5C:
+                77:87:2A:B1:D9:45:66:42:2D:C7:C4:1C:19:68:18:5A:5D:7C:AA:C2:
+                36:B5:DF:83:2D:AA:C5:71:61:FA:37:08:1B:E8:DC:FB:F4:E7:02:08:
+                30:52:E0:EC:42:7A:C1:BC:32:1D:EC:48:EE:E7:6D:13:5D:96:27:C9:
+                87:46:2E:B4:B4:46:17:78:20:F5:8F:06:F6:80:B0:FE:80:68:2B:4C:
+                EC:15:5D:97:58:A3:29:4D:60:45:8A:A9:0D:61:D5:51:4D:2A:65:28:
+                7F:9F:65:36:9C:78:AD:B9:76:94:2E:3E:7D:2C:BD:BE:69:73:0B:6A:
+                75:91:77:8C:91:F2:B6:7B:BC:0E:6B:A5:7D:97:56:10:61:FB:01:5A:
+                9C:4F:29:14:34:B9:EF:90:93:E6:4A:64:02:2E:2A:9D:E3:B8:86:BC:
+                21:0B:A9:09:C3:3E:0F:33:23:18:EE:B0:B4:98:F5:37:C7:AC:57:5B:
+                CB:F5:98:DA:57:78:60:FA:1B:EB:24:63:CA:57:08:82:FE:A2:B1:07:
+                78:EC:3E:61:9B:DE:F3:54:E0:A4:02:7B:80:C3:1C:4F:F9:0B:27:D0:
+                EC:93:17:71
+parm:           option_zero_cd:ZeroCD mode (1=Force Modem (default), 2=Allow CD-Rom (uint)
+parm:           swi_tru_install:TRU-Install mode (1=Full Logic (def), 2=Force CD-Rom, 3=Force Modem) (uint)
+parm:           delay_use:seconds to delay before using a new device (uint)
+parm:           quirks:supplemental list of device IDs and their quirks (string)
+modinfo: ERROR: Module dccp not found.
+modinfo: ERROR: Module dccp not found.
+modinfo: ERROR: Module sctp not found.
+modinfo: ERROR: Module sctp not found.
+modinfo: ERROR: Module rds not found.
+modinfo: ERROR: Module rds not found.
+filename:       /lib/modules/4.18.0-513.5.1.el8_9.x86_64/kernel/net/tipc/tipc.ko.xz
+version:        2.0.0
+license:        Dual BSD/GPL
+description:    TIPC: Transparent Inter Process Communication
+rhelversion:    8.9
+srcversion:     922B22C6DA29D3DF361AB1A
+depends:        udp_tunnel,ip6_udp_tunnel
+intree:         Y
+name:           tipc
+vermagic:       4.18.0-513.5.1.el8_9.x86_64 SMP mod_unload modversions
+sig_id:         PKCS#7
+signer:         Red Hat Enterprise Linux kernel signing key
+sig_key:        4F:63:B3:57:99:05:1B:1E:5F:DE:FC:E0:DF:A2:B5:1D:EE:67:E4:C2
+sig_hashalgo:   sha256
+signature:      2B:86:4C:AC:A7:2A:8D:C9:00:48:1E:51:79:65:CE:E5:55:C5:A0:E5:
+                C4:29:A0:5C:AD:8F:D9:9A:6D:9F:AA:9F:C6:D6:17:58:F7:CF:F7:CB:
+                67:32:35:49:21:54:21:85:7E:39:39:B9:25:A8:E2:05:BA:4A:5F:EF:
+                E0:17:DE:F2:AC:A2:26:AC:18:00:A3:8C:8E:BC:BA:5F:D7:37:5C:2D:
+                FB:70:36:8D:2A:E8:82:F6:7F:9B:66:0A:B7:9F:80:15:8B:F7:73:4F:
+                A6:32:3D:41:30:C9:7E:49:07:AE:7F:CF:39:3E:6C:FF:4D:78:D3:1C:
+                3C:30:D0:86:49:18:1E:A1:E4:23:85:F9:5B:6A:13:BF:2F:B3:7C:38:
+                13:67:BD:89:85:FB:78:C6:0E:43:1F:9E:0C:01:BC:A2:99:19:DE:9A:
+                B5:AE:78:B4:F6:CF:0F:B8:BF:EB:98:D7:E2:E6:05:D0:29:E4:1C:1A:
+                A7:25:59:D1:C4:0A:BE:73:C2:5C:5E:79:48:13:4F:62:0A:76:23:12:
+                39:69:30:8B:B2:D4:F8:CF:BF:52:8E:8F:E5:FB:E9:01:FC:B0:F1:AD:
+                90:11:3B:F7:2C:E2:5F:47:D7:9C:97:A5:87:B7:24:A4:BD:D3:54:5D:
+                EC:A3:E9:F4:4E:B7:AC:31:02:74:57:1E:D9:22:B6:FE:79:CF:7F:DF:
+                E5:4F:AA:DC:CF:7E:98:50:23:67:6B:70:16:CB:D3:53:05:E4:0F:E7:
+                EA:1F:F4:A5:83:3F:6B:2D:2A:34:21:7A:CC:C7:8A:86:B2:A8:2F:BD:
+                B3:BB:1E:22:83:F2:77:96:0C:72:0A:AF:3F:D8:43:06:AA:DA:0C:88:
+                98:3C:92:11:21:81:BD:4E:1D:76:74:72:12:AA:9B:85:4C:E3:36:BA:
+                A8:83:D9:5A:F1:F6:4F:6C:46:53:2E:21:80:E0:F8:BC:B1:83:33:ED:
+                12:B8:86:72:AE:0B:1A:92:0B:B0:57:6B:72:D6:D9:96:5A:88:F7:9E:
+                DB:5E:32:9D
+sysctl: cannot stat /proc/sys/kernel/unprivileged_userns_clone: No such file or directory
+/dev/shm tmpfs  tmpfs  rw,nosuid,nodev,seclabel
+Failed to get unit file state for autofs.service: No such file or directory
+package prelink is not installed
+package xinetd is not installed
+chrony-4.2-1.el8.x86_64
+enabled
+package ntp is not installed
+package xorg-x11-server-common is not installed
+package avahi is not installed
+package cups is not installed
+package dhcp-server is not installed
+package openldap-servers is not installed
+package bind is not installed
+package vsftpd is not installed
+package httpd is not installed
+package dovecot is not installed
+package samba is not installed
+package squid is not installed
+package net-snmp is not installed
+package ypserv is not installed
+package telnet-server is not installed
+Failed to get unit file state for nfs-server.service: No such file or directory
+masked
+Failed to get unit file state for rsyncd.service: No such file or directory
+package ypbind is not installed
+package rsh is not installed
+package talk is not installed
+package telnet is not installed
+package openldap-clients is not installed
+package tftp-server is not installed
+Warning: failed loading '/etc/yum.repos.d/epel-testing.repo', skipping.
+Warning: failed loading '/etc/yum.repos.d/redhat.repo', skipping.
+Last metadata expiration check: 1 day, 0:48:05 ago on Wed 14 Jan 2026 01:12:33 PM -03.
+stat: cannot statx '/etc/cron.allow': No such file or directory
+FirewallD is not running
+FirewallD is not running
+grep: /etc/httpd/conf.d/*: No such file or directory
+grep: /etc/nginx/*: No such file or directory
+deny = 5
+unlock_time = 900
+active
+rsyslog-8.2102.0-15.el8.x86_64
+active
+audit-3.0.7-5.el8.x86_64
+audit-libs-3.0.7-5.el8.x86_64
+failed
+package aide is not installed
+[renato@rhel8-soft-20260108 ~]$

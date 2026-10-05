@@ -1,0 +1,533 @@
+# roles/remediation/tasks/rhel_family.yml
+
+# ===== 50 - Permissões seguras no arquivo do bootloader =====
+- name: Verificar grub.cfg RHEL (50)
+  ansible.builtin.stat:
+    path: /boot/grub2/grub.cfg
+  register: rhel_remed_grub_cfg
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões grub.cfg RHEL (50)
+  ansible.builtin.file:
+    path: /boot/grub2/grub.cfg
+    owner: root
+    group: root
+    mode: "0600"
+  register: rhel_remed_50_apply
+  when: rhel_remed_grub_cfg.stat.exists | default(false)
+
+- name: Resultado permissões grub.cfg RHEL (50)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][50]
+      {{
+        'MANUAL'
+        if not (rhel_remed_grub_cfg.stat.exists | default(false))
+        else ('CHANGED' if rhel_remed_50_apply.changed | default(false) else 'OK')
+      }}
+
+# ===== 58 - Time sync ativo =====
+- name: Detectar serviço de time sync RHEL
+  shell: |
+    for svc in chronyd ntpd systemd-timesyncd; do
+      if systemctl list-unit-files "$svc.service" --no-legend 2>/dev/null | awk '{print $1}' | grep -qx "$svc.service"; then
+        echo "$svc"
+        exit 0
+      fi
+    done
+    echo ""
+  register: rhel_remed_timesync_service
+  changed_when: false
+  failed_when: false
+
+- name: Remediar time sync ativo RHEL (58)
+  ansible.builtin.systemd:
+    name: "{{ rhel_remed_timesync_service.stdout | trim }}"
+    state: started
+  register: rhel_remed_timesync_apply
+  failed_when: false
+  when: rhel_remed_timesync_service.stdout | trim != ""
+
+- name: Pós-check time sync ativo RHEL
+  shell: |
+    ACTIVE=""
+    if systemctl is-active chronyd >/dev/null 2>&1; then
+      ACTIVE="chronyd"
+    elif systemctl is-active ntpd >/dev/null 2>&1; then
+      ACTIVE="ntpd"
+    elif systemctl is-active systemd-timesyncd >/dev/null 2>&1; then
+      ACTIVE="systemd-timesyncd"
+    fi
+    echo "$ACTIVE"
+  register: rhel_remed_timesync_active
+  changed_when: false
+  failed_when: false
+
+- name: Resultado time sync ativo RHEL (58)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][58]
+      {{
+        'MANUAL'
+        if rhel_remed_timesync_service.stdout | trim == ''
+        else ('CHANGED' if rhel_remed_timesync_apply.changed | default(false) else 'OK')
+        if rhel_remed_timesync_active.stdout | trim != ''
+        else 'FALHA'
+      }}
+
+# ===== 86 - Polkit seguro =====
+- name: Detectar polkit RHEL (86)
+  shell: |
+    if systemctl list-unit-files polkit.service --no-legend 2>/dev/null | awk '{print $1}' | grep -qx 'polkit.service'; then
+      echo "present"
+    else
+      echo "absent"
+    fi
+  register: rhel_remed_polkit_present
+  changed_when: false
+  failed_when: false
+
+- name: Remediar polkit RHEL (86)
+  ansible.builtin.systemd:
+    name: polkit
+    enabled: true
+  register: rhel_remed_polkit_apply
+  failed_when: false
+  when: rhel_remed_polkit_present.stdout | trim == "present"
+
+- name: Pós-check polkit RHEL (86)
+  command: systemctl is-enabled polkit
+  register: rhel_remed_polkit_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado polkit RHEL (86)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][86]
+      {{
+        'MANUAL'
+        if rhel_remed_polkit_present.stdout | trim != 'present'
+        else ('CHANGED' if rhel_remed_polkit_apply.changed | default(false) else 'OK')
+        if rhel_remed_polkit_post.stdout in ['enabled', 'static']
+        else 'FALHA'
+      }}
+
+# ===== 109/111-123 - SSH =====
+- name: Verificar sshd_config RHEL
+  ansible.builtin.stat:
+    path: /etc/ssh/sshd_config
+  register: rhel_remed_ssh_cfg
+  changed_when: false
+  failed_when: false
+
+- name: Verificar diretório SSH RHEL
+  ansible.builtin.stat:
+    path: /etc/ssh
+  register: rhel_remed_ssh_dir
+  changed_when: false
+  failed_when: false
+
+- name: Remediar permissões diretório SSH RHEL (109)
+  ansible.builtin.file:
+    path: /etc/ssh
+    owner: root
+    group: root
+    mode: "0755"
+  register: rhel_remed_109_dir_apply
+  when: rhel_remed_ssh_dir.stat.exists | default(false)
+
+- name: Remediar permissões sshd_config RHEL (109)
+  ansible.builtin.file:
+    path: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: "0600"
+  register: rhel_remed_109_cfg_apply
+  when: rhel_remed_ssh_cfg.stat.exists | default(false)
+
+- name: Definir parâmetros SSH RHEL
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^[#\\s]*{{ item.key }}\\s+"
+    line: "{{ item.key }} {{ item.value }}"
+    insertbefore: "^[\\s]*Match[\\s]+"
+    validate: "sshd -t -f %s"
+  loop:
+    - { id: 111, key: "SyslogFacility", value: "AUTHPRIV" }
+    - { id: 112, key: "X11Forwarding", value: "no" }
+    - { id: 113, key: "MaxAuthTries", value: "4" }
+    - { id: 114, key: "IgnoreRhosts", value: "yes" }
+    - { id: 115, key: "HostbasedAuthentication", value: "no" }
+    - { id: 117, key: "PermitEmptyPasswords", value: "no" }
+    - { id: 118, key: "PermitUserEnvironment", value: "no" }
+    - { id: 119, key: "UsePAM", value: "yes" }
+    - { id: 120, key: "ClientAliveInterval", value: "300" }
+    - { id: 120, key: "ClientAliveCountMax", value: "3" }
+    - { id: 121, key: "LoginGraceTime", value: "60" }
+    - { id: 122, key: "MaxStartups", value: "10:30:60" }
+    - { id: 123, key: "AllowTcpForwarding", value: "no" }
+  register: rhel_remed_ssh_apply
+  notify: restart ssh
+  loop_control:
+    label: "{{ item.id }} - {{ item.key }}"
+  when: rhel_remed_ssh_cfg.stat.exists | default(false)
+
+- name: Pós-check SSH RHEL
+  command: sshd -T
+  register: rhel_remed_ssh_effective
+  changed_when: false
+  failed_when: false
+
+- name: Resultado permissões SSH RHEL (109)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][109]
+      {{
+        'MANUAL'
+        if not (rhel_remed_ssh_cfg.stat.exists | default(false))
+        else (
+          'CHANGED'
+          if (rhel_remed_109_dir_apply.changed | default(false) or rhel_remed_109_cfg_apply.changed | default(false))
+          else 'OK'
+        )
+      }}
+
+- name: Resultado parâmetros SSH RHEL (111-123)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'MANUAL'
+        if not (rhel_remed_ssh_cfg.stat.exists | default(false))
+        else (
+          'CHANGED'
+          if (rhel_remed_ssh_apply.results | default([]) | selectattr('item.id', 'equalto', item.id) | selectattr('changed', 'equalto', true) | list | length > 0)
+          else 'OK'
+        )
+        if item.ok | bool
+        else 'FALHA'
+      }}
+  vars:
+    ssh_out: "{{ rhel_remed_ssh_effective.stdout | default('') | lower }}"
+  loop:
+    - { id: 111, ok: "{{ 'syslogfacility authpriv' in ssh_out }}" }
+    - { id: 112, ok: "{{ 'x11forwarding no' in ssh_out }}" }
+    - { id: 113, ok: "{{ ssh_out is regex('(^|\\n)maxauthtries\\s+[1-4](\\n|$)') }}" }
+    - { id: 114, ok: "{{ 'ignorerhosts yes' in ssh_out }}" }
+    - { id: 115, ok: "{{ 'hostbasedauthentication no' in ssh_out }}" }
+    - { id: 117, ok: "{{ 'permitemptypasswords no' in ssh_out }}" }
+    - { id: 118, ok: "{{ 'permituserenvironment no' in ssh_out }}" }
+    - { id: 119, ok: "{{ 'usepam yes' in ssh_out }}" }
+    - { id: 120, ok: "{{ ssh_out is regex('(^|\\n)clientaliveinterval\\s+(300|600|900)(\\n|$)') and ssh_out is regex('(^|\\n)clientalivecountmax\\s+[0-3](\\n|$)') }}" }
+    - { id: 121, ok: "{{ ssh_out is regex('(^|\\n)logingracetime\\s+(30|60)(\\n|$)') }}" }
+    - { id: 122, ok: "{{ ssh_out is regex('(^|\\n)maxstartups\\s+(10:30:60|10)(\\n|$)') }}" }
+    - { id: 123, ok: "{{ 'allowtcpforwarding no' in ssh_out or 'allowtcpforwarding local' in ssh_out }}" }
+  loop_control:
+    label: "{{ item.id }}"
+
+# ===== 139/143-146 - Senhas e login.defs =====
+- name: Remediar parâmetros de login.defs RHEL
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    regexp: "^[#\\s]*{{ item.key }}\\s+"
+    line: "{{ item.key }} {{ item.value }}"
+    create: false
+  loop:
+    - { id: 139, key: "ENCRYPT_METHOD", value: "SHA512" }
+    - { id: 143, key: "PASS_MAX_DAYS", value: "90" }
+    - { id: 144, key: "PASS_MIN_DAYS", value: "1" }
+    - { id: 145, key: "PASS_WARN_AGE", value: "7" }
+  register: rhel_remed_login_defs_apply
+
+- name: Remediar INACTIVE RHEL (146)
+  ansible.builtin.lineinfile:
+    path: /etc/default/useradd
+    regexp: "^[#\\s]*INACTIVE="
+    line: "INACTIVE=30"
+    create: false
+  register: rhel_remed_146_apply
+  failed_when: false
+
+- name: Pós-check login.defs RHEL
+  shell: |
+    grep -E '^ENCRYPT_METHOD[[:space:]]+SHA512\b' /etc/login.defs >/dev/null 2>&1 && echo 139_OK || echo 139_FAIL
+    grep -E '^PASS_MAX_DAYS[[:space:]]+' /etc/login.defs >/dev/null 2>&1 && echo 143_OK || echo 143_FAIL
+    grep -E '^PASS_MIN_DAYS[[:space:]]+' /etc/login.defs >/dev/null 2>&1 && echo 144_OK || echo 144_FAIL
+    grep -E '^PASS_WARN_AGE[[:space:]]+' /etc/login.defs >/dev/null 2>&1 && echo 145_OK || echo 145_FAIL
+    grep -E '^INACTIVE=' /etc/default/useradd >/dev/null 2>&1 && echo 146_OK || echo 146_FAIL
+  register: rhel_remed_login_defs_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado login.defs RHEL (139/143-145)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        ('CHANGED' if (rhel_remed_login_defs_apply.results | selectattr('item.id', 'equalto', item.id) | selectattr('changed', 'equalto', true) | list | length > 0) else 'OK')
+        if ((item.id ~ '_OK') in rhel_remed_login_defs_post.stdout)
+        else 'FALHA'
+      }}
+  loop:
+    - { id: 139 }
+    - { id: 143 }
+    - { id: 144 }
+    - { id: 145 }
+  loop_control:
+    label: "{{ item.id }}"
+
+- name: Resultado INACTIVE RHEL (146)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][146]
+      {{
+        ('CHANGED' if rhel_remed_146_apply.changed | default(false) else 'OK')
+        if '146_OK' in rhel_remed_login_defs_post.stdout
+        else 'FALHA'
+      }}
+
+# ===== 157-159 - Sudo =====
+- name: Verificar sudoers RHEL
+  ansible.builtin.stat:
+    path: /etc/sudoers
+  register: rhel_remed_sudoers
+  changed_when: false
+  failed_when: false
+
+- name: Criar configuração sudo HITSS RHEL (157/159)
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/hitss-hardening
+    owner: root
+    group: root
+    mode: "0440"
+    content: |
+      Defaults logfile="/var/log/sudo.log"
+      Defaults timestamp_timeout=5
+    validate: "visudo -cf %s"
+  register: rhel_remed_sudo_defaults_apply
+  when: rhel_remed_sudoers.stat.exists | default(false)
+
+- name: Remediar reautenticação sudo RHEL (158)
+  ansible.builtin.replace:
+    path: /etc/sudoers
+    regexp: "^([\\s]*Defaults[\\s]+.*!authenticate.*)$"
+    replace: "# HITSS disabled insecure sudo reauth bypass: \\1"
+    validate: "visudo -cf %s"
+  register: rhel_remed_158_apply
+  when: rhel_remed_sudoers.stat.exists | default(false)
+
+- name: Pós-check sudo RHEL
+  shell: |
+    if grep -REq '^[[:space:]]*Defaults[[:space:]]+logfile=' /etc/sudoers /etc/sudoers.d 2>/dev/null; then echo 157_OK; else echo 157_FAIL; fi
+    if grep -Rqs 'Defaults\s\+!authenticate' /etc/sudoers /etc/sudoers.d 2>/dev/null; then echo 158_FAIL; else echo 158_OK; fi
+    if grep -REq '^[[:space:]]*Defaults[[:space:]]+timestamp_timeout=[1-9][0-9]*\b' /etc/sudoers /etc/sudoers.d 2>/dev/null; then echo 159_OK; else echo 159_FAIL; fi
+  register: rhel_remed_sudo_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sudo RHEL (157-159)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'MANUAL'
+        if not (rhel_remed_sudoers.stat.exists | default(false))
+        else (
+          'CHANGED'
+          if item.changed
+          else 'OK'
+        )
+        if ((item.id ~ '_OK') in rhel_remed_sudo_post.stdout)
+        else 'FALHA'
+      }}
+  loop:
+    - { id: 157, changed: "{{ rhel_remed_sudo_defaults_apply.changed | default(false) }}" }
+    - { id: 158, changed: "{{ rhel_remed_158_apply.changed | default(false) }}" }
+    - { id: 159, changed: "{{ rhel_remed_sudo_defaults_apply.changed | default(false) }}" }
+  loop_control:
+    label: "{{ item.id }}"
+
+# ===== 162/164 - Journald e logrotate =====
+- name: Remediar journald persistente RHEL (162)
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/journald.conf
+    regexp: "^[#\\s]*Storage="
+    line: "Storage=persistent"
+    create: false
+  register: rhel_remed_162_apply
+  notify: restart systemd-journald
+  failed_when: false
+
+- name: Remediar rotação de logs RHEL (164)
+  ansible.builtin.lineinfile:
+    path: /etc/logrotate.conf
+    regexp: "^[#\\s]*rotate\\s+"
+    line: "rotate 4"
+    create: false
+  register: rhel_remed_164_apply
+  failed_when: false
+
+- name: Resultado journald persistente RHEL (162)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][162]
+      {{
+        'FALHA'
+        if rhel_remed_162_apply.failed | default(false)
+        else ('CHANGED' if rhel_remed_162_apply.changed | default(false) else 'OK')
+      }}
+
+- name: Resultado rotação de logs RHEL (164)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][164]
+      {{
+        'FALHA'
+        if rhel_remed_164_apply.failed | default(false)
+        else ('CHANGED' if rhel_remed_164_apply.changed | default(false) else 'OK')
+      }}
+
+# ===== 166-180 - Auditd já existente e regras =====
+- name: Verificar auditd RHEL
+  ansible.builtin.stat:
+    path: /etc/audit/auditd.conf
+  register: rhel_remed_auditd_conf
+  changed_when: false
+  failed_when: false
+
+- name: Verificar diretório de regras auditd RHEL
+  ansible.builtin.stat:
+    path: /etc/audit/rules.d
+  register: rhel_remed_audit_rules_dir
+  changed_when: false
+  failed_when: false
+
+- name: Remediar auditd no boot RHEL (166)
+  ansible.builtin.systemd:
+    name: auditd
+    enabled: true
+  register: rhel_remed_166_apply
+  failed_when: false
+  when: rhel_remed_auditd_conf.stat.exists | default(false)
+
+- name: Remediar max_log_file RHEL (167)
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: "^[#\\s]*max_log_file\\s*="
+    line: "max_log_file = 50"
+    create: false
+  register: rhel_remed_167_apply
+  when: rhel_remed_auditd_conf.stat.exists | default(false)
+
+- name: Remediar max_log_file_action RHEL (168)
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    regexp: "^[#\\s]*max_log_file_action\\s*="
+    line: "max_log_file_action = keep_logs"
+    create: false
+  register: rhel_remed_168_apply
+  when: rhel_remed_auditd_conf.stat.exists | default(false)
+
+- name: Remediar regras auditd HITSS RHEL (169-180)
+  ansible.builtin.blockinfile:
+    path: /etc/audit/rules.d/hitss.rules
+    create: true
+    owner: root
+    group: root
+    mode: "0640"
+    marker: "# {mark} HITSS AUDIT RULES"
+    block: |
+      -a always,exit -F arch=b64 -S adjtimex -S settimeofday -S clock_settime -k time-change
+      -a always,exit -F arch=b32 -S adjtimex -S settimeofday -S clock_settime -k time-change
+      -w /etc/passwd -p wa -k identity
+      -w /etc/group -p wa -k identity
+      -w /etc/shadow -p wa -k identity
+      -w /etc/sysconfig/network -p wa -k network
+      -w /etc/hosts -p wa -k network
+      -w /etc/resolv.conf -p wa -k network
+      -w /etc/selinux/ -p wa -k mac-policy
+      -a always,exit -F arch=b64 -S chmod -S fchmod -S chown -S fchown -S setxattr -k perm_mod
+      -a always,exit -F arch=b32 -S chmod -S fchmod -S chown -S fchown -S setxattr -k perm_mod
+      -a always,exit -F arch=b64 -S open -S openat -S creat -F exit=-EACCES -k access
+      -a always,exit -F arch=b64 -S open -S openat -S creat -F exit=-EPERM -k access
+      -a always,exit -F arch=b32 -S open -S openat -S creat -F exit=-EACCES -k access
+      -a always,exit -F arch=b32 -S open -S openat -S creat -F exit=-EPERM -k access
+      -a always,exit -F arch=b64 -S execve -k privileged
+      -a always,exit -F arch=b32 -S execve -k privileged
+      -a always,exit -F arch=b64 -S mount -S umount2 -k mounts
+      -a always,exit -F arch=b32 -S mount -S umount2 -k mounts
+      -a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -S rmdir -k delete
+      -a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -S rmdir -k delete
+      -a always,exit -F arch=b64 -S init_module -S finit_module -S delete_module -k modules
+      -a always,exit -F arch=b32 -S init_module -S finit_module -S delete_module -k modules
+      -w /etc/sudoers -p wa -k sudo
+      -w /etc/sudoers.d/ -p wa -k sudo
+      -w /var/log/sudo.log -p wa -k sudo
+  register: rhel_remed_audit_rules_apply
+  notify: reload audit rules
+  when: rhel_remed_audit_rules_dir.stat.isdir | default(false)
+
+- name: Pós-check auditd RHEL (166-180)
+  shell: |
+    if systemctl is-enabled auditd 2>/dev/null | grep -qx enabled; then echo 166_OK; else echo 166_FAIL; fi
+    if grep -Eq '^[[:space:]]*max_log_file[[:space:]]*=[[:space:]]*[1-9][0-9]*' /etc/audit/auditd.conf 2>/dev/null; then echo 167_OK; else echo 167_FAIL; fi
+    if grep -Eq '^\s*max_log_file_action\s*=\s*(keep_logs|rotate)' /etc/audit/auditd.conf 2>/dev/null; then echo 168_OK; else echo 168_FAIL; fi
+    if grep -REq '\b(adjtimex|settimeofday|clock_settime)\b' /etc/audit/rules.d 2>/dev/null; then echo 169_OK; else echo 169_FAIL; fi
+    if grep -REq '(/etc/passwd|/etc/group|/etc/shadow)\b' /etc/audit/rules.d 2>/dev/null; then echo 170_OK; else echo 170_FAIL; fi
+    if grep -REq '(/etc/sysconfig/network|/etc/hosts|/etc/resolv\.conf)\b' /etc/audit/rules.d 2>/dev/null; then echo 171_OK; else echo 171_FAIL; fi
+    if grep -REq '\b(setenforce|/etc/selinux|selinux-policy)\b' /etc/audit/rules.d 2>/dev/null; then echo 172_OK; else echo 172_FAIL; fi
+    if grep -REq '\b(login|logout|session)\b' /etc/audit/rules.d 2>/dev/null; then echo 173_OK; else echo 173_FAIL; fi
+    if grep -REq '\b(chmod|chown|setxattr|fchmod)\b' /etc/audit/rules.d 2>/dev/null; then echo 174_OK; else echo 174_FAIL; fi
+    if grep -REq '\b(EACCES|EPERM)\b' /etc/audit/rules.d 2>/dev/null; then echo 175_OK; else echo 175_FAIL; fi
+    if grep -REq '\bexecve\b' /etc/audit/rules.d 2>/dev/null; then echo 176_OK; else echo 176_FAIL; fi
+    if grep -REq '\b(mount|umount2)\b' /etc/audit/rules.d 2>/dev/null; then echo 177_OK; else echo 177_FAIL; fi
+    if grep -REq '\b(unlink|rename|rmdir|unlinkat|renameat)\b' /etc/audit/rules.d 2>/dev/null; then echo 178_OK; else echo 178_FAIL; fi
+    if grep -REq '\b(init_module|delete_module|finit_module)\b' /etc/audit/rules.d 2>/dev/null; then echo 179_OK; else echo 179_FAIL; fi
+    if grep -REq '(/etc/sudoers|/etc/sudoers\.d|sudo\.log)\b' /etc/audit/rules.d 2>/dev/null; then echo 180_OK; else echo 180_FAIL; fi
+  register: rhel_remed_audit_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado auditd config RHEL (166-168)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.id }}]
+      {{
+        'MANUAL'
+        if not (rhel_remed_auditd_conf.stat.exists | default(false))
+        else ('CHANGED' if item.changed else 'OK')
+        if ((item.id ~ '_OK') in rhel_remed_audit_post.stdout)
+        else 'FALHA'
+      }}
+  loop:
+    - { id: 166, changed: "{{ rhel_remed_166_apply.changed | default(false) }}" }
+    - { id: 167, changed: "{{ rhel_remed_167_apply.changed | default(false) }}" }
+    - { id: 168, changed: "{{ rhel_remed_168_apply.changed | default(false) }}" }
+  loop_control:
+    label: "{{ item.id }}"
+
+- name: Resultado regras auditd RHEL (169-180)
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item }}]
+      {{
+        'MANUAL'
+        if not (rhel_remed_audit_rules_dir.stat.isdir | default(false))
+        else ('CHANGED' if rhel_remed_audit_rules_apply.changed | default(false) else 'OK')
+        if ((item ~ '_OK') in rhel_remed_audit_post.stdout)
+        else 'FALHA'
+      }}
+  loop:
+    - 169
+    - 170
+    - 171
+    - 173
+    - 174
+    - 175
+    - 176
+    - 177
+    - 178
+    - 179
+    - 180

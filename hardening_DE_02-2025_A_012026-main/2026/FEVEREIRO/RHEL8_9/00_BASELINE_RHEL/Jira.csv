@@ -1,0 +1,204 @@
+﻿Resumo,Campo personalizado (Tópico),Campo personalizado (Criticidade),Campo personalizado (Subtópico),Campo personalizado (Perfil)
+Kernel / Modulos,1,Alta,Desabilitar modulo cramfs,Light
+Kernel / Modulos,2,Alta,Desabilitar modulo squashfs,Light
+Kernel / Modulos,3,Média,Desabilitar modulo udf,Light
+Kernel / Modulos,4,Alta,Desabilitar modulo hfs,Light
+Kernel / Modulos,5,Alta,Desabilitar modulo hfsplus,Light
+Kernel / Modulos,6,Alta,Desabilitar modulo jffs2,Light
+Kernel / Modulos,7,Alta,Desabilitar modulo freevxfs,Light
+Kernel / Modulos,8,Média,Desabilitar overlayfs quando nao for requisito,Light
+Kernel / Modulos,9,Alta,Desabilitar modulo usb storage para bloquear discos USB,Light
+Kernel / Modulos,10,Alta,Desabilitar modulo DCCP,Light
+Kernel / Modulos,11,Alta,Desabilitar modulo SCTP quando nao requerido,Light
+Kernel / Modulos,12,Alta,Desabilitar modulo RDS,Light
+Kernel / Modulos,13,Alta,Desabilitar modulo TIPC,Light
+Kernel / Sysctl,14,Alta,Core dumps restritos,Light
+Kernel / Sysctl,15,Média,ptrace scope restrito,Light
+Kernel / Mitigacoes,16,Alta,NX XD ativo,Light
+Kernel / Sysctl,17,Média,ASLR habilitado,Light
+Kernel / Mitigacoes,18,Média,IOMMU protecao,Full
+Kernel / Sysctl,19,Alta,perf event restrito,Light
+Kernel / Sysctl,20,Alta,dmesg restrito,Light
+Kernel / Namespaces,21,Baixa,user namespace desabilitado,Light
+Kernel / Sysctl,22,Alta,protected symlinks,Light
+Kernel / Sysctl,23,Alta,protected hardlinks,Light
+Kernel / Sysctl,24,Alta,suid dumpable zero,Light
+Particoes / Montagem,25,Média,Particao dedicada para tmp,Full
+Particoes / Montagem,26,Média,Particao dedicada para dev shm,Full
+Particoes / Montagem,27,Alta,Particao dedicada para var,Full
+Particoes / Montagem,28,Alta,Particao dedicada para var tmp,Full
+Particoes / Montagem,29,Alta,Particao dedicada para var log,Full
+Particoes / Montagem,30,Média,Particao dedicada para var log audit,Full
+Particoes / Montagem,31,Alta,Particao dedicada para home,Full
+Particoes / Montagem,32,Alta,Particao dedicada para historico,Full
+Particoes / Montagem,33,Alta,Particao dedicada para crash,Full
+Particoes / Montagem,34,Média,Particao dedicada para UNIX,Full
+Particoes / Montagem,35,Alta,Montagem segura de particoes e midia removivel,Light
+Particoes / Montagem,36,Alta,Opcoes de montagem seguras em particoes criticas,Light
+Particoes / Montagem,37,Alta,Opcoes de montagem seguras em tmp,Light
+Particoes / Montagem,38,Alta,Opcoes de montagem seguras em dev shm,Light
+Particoes / Montagem,39,Média,Opcoes de montagem seguras em var tmp,Light
+Particoes / Montagem,40,Média,Opcoes de montagem seguras em var log,Light
+Particoes / Montagem,41,Média,Opcoes de montagem seguras em var log audit,Light
+Particoes / Montagem,42,Baixa,Opcoes de montagem seguras em home,Light
+Particoes / Montagem,43,Média,Opcoes de montagem seguras em midias removiveis,Light
+Diretorios Sticky Bit,44,Baixa,Sticky bit em diretorios world writable,Light
+Diretorios Sticky Bit,45,Alta,Sticky bit em tmp,Light
+Diretorios Sticky Bit,46,Alta,Sticky bit em var tmp,Light
+Diretorios Sticky Bit,47,Média,Sticky bit em dev shm,Light
+Servicos / Sistema,48,Baixa,Autofs desabilitado em servidores,Light
+Seguranca de Boot,49,Alta,Senha de bootloader configurada,Full
+Seguranca de Boot,50,Média,Permissoes seguras no arquivo do bootloader,Full
+Seguranca de Boot,51,Média,Single user mode com autenticacao,Full
+MAC / SELinux,52,Alta,MAC ativo,Full
+MAC / SELinux,53,Média,Politica MAC definida,Full
+MAC / SELinux,54,Alta,Servicos unconfined minimizados,Full
+MAC / SELinux,55,Alta,Sem servicos sem restricoes MAC,Full
+Integridade / Binaries,56,Média,Prelink removido,Light
+Servicos / Rede,57,Alta,xinetd removido,Light
+Servicos / Time Sync,58,Média,Sincronizacao de tempo em uso,Light
+Servicos / Time Sync,59,Média,Chrony configurado,Light
+Servicos / Time Sync,60,Média,NTP configurado,Light
+Servicos / Superficie Ataque,61,Média,X11 ausente em servidores,Light
+Servicos / Superficie Ataque,62,Alta,Avahi ausente,Light
+Servicos / Superficie Ataque,63,Alta,CUPS ausente,Light
+Servicos / Superficie Ataque,64,Alta,DHCP server ausente,Light
+Servicos / Superficie Ataque,65,Alta,LDAP server ausente,Light
+Servicos / Superficie Ataque,66,Alta,DNS server ausente,Light
+Servicos / Superficie Ataque,67,Alta,FTP server ausente,Light
+Servicos / Superficie Ataque,68,Média,HTTP server ausente,Light
+Servicos / Superficie Ataque,69,Média,IMAP/POP3 server ausente,Light
+Servicos / Superficie Ataque,70,Alta,Samba ausente,Light
+Servicos / Superficie Ataque,71,Alta,Proxy HTTP ausente,Light
+Servicos / Superficie Ataque,72,Alta,SNMP ausente,Light
+Servicos / Superficie Ataque,73,Alta,NIS server ausente,Light
+Servicos / Superficie Ataque,74,Média,Telnet server ausente,Light
+Servicos / MTA,75,Média,MTA em modo local only,Light
+Servicos / Rede,76,Alta,NFS server controlado,Full
+Servicos / Rede,77,Alta,rpcbind controlado,Full
+Servicos / Rede,78,Alta,rsync daemon controlado,Light
+Servicos / Cliente,79,Alta,Cliente NIS ausente,Light
+Servicos / Cliente,80,Média,Cliente rsh ausente,Light
+Servicos / Cliente,81,Alta,Cliente talk ausente,Light
+Servicos / Cliente,82,Alta,Cliente telnet ausente,Light
+Servicos / Cliente,83,Alta,Cliente LDAP ausente,Light
+Servicos / Superficie Ataque,84,Alta,Servicos nao essenciais removidos mascarados,Light
+Servicos / Rede,85,Alta,TFTP server removido,Light
+Autorizacao / Sistema,86,Alta,policykit endurecido,Full
+gpg / Repositorios,87,Alta,Assinaturas de pacotes habilitadas,Light
+Atualizacoes / Seguranca,88,Alta,Patches de seguranca aplicados,Light
+Servicos / Time Sync,89,Alta,Apenas um daemon de time sync,Full
+Servicos / Agendadores,90,Baixa,Cron at seguros e restritos,Light
+Rede / Sysctl,91,Alta,IP forwarding desabilitado,Light
+Rede / Sysctl,92,Média,Redirecionamentos de pacotes desabilitados,Light
+Rede / Sysctl,93,Alta,Source routed packets bloqueados,Light
+Rede / Sysctl,94,Média,ICMP redirects bloqueados,Light
+Rede / Sysctl,95,Alta,Reverse path filtering habilitado,Light
+Rede / Sysctl,96,Baixa,ICMP broadcast ignorado,Light
+Rede / Sysctl,97,Alta,Respostas ICMP invalidas ignoradas,Light
+Rede / Sysctl,98,Média,TCP SYN cookies habilitados,Light
+Rede / IPv6,99,Alta,IPv6 desabilitado ou endurecido,Full
+Rede / Firewall,100,Alta,ICMP timestamp request drop,Light
+Rede / Firewall,101,Alta,ICMP timestamp reply drop,Light
+Superficie Ataque / Hardware,102,Média,Wireless Bluetooth desabilitados em servidores,Light
+Firewall / Politica,103,Alta,Firewall com politica default deny,Full
+Firewall / Arquitetura,104,Alta,Apenas uma solucao de firewall ativa,Full
+Firewall / Regras,105,Alta,Regras basicas de firewall,Light
+Firewall / Regras,106,Alta,Regras explicitas para portas abertas,Light
+Firewall / Persistencia,107,Média,Regras de firewall persistentes,Light
+Criptografia / TLS,108,Alta,TLS minimo 1.2 1.3,Light
+SSH / Permissoes,109,Alta,Permissoes seguras em sshd config e chaves,Full
+SSH / Acesso,110,Média,Controle de acesso via Allow Deny,Full
+SSH / Logging,111,Baixa,LogLevel adequado no SSH,Light
+SSH / Superficie Ataque,112,Alta,X11Forwarding desabilitado,Light
+SSH / Autenticacao,113,Alta,MaxAuthTries limitado,Light
+SSH / Autenticacao,114,Alta,IgnoreRhosts habilitado,Light
+SSH / Autenticacao,115,Alta,HostbasedAuthentication desabilitado,Light
+SSH / Autenticacao,116,Alta,PermitRootLogin restrito desabilitado,Full
+SSH / Autenticacao,117,Alta,PermitEmptyPasswords desabilitado,Light
+SSH / Autenticacao,118,Alta,PermitUserEnvironment desabilitado,Light
+SSH / Autenticacao,119,Alta,UsePAM habilitado,Full
+SSH / Sessao,120,Média,Idle timeout configurado,Light
+SSH / Sessao,121,Média,LoginGraceTime curto,Light
+SSH / Sessao,122,Média,MaxStartups MaxSessions limitados,Light
+SSH / Acesso,123,Alta,AllowTcpForwarding restrito,Full
+SSH / Compliance,124,Baixa,Banner legal configurado,Light
+SSH / Criptografia,125,Alta,Ciphers fortes apenas,Full
+SSH / Criptografia,126,Alta,MACs fortes apenas,Full
+SSH / Criptografia,127,Alta,KexAlgorithms fortes apenas,Full
+SSH / Criptografia,128,Alta,Preferencia por algoritmos modernos,Full
+SSH / Controle Execucao,129,Alta,ForceCommand Chroot SSH,Full
+Senhas / PAM,130,Alta,pwquality habilitado,Light
+Senhas / PAM,131,Alta,pam pwquality habilitado,Light
+Senhas / PAM,132,Alta,pam faillock habilitado,Full
+Senhas / PAM,133,Alta,pam tally2 habilitado,Full
+Senhas / PAM,134,Alta,pam pwhistory habilitado,Light
+Senhas / Politica,135,Alta,Tamanho minimo de senha,Light
+Senhas / Politica,136,Alta,Complexidade minima de senha,Light
+Senhas / Politica,137,Média,Limite de caracteres sequenciais repetidos,Light
+Senhas / Politica,138,Média,Uso de dicionario wordlist,Light
+Senhas / Politica,139,Alta,Hashing forte de senhas,Light
+Senhas / Politica,140,Alta,Historico e reuse de senhas,Light
+Senhas / Politica,141,Alta,Bloqueio por tentativas invalidas,Full
+Senhas / Politica,142,Média,Tempo de unlock configurado,Light
+Senhas / Politica,143,Média,Expiracao de senha configurada,Light
+Senhas / Politica,144,Baixa,Minimo de dias entre trocas,Light
+Senhas / Politica,145,Baixa,Aviso previo de expiracao,Light
+Senhas / Politica,146,Média,Inactive lock configurado,Light
+Senhas / Politica,147,Média,Datas de ultima troca no passado,Light
+Sistema / Contas,148,Alta,root unico UID 0,Full
+Sistema / Contas,149,Alta,root unico GID 0,Full
+Sistema / Contas,150,Alta,Contas de sistema travadas,Full
+Sistema / Contas,151,Baixa,nologin nao listado como shell,Light
+Ambiente,152,Média,PATH do root integro,Light
+Ambiente,153,Média,Umask endurecida,Light
+Ambiente,154,Média,Shell timeout padrao,Light
+Sudo,155,Alta,sudo obrigatorio para admin,Full
+Sudo,156,Alta,sudo usa pty,Light
+Sudo,157,Alta,Log de sudo configurado,Light
+Sudo,158,Média,Reautenticacao nao desabilitada,Light
+Sudo,159,Média,Timeout de autenticacao ajustado,Light
+Sudo,160,Alta,Comando su restrito,Full
+Auditoria e Logs,161,Média,Stack de logs racionalizado,Light
+Auditoria e Logs,162,Média,Journald configurado,Light
+Auditoria e Logs,163,Alta,Rsyslog instalado e ativo,Light
+Auditoria e Logs,164,Média,Logrotate para rsyslog,Light
+Auditoria e Logs,165,Alta,auditd instalado e rodando,Full
+Auditoria e Logs,166,Alta,Auditoria antes do auditd,Full
+Auditoria e Logs,167,Média,Tamanho de armazenamento de audit log,Light
+Auditoria e Logs,168,Alta,Logs de auditoria nao excluidos automaticamente,Full
+Auditoria e Logs,169,Alta,Auditoria de alteracoes em data hora,Full
+Auditoria e Logs,170,Alta,Auditoria de alteracoes em contas grupos,Full
+Auditoria e Logs,171,Alta,Auditoria de alteracoes no ambiente de rede,Full
+Auditoria e Logs,172,Alta,Auditoria de eventos MAC,Full
+Auditoria e Logs,173,Alta,Auditoria de login logout,Full
+Auditoria e Logs,174,Alta,Auditoria de permissao DAC,Full
+Auditoria e Logs,175,Alta,Auditoria de acessos nao autorizados,Full
+Auditoria e Logs,176,Alta,Auditoria de comandos privilegiados,Full
+Auditoria e Logs,177,Alta,Auditoria de mount unmount,Full
+Auditoria e Logs,178,Alta,Auditoria de delecao de arquivos,Full
+Auditoria e Logs,179,Alta,Auditoria de kernel modules,Full
+Auditoria e Logs,180,Alta,Auditoria de sudoers logs de sudo,Full
+Auditoria e Logs,181,Alta,Configuracao de auditoria imutavel,Full
+Integridade,182,Alta,AIDE instalado e inicializado,Full
+Integridade,183,Média,Verificacao de integridade agendada,Light
+Integridade,184,Alta,Protecao dos binarios de auditoria,Full
+Permissionamento geral,185,Alta,Permissoes em etc passwd,Light
+Permissionamento geral,186,Alta,Permissoes em etc passwd-,Light
+Permissionamento geral,187,Alta,Permissoes em etc shadow,Light
+Permissionamento geral,188,Alta,Permissoes em etc shadow-,Light
+Permissionamento geral,189,Alta,Permissoes em etc gshadow-,Light
+Permissionamento geral,190,Alta,Permissoes em etc gshadow,Light
+Permissionamento geral,191,Alta,Permissoes em etc group,Light
+Permissionamento geral,192,Alta,Permissoes em etc group-,Light
+Sistema / Contas,193,Baixa,nologin fora de etc shells,Light
+Permissionamento geral,194,Alta,Protecao de etc security opasswd,Full
+Arquivos,195,Média,Controle de arquivos orfaos,Light
+Arquivos,196,Alta,Ausencia de world writable nao controlado,Light
+Arquivos,197,Alta,Ausencia de arquivos sem owner group,Light
+Permissionamento geral,198,Alta,SUID SGID revisados,Full
+Sistema / Contas,199,Alta,Home para todos usuarios,Light
+Sistema / Contas,200,Alta,Usuario dono da propria home,Light
+Sistema / Contas,201,Alta,Permissoes de home igual ou menor 750,Light
+Sistema / Contas,202,Alta,Dotfiles nao group world writable,Light
+Sistema / Contas,203,Alta,Ausencia de forward netrc rhosts,Light

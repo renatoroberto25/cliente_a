@@ -1,0 +1,51 @@
+---
+hitss_profile: "light"
+
+hitss_sysctl_file: "/etc/sysctl.d/99-hitss.conf"
+hitss_network_sysctl_file: "/etc/sysctl.d/99-hitss-network.conf"
+
+hitss_log_file: "/var/log/hitss-hardening.log"
+
+hitss_kernel_modules_block:
+  - cramfs
+  - squashfs
+  - udf
+  - hfs
+  - hfsplus
+  - jffs2
+  - freevxfs
+  - usb_storage
+
+hitss_kernel_modules_disable:
+  - dccp
+  - sctp
+  - rds
+  - tipc
+  - overlay
+
+hitss_manual_ids:
+  - 99
+  - 102
+
+hitss_sysctl_apply_runtime: true
+hitss_sysctl_persist: true
+
+hitss_expected_values:
+  net.ipv4.ip_forward: "0"
+  net.ipv4.conf.all.send_redirects: "0"
+  net.ipv4.conf.default.send_redirects: "0"
+  net.ipv4.conf.all.accept_source_route: "0"
+  net.ipv4.conf.default.accept_source_route: "0"
+  net.ipv4.conf.all.accept_redirects: "0"
+  net.ipv4.conf.default.accept_redirects: "0"
+  net.ipv4.conf.all.rp_filter: "1"
+  net.ipv4.conf.default.rp_filter: "1"
+  net.ipv4.icmp_echo_ignore_broadcasts: "1"
+  net.ipv4.icmp_ignore_bogus_error_responses: "1"
+  net.ipv4.tcp_syncookies: "1"
+
+hitss_cron_allowed_users:
+  - root
+
+hitss_at_allowed_users:
+  - root

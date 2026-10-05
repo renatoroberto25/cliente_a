@@ -1,0 +1,2178 @@
+<check_type:"Unix">
+
+#1.x
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "1"
+      info            : "Verifique se o módulo do kernel do CRAMFS está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(modinfo cramfs &>/dev/null && modprobe --showconfig | grep -Pq '\\b(install|blacklist)\\h+cramfs\\b' && ! lsmod | grep -q cramfs) || (! modinfo cramfs &>/dev/null) && echo \"PASS\" || echo \"FAIL\" "
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "2"
+      info            : "Verifique se o módulo do kernel do Freevxfs está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo freevxfs >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+freevxfs' && ! lsmod | grep -q freevxfs) || ! modinfo freevxfs >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "3"
+      info            : "Verifique se o módulo do kernel do HFS está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo hfs >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+hfs' && ! lsmod | grep -q hfs) || ! modinfo hfs >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "4"
+      info            : "Verifique se o módulo do kernel do HFSPlus está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo hfsplus >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+hfsplus' && ! lsmod | grep -q hfsplus) || ! modinfo hfsplus >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "5"
+      info            : "Verifique se o módulo do kernel do JFFS2 está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo jffs2 >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+jffs2' && ! lsmod | grep -q jffs2) || ! modinfo jffs2 >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "6"
+      info            : "Verifique se o módulo do kernel do OverlayFS está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo overlay >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+overlay' && ! lsmod | grep -q overlay) || ! modinfo overlay >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "7"
+      info            : "Verifique se o módulo do kernel do Squashfs está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo squashfs >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+squashfs' && ! lsmod | grep -q squashfs) || ! modinfo squashfs >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "8"
+      info            : "Verifique se o módulo do kernel do UDF está ausente ou bloqueado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo udf >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+udf' && ! lsmod | grep -q udf) || ! modinfo udf >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "9"
+      info            : "Verifique se o módulo do kernel de armazenamento USB está desativado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "( (modinfo usb-storage >/dev/null 2>&1 && modprobe --showconfig | grep -Eq '^(install|blacklist)[[:space:]]+usb_storage' && ! lsmod | grep -q usb_storage) || ! modinfo usb-storage >/dev/null 2>&1 ) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "11"
+      info            : "Verifique se /tmp é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /tmp >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "12"
+      info            : "Verifique se a opção nodev está definida em /tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /tmp | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "13"
+      info            : "Verifique se a opção nosuid está definida em /tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /tmp | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "14"
+      info            : "Verifique se a opção noexec está definida em /tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /tmp | grep -qw noexec && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "15"
+      info            : "Verifique se /dev/shm é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /dev/shm >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "16"
+      info            : "Verifique se a opção nodev está definida em /dev/shm"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /dev/shm | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "17"
+      info            : "Verifique se a opção nosuid está definida em /dev/shm"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /dev/shm | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "18"
+      info            : "Verifique se a opção noexec está definida em /dev/shm"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /dev/shm | grep -qw noexec && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "19"
+      info            : "Verifique se /home é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /home >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "20"
+      info            : "Verifique se a opção nodev está definida em /home"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /home | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "21"
+      info            : "Verifique se a opção nosuid está definida em /home"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /home | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "22"
+      info            : "Verifique se /var é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /var >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "23"
+      info            : "Verifique se a opção nodev está definida em /var"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "24"
+      info            : "Verifique se a opção nosuid está definida em /var"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "25"
+      info            : "Verifique se /var/tmp é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /var/tmp >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "26"
+      info            : "Verifique se a opção nodev está definida em /var/tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/tmp | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "27"
+      info            : "Verifique se a opção nosuid está definida em /var/tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/tmp | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "28"
+      info            : "Verifique se a opção noexec está definida em /var/tmp"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/tmp | grep -qw noexec && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "29"
+      info            : "Verifique se /var/log é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /var/log >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "30"
+      info            : "Verifique se a opção nodev está definida em /var/log"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "31"
+      info            : "Verifique se a opção nosuid está definida em /var/log"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "32"
+      info            : "Verifique se a opção noexec está definida em /var/log"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log | grep -qw noexec && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "33"
+      info            : "Verifique se /var/log/audit é uma partição separada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -kn /var/log/audit >/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "34"
+      info            : "Verifique se a opção nodev está definida em /var/log/audit"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log/audit | grep -qw nodev && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "35"
+      info            : "Verifique se a opção nosuid está definida em /var/log/audit"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log/audit | grep -qw nosuid && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "36"
+      info            : "Verifique se a opção noexec está definida em /var/log/audit"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(findmnt -n /var/log/audit | grep -qw noexec && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+#2.x
+
+    <custom_item>
+    type            : CMD_EXEC
+    description     : "37"
+    info            : "Verifique se chaves GPG estão configuradas"
+    solution        : "SOLUTION"
+    reference       : "BASELINE HITSS"
+    see_also        : "CONSULTAR BASELINE HITSS"
+    cmd             : "(find /etc/apt/trusted.gpg /etc/apt/trusted.gpg.d -type f -name '*.gpg' 2>/dev/null | grep -q .) && echo \"PASS\" || echo \"FAIL\""
+    expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+  </custom_item>
+
+#3.x
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "40"
+      info            : "Verifique se o AppArmor está instalado"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(dpkg -s apparmor 2>/dev/null | grep -q 'Status: install ok installed') && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "41"
+      info            : "Verifique se o AppArmor está habilitado no bootloader"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(grep -qw apparmor=1 /proc/cmdline && grep -qw security=apparmor /proc/cmdline) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "42"
+      info            : "Verifique se os perfis AppArmor estão em modo enforce ou complain"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(aa-status 2>/dev/null | grep -q 'profiles are in enforce mode') && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "43"
+      info            : "Verifique se todos os perfis AppArmor estão em modo enforce"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(aa-status 2>/dev/null | awk '/profiles are in enforce mode/ {e=$1} /profiles are in complain mode/ {c=$1} END{exit !(e+0>0 && c+0==0)}') && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+#4.x
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "45"
+      info            : "Verifique se o acesso ao arquivo de configuração do bootloader está restrito"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(stat -Lc '%a %U %G' /boot/grub/grub.cfg 2>/dev/null | grep -Eq '^(400|600) root root$') && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+#5.x
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "46"
+      info            : "Verifique se a randomização do espaço de endereços (ASLR) está habilitada"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(sysctl kernel.randomize_va_space | grep -q 'kernel.randomize_va_space = 2' && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "47"
+      info            : "Verifique se o parâmetro ptrace_scope está restrito"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "(sysctl kernel.yama.ptrace_scope | grep -Eq 'kernel.yama.ptrace_scope = [1-3]' && echo \"PASS\" || echo \"FAIL\")"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+#48
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "48"
+  info        : "Verifique se core dumps estão desabilitados"
+  solution    : "Defina * hard core 0 em /etc/security/limits.conf ou limits.d/*.conf e fs.suid_dumpable=0"
+  reference   : "HITSS Debian 12 - 3.5.x"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( cat /etc/security/limits.conf /etc/security/limits.d/*.conf 2>/dev/null | egrep -q '^[[:space:]]*\\*[[:space:]]+hard[[:space:]]+core[[:space:]]+0\\b' && sysctl -n fs.suid_dumpable 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+# 52–54 – File permissions
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "52"
+      info            : "Verifique se permissões de /etc/motd estão corretas"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "stat -Lc '%a %u %g' /etc/motd 2>/dev/null | grep -Eq '^64[0-4] 0 0$' && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**pass\\**[\\s]*$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "53"
+      info            : "Verifique se permissões de /etc/issue estão corretas"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "stat -Lc '%a %u %g' /etc/issue 2>/dev/null | grep -Eq '^64[0-4] 0 0$' && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**pass\\**[\\s]*$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "54"
+      info            : "Verifique se permissões de /etc/issue.net estão corretas"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd             : "stat -Lc '%a %u %g' /etc/issue.net 2>/dev/null | grep -Eq '^64[0-4] 0 0$' && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**pass\\**[\\s]*$"
+    </custom_item>
+
+    # 65–84 – Services must not be in use
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "65"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço autofs não está em uso"
+      cmd             : "(systemctl is-enabled autofs 2>/dev/null | grep -q disabled || ! dpkg -s autofs >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "66"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço avahi-daemon não está em uso"
+      cmd             : "(systemctl is-enabled avahi-daemon 2>/dev/null | grep -q disabled || ! dpkg -s avahi-daemon >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "67"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço dhcp-server não está em uso"
+      cmd             : "(systemctl is-enabled isc-dhcp-server 2>/dev/null | grep -q disabled || ! dpkg -s isc-dhcp-server >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "68"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço bind9 (DNS server) não está em uso"
+      cmd             : "(systemctl is-enabled bind9 2>/dev/null | grep -q disabled || ! dpkg -s bind9 >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "69"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço dnsmasq não está em uso"
+      cmd             : "(systemctl is-enabled dnsmasq 2>/dev/null | grep -q disabled || ! dpkg -s dnsmasq >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "70"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço ftp-server (vsftpd) não está em uso"
+      cmd             : "(systemctl is-enabled vsftpd 2>/dev/null | grep -q disabled || ! dpkg -s vsftpd >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "71"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço ldap-server (slapd) não está em uso"
+      cmd             : "(systemctl is-enabled slapd 2>/dev/null | grep -q disabled || ! dpkg -s slapd >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "72"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço de mensagens (dovecot) não está em uso"
+      cmd             : "(systemctl is-enabled dovecot 2>/dev/null | grep -q disabled || ! dpkg -s dovecot-core >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "73"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço NFS server não está em uso"
+      cmd             : "(systemctl is-enabled nfs-server 2>/dev/null | grep -q disabled || ! dpkg -s nfs-kernel-server >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "74"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço NIS server não está em uso"
+      cmd             : "(systemctl is-enabled nis 2>/dev/null | grep -q disabled || ! dpkg -s nis >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "75"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço de impressão (cups) não está em uso"
+      cmd             : "(systemctl is-enabled cups 2>/dev/null | grep -q disabled || ! dpkg -s cups >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "76"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço rpcbind não está em uso"
+      cmd             : "(systemctl is-enabled rpcbind 2>/dev/null | grep -q disabled || ! dpkg -s rpcbind >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "77"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço rsync não está em uso"
+      cmd             : "( systemctl is-enabled rsync 2>/dev/null | grep -q '^enabled$' && echo \"FAIL\" || echo \"PASS\" )"
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "78"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço samba não está em uso"
+      cmd             : "(systemctl is-enabled smbd 2>/dev/null | grep -q disabled || ! dpkg -s samba >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "79"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço SNMP não está em uso"
+      cmd             : "(systemctl is-enabled snmpd 2>/dev/null | grep -q disabled || ! dpkg -s snmpd >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "80"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço TFTP não está em uso"
+      cmd             : "(systemctl is-enabled tftpd-hpa 2>/dev/null | grep -q disabled || ! dpkg -s tftpd-hpa >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "81"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço de proxy (squid) não está em uso"
+      cmd             : "(systemctl is-enabled squid 2>/dev/null | grep -q disabled || ! dpkg -s squid >/dev/null 2>&1) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type            : CMD_EXEC
+      description     : "82"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      info            : "Verifique se o serviço web (apache/nginx) não está em uso"
+      cmd             : "(systemctl is-enabled apache2 2>/dev/null | grep -q disabled || systemctl is-enabled nginx 2>/dev/null | grep -q disabled || (! dpkg -s apache2 >/dev/null 2>&1 && ! dpkg -s nginx >/dev/null 2>&1)) && echo \"PASS\" || echo \"FAIL\""
+      expect          : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "83"
+      info        : "Verifique se o serviço xinetd não está em uso"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( ! dpkg-query -W -f='${Status}\n' xinetd 2>/dev/null | grep -q 'install ok installed' || ( ! systemctl is-active --quiet xinetd && ! systemctl is-enabled xinetd &>/dev/null ) ) && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "84"
+      info        : "Verifique se o servidor gráfico (Xorg) não está em uso"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "pgrep -x Xorg >/dev/null && echo \"FAIL\"  || echo PASS"
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "85"
+      info        : "Verifique se o MTA está configurado apenas para localhost"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( ! dpkg-query -W -f='${Status}\n' postfix 2>/dev/null | grep -q 'install ok installed' || grep -Pq '^\\s*inet_interfaces\\s*=\\s*(loopback-only|127\\.0\\.0\\.1)\\b' /etc/postfix/main.cf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+##################################################### 87 - 92
+    <custom_item>
+      type        : CMD_EXEC
+      description : "87"
+      info        : "Verifique se o cliente NIS não está instalado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "dpkg-query -W -f='${Status}\n' nis 2>/dev/null | grep -q 'install ok installed' && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "88"
+      info        : "Verifique se o cliente rsh não está instalado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "dpkg-query -W -f='${Status}\n' rsh-client 2>/dev/null | grep -q 'install ok installed' && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "89"
+      info        : "Verifique se o cliente talk não está instalado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "dpkg-query -W -f='${Status}\n' talk 2>/dev/null | grep -q 'install ok installed' && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "90"
+      info        : "Verifique se o cliente telnet não está instalado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( dpkg-query -W -f='${Status}\n' telnet 2>/dev/null | grep -q 'install ok installed' || dpkg-query -W -f='${Status}\n' inetutils-telnet 2>/dev/null | grep -q 'install ok installed' ) && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "91"
+      info        : "Verifique se o cliente ldap-utils não está instalado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "dpkg-query -W -f='${Status}\n' ldap-utils 2>/dev/null | grep -q 'install ok installed' && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "92"
+      info        : "Verifique se os clientes ftp/tnftp não estão instalados"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( dpkg-query -W -f='${Status}\n' ftp 2>/dev/null | grep -q 'install ok installed' || dpkg-query -W -f='${Status}\n' tnftp 2>/dev/null | grep -q 'install ok installed' ) && echo \"FAIL\" || echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+##################################################### 93 - 106
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "93"
+      info        : "Verifique se apenas um daemon de sincronização de tempo está em uso"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (systemctl is-active --quiet systemd-timesyncd.service && ! systemctl is-active --quiet chrony.service) || (! systemctl is-active --quiet systemd-timesyncd.service && systemctl is-active --quiet chrony.service) ) && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "94"
+      info        : "Verifique se o systemd-timesyncd está configurado com servidor autorizado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "if systemctl is-active --quiet systemd-timesyncd.service; then (grep -Eq '^[[:space:]]*(NTP|FallbackNTP)[[:space:]]*=[[:space:]]*[^[:space:]]' /etc/systemd/timesyncd.conf /etc/systemd/timesyncd.conf.d/* 2>/dev/null && echo \"PASS\" || echo \"FAIL\"); elif systemctl is-active --quiet chrony.service; then echo \"PASS\"; else echo \"FAIL\"; fi"
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "95"
+      info        : "Verifique se o systemd-timesyncd está habilitado e em execução"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "if systemctl is-active --quiet systemd-timesyncd.service; then (systemctl is-enabled --quiet systemd-timesyncd.service 2>/dev/null && systemctl is-active --quiet systemd-timesyncd.service 2>/dev/null && echo \"PASS\" || echo \"FAIL\"); elif systemctl is-active --quiet chrony.service; then echo \"PASS\"; else echo \"FAIL\"; fi"
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "96"
+      info        : "Verifique se o chrony está configurado com servidor autorizado"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "grep -Eq '^[[:space:]]*(server|pool)[[:space:]]+' /etc/chrony/chrony.conf 2>/dev/null && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "97"
+      info        : "Verifique se o chronyd está rodando como usuário _chrony"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : " pgrep -u _chrony -x chronyd >/dev/null 2>&1 && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "98"
+      info        : "Verifique se o chrony está habilitado e em execução"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( systemctl is-enabled --quiet chrony.service 2>/dev/null && systemctl is-active --quiet chrony.service 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "99"
+      info        : "Verifique se o serviço cron está habilitado e ativo"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( systemctl is-enabled cron.service &>/dev/null && systemctl is-active cron.service &>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "100"
+      info        : "Verifique se as permissões de /etc/crontab estão configuradas (600 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/crontab 2>/dev/null | grep -Eq '^600 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "101"
+      info        : "Verifique se as permissões de /etc/cron.hourly estão configuradas (700 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.hourly 2>/dev/null | grep -Eq '^700 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "102"
+      info        : "Verifique se as permissões de /etc/cron.daily estão configuradas (700 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.daily 2>/dev/null | grep -Eq '^700 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "103"
+      info        : "Verifique se as permissões de /etc/cron.weekly estão configuradas (700 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.weekly 2>/dev/null | grep -Eq '^700 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "104"
+      info        : "Verifique se as permissões de /etc/cron.monthly estão configuradas (700 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.monthly 2>/dev/null | grep -Eq '^700 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "105"
+      info        : "Verifique se as permissões de /etc/cron.d estão configuradas (700 root root)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.d 2>/dev/null | grep -Eq '^700 root root$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "106"
+      info        : "Verifique se o crontab é restrito a usuários autorizados (/etc/cron.allow 640 root root|crontab)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "stat -Lc '%a %U %G' /etc/cron.allow 2>/dev/null | grep -Eq '^640 root (root|crontab)$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "107"
+      info        : "Verifique se o at está restrito a usuários autorizados (aplica-se apenas se cron NÃO existir e at estiver instalado)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( systemctl list-unit-files | grep -q '^cron.service' && echo \"PASS\" ) || ( ! command -v at >/dev/null 2>&1 && echo \"PASS\" ) || ( [ -f /etc/at.allow ] && stat -Lc '%a %U %G' /etc/at.allow 2>/dev/null | grep -Eq '^600 root root$' && echo \"PASS\" ) || echo \"FAIL\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "108"
+      info        : "Verifique se o IPv6 está desabilitado (kernel param ou sysctl all/default=1)"
+      solution    : "SOLUTION"
+      reference   : "BASELINE HITSS"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( ( [ -r /sys/module/ipv6/parameters/disable ] && grep -qx '1' /sys/module/ipv6/parameters/disable && echo \"PASS\" ) || ( [ \"$(sysctl -n net.ipv6.conf.all.disable_ipv6 2>/dev/null)\" = \"1\" ] && [ \"$(sysctl -n net.ipv6.conf.default.disable_ipv6 2>/dev/null)\" = \"1\" ] && echo \"PASS\" ) ) || echo \"FAIL\" "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+############### 109 - 124
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "109"
+      info        : "Verifique se interfaces wireless estão desabilitadas (rfkill / net)"
+      solution    : "Desabilite interfaces wireless não utilizadas com rfkill ou removendo módulos"
+      reference   : "HITSS Debian 12 - 3.1"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( command -v rfkill >/dev/null 2>&1 && rfkill list all 2>/dev/null | grep -Eiq 'wlan|wifi|bluetooth' && echo \"FAIL\" ) || ( ip link show | grep -Eiq 'wlan|wl' && echo \"FAIL\" || echo \"PASS\" ) "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+################ REVISAR 110-114
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "110"
+      info        : "Verifique se serviços Bluetooth não estão em uso"
+      solution    : "Desabilite ou remova o serviço bluetooth.service"
+      reference   : "HITSS Debian 12 - 3.2"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( if systemctl list-unit-files 2>/dev/null | grep -q '^bluetooth.service'; then ( ! systemctl is-active --quiet bluetooth.service && ! systemctl is-enabled --quiet bluetooth.service && echo \"PASS\" || echo \"FAIL\" ); else echo \"PASS\"; fi )"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "111"
+      info        : "Verifique se o módulo do kernel dccp não está disponível"
+      solution    : "Blacklist o módulo dccp em /etc/modprobe.d/"
+      reference   : "HITSS Debian 12 - 3.3.1"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (modinfo dccp &>/dev/null && modprobe --showconfig | grep -Eq '\\b(install|blacklist)[[:space:]]+dccp\\b' && ! lsmod | grep -q '^dccp\\b') || (! modinfo dccp &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "112"
+      info        : "Verifique se o módulo do kernel tipc não está disponível"
+      solution    : "Blacklist o módulo tipc em /etc/modprobe.d/"
+      reference   : "HITSS Debian 12 - 3.3.2"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (modinfo tipc &>/dev/null && modprobe --showconfig | grep -Eq '\\b(install|blacklist)[[:space:]]+tipc\\b' && ! lsmod | grep -q '^tipc\\b') || (! modinfo tipc &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "113"
+      info        : "Verifique se o módulo do kernel rds não está disponível"
+      solution    : "Blacklist o módulo rds em /etc/modprobe.d/"
+      reference   : "HITSS Debian 12 - 3.3.3"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (modinfo rds &>/dev/null && modprobe --showconfig | grep -Eq '\\b(install|blacklist)[[:space:]]+rds\\b' && ! lsmod | grep -q '^rds\\b') || (! modinfo rds &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "114"
+      info        : "Verifique se o módulo do kernel sctp não está disponível"
+      solution    : "Blacklist o módulo sctp em /etc/modprobe.d/"
+      reference   : "HITSS Debian 12 - 3.3.4"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (modinfo sctp &>/dev/null && modprobe --showconfig | grep -Eq '\\b(install|blacklist)[[:space:]]+sctp\\b' && ! lsmod | grep -q '^sctp\\b') || (! modinfo sctp &>/dev/null) ) && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+################ REVISAR 110-114
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "115"
+      info        : "Verifique se o encaminhamento de IP está desabilitado (net.ipv4.ip_forward)"
+      solution    : "Configure sysctl net.ipv4.ip_forward=0"
+      reference   : "HITSS Debian 12 - 3.3.5"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "sysctl -n net.ipv4.ip_forward 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+#116
+    
+<custom_item>
+  type        : CMD_EXEC
+  description : "116"
+  info        : "Verifique se envio de redirects está desabilitado (net.ipv4.conf.all.send_redirects)"
+  solution    : "Configure sysctl net.ipv4.conf.all.send_redirects=0"
+  reference   : "HITSS Debian 12 - 3.3.6"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "118"
+      info        : "Verifique se broadcast ICMP requests são ignorados (net.ipv4.icmp_echo_ignore_broadcasts)"
+      solution    : "Configure sysctl net.ipv4.icmp_echo_ignore_broadcasts=1"
+      reference   : "HITSS Debian 12 - 3.3.8"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null | grep -q '^1$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+#119
+<custom_item>
+  type        : CMD_EXEC
+  description : "119"
+  info        : "Verifique se ICMP redirects não são aceitos (net.ipv4.conf.all.accept_redirects)"
+  solution    : "Configure sysctl net.ipv4.conf.all.accept_redirects=0"
+  reference   : "HITSS Debian 12 - 3.3.9"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+    
+#120
+<custom_item>
+  type        : CMD_EXEC
+  description : "120"
+  info        : "Verifique se secure ICMP redirects não são aceitos (net.ipv4.conf.all.secure_redirects)"
+  solution    : "Configure sysctl net.ipv4.conf.all.secure_redirects=0"
+  reference   : "HITSS Debian 12 - 3.3.10"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv4.conf.all.secure_redirects 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+    
+#121
+<custom_item>
+  type        : CMD_EXEC
+  description : "121"
+  info        : "Verifique se reverse path filtering está habilitado (net.ipv4.conf.all.rp_filter)"
+  solution    : "Configure sysctl net.ipv4.conf.all.rp_filter=1 ou 2"
+  reference   : "HITSS Debian 12 - 3.3.11"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null | grep -Eq '^[12]$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "122"
+      info        : "Verifique se source routed packets não são aceitos (net.ipv4.conf.all.accept_source_route)"
+      solution    : "Configure sysctl net.ipv4.conf.all.accept_source_route=0"
+      reference   : "HITSS Debian 12 - 3.3.12"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+#123
+<custom_item>
+  type        : CMD_EXEC
+  description : "123"
+  info        : "Verifique se pacotes suspeitos são logados (net.ipv4.conf.all.log_martians)"
+  solution    : "Configure sysctl net.ipv4.conf.all.log_martians=1"
+  reference   : "HITSS Debian 12 - 3.3.13"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv4.conf.all.log_martians 2>/dev/null | grep -q '^1$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "124"
+      info        : "Verifique se TCP SYN cookies estão habilitados (net.ipv4.tcp_syncookies)"
+      solution    : "Configure sysctl net.ipv4.tcp_syncookies=1"
+      reference   : "HITSS Debian 12 - 3.3.14"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "sysctl -n net.ipv4.tcp_syncookies 2>/dev/null | grep -q '^1$' && echo \"PASS\" || echo \"FAIL\" "
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#125
+<custom_item>
+  type        : CMD_EXEC
+  description : "125"
+  info        : "Verifique se IPv6 Router Advertisements não são aceitos (net.ipv6.conf.all.accept_ra)"
+  solution    : "Defina net.ipv6.conf.all.accept_ra=0 em /etc/sysctl.d/*.conf; se IPv6 não for requerido, desabilite-o"
+  reference   : "HITSS Debian 12 - 3.x"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( sysctl -n net.ipv6.conf.all.accept_ra 2>/dev/null | grep -q '^0$' && echo \"PASS\" || echo \"FAIL\" )"
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+############### 126 - 154 não aplicável
+
+############### 155 - 175
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "155"
+  info        : "Verifique permissões de /etc/ssh/sshd_config e arquivos .conf" 
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "(stat -c \"%a %U %G\" /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^60[04]\\s+root\\s+root$') && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "156"
+  info        : "Verifique permissões das chaves privadas SSH"
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "(find /etc/ssh -type f -name \"ssh_host_*_key\" ! -perm 600 | grep -q .) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "157"
+  info        : "Verifique permissões das chaves públicas SSH"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "(find /etc/ssh -type f -name \"ssh_host_*_key.pub\" ! -perm 644 | grep -q .) && echo \"FAIL\" || echo \"PASS\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "158"
+  info        : "Verifique se o acesso ao sshd está configurado (AllowUsers/Groups, DenyUsers/Groups)"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*(AllowUsers|AllowGroups|DenyUsers|DenyGroups)[[:space:]]+' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "159"
+  info        : "Verifique se o Banner do SSH está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^Banner[[:space:]]+/.+' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+
+# SSH - Parâmetros do sshd_config (160-175)
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "160"
+  info        : "Verifique se os Ciphers estão configurados"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*Ciphers[[:space:]]+.+$' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "161"
+  info        : "Verifique se ClientAliveInterval e ClientAliveCountMax estão configurados"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( grep -Eq '^[[:space:]]*ClientAliveInterval[[:space:]]+[0-9]+' /etc/ssh/sshd_config && grep -Eq '^[[:space:]]*ClientAliveCountMax[[:space:]]+[0-9]+' /etc/ssh/sshd_config ) && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "162"
+  info        : "Verifique se DisableForwarding está ativado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*DisableForwarding[[:space:]]+yes' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "163"
+  info        : "Verifique se GSSAPIAuthentication está desabilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*GSSAPIAuthentication[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "164"
+  info        : "Verifique se HostbasedAuthentication está desabilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*HostbasedAuthentication[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "165"
+  info        : "Verifique se IgnoreRhosts está habilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*IgnoreRhosts[[:space:]]+yes' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "166"
+  info        : "Verifique se os KexAlgorithms estão configurados"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*KexAlgorithms[[:space:]]+.+$' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "167"
+  info        : "Verifique se LoginGraceTime está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*LoginGraceTime[[:space:]]+[0-9]+' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "168"
+  info        : "Verifique se LogLevel está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*LogLevel[[:space:]]+(INFO|VERBOSE)' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "169"
+  info        : "Verifique se os MACs estão configurados"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*MACs[[:space:]]+.+$' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "170"
+  info        : "Verifique se MaxAuthTries está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*MaxAuthTries[[:space:]]+[0-9]+' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "171"
+  info        : "Verifique se MaxSessions está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*MaxSessions[[:space:]]+[0-9]+' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "172"
+  info        : "Verifique se MaxStartups está configurado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*MaxStartups[[:space:]]+.+$' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "173"
+  info        : "Verifique se PermitEmptyPasswords está desabilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*PermitEmptyPasswords[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "174"
+  info        : "Verifique se PermitRootLogin está desabilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*PermitRootLogin[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "175"
+  info        : "Verifique se PermitUserEnvironment está desabilitado"  
+  solution    : "SOLUTION"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "grep -Eq '^[[:space:]]*PermitUserEnvironment[[:space:]]+no' /etc/ssh/sshd_config && echo \"PASS\" || echo \"FAIL\""
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+######################## 176 - 208
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "176"
+  info        : "Verifique se UsePAM está habilitado no sshd (usepam yes). Se sshd não existir, considerar N/A como PASS."
+  solution    : "No /etc/ssh/sshd_config, garantir: UsePAM yes"
+  reference   : "HITSS (SSH) - UsePAM"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( ( ! command -v sshd >/dev/null 2>&1 ) && echo \"PASS\" ) || ( sshd -T 2>/dev/null | grep -iqE '^\\s*usepam\\s+yes\\s*$' && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "177"
+  info        : "Verifique se o sudo está instalado"
+  solution    : "Instalar pacote sudo"
+  reference   : "HITSS (Privilégios) - sudo"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( command -v sudo >/dev/null 2>&1 && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "178"
+  info        : "Verifique se o sudo está configurado para usar pty (Defaults ... use_pty)"
+  solution    : "Adicionar 'Defaults use_pty' em /etc/sudoers ou /etc/sudoers.d/*"
+  reference   : "HITSS (sudo) - use_pty"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( command -v sudo >/dev/null 2>&1 && egrep -iq '^[[:space:]]*Defaults[[:space:]]+.*\\buse_pty\\b' /etc/sudoers /etc/sudoers.d/* 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "179"
+  info        : "Verifique se existe log de comandos sudo (Defaults ... logfile=...)"
+  solution    : "Configurar 'Defaults logfile=/var/log/sudo.log' (ou caminho corporativo) em /etc/sudoers(/d)"
+  reference   : "HITSS (sudo) - logfile"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( command -v sudo >/dev/null 2>&1 && egrep -iq '^[[:space:]]*Defaults[[:space:]]+.*\\blogfile=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "180"
+  info        : "Verifique se sudo exige senha (FAIL se existir Defaults ... !authenticate)"
+  solution    : "Remover '!authenticate' de Defaults; exigir autenticação"
+  reference   : "HITSS (sudo) - authenticate"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -iq '^[[:space:]]*Defaults[[:space:]]+.*!authenticate' /etc/sudoers /etc/sudoers.d/* 2>/dev/null && echo \"FAIL\" ) || echo \"PASS\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "181"
+  info        : "Verifique se a re-autenticação do sudo não está desabilitada globalmente (FAIL se Defaults ... timestamp_timeout=-1)"
+  solution    : "Remover 'timestamp_timeout=-1' de Defaults; definir valor adequado (ex.: 5)"
+  reference   : "HITSS (sudo) - timestamp_timeout"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -iq '^[[:space:]]*Defaults[[:space:]]+.*timestamp_timeout=-?1\\b' /etc/sudoers /etc/sudoers.d/* 2>/dev/null && echo \"FAIL\" ) || echo \"PASS\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "182"
+  info        : "Verifique se o timeout de autenticação do sudo está configurado (Defaults ... timestamp_timeout=...)"
+  solution    : "Adicionar 'Defaults timestamp_timeout=<minutos>' em /etc/sudoers(/d)"
+  reference   : "HITSS (sudo) - timestamp_timeout"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -iq '^[[:space:]]*Defaults[[:space:]]+.*\\btimestamp_timeout=' /etc/sudoers /etc/sudoers.d/* 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "183"
+  info        : "Verifique se o acesso ao comando su está restrito (pam_wheel com group=sudo em /etc/pam.d/su)"
+  solution    : "Habilitar pam_wheel em /etc/pam.d/su com 'group=sudo' (ou grupo corporativo)"
+  reference   : "HITSS (PAM) - su restrito"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( grep -Eq '^[[:space:]]*auth[[:space:]]+required[[:space:]]+pam_wheel\\.so.*group=sudo' /etc/pam.d/su 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "186"
+  info        : "Verifique se libpam-pwquality está instalado"
+  solution    : "Instalar pacote libpam-pwquality"
+  reference   : "HITSS (PAM) - pwquality"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( dpkg-query -s libpam-pwquality 2>/dev/null | grep -Eq '^Status: install ok installed' && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "187"
+  info        : "Verifique se pam_unix está habilitado (presença de pam_unix.so nos stacks PAM)"
+  solution    : "Garantir linhas pam_unix.so nos arquivos PAM relevantes"
+  reference   : "HITSS (PAM) - pam_unix"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Rq 'pam_unix\\.so' /etc/pam.d 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "188"
+  info        : "Verifique se pam_faillock está habilitado (presença de pam_faillock.so)"
+  solution    : "Configurar pam_faillock em common-auth (preauth/authfail) e common-account"
+  reference   : "HITSS (PAM) - \"FAIL\" lock"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Rq 'pam_faillock\\.so' /etc/pam.d 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "189"
+  info        : "Verifique se pam_pwquality está habilitado (presença de pam_pwquality.so)"
+  solution    : "Configurar pam_pwquality em common-password"
+  reference   : "HITSS (PAM) - pwquality"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Rq 'pam_pwquality\\.so' /etc/pam.d 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "190"
+  info        : "Verifique se pam_pwhistory está habilitado (presença de pam_pwhistory.so)"
+  solution    : "Configurar pam_pwhistory em common-password"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Rq 'pam_pwhistory\\.so' /etc/pam.d 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "191"
+  info        : "Verifique se password \"FAIL\" ed attempts lockout está configurado (deny)"
+  solution    : "Configurar 'deny=<n>' em /etc/security/faillock.conf ou .d/*.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'deny\\s*=' /etc/security/faillock.conf /etc/security/faillock.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "192"
+  info        : "Verifique se unlock_time está configurado"
+  solution    : "Configurar 'unlock_time=<segundos>' em /etc/security/faillock.conf ou .d/*.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'unlock_time\\s*=' /etc/security/faillock.conf /etc/security/faillock.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "193"
+  info        : "Verifique se even_deny_root ou root_unlock_time está configurado"
+  solution    : "Configurar 'even_deny_root' e/ou 'root_unlock_time=<segundos>' em \"FAIL\" lock"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q '(^|\\b)even_deny_root(\\b|\\s)' /etc/security/faillock.conf /etc/security/faillock.conf.d/*.conf 2>/dev/null || egrep -q 'root_unlock_time\\s*=' /etc/security/faillock.conf /etc/security/faillock.conf.d/*.conf 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "194"
+  info        : "Verifique se difok está configurado"
+  solution    : "Configurar 'difok=<n>' em /etc/security/pwquality.conf ou .d/*.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'difok\\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "195"
+  info        : "Verifique se minlen está configurado"
+  solution    : "Configurar 'minlen=<n>' em /etc/security/pwquality.conf ou .d/*.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'minlen\\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "196"
+  info        : "Verifique se password complexity está configurada (ucredit/lcredit/dcredit/ocredit ou minclass)"
+  solution    : "Configurar créditos de classes (ucredit, lcredit, dcredit, ocredit) e/ou 'minclass=<n>' em pwquality"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Eiq '(^|[[:space:]])(ucredit|lcredit|dcredit|ocredit|minclass)[[:space:]]*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+#<custom_item>
+#  type        : CMD_EXEC
+#  description : "196"
+#  info        : "Verifique se password complexity está configurada e não é sobrescrita em /etc/pam.d/common-password"
+#  solution    : "Definir minclass e/ou [dulo]credit em /etc/security/pwquality.conf(.d); evitar overrides na linha pam_pwquality.so (usar apenas pwquality.conf/.d)"
+#  reference   : "BASELINE HITSS"
+#  see_also    : "CONSULTAR BASELINE HITSS"
+#  cmd         : "( egrep -Eiq '^[[:space:]]*(minclass|[dulo]credit)[[:space:]]*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && ( ! egrep -Eiq '^[[:space:]]*[dulo]credit[[:space:]]*=[[:space:]]*[+]?[1-9][0-9]*([[:space:]]|$)' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null ) && ( ! egrep -Eiq '^[[:space:]]*password[[:space:]]+(requisite|required|sufficient)[[:space:]]+pam_pwquality\\.so([[:space:]]+[^#[:space:]][^#]*)?[[:space:]]+(minclass=[0-9]+|[dulo]credit=-?[0-9]+)\\b' /etc/pam.d/common-password 2>/dev/null ) && echo \"PASS\" || echo \"FAIL\" "
+#  expect      : "(?i)^\\s*pass\\s*$"
+#</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "197"
+  info        : "Verifique se maxrepeat está configurado"
+  solution    : "Configurar 'maxrepeat=<n>' em pwquality"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'maxrepeat\\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "198"
+  info        : "Verifique se maxsequence está configurado"
+  solution    : "Configurar 'maxsequence=<n>' em pwquality"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'maxsequence\\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "199"
+  info        : "Verifique se dictcheck está configurado"
+  solution    : "Configurar 'dictcheck=1' (ou valor corporativo) em pwquality e garantir dicionário instalado"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'dictcheck\\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "200"
+  info        : "Verifique se enforce_for_root está habilitado (pwquality)"
+  solution    : "Adicionar 'enforce_for_root' em pwquality"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q '(^|[[:space:]])enforce_for_root(\\b|[[:space:]])' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "201"
+  info        : "Verifique se enforce_for_root está habilitado explicitamente para root (pwquality)"
+  solution    : "Adicionar 'enforce_for_root' em pwquality (global)"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q '(^|[[:space:]])enforce_for_root(\\b|[[:space:]])' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "202"
+  info        : "Verifique se remember está configurado (pwhistory)"
+  solution    : "Configurar 'remember=<n>' em /etc/security/pwhistory.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'remember\\s*=' /etc/security/pwhistory.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "203"
+  info        : "Verifique se enforce_for_root está habilitado (pwhistory)"
+  solution    : "Adicionar 'enforce_for_root' em /etc/security/pwhistory.conf"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q '(^|[[:space:]])enforce_for_root(\\b|[[:space:]])' /etc/security/pwhistory.conf 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "204"
+  info        : "Verifique se use_authtok está habilitado (pwhistory na pilha PAM)"
+  solution    : "Garantir 'use_authtok' na linha correspondente em /etc/pam.d/common-password"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'use_authtok' /etc/pam.d/common-password 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "205"
+  info        : "Verifique se pam_unix não usa nullok (FAIL se presente)"
+  solution    : "Remover 'nullok' de linhas com pam_unix.so em /etc/pam.d/common-password"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'pam_unix\\.so.*nullok' /etc/pam.d/common-password 2>/dev/null && echo \"FAIL\" ) || echo \"PASS\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "206"
+  info        : "Verifique se pam_unix não usa remember=n (FAIL se presente)"
+  solution    : "Remover 'remember=' de linhas com pam_unix.so (usar pwhistory para histórico)"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'pam_unix\\.so.*remember=' /etc/pam.d/common-password 2>/dev/null && echo \"FAIL\" ) || echo \"PASS\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "207"
+  info        : "Verifique se pam_unix usa hashing forte (sha512 ou yescrypt)"
+  solution    : "Em /etc/pam.d/common-password, garantir pam_unix.so com 'sha512' ou 'yescrypt'"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -Eq 'pam_unix\\.so.*(sha512|yescrypt)' /etc/pam.d/common-password 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "208"
+  info        : "Verifique se pam_unix inclui use_authtok"
+  solution    : "Adicionar 'use_authtok' à linha pam_unix.so em /etc/pam.d/common-password"
+  reference   : "BASELINE HITSS"
+  see_also    : "CONSULTAR BASELINE HITSS"
+  cmd         : "( egrep -q 'pam_unix\\.so.*use_authtok' /etc/pam.d/common-password 2>/dev/null && echo \"PASS\" ) || echo \"FAIL\" "
+  expect      : "(?i)^\\s*pass\\s*$"
+</custom_item>
+#209 v3
+    <custom_item>
+      type        : CMD_EXEC
+      description : "209"
+      info        : "Verifique se PASS_MAX_DAYS está configurado (≤ 365)"
+      solution    : "Defina PASS_MAX_DAYS <= 365 em /etc/login.defs e com chage"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Pi '^\\s*PASS_MAX_DAYS\\s+[0-9]+' /etc/login.defs | awk '{if ($2<=365 && $2>0) exit 0; else exit 1}') && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "210"
+      info        : "Verifique se PASS_MIN_DAYS está configurado (≥ 1)"
+      solution    : "Defina PASS_MIN_DAYS >= 1 em /etc/login.defs"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^\\s*PASS_MIN_DAYS\\s+[0-9]+' /etc/login.defs | awk '{exit !($2>=1)}') && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "211"
+      info        : "Verifique se PASS_WARN_AGE está configurado (≥ 7)"
+      solution    : "Defina PASS_WARN_AGE >= 7 em /etc/login.defs"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^\\s*PASS_WARN_AGE\\s+[0-9]+' /etc/login.defs | awk '{exit !($2>=7)}') && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "212"
+      info        : "Verifique se algoritmo de hashing forte está configurado (sha512/yescrypt)"
+      solution    : "Defina ENCRYPT_METHOD em /etc/login.defs ou pam_unix.so (sha512 ou yescrypt)"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi 'ENCRYPT_METHOD\\s+(SHA512|YESCRYPT)' /etc/login.defs /etc/pam.d/common-password 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "213"
+      info        : "Verifique se inatividade (INACTIVE) está configurada (≤ 45)"
+      solution    : "Defina INACTIVE <= 45 em useradd e com chage"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(useradd -D | grep -q 'INACTIVE=[0-9]\\+' && [ $(useradd -D | grep INACTIVE | cut -d= -f2) -le 45 ] && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "214"
+      info        : "Verifique se todas as senhas foram alteradas no passado"
+      solution    : "Use chage para revisar contas"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '$2 ~ /\\$/ && $3 < 1 {exit 1}' /etc/shadow && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "215"
+      info        : "Verifique se apenas root possui UID 0"
+      solution    : "Reconfigure contas indevidas com UID 0"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($3 == 0 && $1 != \"root\") {exit 1}' /etc/passwd && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "216"
+      info        : "Verifique se apenas root possui GID 0 (exceto sync,shutdown,halt,operator)"
+      solution    : "Corrija grupos indevidos com GID 0"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($4 == 0 && $1 !~ /^(root|sync|shutdown|halt|operator)$/) {exit 1}' /etc/passwd && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "217"
+      info        : "Verifique se apenas o grupo root possui GID 0"
+      solution    : "Corrija /etc/group para que só root tenha GID 0"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($3 == 0 && $1 != \"root\") {exit 1}' /etc/group && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "218"
+      info        : "Verifique se a conta root possui senha definida ou está bloqueada"
+      solution    : "Defina senha ou bloqueie conta root"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($1==\"root\" && $2 ~ /^[!*]/) {f=1} ($1==\"root\" && $2 ~ /^\\$/) {f=1} END{exit !(f)}' /etc/shadow && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "219"
+      info        : "Verifique a integridade do PATH do root"
+      solution    : "Remova entradas inseguras (., ::, ou dirs inexistentes)"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(echo $PATH | grep -Eq '(^:|::|:.$)' && echo \"FAIL\" || echo \"PASS\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#Testar
+    <custom_item>
+      type        : CMD_EXEC
+      description : "220"
+      info        : "Verifique se umask do root está configurada (027 ou 077)"
+      solution    : "Configure umask adequada no .bashrc/.profile"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Pi '^[[:space:]]*umask[[:space:]]+(027|077)\\b' /root/.bashrc /root/.bash_profile 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "221"
+      info        : "Verifique se contas de sistema não possuem shell de login"
+      solution    : "Ajuste /etc/passwd para nologin"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($3<1000 && $7 !~ /(nologin|false)$/ && $1!~ /^(root|sync|shutdown|halt)$/) {exit 1}' /etc/passwd && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#Testar
+    <custom_item>
+      type        : CMD_EXEC
+      description : "222"
+      info        : "Verifique se contas sem shell válido estão bloqueadas"
+      solution    : "Bloqueie contas sem shell válido"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(awk -F: '($7~/nologin$|false$/ && $1!=\"root\"){print $1}' /etc/passwd | while read -r user; do status=$(passwd -S \"$user\" 2>/dev/null | awk '{print $2}'); [ \"$status\" = \"L\" ] || exit 1; done && echo \"PASS\" ||     echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "223"
+      info        : "Verifique se /etc/shells não contém /nologin"
+      solution    : "Remova /nologin de /etc/shells"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(! grep -q '/nologin' /etc/shells && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "224"
+      info        : "Verifique se TMOUT <= 900 está configurado como readonly e exportado"
+      solution    : "Defina TMOUT=900 em /etc/profile.d/*.sh e exporte"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^\\s*TMOUT=([0-9]{1,3}|900)\\b' /etc/profile /etc/profile.d/*.sh 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "225"
+      info        : "Verifique se umask padrão está configurada (027)"
+      solution    : "Configure umask padrão em /etc/login.defs ou /etc/profile"
+      reference   : "HITSS Debian 12 - 5.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^\\s*UMASK\\s+027\\b' /etc/login.defs /etc/profile /etc/profile.d/*.sh 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "226"
+      info        : "Verifique se o serviço journald está ativo"
+      solution    : "Ative o journald se necessário"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(systemctl is-active --quiet systemd-journald.service && systemctl is-enabled systemd-journald.service 2>/dev/null | grep -q 'static' && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "227"
+      info        : "Verifique se o acesso aos arquivos do journald está configurado"
+      solution    : "Ajuste permissões conforme política (≤0640, root:systemd-journal)"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(stat -Lc '%a' /var/log/journal/*/*.journal 2>/dev/null | awk '{if ($1+0 > 640) exit 1} END{exit 0}' && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#228
+    <custom_item>
+      type        : CMD_EXEC
+      description : "228"
+      info        : "Verifique se a rotação de logs do journald está configurada"
+      solution    : "Configure SystemMaxUse, KeepFree, etc."
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*(SystemMaxUse|SystemKeepFree|RuntimeMaxUse|RuntimeKeepFree|MaxFileSec)=' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "229"
+      info        : "Verifique se apenas um sistema de logging está em uso"
+      solution    : "Mantenha apenas journald ou rsyslog"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "( (systemctl is-active --quiet rsyslog && ! systemctl is-active --quiet systemd-journald) || (! systemctl is-active --quiet rsyslog && systemctl is-active --quiet systemd-journald) ) && echo \"PASS\" || echo \"FAIL\""
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "230"
+      info        : "Verifique se o pacote systemd-journal-remote está instalado"
+      solution    : "Instale o pacote se necessário"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(dpkg-query -W -f='${Status}\n' systemd-journal-remote 2>/dev/null | grep -q 'install ok installed' && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "231"
+      info        : "Verifique se a autenticação do journal-upload está configurada"
+      solution    : "Configure URL/ServerKey/Certs"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*(URL|ServerKeyFile|ServerCertificateFile|TrustedCertificateFile)=' /etc/systemd/journal-upload.conf /etc/systemd/journal-upload.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "232"
+      info        : "Verifique se o serviço systemd-journal-upload está habilitado e ativo"
+      solution    : "Ative o serviço se necessário"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(systemctl is-enabled --quiet systemd-journal-upload.service 2>/dev/null && systemctl is-active --quiet systemd-journal-upload.service 2>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "233"
+      info        : "Verifique se o systemd-journal-remote não está em uso"
+      solution    : "Desabilite systemd-journal-remote"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(! systemctl is-enabled --quiet systemd-journal-remote.socket 2>/dev/null && ! systemctl is-enabled --quiet systemd-journal-remote.service 2>/dev/null && ! systemctl is-active --quiet systemd-journal-remote.socket 2>/dev/null && ! systemctl is-active --quiet systemd-journal-remote.service 2>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "234"
+      info        : "Verifique se ForwardToSyslog está desabilitado"
+      solution    : "Configure ForwardToSyslog=no"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*ForwardToSyslog=no\\b' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "235"
+      info        : "Verifique se Compress está configurado"
+      solution    : "Configure Compress=yes"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*Compress=yes\\b' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "236"
+      info        : "Verifique se Storage está configurado como persistente"
+      solution    : "Configure Storage=persistent"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*Storage=persistent\\b' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "237"
+      info        : "Verifique se o rsyslog está instalado"
+      solution    : "Instale rsyslog se necessário"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(dpkg-query -W -f='${Status}' rsyslog 2>/dev/null | grep -q '^install ok installed$' && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "238"
+      info        : "Verifique se o serviço rsyslog está habilitado e ativo"
+      solution    : "Ative o serviço rsyslog"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(( systemctl list-unit-files 2>/dev/null | grep -q '^rsyslog\\.service' ) && systemctl is-enabled --quiet rsyslog 2>/dev/null && systemctl is-active --quiet rsyslog 2>/dev/null && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+    
+    <custom_item>
+      type        : CMD_EXEC
+      description : "239"
+      info        : "Verifique se journald está configurado para enviar logs ao rsyslog"
+      solution    : "Configure ForwardToSyslog=yes"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*ForwardToSyslog=yes\\b' /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#Revisar
+    <custom_item>
+      type        : CMD_EXEC
+      description : "240"
+      info        : "Verifique se o modo de criação de arquivos rsyslog está configurado (0640)"
+      solution    : "Configure $FileCreateMode 0640"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(grep -Psi '^[[:space:]]*\\$FileCreateMode[[:space:]]+0(640|60[0-3]|[0-5][0-9]{2})\\b' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | grep -q . && echo \"PASS\" || echo \"FAIL\")"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+# 241 - 244 não aplicável
+    <custom_item>
+      type        : CMD_EXEC
+      description : "245"
+      info        : "Verifique se permissões de arquivos de log estão configuradas (≤0640)"
+      solution    : "Ajuste chmod/chown em /var/log"
+      reference   : "HITSS Debian 12 - 4.2.x"
+      see_also    : "CONSULTAR BASELINE HITSS"
+      cmd         : "(find /var/log -type f -exec stat -Lc '%a' {} \; 2>/dev/null | awk '{if(\$1>640) exit 1} END{exit 0}' && echo PASS ||    echo FAIL)"
+      expect      : "(?i)^\\s*pass\\s*$"
+    </custom_item>
+
+#################################################################
+#################################################################
+#################################################################
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Registro de execução do pacote de auditoria HITSS via Tenable"
+      info        : "INFO"
+      solution        : "SOLUTION"
+      reference       : "BASELINE HITSS"
+      see_also        : "CONSULTAR BASELINE HITSS"
+      cmd         : "echo \\\"$(date -Iseconds) - AUDIT - v1.1.1 - VIA TENABLE - host: $(hostname)\\\" >> /var/log/hitss-hardening.log && echo \"PASS\" "
+      expect      : "(?i)^[\\s]*\\**[\\s]*pass:?[\\s]*\\**$"
+    </custom_item>
+
+#################################################################
+#################################################################
+#################################################################
+
+
+</check_type>

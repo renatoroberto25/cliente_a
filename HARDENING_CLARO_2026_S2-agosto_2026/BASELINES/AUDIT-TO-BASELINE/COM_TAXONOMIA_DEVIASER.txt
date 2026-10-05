@@ -1,0 +1,48 @@
+TAXONOMIA DOS ARQUIVOS DE AUDITORIA
+
+Formato básico:
+
+COMPLIANCE_EQUIPE_PERFIL_VERSAO_DDMMAAAAHHMM.audit
+
+Exemplo:
+
+COMPLIANCE_CLARO-TI-JIRA_RHEL7-9_FULL_V1.3.5_120820261806.audit
+
+Regras:
+
+1. O nome sempre começa com COMPLIANCE.
+
+2. EQUIPE identifica quem utiliza o audit, por exemplo:
+   - CLARO-TI-JIRA
+   - CLARO-TI-PILOTO
+   - SENSORES
+   - LAB
+   - AUTENTICADO
+
+3. PERFIL identifica o sistema e o escopo, por exemplo:
+   - RHEL7-9_FULL
+   - RHEL_FULL
+   - DEB_FULL
+
+4. A versão no nome é a versão da baseline aplicada no scan.
+   Não usar a versão técnica ou interna do arquivo de audit. Que também existe para controle.
+
+5. O timestamp DDMMAAAAHHMM representa a data e a hora em que o scan
+   será executado com aquele arquivo. Ele permite criar a série histórica
+   e evita que o Tenable misture execuções diferentes.
+
+6. Se o horário planejado do scan não estiver disponível, usar a data e
+   a hora de modificação do arquivo mostradas pelo Linux.
+
+7. PRE ou POST pode ser mantido no perfil quando for necessário distinguir
+   arquivos ou evitar nomes iguais.
+
+8. Audits de Windows da Claro TI acompanhados no Jira usam a equipe
+   CLARO-TI-JIRA.
+
+Exemplos:
+
+COMPLIANCE_SENSORES_RHEL7-9_FULL_V1.3.5_270820261904.audit
+COMPLIANCE_SENSORES_DEB_FULL_V1.2.2_240820260943.audit
+COMPLIANCE_CLARO-TI-JIRA_RHEL7-9_FULL_V1.3.5_120820261806.audit
+COMPLIANCE_CLARO-TI-JIRA_WINDOWS-SERVER-2022_TENABLE-POWERSHELL-MINIMAL_V1.0.2_110820261145.audit < ver com hardening windows melhor escolha

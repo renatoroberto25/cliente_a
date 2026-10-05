@@ -1,0 +1,138 @@
+# roles/audit/rules/filesystem.yml
+filesystem_rules:
+  - id: 25
+    mount: "/tmp"
+    require: "dedicated"
+    descricao: "Partição dedicada para /tmp"
+    perfil: "Full"
+
+  - id: 26
+    mount: "/dev/shm"
+    require: "dedicated"
+    descricao: "Partição dedicada para /dev/shm"
+    perfil: "Full"
+
+  - id: 27
+    mount: "/var"
+    require: "dedicated"
+    descricao: "Partição dedicada para /var"
+    perfil: "Full"
+
+  - id: 28
+    mount: "/var/tmp"
+    require: "dedicated"
+    descricao: "Partição dedicada para /var/tmp"
+    perfil: "Full"
+
+  - id: 29
+    mount: "/var/log"
+    require: "dedicated"
+    descricao: "Partição dedicada para /var/log"
+    perfil: "Full"
+
+  - id: 30
+    mount: "/var/log/audit"
+    require: "dedicated"
+    descricao: "Partição dedicada para /var/log/audit"
+    perfil: "Full"
+
+  - id: 31
+    mount: "/home"
+    require: "dedicated"
+    descricao: "Partição dedicada para /home"
+    perfil: "Full"
+
+  - id: 32
+    mount: "/historico"
+    require: "dedicated"
+    descricao: "Partição dedicada para /historico"
+    perfil: "Full"
+
+  - id: 33
+    mount: "/crash"
+    require: "dedicated"
+    descricao: "Partição dedicada para /crash"
+    perfil: "Full"
+
+  - id: 34
+    mount: "/UNIX"
+    require: "dedicated"
+    descricao: "Partição dedicada para /UNIX"
+    perfil: "Full"
+
+  - id: 35
+    mount: "/media"
+    options: ["nodev", "nosuid", "noexec"]
+    descricao: "Montagem segura de partições e mídia removível"
+    perfil: "Full"
+
+  - id: 36
+    mount: "/var"
+    options: ["nodev", "nosuid"]
+    descricao: "Opções de montagem seguras em partições críticas"
+    perfil: "Full"
+
+  - id: 37
+    mount: "/tmp"
+    options: ["nodev", "nosuid", "noexec"]
+    descricao: "Opções de montagem seguras em /tmp"
+    perfil: "Full"
+
+  - id: 38
+    mount: "/dev/shm"
+    options: ["nodev", "nosuid", "noexec"]
+    descricao: "Opções de montagem seguras em /dev/shm"
+    perfil: "Full"
+
+  - id: 39
+    mount: "/var/tmp"
+    options: ["nodev", "nosuid", "noexec"]
+    descricao: "Opções de montagem seguras em /var/tmp"
+    perfil: "Full"
+
+  - id: 40
+    mount: "/var/log"
+    options: ["nodev", "nosuid"]
+    descricao: "Opções de montagem seguras em /var/log"
+    perfil: "Full"
+
+  - id: 41
+    mount: "/var/log/audit"
+    options: ["nodev", "nosuid"]
+    descricao: "Opções de montagem seguras em /var/log/audit"
+    perfil: "Full"
+
+  - id: 42
+    mount: "/home"
+    options: ["nodev"]
+    descricao: "Opções de montagem seguras em /home"
+    perfil: "Full"
+
+  - id: 43
+    mount: "/mnt"
+    options: ["nodev", "nosuid", "noexec"]
+    descricao: "Opções de montagem seguras em mídias removíveis"
+    perfil: "Full"
+
+  - id: 44
+    sticky_world_writable: true
+    descricao: "Sticky bit em diretórios world-writable"
+    perfil: "Light"
+
+  - id: 45
+    path: "/tmp"
+    sticky: true
+    descricao: "Sticky bit em /tmp"
+    perfil: "Light"
+
+  - id: 46
+    path: "/var/tmp"
+    sticky: true
+    descricao: "Sticky bit em /var/tmp"
+    perfil: "Light"
+
+  - id: 47
+    path: "/dev/shm"
+    sticky: true
+    descricao: "Sticky bit em /dev/shm"
+    perfil: "Light"

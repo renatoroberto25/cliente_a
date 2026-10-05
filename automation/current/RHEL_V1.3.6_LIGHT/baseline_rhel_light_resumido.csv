@@ -1,0 +1,123 @@
+﻿ID,Controle,Criticidade
+1,Bloqueio cramfs,Alta
+4,Bloqueio hfs,Alta
+5,Bloqueio hfsplus,Alta
+6,Bloqueio jffs2,Alta
+7,Bloqueio freevxfs,Alta
+10,Bloqueio DCCP,Alta
+12,Bloqueio RDS,Alta
+13,Bloqueio TIPC,Alta
+14,Core dumps restritos,Alta
+15,SUID dump off,Alta
+16,NX/XD ativo,Alta
+17,ASLR habilitado,Média
+18,ASLR completo,Média
+21,dmesg restrito,Alta
+22,Symlinks protegidos,Alta
+24,Hardlinks protegidos,Alta
+44,Sticky world-writable,Alta
+45,Sticky /tmp,Média
+46,Sticky /var/tmp,Média
+47,Sticky /dev/shm,Alta
+50,Permissões seguras no arquivo do bootloader,Média
+51,Single user mode com autenticação,Média
+56,Prelink removido,Alta
+57,xinetd removido,Média
+58,Time sync ativo,Alta
+59,Fontes NTP confiáveis,Média
+60,NTP desde o boot,Média
+73,Servidor NIS removido,Média
+74,Servidor Telnet removido,Alta
+75,MTA local only,Média
+79,Cliente NIS removido,Alta
+80,Cliente rsh removido,Média
+81,Cliente talk removido,Alta
+82,Cliente telnet removido,Alta
+85,Servidor TFTP removido,Média
+86,PolicyKit endurecido,Alta
+87,GPG check habilitado,Média
+89,Sincronização de tempo única,Alta
+90,Cron e at restritos,Alta
+92,Redirects desabilitados,Alta
+93,Source-route bloqueado,Média
+94,ICMP redirects desabilitados,Média
+96,Broadcast ICMP ignorado,Alta
+97,ICMP bogus responses ignorado,Média
+98,TCP syncookies habilitado,Alta
+100,ICMP timestamp request bloqueado,Alta
+101,ICMP timestamp reply bloqueado,Alta
+102,Wireless e bluetooth ausentes,Média
+109,Permissões do SSH,Alta
+111,SyslogFacility AUTHPRIV,Média
+113,MaxAuthTries restritivo,Alta
+114,IgnoreRhosts habilitado,Alta
+115,HostbasedAuthentication desabilitado,Média
+117,PermitEmptyPasswords desabilitado,Alta
+118,PermitUserEnvironment desabilitado,Média
+119,UsePAM habilitado,Alta
+120,ClientAlive configurado,Média
+121,LoginGraceTime restrito,Alta
+122,MaxStartups restrito,Média
+124,Banner legal,Média
+130,PAM complexidade,Alta
+131,pwquality configurado,Alta
+132,pam_faillock habilitado,Alta
+133,pam_tally2 inexistente,Alta
+134,pwhistory configurado,Alta
+135,Senha mínima,Alta
+136,Complexidade mínima,Alta
+137,Sem repetição/sequência,Média
+138,Dicionário ativo,Média
+139,Hash forte,Alta
+140,Histórico de senhas,Média
+142,Tempo desbloqueio,Alta
+143,PASS_MAX_DAYS,Alta
+144,PASS_MIN_DAYS,Média
+145,PASS_WARN_AGE,Média
+146,INACTIVE configurado,Alta
+147,Datas de senha consistentes,Média
+148,Apenas root com UID 0,Alta
+149,Apenas grupo root com GID 0,Alta
+150,Contas de sistema com shell inválido bloqueadas,Alta
+151,/etc/shells validado,Média
+152,PATH do root sem diretório inseguro,Alta
+153,Umask padrão restritiva,Alta
+154,Timeout de shell,Média
+155,Administração privilegiada via sudo restrita,Alta
+156,Sudo com pseudo tty,Alta
+157,Logging de sudo habilitado,Alta
+159,Timeout de autenticação sudo,Média
+162,Journald persistente,Alta
+163,Rsyslog habilitado,Média
+164,Rotação de logs configurada,Alta
+165,auditd habilitado,Alta
+166,auditd antes de serviços críticos,Alta
+167,max_log_file configurado,Alta
+169,Auditoria de data e hora,Alta
+170,Auditoria de contas e grupos,Alta
+171,Auditoria de rede,Média
+172,Auditoria de eventos SELinux,Média
+173,Auditoria de login,Alta
+174,Auditoria de permissões,Média
+175,Auditoria de EACCES e EPERM,Alta
+177,Auditoria de mount,Média
+178,Auditoria de unlink e rename,Média
+179,Auditoria de módulos kernel,Alta
+180,Auditoria de sudo e sudoers,Alta
+185,Permissões de /etc/passwd,Alta
+186,Permissões de /etc/passwd-,Média
+187,Permissões de /etc/shadow,Alta
+188,Permissões de /etc/shadow-,Média
+189,Permissões de /etc/gshadow-,Média
+190,Permissões de /etc/gshadow,Alta
+191,Permissões de /etc/group,Média
+192,Permissões de /etc/group-,Média
+194,Proteção de /etc/security/opasswd,Alta
+195,Arquivos órfãos inexistentes,Média
+196,Sticky bit em diretórios world writable,Alta
+197,Sem arquivos sem owner ou grupo,Média
+199,Usuários sem home inexistentes,Média
+200,Ownership correto dos homes,Alta
+201,Permissões de home restritivas,Alta
+202,Dotfiles sem permissão world writable,Média
+203,Sem arquivos .forward .netrc e .rhosts,Alta

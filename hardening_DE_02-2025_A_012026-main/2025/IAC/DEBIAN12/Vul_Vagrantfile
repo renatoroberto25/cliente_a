@@ -1,0 +1,97 @@
+Vagrant.configure("2") do |config|
+  data = Time.now.strftime("%Y%m%d")
+  name = "target-#{data}"
+
+  config.vm.box = "generic/debian12"
+  config.vm.hostname = name
+
+  config.vm.network "private_network", ip: "192.168.56.212"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name   = name
+    vb.memory = 2048
+    vb.cpus   = 2
+  end
+
+  config.ssh.insert_key = true
+
+  config.vm.provision "shell", privileged: true, inline: <<-SHELL
+    set -e
+
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get update -y
+    apt-get install -y apache2 curl vim git net-tools iproute2 lsof tcpdump
+
+    # Garante que tem um MPM ativo (Debian normalmente vem com mpm_event, mas garantimos)
+    a2dismod mpm_worker mpm_prefork >/dev/null 2>&1 || true
+    a2enmod mpm_event >/dev/null
+
+    # Habilita módulos que vamos usar
+    a2enmod remoteip >/dev/null
+
+    # Página pública
+    cat >/var/www/html/index.html <<'EOF'
+<html>
+  <head><title>Target OSCP Light</title></head>
+  <body>
+    <h1>OK</h1>
+    <p>Try: /admin</p>
+  </body>
+</html>
+EOF
+
+    # Conteúdo "restrito"
+    mkdir -p /var/www/html/admin
+    cat >/var/www/html/admin/index.html <<'EOF'
+<html>
+  <head><title>Admin</title></head>
+  <body>
+    <h1>ADMIN AREA</h1>
+    <p>If you see this from outside, header trust is broken.</p>
+  </body>
+</html>
+EOF
+
+    # RemoteIP: VULNERÁVEL PROPOSITALMENTE (confia em qualquer proxy)
+    cat >/etc/apache2/conf-available/remoteip.conf <<'EOF'
+RemoteIPHeader X-Forwarded-For
+RemoteIPTrustedProxy 0.0.0.0/0
+EOF
+    a2enconf remoteip >/dev/null
+
+    # VHost com regra insegura: /admin só para "127.0.0.1" (mas IP vem do XFF via remoteip)
+    cat >/etc/apache2/sites-available/000-default.conf <<'EOF'
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory /var/www/html>
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    <Location "/admin">
+        Require ip 127.0.0.1
+    </Location>
+</VirtualHost>
+EOF
+
+    # Valida config e sobe
+    apachectl -t
+    systemctl enable --now apache2
+    systemctl restart apache2
+
+    # Mostra IPs pra você bater o olho no final do provision
+    echo "=== IPs ==="
+    ip -4 a | sed -n 's/^[[:space:]]*inet[[:space:]]\\([^/]*\\)\\/.*$/\\1/p'
+
+    echo "=== Apache status ==="
+    systemctl --no-pager -l status apache2 | sed -n '1,12p'
+
+    echo "[OK] Target pronto. Teste: http://192.168.56.212/ e /admin"
+  SHELL
+end

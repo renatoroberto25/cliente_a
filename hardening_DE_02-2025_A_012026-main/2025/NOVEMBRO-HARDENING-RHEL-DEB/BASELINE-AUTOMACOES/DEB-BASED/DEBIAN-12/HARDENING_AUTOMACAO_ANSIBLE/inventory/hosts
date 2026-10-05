@@ -1,0 +1,16 @@
+#[servers]
+#servidor-1 ansible_host=IP ansible_python_interpreter=/usr/bin/python3.11
+#servidor-2 ansible_host=IP ansible_python_interpreter=/usr/bin/python3.11
+
+#[servers:vars]
+#ansible_user=USER_PRIVILEGIADO
+#ansible_ssh_private_key_file=~/.ssh/chave_host_vms
+#ansible_port=PORTA
+
+[servers]
+servidor-1 ansible_host=192.168.56.14 ansible_python_interpreter=/usr/bin/python3.11
+
+[servers:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=~/.ssh/id_lab
+ansible_port=22

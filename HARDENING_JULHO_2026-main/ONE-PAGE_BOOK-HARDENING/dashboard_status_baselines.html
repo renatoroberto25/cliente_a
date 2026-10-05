@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Status de baselines</title>
+  <style>
+    :root {
+      --bg:#f3f5f7;--card:#fff;--text:#17212b;--muted:#687582;
+      --line:#d9e0e6;--accent:#185f91;--ok:#27753c;--todo:#b34b1f;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{width:min(1320px,95vw);margin:28px auto 50px}
+    h1{margin:0;font-size:26px} h2{margin:0 0 13px;font-size:18px}
+    .subtitle{margin:4px 0 0;color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:22px 0}
+    .card,.panel{background:var(--card);border:1px solid var(--line);border-radius:8px}
+    .card{padding:16px} .card span{display:block;color:var(--muted);font-size:12px}
+    .card strong{display:block;margin-top:4px;font-size:23px;font-variant-numeric:tabular-nums}
+    .panel{padding:18px;margin-bottom:15px}
+    .overall{display:grid;grid-template-columns:180px 1fr;gap:26px;align-items:center}
+    .score{text-align:center} .score strong{display:block;color:var(--accent);font-size:40px;line-height:1}
+    .score span{display:block;margin-top:7px;color:var(--muted)}
+    .stack{display:flex;height:14px;overflow:hidden;border-radius:7px;background:#e2e7eb}
+    .stack span{display:block;height:100%}
+    .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;color:var(--muted);font-size:12px}
+    .legend span{white-space:nowrap} .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+    .table-wrap{overflow:auto} table{width:100%;border-collapse:collapse}
+    th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+    th{color:#43515d;background:#edf1f4;font-size:11px;text-transform:uppercase;letter-spacing:.025em}
+    tr:last-child td{border-bottom:0} .number{text-align:right;font-variant-numeric:tabular-nums}
+    .ok{color:var(--ok)} .todo{color:var(--todo)} .muted{color:var(--muted)}
+    .total-row td{background:#f4f7f9;border-top:2px solid #aeb9c2}
+    .coverage-cell{min-width:130px} .progress{height:7px;overflow:hidden;border-radius:5px;background:#e0e6ea}
+    .progress span{display:block;height:100%;border-radius:5px;background:var(--ok)}
+    .coverage-cell small{display:block;margin-top:3px;color:var(--muted);text-align:right}
+    .badge{display:inline-block;padding:2px 7px;border:1px solid;border-radius:10px;font-size:11px;font-weight:650}
+    details summary{cursor:pointer;color:var(--accent);font-weight:650}
+    details .table-wrap{margin-top:14px}
+    footer{margin-top:17px;color:var(--muted);font-size:12px;text-align:right}
+    @media(max-width:950px){.cards{grid-template-columns:repeat(2,1fr)}.overall{grid-template-columns:1fr}}
+    @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Status atual dos baselines</h1>
+    <p class="subtitle">Apanhado geral por sistema operacional · posição de 10/08/2026 às 11:07</p>
+  </header>
+
+  <section class="cards">
+    <div class="card"><span>Baselines criados</span><strong>20</strong></div>
+    <div class="card"><span>Progresso por perfil</span><strong>95,2%</strong></div>
+    <div class="card"><span>Ativos em uso cobertos</span><strong>4.525</strong></div>
+    <div class="card"><span>Cobertura dos ativos</span><strong>99,8%</strong></div>
+  </section>
+
+  <section class="panel overall">
+    <div class="score">
+      <strong>99,8%</strong>
+      <span>4.525 de 4.533 ativos em uso</span>
+    </div>
+    <div>
+      <h2>Distribuição dos 21 perfis aplicáveis</h2>
+      <div class="stack"><span title="Criado: 20" style="width:95.238%;background:#27753c"></span><span title="Não avaliado: 1" style="width:4.762%;background:#77838f"></span></div>
+      <div class="legend"><span><i style="background:#27753c"></i>Criado: <strong>20</strong></span><span><i style="background:#77838f"></i>Não avaliado: <strong>1</strong></span></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Progresso Linux e Windows</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Domínio</th><th>Perfis</th><th>Criados</th><th>Em andamento</th><th>Não criados</th><th>Não avaliados</th><th>Ativos em uso</th><th>Cobertura</th></tr></thead>
+      <tbody><tr><td><strong>Linux</strong></td><td class="number">14</td><td class="number ok">13</td><td class="number">0</td><td class="number todo">0</td><td class="number muted">1</td><td class="number">2.850</td><td class="coverage-cell"><div class="progress"><span style="width:99.72%"></span></div><small>99,7%</small></td></tr><tr><td><strong>Windows</strong></td><td class="number">7</td><td class="number ok">7</td><td class="number">0</td><td class="number todo">0</td><td class="number muted">0</td><td class="number">1.683</td><td class="coverage-cell"><div class="progress"><span style="width:100.00%"></span></div><small>100%</small></td></tr><tr class="total-row"><td><strong>Total</strong></td><td class="number"><strong>21</strong></td><td class="number ok"><strong>20</strong></td><td class="number">0</td><td class="number todo">0</td><td class="number muted">1</td><td class="number"><strong>4.533</strong></td><td class="coverage-cell"><div class="progress"><span style="width:99.82%"></span></div><small>99,8%</small></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel">
+    <h2>Baselines por equipe</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Equipe</th><th>Inventário</th><th>Em uso</th><th>Com agent</th><th>Escaneado</th><th>Não escaneado</th><th>Elegibilidade (baseline)</th></tr></thead>
+      <tbody><tr><td><strong>BCC</strong></td><td class="number">58</td><td class="number">58</td><td class="number">4</td><td class="number ok">4</td><td class="number todo">0</td><td class="coverage-cell"><div class="progress"><span style="width:100.00%"></span></div><small>100%</small></td></tr><tr><td><strong>CLARO-TI</strong></td><td class="number">6.771</td><td class="number">4.368</td><td class="number">99</td><td class="number ok">94</td><td class="number todo">5</td><td class="coverage-cell"><div class="progress"><span style="width:99.82%"></span></div><small>99,8%</small></td></tr><tr><td><strong>ENG-VIDEO</strong></td><td class="number">79</td><td class="number">79</td><td class="number">0</td><td class="number ok">0</td><td class="number todo">0</td><td class="coverage-cell"><div class="progress"><span style="width:100.00%"></span></div><small>100%</small></td></tr><tr><td><strong>STAR-ONE</strong></td><td class="number">28</td><td class="number">28</td><td class="number">1</td><td class="number ok">1</td><td class="number todo">0</td><td class="coverage-cell"><div class="progress"><span style="width:100.00%"></span></div><small>100%</small></td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary>Maior impacto pendente · por equipe e responsável</summary>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Equipe</th><th>Responsável</th><th>Perfis</th><th>Em uso</th><th>Com agent</th><th>Sem agent</th></tr></thead>
+        <tbody><tr><td><strong>CLARO-TI</strong></td><td>ROGERS BOTELHO MAISONNETTE</td><td class="number">21</td><td class="number">4.368</td><td class="number ok">99</td><td class="number todo">4.269</td></tr><tr><td><strong>ENG-VIDEO</strong></td><td>DENILSON ROMANIUC</td><td class="number">21</td><td class="number">79</td><td class="number ok">0</td><td class="number todo">79</td></tr><tr><td><strong>BCC</strong></td><td>NELSON ALEXANDRE M AVILA</td><td class="number">21</td><td class="number">58</td><td class="number ok">4</td><td class="number todo">54</td></tr><tr><td><strong>STAR-ONE</strong></td><td>RUI RICARDO ALVES FIGUEIROA</td><td class="number">21</td><td class="number">28</td><td class="number ok">1</td><td class="number todo">27</td></tr></tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <section class="panel">
+    <details>
+      <summary>PERFIS EOL (27)</summary>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Domínio</th><th>Família</th><th>Perfil</th><th>Inventário</th><th>Em uso</th><th>Produção</th><th>Tratamento</th></tr></thead>
+        <tbody><tr><td>Linux</td><td>RHEL</td><td><strong>RHEL 5</strong></td><td class="number">1.579</td><td class="number">996</td><td class="number">661</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>RHEL</td><td><strong>RHEL / versão não identificada</strong></td><td class="number">846</td><td class="number">731</td><td class="number">484</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Linux genérico</td><td><strong>Linux genérico / versão não identificada</strong></td><td class="number">2.179</td><td class="number">675</td><td class="number">515</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Oracle Linux</td><td><strong>Oracle Linux 4/5</strong></td><td class="number">229</td><td class="number">143</td><td class="number">41</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Enterprise Linux (indefinido)</td><td><strong>Enterprise Linux (indefinido) / versão não identificada</strong></td><td class="number">208</td><td class="number">127</td><td class="number">76</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>SUSE</td><td><strong>SUSE 11</strong></td><td class="number">216</td><td class="number">113</td><td class="number">119</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Ubuntu</td><td><strong>Ubuntu / versão não identificada</strong></td><td class="number">204</td><td class="number">82</td><td class="number">113</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>RHEL</td><td><strong>RHEL 4</strong></td><td class="number">76</td><td class="number">62</td><td class="number">23</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Oracle Linux</td><td><strong>Oracle Linux / versão não identificada</strong></td><td class="number">49</td><td class="number">44</td><td class="number">28</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>CentOS</td><td><strong>CentOS 4/5</strong></td><td class="number">80</td><td class="number">27</td><td class="number">8</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Amazon Linux</td><td><strong>Amazon Linux 2</strong></td><td class="number">18</td><td class="number">18</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Amazon Linux</td><td><strong>Amazon Linux / versão não identificada</strong></td><td class="number">11</td><td class="number">11</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Enterprise Linux (indefinido)</td><td><strong>Enterprise Linux (indefinido) 5</strong></td><td class="number">27</td><td class="number">11</td><td class="number">23</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Debian</td><td><strong>Debian 6</strong></td><td class="number">5</td><td class="number">2</td><td class="number">0</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>CentOS</td><td><strong>CentOS / versão não identificada</strong></td><td class="number">1</td><td class="number">1</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Debian</td><td><strong>Debian 5</strong></td><td class="number">2</td><td class="number">1</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Kali</td><td><strong>Kali / versão não identificada</strong></td><td class="number">3</td><td class="number">1</td><td class="number">0</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>Oracle Linux</td><td><strong>Oracle Linux 5</strong></td><td class="number">2</td><td class="number">1</td><td class="number">0</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>SUSE</td><td><strong>SUSE 10</strong></td><td class="number">2</td><td class="number">1</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Linux</td><td>CentOS</td><td><strong>CentOS 5</strong></td><td class="number">1</td><td class="number">0</td><td class="number">1</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Desktop</td><td><strong>Windows Desktop 10</strong></td><td class="number">881</td><td class="number">868</td><td class="number">129</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Server</td><td><strong>Windows Server 2008 R2</strong></td><td class="number">1.003</td><td class="number">679</td><td class="number">398</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows genérico</td><td><strong>Windows genérico / versão não identificada</strong></td><td class="number">1.426</td><td class="number">442</td><td class="number">178</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Server</td><td><strong>Windows Server 2003</strong></td><td class="number">537</td><td class="number">287</td><td class="number">243</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Server</td><td><strong>Windows Server 2008</strong></td><td class="number">97</td><td class="number">57</td><td class="number">26</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Server</td><td><strong>Windows Server / versão não identificada</strong></td><td class="number">25</td><td class="number">8</td><td class="number">4</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr><tr><td>Windows</td><td>Windows Desktop</td><td><strong>Windows Desktop 2000</strong></td><td class="number">8</td><td class="number">4</td><td class="number">4</td><td><span class="badge" style="color:#526579;border-color:#526579">EOL · Não aplicável</span></td></tr></tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <footer>
+    Fonte: status_baselines_todos_2026-08-10_preenchido.xlsx · 6.213 registros associados a produção
+  </footer>
+</main>
+</body>
+</html>

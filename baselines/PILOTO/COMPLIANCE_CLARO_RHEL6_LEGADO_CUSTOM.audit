@@ -1,0 +1,2018 @@
+<check_type:"Unix">
+
+# Gerado de 03_Hardening_2026_RHEL_LEGADO.xlsx.
+# Escopo: Red Hat Enterprise Linux 6.x e Oracle Linux 6.x.
+# IDs ausentes na origem permanecem ausentes; não houve renumeração.
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-001 | Bloqueio cramfs | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo cramfs está bloqueado. Bloquear módulo cramfs persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo cramfs persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 1 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo cramfs >/dev/null 2>&1 ) || ( modprobe -n -v cramfs 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'cramfs' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-002 | Bloqueio squashfs | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo squashfs está bloqueado. Bloquear módulo squashfs persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo squashfs persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 2 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo squashfs >/dev/null 2>&1 ) || ( modprobe -n -v squashfs 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'squashfs' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-003 | Bloqueio udf | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar se módulo udf está bloqueado. Bloquear módulo udf persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo udf persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 3 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo udf >/dev/null 2>&1 ) || ( modprobe -n -v udf 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'udf' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-004 | Bloqueio hfs | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo hfs está bloqueado. Bloquear módulo hfs persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo hfs persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 4 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo hfs >/dev/null 2>&1 ) || ( modprobe -n -v hfs 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'hfs' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-005 | Bloqueio hfsplus | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo hfsplus está bloqueado. Bloquear módulo hfsplus persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo hfsplus persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 5 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo hfsplus >/dev/null 2>&1 ) || ( modprobe -n -v hfsplus 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'hfsplus' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-006 | Bloqueio jffs2 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo jffs2 está bloqueado. Bloquear módulo jffs2 persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo jffs2 persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 6 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo jffs2 >/dev/null 2>&1 ) || ( modprobe -n -v jffs2 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'jffs2' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-007 | Bloqueio freevxfs | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se módulo freevxfs está bloqueado. Bloquear módulo freevxfs persistentemente via modprobe.d e remover se carregado."
+  solution    : "Bloquear módulo freevxfs persistentemente via modprobe.d e remover se carregado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 7 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo freevxfs >/dev/null 2>&1 ) || ( modprobe -n -v freevxfs 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'freevxfs' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-008 | overlayfs ausente ou bloqueado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar se overlayfs não está carregado e está bloqueado quando existir. Bloquear overlayfs quando presente em kernels UEK ou customizados."
+  solution    : "Bloquear overlayfs quando presente em kernels UEK ou customizados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 8 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo overlay >/dev/null 2>&1 ) || ( modprobe -n -v overlay 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'overlay' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-009 | Bloqueio usb_storage | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se usb_storage está bloqueado. Bloquear módulo usb_storage persistentemente quando uso de mídia removível não for autorizado."
+  solution    : "Bloquear módulo usb_storage persistentemente quando uso de mídia removível não for autorizado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 9 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo usb_storage >/dev/null 2>&1 ) || ( modprobe -n -v usb_storage 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'usb_storage' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-010 | Desabilitar DCCP | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se dccp não está carregado e está bloqueado. Desabilitar módulo dccp quando não requerido."
+  solution    : "Desabilitar módulo dccp quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 10 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo dccp >/dev/null 2>&1 ) || ( modprobe -n -v dccp 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'dccp' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-011 | Desabilitar SCTP | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se sctp não está carregado e está bloqueado. Desabilitar módulo sctp quando não requerido."
+  solution    : "Desabilitar módulo sctp quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 11 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo sctp >/dev/null 2>&1 ) || ( modprobe -n -v sctp 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'sctp' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-012 | Desabilitar RDS | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se rds não está carregado e está bloqueado. Desabilitar módulo rds quando não requerido."
+  solution    : "Desabilitar módulo rds quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 12 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo rds >/dev/null 2>&1 ) || ( modprobe -n -v rds 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'rds' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-013 | Desabilitar TIPC | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se tipc não está carregado e está bloqueado. Desabilitar módulo tipc quando não requerido."
+  solution    : "Desabilitar módulo tipc quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 13 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( ! modinfo tipc >/dev/null 2>&1 ) || ( modprobe -n -v tipc 2>/dev/null | grep -Eq '^[[:space:]]*install[[:space:]]+/bin/(true|false)([[:space:]]|$)' && ! lsmod | awk '{print $1}' | grep -qx 'tipc' ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-014 | SUID dump desabilitado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar valor runtime e persistente de fs.suid_dumpable. Configurar fs.suid_dumpable=0 persistentemente."
+  solution    : "Configurar fs.suid_dumpable=0 persistentemente."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 14 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = \"0\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-015 | ASLR habilitado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar valor runtime e persistente de randomize_va_space. Configurar kernel.randomize_va_space=2 persistentemente."
+  solution    : "Configurar kernel.randomize_va_space=2 persistentemente."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 15 | Kernel | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n kernel.randomize_va_space 2>/dev/null)\" = \"2\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-016 | Core dumps restritos | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar limite de core e fs.suid_dumpable. Restringir geração de core dump por limites de shell e sysctl."
+  solution    : "Restringir geração de core dump por limites de shell e sysctl."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 16 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(ulimit -c)\" = 0 ] && [ \"$(sysctl -n fs.suid_dumpable 2>/dev/null)\" = 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-017 | NX XD ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar flag nx na CPU ou evidência de NX ativo. Garantir suporte e ativação de NX ou XD no processador e kernel."
+  solution    : "Garantir suporte e ativação de NX ou XD no processador e kernel."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 17 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '(^|[[:space:]])nx([[:space:]]|$)' /proc/cpuinfo || dmesg 2>/dev/null | grep -Eiq 'NX.*(active|enabled|protection)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-018 | perf_event restrito se suportado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar existência e valor restritivo de perf_event_paranoid. Restringir perf_event quando o kernel expuser kernel.perf_event_paranoid."
+  solution    : "Restringir perf_event quando o kernel expuser kernel.perf_event_paranoid."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 18 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ ! -e /proc/sys/kernel/perf_event_paranoid ] || [ \"$(cat /proc/sys/kernel/perf_event_paranoid)\" -ge 2 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-019 | dmesg restrito se suportado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar existência e valor de dmesg_restrict. Restringir acesso não privilegiado ao dmesg quando o kernel suportar kernel.dmesg_restrict."
+  solution    : "Restringir acesso não privilegiado ao dmesg quando o kernel suportar kernel.dmesg_restrict."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 19 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ ! -e /proc/sys/kernel/dmesg_restrict ] || [ \"$(cat /proc/sys/kernel/dmesg_restrict)\" = 1 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-020 | Symlinks protegidos se suportado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar existência e valor de protected_symlinks. Ativar fs.protected_symlinks quando suportado pelo kernel."
+  solution    : "Ativar fs.protected_symlinks quando suportado pelo kernel."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 20 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ ! -e /proc/sys/fs/protected_symlinks ] || [ \"$(cat /proc/sys/fs/protected_symlinks)\" = 1 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-021 | Hardlinks protegidos se suportado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar existência e valor de protected_hardlinks. Ativar fs.protected_hardlinks quando suportado pelo kernel."
+  solution    : "Ativar fs.protected_hardlinks quando suportado pelo kernel."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 21 | Kernel | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ ! -e /proc/sys/fs/protected_hardlinks ] || [ \"$(cat /proc/sys/fs/protected_hardlinks)\" = 1 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-022 | Partição dedicada para /tmp | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /tmp. Usar ponto de montagem dedicado para /tmp quando aplicável."
+  solution    : "Usar ponto de montagem dedicado para /tmp quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 22 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/tmp\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-023 | Partição dedicada para /dev/shm | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /dev/shm. Usar montagem dedicada para /dev/shm."
+  solution    : "Usar montagem dedicada para /dev/shm."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 23 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/dev/shm\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-024 | Partição dedicada para /var | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /var. Usar ponto de montagem dedicado para /var em servidores críticos."
+  solution    : "Usar ponto de montagem dedicado para /var em servidores críticos."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 24 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/var\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-025 | Partição dedicada para /var/tmp | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /var/tmp. Usar ponto de montagem dedicado para /var/tmp quando aplicável."
+  solution    : "Usar ponto de montagem dedicado para /var/tmp quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 25 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/var/tmp\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-026 | Partição dedicada para /var/log | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /var/log. Usar ponto de montagem dedicado para /var/log em servidores críticos."
+  solution    : "Usar ponto de montagem dedicado para /var/log em servidores críticos."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 26 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/var/log\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-027 | Partição dedicada para /var/log/audit | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /var/log/audit. Usar ponto de montagem dedicado para /var/log/audit em servidores auditáveis."
+  solution    : "Usar ponto de montagem dedicado para /var/log/audit em servidores auditáveis."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 27 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/var/log/audit\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-028 | Partição dedicada para /home | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar montagem independente para /home. Usar ponto de montagem dedicado para /home quando houver usuários locais."
+  solution    : "Usar ponto de montagem dedicado para /home quando houver usuários locais."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 28 | Filesystem | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$2==\"/home\"{found=1} END{exit !found}' /proc/mounts ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-029 | Opções seguras em /tmp | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar nodev nosuid noexec em /tmp. Aplicar nodev nosuid noexec em /tmp quando não houver incompatibilidade operacional."
+  solution    : "Aplicar nodev nosuid noexec em /tmp quando não houver incompatibilidade operacional."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 29 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/tmp\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' && echo \"$opts\" | grep -Eq '(^|,)nosuid(,|$)' && echo \"$opts\" | grep -Eq '(^|,)noexec(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-030 | Opções seguras em /dev/shm | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar nodev nosuid noexec em /dev/shm. Aplicar nodev nosuid noexec em /dev/shm."
+  solution    : "Aplicar nodev nosuid noexec em /dev/shm."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 30 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/dev/shm\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' && echo \"$opts\" | grep -Eq '(^|,)nosuid(,|$)' && echo \"$opts\" | grep -Eq '(^|,)noexec(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-031 | Opções seguras em /var/tmp | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar nodev nosuid noexec em /var/tmp. Aplicar nodev nosuid noexec em /var/tmp quando não houver incompatibilidade operacional."
+  solution    : "Aplicar nodev nosuid noexec em /var/tmp quando não houver incompatibilidade operacional."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 31 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/var/tmp\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' && echo \"$opts\" | grep -Eq '(^|,)nosuid(,|$)' && echo \"$opts\" | grep -Eq '(^|,)noexec(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-032 | Opções seguras em /var/log | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar nodev nosuid em /var/log. Aplicar nodev nosuid em /var/log quando for ponto de montagem dedicado."
+  solution    : "Aplicar nodev nosuid em /var/log quando for ponto de montagem dedicado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 32 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/var/log\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' && echo \"$opts\" | grep -Eq '(^|,)nosuid(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-033 | Opções seguras em /var/log/audit | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar nodev nosuid em /var/log/audit. Aplicar nodev nosuid em /var/log/audit quando for ponto de montagem dedicado."
+  solution    : "Aplicar nodev nosuid em /var/log/audit quando for ponto de montagem dedicado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 33 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/var/log/audit\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' && echo \"$opts\" | grep -Eq '(^|,)nosuid(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-034 | Opções seguras em /home | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar nodev em /home. Aplicar nodev em /home quando for ponto de montagem dedicado."
+  solution    : "Aplicar nodev em /home quando for ponto de montagem dedicado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 34 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "opts=$(awk '$2==\"/home\"{print $4; exit}' /proc/mounts); ( [ -n \"$opts\" ] && echo \"$opts\" | grep -Eq '(^|,)nodev(,|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-035 | Sticky world-writable | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar diretórios world-writable sem sticky bit. Garantir sticky bit em diretórios world-writable locais."
+  solution    : "Garantir sticky bit em diretórios world-writable locais."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 35 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! find / -xdev -type d -perm -0002 ! -perm -1000 -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-036 | Sticky /tmp | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar permissão de /tmp. Garantir sticky bit em /tmp."
+  solution    : "Garantir sticky bit em /tmp."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 36 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -d /tmp ] && [ \"$(stat -c %a /tmp)\" = 1777 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-037 | Sticky /var/tmp | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar permissão de /var/tmp. Garantir sticky bit em /var/tmp."
+  solution    : "Garantir sticky bit em /var/tmp."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 37 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -d /var/tmp ] && [ \"$(stat -c %a /var/tmp)\" = 1777 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-038 | Sticky /dev/shm | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar permissão de /dev/shm. Garantir sticky bit em /dev/shm."
+  solution    : "Garantir sticky bit em /dev/shm."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 38 | Filesystem | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -d /dev/shm ] && [ \"$(stat -c %a /dev/shm)\" = 1777 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-039 | Autofs desabilitado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar status e chkconfig do autofs. Desabilitar autofs em servidores que não usam montagem automática."
+  solution    : "Desabilitar autofs em servidores que não usam montagem automática."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 39 | Boot | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service autofs status >/dev/null 2>&1 && ! chkconfig --list autofs 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-040 | Senha GRUB Legacy | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar password em /boot/grub/grub.conf. Configurar senha no GRUB Legacy do RHEL6."
+  solution    : "Configurar senha no GRUB Legacy do RHEL6."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 40 | Boot | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*password[[:space:]]+--(md5|encrypted)[[:space:]]+' /boot/grub/grub.conf ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-041 | Permissões grub.conf | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /boot/grub/grub.conf. Configurar dono root e permissões restritas no grub.conf."
+  solution    : "Configurar dono root e permissões restritas no grub.conf."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 41 | Boot | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /boot/grub/grub.conf 2>/dev/null | grep -Eq '^(400|600) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-042 | Single user autenticado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar SINGLE=/sbin/sulogin em /etc/sysconfig/init. Exigir autenticação no single user mode via sulogin."
+  solution    : "Exigir autenticação no single user mode via sulogin."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 42 | Boot | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*SINGLE=/sbin/sulogin([[:space:]]|$)' /etc/sysconfig/init ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-043 | Prelink removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar se pacote prelink está ausente. Remover prelink quando presente."
+  solution    : "Remover prelink quando presente."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 43 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q prelink >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-044 | xinetd removido | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar pacote e serviço xinetd. Remover ou desabilitar xinetd quando não requerido."
+  solution    : "Remover ou desabilitar xinetd quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 44 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q xinetd >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-045 | ntpd ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar service ntpd status. Garantir ntpd ativo como mecanismo de sincronização no RHEL6."
+  solution    : "Garantir ntpd ativo como mecanismo de sincronização no RHEL6."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 45 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( service ntpd status >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-046 | Fontes NTP configuradas | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar server ou pool válido no ntp.conf. Configurar fontes confiáveis em /etc/ntp.conf."
+  solution    : "Configurar fontes confiáveis em /etc/ntp.conf."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 46 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*(server|pool)[[:space:]]+[^[:space:]#]+' /etc/ntp.conf ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-047 | ntpd no boot | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar chkconfig ntpd on. Habilitar ntpd no boot via chkconfig."
+  solution    : "Habilitar ntpd no boot via chkconfig."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 47 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( chkconfig --list ntpd 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-048 | Time sync único | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar ntpd ativo e ausência de serviço concorrente ativo. Evitar mecanismos concorrentes de sincronização de tempo."
+  solution    : "Evitar mecanismos concorrentes de sincronização de tempo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 48 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( service ntpd status >/dev/null 2>&1 && ! pgrep -x chronyd >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-049 | X11 removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacotes X11 instalados. Remover componentes X11 em servidores sem interface gráfica."
+  solution    : "Remover componentes X11 em servidores sem interface gráfica."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 49 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q xorg-x11-server-Xorg >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-050 | Avahi desabilitado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar serviço avahi-daemon. Desabilitar avahi quando não requerido."
+  solution    : "Desabilitar avahi quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 50 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service avahi-daemon status >/dev/null 2>&1 && ! chkconfig --list avahi-daemon 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-051 | CUPS desabilitado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar serviço cups. Desabilitar CUPS quando não requerido."
+  solution    : "Desabilitar CUPS quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 51 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service cups status >/dev/null 2>&1 && ! chkconfig --list cups 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-052 | DHCP server ausente | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote dhcp. Remover servidor DHCP quando não requerido."
+  solution    : "Remover servidor DHCP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 52 | Sistema | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q dhcp >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-053 | LDAP server ausente | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote openldap-servers. Remover servidor LDAP quando não requerido."
+  solution    : "Remover servidor LDAP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 53 | Sistema | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q openldap-servers >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-054 | DNS server ausente | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote bind. Remover servidor DNS quando não requerido."
+  solution    : "Remover servidor DNS quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 54 | Sistema | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q bind >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-055 | FTP server ausente | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote vsftpd. Remover servidor FTP quando não requerido."
+  solution    : "Remover servidor FTP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 55 | Sistema | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q vsftpd >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-056 | HTTP server ausente | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar pacote httpd. Remover servidor HTTP quando não requerido."
+  solution    : "Remover servidor HTTP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 56 | Sistema | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q httpd >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-057 | IMAP POP removidos | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacotes dovecot e cyrus-imapd. Remover serviços IMAP e POP3 quando não aplicáveis."
+  solution    : "Remover serviços IMAP e POP3 quando não aplicáveis."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 57 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q dovecot cyrus-imapd >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-058 | Samba removido | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar pacotes samba. Remover Samba quando não aplicável."
+  solution    : "Remover Samba quando não aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 58 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q samba >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-059 | Proxy removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacotes squid. Remover proxy HTTP quando não aplicável."
+  solution    : "Remover proxy HTTP quando não aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 59 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q squid >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-060 | SNMP desabilitado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar serviço snmpd. Desabilitar SNMP quando não requerido."
+  solution    : "Desabilitar SNMP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 60 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service snmpd status >/dev/null 2>&1 && ! chkconfig --list snmpd 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-061 | NIS removido | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar pacotes ypserv. Remover servidor NIS quando não aplicável."
+  solution    : "Remover servidor NIS quando não aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 61 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q ypserv >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-062 | Telnet server removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote telnet-server. Remover servidor Telnet."
+  solution    : "Remover servidor Telnet."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 62 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q telnet-server >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-063 | MTA local-only | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar bind em 127.0.0.1 ou ausência de escuta externa. Configurar MTA para escuta local quando aplicável."
+  solution    : "Configurar MTA para escuta local quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 63 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! netstat -lntp 2>/dev/null | awk '$4 ~ /:25$/ && $4 !~ /^(127\\.0\\.0\\.1|::1):25$/ {bad=1} END{exit !bad}' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-064 | NFS server desabilitado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar nfs e nfslock. Desabilitar NFS server quando não aplicável."
+  solution    : "Desabilitar NFS server quando não aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 64 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service nfs status >/dev/null 2>&1 && ! chkconfig --list nfs 2>/dev/null | grep -Eq '[2-5]:on' && ! service nfslock status >/dev/null 2>&1 && ! chkconfig --list nfslock 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-065 | rpcbind desabilitado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar serviço rpcbind ou portmap. Desabilitar rpcbind quando não requerido."
+  solution    : "Desabilitar rpcbind quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 65 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! service rpcbind status >/dev/null 2>&1 && ! chkconfig --list rpcbind 2>/dev/null | grep -Eq '[2-5]:on' && ! service portmap status >/dev/null 2>&1 && ! chkconfig --list portmap 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-066 | rsync daemon desabilitado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar rsync em modo daemon. Desabilitar rsync daemon quando não requerido."
+  solution    : "Desabilitar rsync daemon quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 66 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! pgrep -x rsync >/dev/null 2>&1 && ! grep -ERq '^[[:space:]]*disable[[:space:]]*=[[:space:]]*no' /etc/xinetd.d/rsync 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-067 | Cliente NIS removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote ypbind. Remover cliente NIS."
+  solution    : "Remover cliente NIS."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 67 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q ypbind >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-068 | Cliente rsh removido | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar pacote rsh. Remover cliente rsh."
+  solution    : "Remover cliente rsh."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 68 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q rsh >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-069 | Cliente talk removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote talk. Remover cliente talk."
+  solution    : "Remover cliente talk."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 69 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q talk >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-070 | Cliente telnet removido | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote telnet. Remover cliente telnet."
+  solution    : "Remover cliente telnet."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 70 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q telnet >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-071 | Cliente LDAP avaliado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar pacote openldap-clients. Remover cliente LDAP quando não requerido."
+  solution    : "Remover cliente LDAP quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 71 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q openldap-clients >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-072 | Serviços SysV mínimos | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar serviços ativos no chkconfig. Desabilitar serviços SysV não autorizados."
+  solution    : "Desabilitar serviços SysV não autorizados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 72 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! chkconfig --list 2>/dev/null | grep -E '^(avahi-daemon|cups|vsftpd|xinetd|tftp|ypserv|ypbind)[[:space:]].*[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-073 | TFTP removido | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar pacote tftp-server. Remover servidor TFTP."
+  solution    : "Remover servidor TFTP."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 73 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q tftp-server >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-074 | gpgcheck ativo | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar gpgcheck=1 em yum.conf e repos. Habilitar gpgcheck nos repositórios yum."
+  solution    : "Habilitar gpgcheck nos repositórios yum."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 74 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk -F= '/^[[:space:]]*gpgcheck[[:space:]]*=/{gsub(/[[:space:]]/,\"\",$2); if($2!=1) bad=1; seen=1} END{exit bad || !seen}' /etc/yum.conf /etc/yum.repos.d/*.repo 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-075 | Patches aplicados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar atualizações pendentes. Manter atualizações de segurança disponíveis aplicadas conforme suporte contratado."
+  solution    : "Manter atualizações de segurança disponíveis aplicadas conforme suporte contratado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 75 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( yum -q check-update --security >/dev/null 2>&1; rc=$?; [ $rc -eq 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-076 | Cron restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar cron.allow e cron.deny. Restringir cron a usuários autorizados."
+  solution    : "Restringir cron a usuários autorizados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 76 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -f /etc/cron.allow ] && [ ! -s /etc/cron.deny ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-077 | At restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar at.allow e at.deny. Restringir at a usuários autorizados."
+  solution    : "Restringir at a usuários autorizados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 77 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -f /etc/at.allow ] && [ ! -s /etc/at.deny ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-078 | IP forwarding desabilitado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar net.ipv4.ip_forward. Desabilitar roteamento IPv4 em hosts não roteadores."
+  solution    : "Desabilitar roteamento IPv4 em hosts não roteadores."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 78 | Rede | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.ip_forward 2>/dev/null)\" = \"0\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-079 | Redirects desabilitados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar sysctl de redirects. Desabilitar envio e aceitação de redirects IPv4."
+  solution    : "Desabilitar envio e aceitação de redirects IPv4."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 79 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.send_redirects 2>/dev/null)\" = \"0\" ] && [ \"$(sysctl -n net.ipv4.conf.default.send_redirects 2>/dev/null)\" = \"0\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-080 | Source route bloqueado | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar accept_source_route. Desabilitar source-routed packets."
+  solution    : "Desabilitar source-routed packets."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 80 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.accept_source_route 2>/dev/null)\" = \"0\" ] && [ \"$(sysctl -n net.ipv4.conf.default.accept_source_route 2>/dev/null)\" = \"0\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-081 | ICMP redirects off | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar parâmetros ICMP redirects. Desabilitar accept_redirects e secure_redirects."
+  solution    : "Desabilitar accept_redirects e secure_redirects."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 81 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.accept_redirects 2>/dev/null)\" = \"0\" ] && [ \"$(sysctl -n net.ipv4.conf.default.accept_redirects 2>/dev/null)\" = \"0\" ] && [ \"$(sysctl -n net.ipv4.conf.all.secure_redirects 2>/dev/null)\" = \"0\" ] && [ \"$(sysctl -n net.ipv4.conf.default.secure_redirects 2>/dev/null)\" = \"0\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-082 | RP filter ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar rp_filter. Habilitar reverse path filtering."
+  solution    : "Habilitar reverse path filtering."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 82 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.conf.all.rp_filter 2>/dev/null)\" = \"1\" ] && [ \"$(sysctl -n net.ipv4.conf.default.rp_filter 2>/dev/null)\" = \"1\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-083 | Ignore broadcast ICMP | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar icmp_echo_ignore_broadcasts. Habilitar ignore_broadcasts."
+  solution    : "Habilitar ignore_broadcasts."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 83 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts 2>/dev/null)\" = \"1\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-084 | Ignore bogus ICMP | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar icmp_ignore_bogus_error_responses. Habilitar ignore_bogus_error_responses."
+  solution    : "Habilitar ignore_bogus_error_responses."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 84 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses 2>/dev/null)\" = \"1\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-085 | Syncookies ativos | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar tcp_syncookies. Habilitar tcp_syncookies."
+  solution    : "Habilitar tcp_syncookies."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 85 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(sysctl -n net.ipv4.tcp_syncookies 2>/dev/null)\" = \"1\" ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-086 | IPv6 desabilitado ou controlado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar política IPv6 conforme baseline. Desabilitar IPv6 quando não utilizado ou aplicar endurecimento equivalente."
+  solution    : "Desabilitar IPv6 quando não utilizado ou aplicar endurecimento equivalente."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 86 | Rede | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(cat /proc/sys/net/ipv6/conf/all/disable_ipv6 2>/dev/null)\" = 1 ] || ( [ \"$(sysctl -n net.ipv6.conf.all.accept_redirects 2>/dev/null)\" = 0 ] && [ \"$(sysctl -n net.ipv6.conf.default.accept_redirects 2>/dev/null)\" = 0 ] ) ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-087 | Wireless desabilitado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar interfaces wireless e bluetooth ativas. Desabilitar interfaces wireless e bluetooth em servidores."
+  solution    : "Desabilitar interfaces wireless e bluetooth em servidores."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 87 | Rede | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! find /sys/class/net -maxdepth 2 -type d -name wireless -print -quit 2>/dev/null | grep -q . && ! hciconfig 2>/dev/null | grep -q '^hci' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-093 | Permissões SSH seguras | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de arquivos SSH. Ajustar permissões de sshd_config e diretório /etc/ssh."
+  solution    : "Ajustar permissões de sshd_config e diretório /etc/ssh."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 93 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/ssh/sshd_config 2>/dev/null | grep -Eq '^(600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-094 | Protocol 2 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar Protocol 2 no sshd_config. Garantir uso exclusivo do protocolo SSH 2."
+  solution    : "Garantir uso exclusivo do protocolo SSH 2."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 94 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*protocol[[:space:]]+2([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-095 | Controle Allow Deny | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar diretivas Allow/Deny no sshd_config. Configurar AllowUsers AllowGroups DenyUsers ou DenyGroups conforme política."
+  solution    : "Configurar AllowUsers AllowGroups DenyUsers ou DenyGroups conforme política."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 95 | SSH | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eiq '^[[:space:]]*(AllowUsers|AllowGroups|DenyUsers|DenyGroups)[[:space:]]+' /etc/ssh/sshd_config ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-096 | SyslogFacility AUTHPRIV | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar SyslogFacility. Configurar SyslogFacility AUTHPRIV."
+  solution    : "Configurar SyslogFacility AUTHPRIV."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 96 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*syslogfacility[[:space:]]+AUTHPRIV([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-097 | LogLevel INFO | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar LogLevel. Configurar LogLevel INFO ou mais detalhado."
+  solution    : "Configurar LogLevel INFO ou mais detalhado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 97 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*loglevel[[:space:]]+(INFO|VERBOSE)([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-098 | X11Forwarding desabilitado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar X11Forwarding no. Desabilitar X11Forwarding quando não requerido."
+  solution    : "Desabilitar X11Forwarding quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 98 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*x11forwarding[[:space:]]+no([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-099 | MaxAuthTries restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar MaxAuthTries. Configurar MaxAuthTries com valor restritivo."
+  solution    : "Configurar MaxAuthTries com valor restritivo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 99 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*maxauthtries[[:space:]]+[1-4]([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-100 | IgnoreRhosts ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar IgnoreRhosts. Configurar IgnoreRhosts yes."
+  solution    : "Configurar IgnoreRhosts yes."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 100 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*ignorerhosts[[:space:]]+yes([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-101 | HostbasedAuthentication off | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar HostbasedAuthentication no. Desabilitar HostbasedAuthentication."
+  solution    : "Desabilitar HostbasedAuthentication."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 101 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*hostbasedauthentication[[:space:]]+no([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-102 | PermitRootLogin restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar PermitRootLogin. Desabilitar login SSH direto do root ou restringir conforme política."
+  solution    : "Desabilitar login SSH direto do root ou restringir conforme política."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 102 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*permitrootlogin[[:space:]]+(no|without-password|forced-commands-only)([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-103 | PermitEmptyPasswords off | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar PermitEmptyPasswords no. Desabilitar senhas vazias via SSH."
+  solution    : "Desabilitar senhas vazias via SSH."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 103 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*permitemptypasswords[[:space:]]+no([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-104 | PermitUserEnvironment off | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar PermitUserEnvironment no. Desabilitar PermitUserEnvironment."
+  solution    : "Desabilitar PermitUserEnvironment."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 104 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*permituserenvironment[[:space:]]+no([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-105 | UsePAM ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar UsePAM. Garantir UsePAM yes."
+  solution    : "Garantir UsePAM yes."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 105 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*usepam[[:space:]]+yes([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-106 | ClientAlive configurado | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar parâmetros ClientAlive. Configurar ClientAliveInterval e ClientAliveCountMax."
+  solution    : "Configurar ClientAliveInterval e ClientAliveCountMax."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 106 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( v=$(sshd -T 2>/dev/null); echo \"$v\" | grep -Eq '^clientaliveinterval [1-9][0-9]*$' && echo \"$v\" | grep -Eq '^clientalivecountmax [0-3]$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-107 | LoginGraceTime restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar LoginGraceTime. Configurar LoginGraceTime restritivo."
+  solution    : "Configurar LoginGraceTime restritivo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 107 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*logingracetime[[:space:]]+([1-5]?[0-9]|60)([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-108 | MaxStartups restrito | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar MaxStartups. Configurar MaxStartups restritivo."
+  solution    : "Configurar MaxStartups restritivo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 108 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*maxstartups[[:space:]]+(10|[1-9]):[0-9]+:[0-9]+([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-109 | AllowTcpForwarding restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar AllowTcpForwarding. Restringir AllowTcpForwarding quando não requerido."
+  solution    : "Restringir AllowTcpForwarding quando não requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 109 | SSH | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ( sshd -T 2>/dev/null || sed -e 's/#.*//' /etc/ssh/sshd_config ) | grep -Eiq '^[[:space:]]*allowtcpforwarding[[:space:]]+no([[:space:]]|$)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-110 | Banner legal | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar diretiva Banner. Configurar Banner quando exigido."
+  solution    : "Configurar Banner quando exigido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 110 | SSH | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eiq '^[[:space:]]*Banner[[:space:]]+/[^[:space:]#]+' /etc/ssh/sshd_config ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-111 | Ciphers compatíveis RHEL6 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar Ciphers e ausência de algoritmos fracos. Evitar arcfour e CBC quando o OpenSSH 5.3 suportar lista mais segura."
+  solution    : "Evitar arcfour e CBC quando o OpenSSH 5.3 suportar lista mais segura."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 111 | SSH | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! grep -Eiq '^[[:space:]]*Ciphers[[:space:]].*(arcfour|3des|cbc)' /etc/ssh/sshd_config ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-112 | MACs compatíveis RHEL6 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar MACs e ausência de algoritmos fracos. Evitar MACs fracos conforme suporte do OpenSSH 5.3."
+  solution    : "Evitar MACs fracos conforme suporte do OpenSSH 5.3."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 112 | SSH | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! grep -Eiq '^[[:space:]]*MACs[[:space:]].*(hmac-md5|hmac-sha1-96|hmac-md5-96)' /etc/ssh/sshd_config ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-113 | Kex compatível RHEL6 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar KexAlgorithms quando aplicável. Configurar KexAlgorithms apenas quando suportado pelo sshd instalado."
+  solution    : "Configurar KexAlgorithms apenas quando suportado pelo sshd instalado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 113 | SSH | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! sshd -T 2>&1 | grep -qi 'Bad configuration option: KexAlgorithms' || ! grep -Eiq '^[[:space:]]*KexAlgorithms[[:space:]].*diffie-hellman-group1-sha1' /etc/ssh/sshd_config ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-114 | PAM complexidade | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pam_cracklib ou equivalente na stack PAM. Incluir módulo de complexidade compatível com RHEL6."
+  solution    : "Incluir módulo de complexidade compatível com RHEL6."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 114 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq 'pam_(cracklib|pwquality)\\.so' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-115 | pam_cracklib configurado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar minlen dcredit ucredit lcredit ocredit. Configurar pam_cracklib com parâmetros compatíveis."
+  solution    : "Configurar pam_cracklib com parâmetros compatíveis."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 115 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -E 'pam_cracklib\\.so' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null | grep -Eq 'minlen=1[4-9]|minlen=[2-9][0-9]' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-116 | pam_tally2 configurado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pam_tally2 nas stacks PAM. Configurar bloqueio por falhas usando pam_tally2."
+  solution    : "Configurar bloqueio por falhas usando pam_tally2."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 116 | Senhas e Contas | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq 'pam_tally2\\.so.*deny=[1-5]' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-117 | Histórico via pam_unix | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar remember e permissões de opasswd. Configurar remember no pam_unix e proteger opasswd."
+  solution    : "Configurar remember no pam_unix e proteger opasswd."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 117 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq 'pam_unix\\.so.*remember=([5-9]|[1-9][0-9]+)' /etc/pam.d/system-auth /etc/pam.d/password-auth 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-118 | Hash SHA512 | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar ENCRYPT_METHOD SHA512 e pam_unix sha512. Configurar hashing SHA512 para senhas locais."
+  solution    : "Configurar hashing SHA512 para senhas locais."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 118 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*ENCRYPT_METHOD[[:space:]]+SHA512' /etc/login.defs && grep -Eq 'pam_unix\\.so.*sha512' /etc/pam.d/system-auth 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-119 | PASS_MAX_DAYS | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar PASS_MAX_DAYS. Configurar expiração máxima de senha."
+  solution    : "Configurar expiração máxima de senha."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 119 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$1==\"PASS_MAX_DAYS\"{exit !($2>0 && $2<=90)} END{if(NR==0)exit 1}' /etc/login.defs ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-120 | PASS_MIN_DAYS | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar PASS_MIN_DAYS. Configurar idade mínima de senha."
+  solution    : "Configurar idade mínima de senha."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 120 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$1==\"PASS_MIN_DAYS\"{exit !($2>=1)}' /etc/login.defs ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-121 | PASS_WARN_AGE | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar PASS_WARN_AGE. Configurar aviso antes de expiração."
+  solution    : "Configurar aviso antes de expiração."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 121 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk '$1==\"PASS_WARN_AGE\"{exit !($2>=7)}' /etc/login.defs ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-122 | INACTIVE ajustado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar useradd -D INACTIVE. Configurar inatividade após expiração."
+  solution    : "Configurar inatividade após expiração."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 122 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( useradd -D 2>/dev/null | grep -Eq '^INACTIVE=-?[0-9]+' && ! useradd -D 2>/dev/null | grep -q '^INACTIVE=-1$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-123 | Datas de senha válidas | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar last password change no futuro. Identificar datas de senha inconsistentes."
+  solution    : "Identificar datas de senha inconsistentes."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 123 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk -F: -v now=$(date +%s) '$3!= && ($3*86400)>now{print $1}' /etc/shadow | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-124 | UID 0 exclusivo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar contas UID 0. Garantir somente root com UID 0."
+  solution    : "Garantir somente root com UID 0."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 124 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(awk -F: '$3==0{n++} END{print n+0}' /etc/passwd)\" = 1 ] && awk -F: '$3==0{exit !($1==\"root\")}' /etc/passwd ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-125 | GID 0 exclusivo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar grupos GID 0. Garantir somente grupo root com GID 0."
+  solution    : "Garantir somente grupo root com GID 0."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 125 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ \"$(awk -F: '$3==0{n++} END{print n+0}' /etc/group)\" = 1 ] && grep -q '^root:x:0:' /etc/group ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-126 | Contas sistema bloqueadas | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar shells de contas de sistema. Bloquear contas de sistema sem necessidade de login interativo."
+  solution    : "Bloquear contas de sistema sem necessidade de login interativo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 126 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk -F: '$3<500 && $1!~/^(root|sync|shutdown|halt)$/ && $7!~/(nologin|false)$/ {print}' /etc/passwd | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-127 | Shells válidos | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar conteúdo de /etc/shells. Manter /etc/shells consistente."
+  solution    : "Manter /etc/shells consistente."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 127 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -s /etc/shells ] && ! grep -Ev '^$|^/(bin|sbin|usr/bin)/(ba|c|k|z)?sh$|^/bin/(false|nologin)$|^/sbin/nologin$' /etc/shells | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-128 | PATH root seguro | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar PATH do root. Remover diretórios inseguros do PATH do root."
+  solution    : "Remover diretórios inseguros do PATH do root."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 128 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( p=$(su - root -c 'printf %s \"$PATH\"' 2>/dev/null); [ -n \"$p\" ] && ! echo \"$p\" | grep -Eq '(^|:)(\\.|[^:]*[[:space:]][^:]*|)(:|$)|::$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-129 | Umask restritiva | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar umask em perfis globais. Configurar umask padrão restritiva."
+  solution    : "Configurar umask padrão restritiva."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 129 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[[:space:]]*umask[[:space:]]+0?27([[:space:]]|$)' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-130 | Timeout shell | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar TMOUT em perfis globais. Configurar TMOUT quando aplicável."
+  solution    : "Configurar TMOUT quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 130 | Senhas e Contas | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[[:space:]]*(readonly[[:space:]]+)?TMOUT=([1-8]?[0-9]?[0-9]|900)([[:space:]]|$|;)' /etc/profile /etc/bashrc /etc/profile.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-131 | Sudo restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar sudoers e arquivos em sudoers.d. Restringir administração privilegiada via sudoers."
+  solution    : "Restringir administração privilegiada via sudoers."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 131 | Sudo | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( visudo -c >/dev/null 2>&1 && [ -f /etc/sudoers ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-132 | Sudo requiretty | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar Defaults requiretty. Configurar requiretty quando compatível com operação."
+  solution    : "Configurar requiretty quando compatível com operação."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 132 | Sudo | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[[:space:]]*Defaults([^#]*,)?requiretty([,[:space:]]|$)' /etc/sudoers /etc/sudoers.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-133 | Sudo logging | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar logfile ou syslog no sudoers. Habilitar logging de sudo."
+  solution    : "Habilitar logging de sudo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 133 | Sudo | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[[:space:]]*Defaults.*(logfile|syslog)=' /etc/sudoers /etc/sudoers.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-134 | Reautenticação não desabilitada | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar sudoers por exceções de autenticação. Garantir ausência de NOPASSWD indevido ou !authenticate."
+  solution    : "Garantir ausência de NOPASSWD indevido ou !authenticate."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 134 | Sudo | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! grep -ER '^[^#].*(NOPASSWD|!authenticate)' /etc/sudoers /etc/sudoers.d 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-135 | Sudo timeout | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar timestamp_timeout. Configurar timestamp_timeout restritivo."
+  solution    : "Configurar timestamp_timeout restritivo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 135 | Sudo | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[[:space:]]*Defaults.*timestamp_timeout=([0-9]|1[0-5])([,[:space:]]|$)' /etc/sudoers /etc/sudoers.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-136 | su restrito | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pam_wheel no su. Restringir uso de su a grupo autorizado."
+  solution    : "Restringir uso de su a grupo autorizado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 136 | Sudo | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*auth[[:space:]]+required[[:space:]]+pam_wheel\\.so.*use_uid' /etc/pam.d/su ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-137 | rsyslog ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote e serviço rsyslog. Garantir rsyslog instalado e ativo."
+  solution    : "Garantir rsyslog instalado e ativo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 137 | Logs | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q rsyslog >/dev/null 2>&1 && service rsyslog status >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-138 | Logs persistentes | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar destinos em /etc/rsyslog.conf. Garantir persistência de logs em disco via rsyslog."
+  solution    : "Garantir persistência de logs em disco via rsyslog."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 138 | Logs | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*[^#].*(/var/log/|@@?[^[:space:]]+)' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-139 | Rotação de logs | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar configuração de logrotate. Configurar logrotate para logs do sistema."
+  solution    : "Configurar logrotate para logs do sistema."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 139 | Logs | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q logrotate >/dev/null 2>&1 && [ -s /etc/logrotate.conf ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-140 | auditd instalado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote audit. Instalar auditd quando requerido."
+  solution    : "Instalar auditd quando requerido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 140 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q audit >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-141 | auditd ativo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar service auditd status. Garantir auditd ativo."
+  solution    : "Garantir auditd ativo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 141 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( service auditd status >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-142 | auditd no boot | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar chkconfig auditd on. Habilitar auditd no boot via chkconfig."
+  solution    : "Habilitar auditd no boot via chkconfig."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 142 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( chkconfig --list auditd 2>/dev/null | grep -Eq '[2-5]:on' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-143 | audit=1 no kernel | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar audit=1 no grub.conf. Habilitar auditoria desde boot quando exigido."
+  solution    : "Habilitar auditoria desde boot quando exigido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 143 | Auditoria | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '(^|[[:space:]])audit=1([[:space:]]|$)' /proc/cmdline && grep -Eq '^[[:space:]]*kernel.*audit=1' /boot/grub/grub.conf ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-144 | Tamanho máximo audit | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar max_log_file em auditd.conf. Configurar max_log_file."
+  solution    : "Configurar max_log_file."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 144 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk -F= '$1~/^[[:space:]]*max_log_file[[:space:]]*$/{gsub(/[[:space:]]/,\"\",$2); exit !($2>=8)}' /etc/audit/auditd.conf ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-145 | Logs audit preservados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar max_log_file_action. Evitar exclusão automática indevida de logs de auditoria."
+  solution    : "Evitar exclusão automática indevida de logs de auditoria."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 145 | Auditoria | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eiq '^[[:space:]]*max_log_file_action[[:space:]]*=[[:space:]]*(keep_logs|rotate)' /etc/audit/auditd.conf ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-146 | Auditoria data hora | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit de time-change. Auditar alterações de data e hora."
+  solution    : "Auditar alterações de data e hora."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 146 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(adjtimex|settimeofday|clock_settime|/etc/localtime)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-147 | Auditoria contas | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit de identity. Auditar alterações em passwd group shadow gshadow opasswd."
+  solution    : "Auditar alterações em passwd group shadow gshadow opasswd."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 147 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(/etc/passwd|/etc/group|/etc/shadow|/etc/gshadow|/etc/security/opasswd)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-148 | Auditoria rede | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar regras audit de system-locale e network. Auditar alterações de configuração de rede."
+  solution    : "Auditar alterações de configuração de rede."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 148 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(/etc/hosts|/etc/sysconfig/network|/etc/sysconfig/network-scripts)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-150 | Auditoria login | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit de logins. Auditar login logout faillog lastlog tallylog."
+  solution    : "Auditar login logout faillog lastlog tallylog."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 150 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(/var/log/faillog|/var/log/lastlog|/var/run/utmp|/var/log/wtmp|/var/log/btmp)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-151 | Auditoria acesso negado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit EACCES EPERM. Auditar tentativas de acesso negado."
+  solution    : "Auditar tentativas de acesso negado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 151 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(exit=-EACCES|exit=-EPERM)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-152 | Auditoria privilegiados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit para SUID SGID. Auditar execução de binários privilegiados."
+  solution    : "Auditar execução de binários privilegiados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 152 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- 'perm=x.*(auid>=500|auid!=4294967295)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-153 | Auditoria mount | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar regras audit de mount. Auditar mount e umount."
+  solution    : "Auditar mount e umount."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 153 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(-S[[:space:]]+mount|,mount)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-154 | Auditoria deleção | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar regras audit delete. Auditar deleção e renomeação de arquivos."
+  solution    : "Auditar deleção e renomeação de arquivos."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 154 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(unlink|unlinkat|rename|renameat)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-155 | Auditoria módulos kernel | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit de insmod rmmod modprobe. Auditar carga e descarga de módulos."
+  solution    : "Auditar carga e descarga de módulos."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 155 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(init_module|delete_module|/sbin/insmod|/sbin/rmmod|/sbin/modprobe)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-156 | Auditoria sudo | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar regras audit de sudoers. Auditar alterações em sudoers."
+  solution    : "Auditar alterações em sudoers."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 156 | Auditoria | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq -- '(/etc/sudoers|/etc/sudoers.d|/var/log/sudo)' /etc/audit/audit.rules /etc/audit/rules.d 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-157 | Audit imutável | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar -e 2 em regras audit. Tornar configuração audit imutável em produção quando aplicável."
+  solution    : "Tornar configuração audit imutável em produção quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 157 | Auditoria | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -Eq '^[[:space:]]*-e[[:space:]]+2[[:space:]]*$' /etc/audit/audit.rules ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-158 | AIDE instalado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar pacote aide. Instalar AIDE quando aplicável."
+  solution    : "Instalar AIDE quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 158 | Integridade | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q aide >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-159 | AIDE inicializado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar existência da base AIDE. Inicializar base AIDE."
+  solution    : "Inicializar base AIDE."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 159 | Integridade | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -s /var/lib/aide/aide.db.gz ] || [ -s /var/lib/aide/aide.db ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-160 | AIDE agendado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar cron de execução do AIDE. Agendar verificação periódica do AIDE."
+  solution    : "Agendar verificação periódica do AIDE."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 160 | Integridade | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( grep -ERq '^[^#].*aide.*--check' /etc/crontab /etc/cron.d /var/spool/cron 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-161 | Permissões passwd | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/passwd. Ajustar permissões de /etc/passwd."
+  solution    : "Ajustar permissões de /etc/passwd."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 161 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/passwd 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-162 | Permissões passwd- | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/passwd-. Ajustar permissões de /etc/passwd-."
+  solution    : "Ajustar permissões de /etc/passwd-."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 162 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/passwd- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-163 | Permissões shadow | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/shadow. Ajustar permissões de /etc/shadow."
+  solution    : "Ajustar permissões de /etc/shadow."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 163 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/shadow 2>/dev/null | grep -Eq '^(0|400|600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-164 | Permissões shadow- | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/shadow-. Ajustar permissões de /etc/shadow-."
+  solution    : "Ajustar permissões de /etc/shadow-."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 164 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/shadow- 2>/dev/null | grep -Eq '^(0|400|600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-165 | Permissões gshadow | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/gshadow. Ajustar permissões de /etc/gshadow."
+  solution    : "Ajustar permissões de /etc/gshadow."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 165 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/gshadow 2>/dev/null | grep -Eq '^(0|400|600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-166 | Permissões gshadow- | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/gshadow-. Ajustar permissões de /etc/gshadow-."
+  solution    : "Ajustar permissões de /etc/gshadow-."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 166 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/gshadow- 2>/dev/null | grep -Eq '^(0|400|600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-167 | Permissões group | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/group. Ajustar permissões de /etc/group."
+  solution    : "Ajustar permissões de /etc/group."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 167 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/group 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-168 | Permissões group- | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de /etc/group-. Ajustar permissões de /etc/group-."
+  solution    : "Ajustar permissões de /etc/group-."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 168 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/group- 2>/dev/null | grep -Eq '^(600|640|644) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-169 | Proteger opasswd | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner e modo de opasswd quando existir. Proteger /etc/security/opasswd."
+  solution    : "Proteger /etc/security/opasswd."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 169 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ ! -e /etc/security/opasswd ] || stat -c '%a %u %g' /etc/security/opasswd | grep -Eq '^(400|600) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-170 | Arquivos órfãos | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar arquivos sem usuário válido. Identificar arquivos sem owner válido."
+  solution    : "Identificar arquivos sem owner válido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 170 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! find / -xdev -nouser -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-171 | Arquivos sem grupo | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar arquivos sem grupo válido. Identificar arquivos sem grupo válido."
+  solution    : "Identificar arquivos sem grupo válido."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 171 | Permissões | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! find / -xdev -nogroup -print -quit 2>/dev/null | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-172 | SUID SGID revisados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Listar arquivos SUID SGID locais. Revisar binários SUID e SGID fora do baseline."
+  solution    : "Revisar binários SUID e SGID fora do baseline."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 172 | Permissões | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( a=$(mktemp /tmp/rhel6_suid.XXXXXX) && b=$(mktemp /tmp/rhel6_suid_rpm.XXXXXX) || exit 1; find / -xdev -type f \\( -perm -4000 -o -perm -2000 \\) -print 2>/dev/null | sort > \"$a\"; rpm -Va 2>/dev/null | awk '$1~/[SM5DLUGTP]/ && $2~/[ug]/ {print $NF}' | sort > \"$b\"; diff -q \"$a\" \"$b\" >/dev/null 2>&1; rc=$?; rm -f \"$a\" \"$b\"; [ $rc -eq 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-173 | Home ausente | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar usuários com home inexistente. Identificar usuários locais sem diretório home."
+  solution    : "Identificar usuários locais sem diretório home."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 173 | Home | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk -F: '$3>=500 && $1!=\"nfsnobody\" && $7!~/(nologin|false)$/ {print $1, $6}' /etc/passwd | while read u h; do [ -d \"$h\" ] || echo \"$u\"; done | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-174 | Ownership home | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar owner dos diretórios home. Garantir ownership correto dos diretórios home."
+  solution    : "Garantir ownership correto dos diretórios home."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 174 | Home | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk -F: '$3>=500 && $1!=\"nfsnobody\" && $7!~/(nologin|false)$/ {print $1, $6}' /etc/passwd | while read u h; do [ ! -d \"$h\" ] || [ \"$(stat -c %U \"$h\")\" = \"$u\" ] || exit 1; done ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-175 | Permissões home | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar permissões de home. Garantir permissões restritivas em diretórios home."
+  solution    : "Garantir permissões restritivas em diretórios home."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 175 | Home | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( awk -F: '$3>=500 && $1!=\"nfsnobody\" && $7!~/(nologin|false)$/ {print $6}' /etc/passwd | while read h; do [ ! -d \"$h\" ] || [ $((0$(stat -c %a \"$h\") & 0027)) -eq 0 ] || exit 1; done ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-176 | Dotfiles seguros | Criticidade: Baixa | RHEL6 LEGADO"
+  info        : "Verificar permissões de dotfiles. Remover escrita indevida em dotfiles."
+  solution    : "Remover escrita indevida em dotfiles."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 176 | Home | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk -F: '$3>=500 && $1!=\"nfsnobody\" && $7!~/(nologin|false)$/ {print $6}' /etc/passwd | while read h; do [ -d \"$h\" ] && find \"$h\" -maxdepth 1 -type f -name '.*' -perm /022 -print; done | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-177 | Arquivos trust legado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar arquivos de trust legado. Remover ou proteger .rhosts .netrc .forward."
+  solution    : "Remover ou proteger .rhosts .netrc .forward."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 177 | Home | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk -F: '$3>=500 && $1!=\"nfsnobody\" && $7!~/(nologin|false)$/ {print $6}' /etc/passwd | while read h; do for f in .forward .netrc .rhosts; do [ -e \"$h/$f\" ] && echo \"$h/$f\"; done; done | grep -q . ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-178 | Sistema EL6 identificado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar /etc/redhat-release e versão principal. Registrar distribuição e versão EL6 para governança de risco."
+  solution    : "Registrar distribuição e versão EL6 para governança de risco."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 178 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( . /etc/os-release 2>/dev/null || :; rel=$(cat /etc/redhat-release 2>/dev/null); echo \"$rel $VERSION_ID\" | grep -Eiq '(Red Hat Enterprise Linux|CentOS|Oracle Linux|Scientific Linux).*(release[[:space:]]+6|6\\.)|VERSION_ID=.?6' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-179 | Suporte contratado validado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar evidência de suporte ou exceção operacional. Validar existência de suporte estendido ou exceção formal para EL6."
+  solution    : "Validar existência de suporte estendido ou exceção formal para EL6."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 179 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( [ -s /etc/rhel6-support-contract.evidence ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-180 | Kernel suportado validado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar versão do kernel em execução. Identificar kernel antigo ou customizado fora do padrão aprovado."
+  solution    : "Identificar kernel antigo ou customizado fora do padrão aprovado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 180 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q --qf '%{VENDOR} %{VERSION}-%{RELEASE}\\n' kernel 2>/dev/null | grep -Eiq '(Red Hat|Oracle)' && [ -r /etc/redhat-release ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-181 | OpenSSL legado identificado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar versão do pacote openssl. Identificar versão OpenSSL e risco de protocolo legado."
+  solution    : "Identificar versão OpenSSL e risco de protocolo legado."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 181 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( rpm -q openssl 2>/dev/null | grep -Eq '^openssl-1\\.0\\.1e-' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-182 | TLS fraco por serviço | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar configuração TLS por serviço. Identificar SSLv2 SSLv3 TLS1.0 TLS1.1 em serviços expostos quando aplicável."
+  solution    : "Identificar SSLv2 SSLv3 TLS1.0 TLS1.1 em serviços expostos quando aplicável."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 182 | Legado | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! grep -ERiq '(^|[^A-Za-z0-9])(SSLv2|SSLv3|TLSv1([[:space:]]|$)|RC4|DES-CBC3-SHA)([^A-Za-z0-9]|$)' /etc/httpd /etc/nginx /etc/haproxy /etc/stunnel 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-183 | SMBv1 controlado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar configuração min protocol no Samba quando aplicável. Desabilitar ou justificar SMBv1 em servidores Samba."
+  solution    : "Desabilitar ou justificar SMBv1 em servidores Samba."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 183 | Legado | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! testparm -s 2>/dev/null | grep -Eiq '^[[:space:]]*(server min protocol|client min protocol)[[:space:]]*=[[:space:]]*(LANMAN1|NT1)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-184 | NFS inseguro controlado | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar /etc/exports. Identificar exports NFS inseguros como no_root_squash ou rw amplo."
+  solution    : "Identificar exports NFS inseguros como no_root_squash ou rw amplo."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 184 | Legado | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! awk '$1!~/^#/ && ($2~/rw|insecure|no_root_squash/) {bad=1} END{exit !bad}' /etc/exports 2>/dev/null ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-185 | Serviços expostos revisados | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar portas em escuta com netstat. Identificar listeners TCP UDP não autorizados."
+  solution    : "Identificar listeners TCP UDP não autorizados."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 185 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( t=$(mktemp /tmp/rhel6_ports.XXXXXX) || exit 1; netstat -lntup 2>/dev/null | awk 'NR>2{print $4}' | sort -u > \"$t\"; [ -s /etc/rhel6-approved-listeners ] && diff -q \"$t\" /etc/rhel6-approved-listeners >/dev/null 2>&1; rc=$?; rm -f \"$t\"; [ $rc -eq 0 ] ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-186 | Compiladores em produção | Criticidade: Média | RHEL6 LEGADO"
+  info        : "Verificar pacotes de compilação instalados. Remover ou justificar gcc make e ferramentas de build em produção."
+  solution    : "Remover ou justificar gcc make e ferramentas de build em produção."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 186 | Legado | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! rpm -q gcc gcc-c++ make >/dev/null 2>&1 ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-188 | Repositórios órfãos | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar arquivos em /etc/yum.repos.d. Identificar repositórios não oficiais ou sem suporte."
+  solution    : "Identificar repositórios não oficiais ou sem suporte."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 188 | Legado | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( yum -q repolist enabled 2>/dev/null | grep -Eiq '(rhel|red hat|oracle|ol6|satellite)' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-189 | Java legado exposto | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar versões Java e processos associados. Identificar Java antigo associado a serviços expostos."
+  solution    : "Identificar Java antigo associado a serviços expostos."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 189 | Legado | Perfil Full | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( ! netstat -lntp 2>/dev/null | grep -E 'java|:1099[[:space:]]|:8009[[:space:]]' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "RHEL6-190 | Permissões de /etc/gshadow | Criticidade: Alta | RHEL6 LEGADO"
+  info        : "Verificar permissões de /etc/gshadow. Garantir permissões restritas no /etc/gshadow."
+  solution    : "Garantir permissões restritas no /etc/gshadow."
+  reference   : "03_Hardening_2026_RHEL_LEGADO.xlsx | ID 190 | Sistema | Perfil Light | RHEL6 LEGADO"
+  see_also    : "Baseline RHEL Legado; validar exceções e suporte contratado"
+  cmd         : "( stat -c '%a %u %g' /etc/gshadow 2>/dev/null | grep -Eq '^(0|400|600|640) 0 0$' ) && echo PASS || echo FAIL"
+  expect      : "(?i)^\\s*PASS\\s*$"
+</custom_item>

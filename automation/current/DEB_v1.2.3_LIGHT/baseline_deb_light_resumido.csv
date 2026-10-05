@@ -1,0 +1,119 @@
+﻿ID,Controle,Criticidade
+1,Bloqueio cramfs,Baixa
+4,Bloqueio hfs,Baixa
+5,Bloqueio hfsplus,Baixa
+6,Bloqueio jffs2,Baixa
+7,Bloqueio freevxfs,Baixa
+10,Bloqueio DCCP,Média
+12,Bloqueio RDS,Média
+13,Bloqueio TIPC,Média
+14,Core dumps restritos,Média
+15,SUID dump off,Média
+16,NX/XD ativo,Alta
+17,ASLR habilitado,Alta
+18,ASLR completo,Alta
+20,dmesg restrito,Média
+21,Symlinks protegidos,Média
+22,Hardlinks protegidos,Média
+38,Sticky world-writable,Média
+39,Sticky /tmp,Baixa
+40,Sticky /var/tmp,Baixa
+41,Sticky /dev/shm,Baixa
+44,Permissões seguras no arquivo do bootloader,Alta
+45,Single user mode com autenticação,Média
+46,Prelink removido,Baixa
+47,xinetd removido,Média
+48,Time sync ativo,Média
+49,Fontes NTP confiáveis,Média
+50,NTP desde o boot,Média
+63,Servidor NIS removido,Alta
+64,Servidor Telnet removido,Alta
+65,MTA local only,Média
+69,Cliente NIS removido,Média
+70,Cliente rsh removido,Alta
+71,Cliente talk removido,Baixa
+72,Cliente telnet removido,Média
+75,Servidor TFTP removido,Alta
+76,PolicyKit endurecido,Alta
+77,Assinaturas dos repositórios APT verificadas,Alta
+78,Atualizações de segurança aplicadas,Alta
+79,Sincronização de tempo única,Média
+80,Cron e at restritos,Alta
+81,Redirects desabilitados,Alta
+82,Source-route bloqueado,Alta
+83,ICMP redirects desabilitados,Alta
+85,Broadcast ICMP ignorado,Baixa
+86,ICMP bogus responses ignorado,Baixa
+87,TCP syncookies habilitado,Alta
+89,Wireless e bluetooth ausentes,Média
+90,Permissões do SSH,Alta
+91,SyslogFacility do SSH seguro,Baixa
+93,MaxAuthTries restritivo,Média
+94,IgnoreRhosts habilitado,Alta
+95,HostbasedAuthentication desabilitado,Alta
+97,PermitEmptyPasswords desabilitado,Alta
+98,PermitUserEnvironment desabilitado,Média
+99,UsePAM habilitado,Alta
+100,ClientAlive configurado,Baixa
+101,LoginGraceTime restrito,Média
+102,MaxStartups restrito,Média
+105,PAM complexidade,Alta
+106,pwquality configurado,Alta
+107,pam_faillock habilitado,Alta
+108,pwhistory configurado,Alta
+109,Senha mínima,Alta
+110,Complexidade mínima,Alta
+111,Sem repetição/sequência,Média
+112,Dicionário ativo,Média
+113,Hash forte,Alta
+114,Histórico de senhas,Alta
+115,Tempo desbloqueio,Alta
+116,PASS_MAX_DAYS,Alta
+117,PASS_MIN_DAYS,Baixa
+118,PASS_WARN_AGE,Baixa
+119,INACTIVE configurado,Alta
+120,Datas de senha consistentes,Alta
+121,Apenas root com UID 0,Alta
+122,Apenas grupo root com GID 0,Alta
+123,Contas de sistema com shell inválido bloqueadas,Alta
+124,/etc/shells validado,Baixa
+125,PATH do root sem diretório inseguro,Alta
+126,Umask padrão restritiva,Alta
+127,Timeout de shell,Baixa
+128,Administração privilegiada via sudo restrita,Alta
+129,Sudo com pseudo-TTY,Alta
+130,Logging de sudo habilitado,Alta
+131,Timeout de autenticação sudo,Baixa
+133,Journald persistente,Média
+134,Rsyslog habilitado,Média
+135,Rotação de logs configurada,Baixa
+136,auditd habilitado,Alta
+137,Auditoria habilitada desde o boot,Alta
+138,max_log_file configurado,Média
+139,Auditoria de data e hora,Média
+140,Auditoria de contas e grupos,Média
+141,Auditoria de rede,Média
+142,Auditoria de login,Média
+143,Auditoria de permissões,Média
+144,Auditoria de EACCES e EPERM,Média
+146,Auditoria de mount,Média
+147,Auditoria de unlink e rename,Média
+148,Auditoria de módulos kernel,Média
+149,Auditoria de sudo e sudoers,Média
+152,Permissões de /etc/passwd,Média
+153,Permissões de /etc/passwd-,Média
+154,Permissões de /etc/shadow,Alta
+155,Permissões de /etc/shadow-,Média
+156,Permissões de /etc/gshadow-,Média
+157,Permissões de /etc/gshadow,Alta
+158,Permissões de /etc/group,Média
+159,Permissões de /etc/group-,Média
+160,Proteção de /etc/security/opasswd,Alta
+161,Arquivos órfãos inexistentes,Baixa
+162,Sticky bit em diretórios world writable,Média
+163,Sem arquivos sem owner ou grupo,Média
+165,Usuários sem home inexistentes,Baixa
+166,Ownership correto dos homes,Média
+167,Permissões de home restritivas,Média
+168,Dotfiles sem permissão world writable,Baixa
+169,Sem arquivos .forward .netrc e .rhosts,Média

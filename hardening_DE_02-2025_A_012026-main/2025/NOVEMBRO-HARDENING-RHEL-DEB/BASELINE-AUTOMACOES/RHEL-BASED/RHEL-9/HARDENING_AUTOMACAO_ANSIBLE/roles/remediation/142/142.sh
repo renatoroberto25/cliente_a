@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+echo "- IF - the system uses UEFI (Files located in /boot/efi/EFI/*)"
+echo "  Edit /etc/fstab and add the fmask=0077, uid=0, and gid=0 options:"
+echo "  <device> /boot/efi vfat defaults,umask=0027,fmask=0077,uid=0,gid=0 0 0"
+echo "  Note: This may require a re-boot to enable the change"
+echo "- OR -"
+echo "- IF - the system uses BIOS (Files located in /boot/grub2/*)"
+echo "  [ -f /boot/grub2/grub.cfg ] && chown root:root /boot/grub2/grub.cfg"
+echo "  [ -f /boot/grub2/grub.cfg ] && chmod u-x,go-rwx /boot/grub2/grub.cfg"
+echo "  [ -f /boot/grub2/grubenv ] && chown root:root /boot/grub2/grubenv"
+echo "  [ -f /boot/grub2/grubenv ] && chmod u-x,go-rwx /boot/grub2/grubenv"
+echo "  [ -f /boot/grub2/user.cfg ] && chown root:root /boot/grub2/user.cfg"
+echo "  [ -f /boot/grub2/user.cfg ] && chmod u-x,go-rwx /boot/grub2/user.cfg"

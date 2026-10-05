@@ -1,0 +1,381 @@
+#####################################################################################
+################### SCRIPTS DE HARDENING - AUDITORIA TÓPICO 1 #######################
+#####################################################################################
+
+- name: "hitss 1 - 8 - Configurar os Módulos do Kernel do Sistema de Arquivos"
+  script: 1/1.sh
+  register: audit_1
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_1
+    - audit_hitss_1.x
+
+- name: "hitss 9 - 34 - Opções de montagem seguras"
+  script: 9/9.sh
+  register: audit_9
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_9
+    - audit_hitss_1.x
+
+- name: "hitss 35 - 39 - Auditoria de repositórios e verificações de segurança de pacotes"
+  script: 35/35.sh
+  register: audit_35
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_35
+    - audit_hitss_2.x
+
+- name: "hitss 40 - Verifique se o bootloader possui senha configurada"
+  script: 40/40.sh
+  register: audit_40
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_40
+    - audit_hitss_3.x
+
+- name: "hitss 41 - Verifique se o bootloader possui senha configurada"
+  script: 40/41.sh
+  register: audit_41
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_41
+    - audit_hitss_3.x
+
+- name: "hitss 42 - Verifique se a randomização do layout do espaço de endereço (ASLR) está ativada"
+  script: 40/42.sh
+  register: audit_42
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_42
+    - audit_hitss_3.x
+
+- name: "hitss 43 - 45 Verificar se ptrace_scope está restrito, backtraces ecore dump storage desabilitados"
+  script: 40/43.sh
+  register: audit_43
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_43
+    - audit_hitss_3.x
+
+- name: "hitss 46 - 50 Verificar Controle de acesso via SELINUX"
+  script: 46/46.sh
+  register: audit_46
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_46
+    - audit_hitss_4.x
+
+- name: "hitss 51 - 53 - Verificações complementares SELINUX: Serviços confinados, mctrans e setroubleshoot"
+  script: 46/51.sh
+  register: audit_51
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_51
+    - audit_hitss_4.x
+
+- name: "hitss 54 - Verificar se a política de criptografia não está definida como LEGACY"
+  script: 54/54.sh
+  register: audit_54
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_54
+    - audit_hitss_5.x
+
+- name: "hitss 55 - Verificar se SHA1 está desabilitado na política de criptografia"
+  script: 54/55.sh
+  register: audit_55
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_55
+    - audit_hitss_5.x
+
+- name: "hitss 56 - Verificar se CBC está desabilitado na política de criptografia"
+  script: 54/56.sh
+  register: audit_56
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_56
+    - audit_hitss_5.x
+
+- name: "hitss 57 - Verificar se MACs fracos (inferiores a 128 bits) estão desabilitados"
+  script: 54/57.sh
+  register: audit_57
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_57
+    - audit_hitss_5.x
+
+- name: "hitss 58 - Verificar se os banners do sistema expõem informações sensíveis"
+  script: 58/58.sh
+  register: audit_58
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_58
+    - audit_hitss_6.x
+
+- name: "hitss 61 - Verificar permissões e proprietário dos arquivos de banner"
+  script: 58/61.sh
+  register: audit_61
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_61
+    - audit_hitss_6.x
+
+- name: "hitss 64 - 68 - Acesso e configuração de arquivos de banner e GDM"
+  script: 58/64.sh
+  register: audit_64
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_64
+    - audit_hitss_6.x
+
+- name: "hitss 69 - 73 - Verificar parâmetros avançados do GDM (se aplicável)"
+  script: 69/69.sh
+  register: audit_69
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_69
+    - audit_hitss_6.x
+
+- name: "hitss 74 - 78 - Verificar sincronização de tempo e serviços desnecessários"
+  script: 74/74.sh
+  register: audit_74
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_74
+    - audit_hitss_7.x
+
+- name: "hitss 79 - 102 - Serviços e pacotes não recomendados"
+  script: 74/79.sh
+  register: audit_79
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_79
+    - audit_hitss_7.x
+
+- name: "hitss 104 - 110 - Recursos de rede e módulos de kernel"
+  script: 104/104.sh
+  register: audit_104
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_104
+    - audit_hitss_8.x
+
+- name: "hitss 111 - 118 - Parâmetros de rede (IPv4 - sysctl)"
+  script: 104/111.sh
+  register: audit_111
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_111
+    - audit_hitss_8.x
+
+- name: "hitss 119 - 121 - Parâmetros de rede (IPv4 - sysctl)"
+  script: 104/119.sh
+  register: audit_119
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_119
+    - audit_hitss_8.x
+
+- name: "hitss 129 - 136 - Cron, configurações e Permissões"
+  script: 129/129.sh
+  register: audit_129
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_129
+    - audit_hitss_10.x
+
+- name: "hitss 137 - AT, configurações e Permissões"
+  script: 129/137.sh
+  register: audit_137
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_137
+    - audit_hitss_10.x
+######################### Desenvolvimento
+- name: "hitss 138 - SSH - Acesso, Autenticação e Autorização"
+  script: 138/138.sh
+  register: audit_138
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_138
+    - audit_hitss_11.x
+
+- name: "hitss 143 - SSH - Configuração do sshd_config"
+  script: 138/143.sh
+  register: audit_143
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_143
+    - audit_hitss_11.x
+
+- name: "hitss 160 - 169 Configurações sudo e su / PAM / authselect"
+  script: 160/160.sh
+  register: audit_160
+  changed_when: false
+  failed_when: false
+  tags:    
+    - audit_hitss_160
+    - audit_hitss_12.x
+
+- name: "hitss 170 - 190 - Configurar módulos de autenticação plugáveis"
+  script: 170/170.sh
+  register: audit_170
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_170
+    - audit_hitss_13.x
+
+- name: "hitss 191 - 195 - Políticas de senha PAM"
+  script: 191/191.sh
+  register: audit_191
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_191
+    - audit_hitss_14.x
+
+- name: "hitss 196 - 200 - Configurar contas de root e de sistema/ambiente"
+  script: 191/196.sh
+  register: audit_196
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_196
+    - audit_hitss_14.x
+
+- name: "hitss 201 - 202 - Configurar ambiente padrão do usuário"
+  script: 191/201.sh
+  register: audit_201
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_201
+    - audit_hitss_14.x
+
+- name: "hitss 203 - 209 - Configuração rsyslog"
+  script: 203/203.sh
+  register: audit_203
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_203
+    - audit_hitss_15.x
+
+- name: "hitss 210 - 219 - Configuração journald"
+  script: 210/210.sh
+  register: audit_210
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_210
+    - audit_hitss_16.x
+
+- name: "hitss 220 - Configuração do Auditd e Logs"
+  script: 220/220.sh
+  register: audit_220
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_220
+    - audit_hitss_17.x
+
+- name: "hitss 229 - 242 - Configurar regras auditd"
+  script: 229/229.sh
+  register: audit_229_242
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_229
+    - audit_hitss_18.x
+
+- name: "hitss 243 - Configurar regras auditd"
+  script: 229/229.sh
+  register: audit_229
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_229
+    - audit_hitss_18.x
+
+- name: "hitss 243 - 249 - Configurar regras auditd"
+  script: 229/243.sh
+  register: audit_243
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_243
+    - audit_hitss_18.x
+
+- name: "hitss 250 - 256 - Configurar acesso ao arquivo auditd"
+  script: 250/250.sh
+  register: audit_250
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_250
+    - audit_hitss_19.x
+
+- name: "hitss 257 - 259 - Configurar acesso ao arquivo auditd"
+  script: 250/257.sh
+  register: audit_257
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_257
+    - audit_hitss_19.x
+
+- name: "hitss 260 - 262 - Configurar verificação de integridade"
+  script: 260/260.sh
+  register: audit_260
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_260
+    - audit_hitss_20.x
+
+- name: "hitss 263 - 272 - Permissões de arquivo do sistema"
+  script: 263/263.sh
+  register: audit_263
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_263
+    - audit_hitss_21.x
+
+- name: "hitss 273 - 287 - Configurações de usuários e grupos locais"
+  script: 273/273.sh
+  register: audit_273
+  changed_when: false
+  failed_when: false
+  tags:
+    - audit_hitss_273
+    - audit_hitss_22.x

@@ -1,0 +1,135 @@
+
+[root@oracle-linux-9-20260514 vagrant]# ls -l
+total 0
+drwxr-x---. 4 vagrant vagrant  57 Jul  7 17:12 NEW_AUT
+drwxr-x---. 3 vagrant vagrant 170 Jul  7 17:12 OLD
+[root@oracle-linux-9-20260514 vagrant]# chmod -R +x NEW_AUT/
+[root@oracle-linux-9-20260514 vagrant]# cd NEW_AUT/
+[root@oracle-linux-9-20260514 NEW_AUT]#
+[root@oracle-linux-9-20260514 NEW_AUT]# ./executor.sh
+
+============================================================
+HARDENING RHEL8/9 FULL - MENU
+============================================================
+1) Audit
+2) Remediacao
+3) Full (Audit -> Remed -> Audit)
+4) Itens em FAIL (ultimo audit)
+5) Status do ultimo audit
+0) Sair
+
+Escolha: 3
+
+============================================================
+AUDIT PRE
+Host : oracle-linux-9-20260514
+Data : 2026-07-07 17:12:37
+SO   : Oracle Linux Server 9.7
+============================================================
+audit.sh                       PASS(121) FAIL(53 )
+
+Resumo:
+TOTAL: 174
+PASS : 121
+FAIL : 53
+Aderencia: 69%
+
+
+============================================================
+REMEDIACAO
+Host : oracle-linux-9-20260514
+Data : 2026-07-07 17:13:12
+SO   : Oracle Linux Server 9.7
+============================================================
+01_kernel.sh                   OK(24 ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+02_filesystem.sh               OK(0  ) WARN(0  ) SKIP(10 ) INFO(1  ) RC(0)
+03_boot.sh                     OK(3  ) WARN(0  ) SKIP(0  ) INFO(0  ) RC(0)
+04_system.sh                   OK(4  ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+05_legacy_software.sh          OK(2  ) WARN(0  ) SKIP(0  ) INFO(0  ) RC(0)
+06_time_sync.sh                OK(3  ) WARN(0  ) SKIP(0  ) INFO(0  ) RC(0)
+07_services.sh                 OK(23 ) WARN(0  ) SKIP(3  ) INFO(0  ) RC(0)
+08_package_integrity.sh        OK(8  ) WARN(0  ) SKIP(0  ) INFO(0  ) RC(0)
+09_access_scheduling.sh        OK(1  ) WARN(0  ) SKIP(1  ) INFO(1  ) RC(0)
+10_network.sh                  OK(22 ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+11_wireless.sh                 OK(8  ) WARN(0  ) SKIP(0  ) INFO(0  ) RC(0)
+12_crypto_policy.sh            OK(0  ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+13_ssh.sh                      OK(22 ) WARN(0  ) SKIP(3  ) INFO(0  ) RC(0)
+14_auth_policy.sh              OK(24 ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+15_accounts_shell_sudo.sh      OK(13 ) WARN(0  ) SKIP(3  ) INFO(0  ) RC(0)
+16_logging_audit_integrity.sh  OK(53 ) WARN(2  ) SKIP(4  ) INFO(1  ) RC(0)
+17_sensitive_file_permissions.sh OK(9  ) WARN(0  ) SKIP(1  ) INFO(0  ) RC(0)
+18_home_file_hygiene.sh        OK(32 ) WARN(0  ) SKIP(2  ) INFO(0  ) RC(0)
+
+Resumo remediacao:
+OK   : 251
+WARN : 2
+SKIP : 32
+INFO : 3
+ERRO : 0
+
+
+============================================================
+AUDIT POS
+Host : oracle-linux-9-20260514
+Data : 2026-07-07 17:13:22
+SO   : Oracle Linux Server 9.7
+============================================================
+audit.sh                       PASS(148) FAIL(26 )
+
+Resumo:
+TOTAL: 174
+PASS : 148
+FAIL : 26
+Aderencia: 85%
+
+Comparativo:
+Antes : PASS 121 | FAIL 53
+Depois: PASS 148 | FAIL 26
+Melhoria em 27 controles
+
+FAIL restantes:
+[25] Partição dedicada para /tmp
+[27] Partição dedicada para /var
+[28] Partição dedicada para /var/tmp
+[29] Partição dedicada para /var/log
+[30] Partição dedicada para /var/log/audit
+[31] Partição dedicada para /home
+[32] Partição dedicada para /historico
+[33] Partição dedicada para /crash
+[34] Partição dedicada para /UNIX
+[35] Nodev removíveis
+[36] Nodev partições críticas
+[40] Segurança /var/log
+[41] Segurança audit log
+[42] Segurança /home
+[59] Fontes NTP confiáveis
+[66] DNS server ausente
+[82] Cliente telnet removido
+[87] GPG check habilitado
+[90] Cron e at restritos
+[92] Redirects desabilitados
+[93] Source-route bloqueado
+[94] ICMP redirects desabilitados
+[95] Reverse path filtering habilitado
+[96] Broadcast ICMP ignorado
+[97] ICMP bogus responses ignorado
+[98] TCP syncookies habilitado
+
+Logs:
+PRE  : /home/vagrant/NEW_AUT/logs/audit/audit-pre-oracle-linux-9-20260514-20260707-171236.log
+REMED: /home/vagrant/NEW_AUT/logs/remed/remed-oracle-linux-9-20260514-20260707-171236.log
+POST : /home/vagrant/NEW_AUT/logs/audit/audit-post-oracle-linux-9-20260514-20260707-171236.log
+
+Pressione ENTER para voltar ao menu...
+
+============================================================
+HARDENING RHEL8/9 FULL - MENU
+============================================================
+1) Audit
+2) Remediacao
+3) Full (Audit -> Remed -> Audit)
+4) Itens em FAIL (ultimo audit)
+5) Status do ultimo audit
+0) Sair
+
+Escolha: 0

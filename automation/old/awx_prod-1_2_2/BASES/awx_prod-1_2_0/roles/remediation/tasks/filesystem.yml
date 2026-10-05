@@ -1,0 +1,203 @@
+- name: Carregar regras filesystem
+  ansible.builtin.include_vars:
+    file: "{{ role_path }}/rules/filesystem.yml"
+
+- name: Pré-check partição dedicada
+  command: "findmnt -no SOURCE {{ item.mount }}"
+  register: remed_fs_dedicated_pre
+  loop: "{{ filesystem_rules | selectattr('require', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado partição dedicada
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.item.id }}]
+      {{
+        'OK'
+        if (
+          item.rc == 0 and
+          (item.stdout | default('') | trim) not in ['', '/', 'rootfs']
+        )
+        else 'MANUAL'
+      }}
+  loop: "{{ remed_fs_dedicated_pre.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Pré-check opções de mount
+  command: "findmnt -no OPTIONS {{ item.mount }}"
+  register: remed_fs_opts_pre
+  loop: "{{ filesystem_rules | selectattr('options', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Remediar opções de mount via remount
+  command: >-
+    mount -o remount,{{ item.item.options | join(',') }} {{ item.item.mount }}
+  register: remed_fs_opts_apply
+  loop: "{{ remed_fs_opts_pre.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+  changed_when: item.rc == 0
+  failed_when: false
+  when:
+    - item.rc == 0
+    - item.stdout is defined
+    - (item.item.options | difference((item.stdout | lower | trim).split(',')) | length) > 0
+
+- name: Pós-check opções de mount
+  command: "findmnt -no OPTIONS {{ item.mount }}"
+  register: remed_fs_opts_post
+  loop: "{{ filesystem_rules | selectattr('options', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado opções de mount
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.item.id }}]
+      {{
+        'OK'
+        if (
+          item.rc == 0 and
+          item.stdout is defined and
+          (item.item.options | difference((item.stdout | lower | trim).split(',')) | length) == 0 and
+          (
+            (
+              remed_fs_opts_pre.results
+              | selectattr('item.id', 'equalto', item.item.id)
+              | map(attribute='stdout')
+              | map('default', '')
+              | map('trim')
+              | first
+            ) == item.stdout | trim
+          )
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            item.rc == 0 and
+            item.stdout is defined and
+            (item.item.options | difference((item.stdout | lower | trim).split(',')) | length) == 0
+          )
+          else 'MANUAL'
+        )
+      }}
+  loop: "{{ remed_fs_opts_post.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+
+- name: Pré-check sticky world-writable
+  shell: |
+    find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null
+  register: remed_fs_sticky_world_pre
+  changed_when: false
+  failed_when: false
+
+- name: Remediar sticky world-writable
+  shell: |
+    find / -xdev -type d -perm -0002 ! -perm -1000 -exec chmod a+t {} \; 2>/dev/null
+  register: remed_fs_sticky_world_apply
+  changed_when: true
+  failed_when: false
+  when: (remed_fs_sticky_world_pre.stdout | default('') | trim) != ''
+
+- name: Pós-check sticky world-writable
+  shell: |
+    find / -xdev -type d -perm -0002 ! -perm -1000 2>/dev/null
+  register: remed_fs_sticky_world_post
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sticky world-writable
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][44]
+      {{
+        'OK'
+        if (
+          (remed_fs_sticky_world_post.stdout | default('') | trim) == '' and
+          (remed_fs_sticky_world_pre.stdout | default('') | trim) == ''
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            (remed_fs_sticky_world_post.stdout | default('') | trim) == '' and
+            (remed_fs_sticky_world_pre.stdout | default('') | trim) != ''
+          )
+          else 'FALHA'
+        )
+      }}
+
+- name: Pré-check sticky bit por path
+  ansible.builtin.stat:
+    path: "{{ item.path }}"
+  register: remed_fs_sticky_pre
+  loop: "{{ filesystem_rules | selectattr('sticky', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Remediar sticky bit por path
+  ansible.builtin.file:
+    path: "{{ item.item.path }}"
+    mode: "{{ '%04o' % (((item.stat.mode | int(base=8)) | default(0)) + 1024) }}"
+  register: remed_fs_sticky_apply
+  loop: "{{ remed_fs_sticky_pre.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"
+  when:
+    - item.stat.exists
+    - ((item.stat.mode | int(base=8)) // 1000) != 1
+
+- name: Pós-check sticky bit por path
+  ansible.builtin.stat:
+    path: "{{ item.path }}"
+  register: remed_fs_sticky_post
+  loop: "{{ filesystem_rules | selectattr('sticky', 'defined') | list }}"
+  loop_control:
+    label: "{{ item.id }} - {{ item.descricao }}"
+  changed_when: false
+  failed_when: false
+
+- name: Resultado sticky bit por path
+  ansible.builtin.debug:
+    msg: >-
+      [HITSS][REMEDIATION][{{ item.item.id }}]
+      {{
+        'OK'
+        if (
+          item.stat.exists and
+          ((item.stat.mode | int(base=8)) // 1000) == 1 and
+          (
+            (
+              remed_fs_sticky_pre.results
+              | selectattr('item.id', 'equalto', item.item.id)
+              | map(attribute='stat.mode')
+              | first
+            ) == item.stat.mode
+          )
+        )
+        else
+        (
+          'CHANGED'
+          if (
+            item.stat.exists and
+            ((item.stat.mode | int(base=8)) // 1000) == 1
+          )
+          else 'FALHA'
+        )
+      }}
+  loop: "{{ remed_fs_sticky_post.results }}"
+  loop_control:
+    label: "{{ item.item.id }} - {{ item.item.descricao }}"

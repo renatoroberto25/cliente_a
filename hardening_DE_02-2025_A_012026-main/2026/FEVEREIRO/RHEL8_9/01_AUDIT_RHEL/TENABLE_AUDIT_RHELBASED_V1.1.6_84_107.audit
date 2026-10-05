@@ -1,0 +1,303 @@
+<check_type:"Unix">
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "84 Serviços não essenciais removidos/mascarados"
+  info        : "Alta"
+  solution    : "Servicos Superficie Ataque"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "systemctl list-unit-files --state=enabled"
+  expect      : "(?i)(avahi|cups|telnet|ftp|nis|tftp|xinetd)"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "85 TFTP server removido"
+  info        : "Alta"
+  solution    : "Servicos Rede"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(rpm -q tftp-server &>/dev/null && echo \"FAIL\" || echo \"PASS\")"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "86 policykit endurecido"
+  info        : "Alta"
+  solution    : "Autorizacao Sistema"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "grep -E 'polkit.Result.YES|allow' /etc/polkit-1/rules.d/*.rules 2>/dev/null"
+  expect      : "(?s)^$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "87 Assinaturas de pacotes habilitadas"
+  info        : "Alta"
+  solution    : "Atualizacoes Seguranca"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "grep -E '^gpgcheck\\s*=\\s*1' /etc/yum.conf /etc/yum.repos.d/*.repo 2>/dev/null"
+  expect      : "(?m)^.+$"
+</custom_item>
+
+#88 não utilizado
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "89 Apenas um daemon de time sync"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"  
+  cmd         :  "count=0; systemctl is-active --quiet chronyd && count=$((count+1)); systemctl is-active --quiet ntpd && count=$((count+1)); systemctl is-active --quiet systemd-timesyncd && count=$((count+1)); [ \"$count\" -eq 1 ] && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "90 Cron/at seguros e restritos"
+  info        : "Média"
+  solution    : "Servicos Time Sync"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "stat -Lc '%a %U %G' /etc/cron.allow 2>/dev/null"
+  expect      : "^640 root (root|crontab)$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "91 IP forwarding desabilitado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "sysctl -n net.ipv4.ip_forward"
+  expect      : "^0$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "92 Redirecionamentos de pacotes desabilitados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.send_redirects | grep -q '^0$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "93 Source-routed packets bloqueados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.accept_source_route | grep -q '^0$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "94 ICMP redirects bloqueados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "((sysctl -n net.ipv4.conf.all.accept_redirects | grep -q '^0$') && (sysctl -n net.ipv4.conf.all.secure_redirects | grep -q '^0$')) && echo \"PASS\"  || echo \"FAIL\" "
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "95 Reverse path filtering habilitado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.conf.all.rp_filter | grep -Eq '^[12]$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "96 ICMP broadcast ignorado"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_echo_ignore_broadcasts | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "97 Respostas ICMP inválidas ignoradas"
+  info        : "Média"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.icmp_ignore_bogus_error_responses | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "98 TCP SYN cookies habilitados"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv4.tcp_syncookies | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "99 IPv6 desabilitado ou endurecido"
+  info        : "Alta"
+  solution    : "Rede Sysctl"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "(sysctl -n net.ipv6.conf.all.disable_ipv6 | grep -q '^1$' && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "100 ICMP timestamp-request drop"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "iptables -L INPUT -n 2>/dev/null"
+  expect      : "(?i)icmp type timestamp-request.*DROP"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "101 ICMP timestamp-reply drop"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "iptables -L INPUT -n 2>/dev/null"
+  expect      : "(?i)icmp type timestamp-reply.*DROP"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "102 Wireless/Bluetooth desabilitados"
+  info        : "Média"
+  solution    : "Wireless/Bluetooth"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Light"
+  cmd         : "lsmod | grep -E 'bluetooth|iwlwifi'"
+  expect      : "(?s)^$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "103 Firewall com política default deny"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "iptables -L -n 2>/dev/null"
+  expect      : "(?i)policy DROP"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "104 Apenas uma solução de firewall ativa"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "([ \"$(printf \"%s\n\" \"$(systemctl is-active firewalld >/dev/null 2>&1 && echo F)\" \"$(iptables -L >/dev/null 2>&1 && echo F)\" \"$(ip6tables -L >/dev/null 2>&1 && echo F)\" | grep -c F)\" -eq 1 ] && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "105 Regras básicas de firewall"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "iptables -L INPUT -n 2>/dev/null"
+  expect      : "(?i)(lo .* ACCEPT|ESTABLISHED|RELATED)"
+</custom_item>
+
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "106 Regras explícitas para portas abertas"
+  info        : "Alta"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "(ss -tuln | awk 'NR>1 {print $5}' | sed 's/.*://g' | sort -u | grep -v '^$' | while read P; do iptables -L INPUT -n 2>/dev/null | grep -q \":${P} \" || exit 1; done && echo \"PASS\"  || echo \"FAIL\" )"
+  expect      : "(?i)^\s*pass\s*$"
+</custom_item>
+
+<custom_item>
+  type        : CMD_EXEC
+  description : "107 Regras de firewall persistentes"
+  info        : "Média"
+  solution    : "Rede Firewall"
+  reference   : "CONSULTAR BASELINE HITSS"
+  see_also    : "Perfil: Full"
+  cmd         : "iptables-save 2>/dev/null"
+  expect      : "(?m)^-A"
+</custom_item>
+
+
+
+
+#################################################################
+#################################################################
+#################################################################
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Verificação de existência do log de auditoria HITSS"
+      info        : "Detecta se o host já foi auditado anteriormente"
+      solution    : "Criar o log em /var/log/hitss-hardening.log na primeira execução"
+      reference   : "TENABLE_AUDIT_RHELBASED_V1.1.6"
+      see_also    : "/var/log/hitss-hardening.log"
+      cmd         : "[ -f /var/log/hitss-hardening.log ] && echo \"PASS\" || echo \"FAIL - host nunca auditado\" "
+      expect      : "(?i)^\s*pass\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Registro de execução do pacote de auditoria HITSS via Tenable"
+      info        : "Escreve log do scan"
+      solution    : "Não há"
+      reference   : "TENABLE_AUDIT_RHELBASED_V1.1.6"
+      see_also    : "Não há"
+      cmd         : "echo \\\"$(date -Iseconds) - AUDIT - v1.1.6 - VIA TENABLE - host: $(hostname)\\\" >> /var/log/hitss-hardening.log && echo \"PASS\" "
+      expect      : "(?i)^\s*pass\s*$"
+    </custom_item>
+
+    <custom_item>
+      type        : CMD_EXEC
+      description : "Leitura do último registro de auditoria HITSS"
+      info        : "Última execução registrada no log de hardening"
+      solution    : "Verificar se o log está sendo atualizado corretamente"
+      reference   : "TENABLE_AUDIT_RHELBASED_V1.1.6"
+      see_also    : "/var/log/hitss-hardening.log"
+      cmd         : "tail -n 1 /var/log/hitss-hardening.log"
+      expect      : ".*"
+    </custom_item>
+
+#################################################################
+#################################################################
+#################################################################
+
+</check_type>

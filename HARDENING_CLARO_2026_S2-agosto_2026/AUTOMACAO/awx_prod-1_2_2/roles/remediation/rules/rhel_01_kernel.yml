@@ -1,0 +1,98 @@
+---
+rhel_01_kernel_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 2
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 3
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 4
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 5
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 6
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 7
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 8
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 9
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 10
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 11
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 12
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 13
+    descricao: "Kernel / Módulos"
+    severidade: WARN
+    perfil: "Full"
+  - id: 14
+    descricao: "Kernel / Sysctl"
+    severidade: WARN
+    perfil: "Light"
+  - id: 15
+    descricao: "Kernel / Sysctl"
+    severidade: WARN
+    perfil: "Full"
+  - id: 16
+    descricao: "Kernel / Mitigações"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 17
+    descricao: "Kernel / Sysctl"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 18
+    descricao: "Kernel / Mitigações"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 19
+    descricao: "Kernel / Sysctl"
+    severidade: INFO
+    perfil: "Light"
+  - id: 20
+    descricao: "Kernel / Sysctl"
+    severidade: INFO
+    perfil: "Light"
+  - id: 21
+    descricao: "Kernel / Namespaces"
+    severidade: WARN
+    perfil: "Full"
+  - id: 22
+    descricao: "Kernel / Sysctl"
+    severidade: WARN
+    perfil: "Light"
+  - id: 23
+    descricao: "Kernel / Sysctl"
+    severidade: WARN
+    perfil: "Light"
+  - id: 24
+    descricao: "Kernel / Sysctl"
+    severidade: WARN
+    perfil: "Light"

@@ -1,0 +1,74 @@
+---
+rhel_13_ssh_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 109
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 110
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 111
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Light"
+  - id: 112
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Full"
+  - id: 113
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Light"
+  - id: 114
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 115
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 117
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 118
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Light"
+  - id: 119
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 120
+    descricao: "SSH / Configuração"
+    severidade: INFO
+    perfil: "Full"
+  - id: 121
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Light"
+  - id: 122
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Full"
+  - id: 123
+    descricao: "SSH / Configuração"
+    severidade: WARN
+    perfil: "Full"
+  - id: 125
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 126
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 127
+    descricao: "SSH / Configuração"
+    severidade: BLOCK
+    perfil: "Full"

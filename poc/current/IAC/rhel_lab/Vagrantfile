@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  DATA     = Time.now.strftime("%Y%m%d")
+  VM_USER  = "renato"
+  VM_PASS  = "C9p5au8naa@2025"
+  SSH_KEY  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBQosqCek+0A91VxyYJNES7bRRo3FxaXcxsD4gEJRgEo renatoroberto25"
+
+  config.vm.define "oracle6" do |vm|
+    vm.vm.box      = "generic/oracle6"
+    vm.vm.hostname = "oracle6-lab-#{DATA}"
+    vm.vm.network "private_network", ip: "192.168.56.60", name: "vboxnet1"
+    vm.vm.provider "virtualbox" do |vb|
+      vb.name = "oracle6-lab-#{DATA}"
+      vb.memory = 2048
+      vb.cpus = 1
+    end
+    vm.ssh.insert_key = false
+    vm.ssh.forward_agent = false
+    vm.vm.provision "shell", privileged: true, inline: <<-SHELL
+set -e
+VM_USER="#{VM_USER}"
+VM_PASS="#{VM_PASS}"
+if ! id "$VM_USER" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash "$VM_USER"
+    echo "$VM_USER:$VM_PASS" | chpasswd
+fi
+if [ -f /vagrant/instala_default.sh ]; then
+    chmod +x /vagrant/instala_default.sh
+    echo "[INFO] Tentando instalar Tenable Agent no Oracle Linux 6..."
+    /vagrant/instala_default.sh
+fi
+usermod -aG wheel "$VM_USER" || true
+mkdir -p "/home/$VM_USER/.ssh"
+cat > "/home/$VM_USER/.ssh/authorized_keys" <<'EOF'
+#{SSH_KEY}
+EOF
+chown -R "$VM_USER:$VM_USER" "/home/$VM_USER/.ssh"
+chmod 700 "/home/$VM_USER/.ssh"
+chmod 600 "/home/$VM_USER/.ssh/authorized_keys"
+mkdir -p /etc/sudoers.d
+echo "$VM_USER ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$VM_USER"
+chmod 440 "/etc/sudoers.d/$VM_USER"
+service sshd restart || true
+echo "=============================================================="
+echo "Oracle Linux 6"
+echo "IP: 192.168.56.60"
+echo "=============================================================="
+cat /etc/oracle-release || true
+uname -r
+ip addr || ifconfig
+route -n
+SHELL
+  end
+
+  config.vm.define "alma10" do |vm|
+    vm.vm.box      = "almalinux/10"
+    vm.vm.hostname = "alma10-lab-#{DATA}"
+    vm.vm.network "private_network", ip: "192.168.56.100", name: "vboxnet1"
+    vm.vm.provider "virtualbox" do |vb|
+      vb.name = "alma10-lab-#{DATA}"
+      vb.memory = 2048
+      vb.cpus = 2
+    end
+    vm.ssh.insert_key = false
+    vm.ssh.forward_agent = false
+    vm.vm.provision "shell", privileged: true, inline: <<-SHELL
+set -e
+VM_USER="#{VM_USER}"
+VM_PASS="#{VM_PASS}"
+timedatectl set-timezone America/Sao_Paulo || true
+dnf install -y sudo curl ca-certificates openssh-server
+if ! id "$VM_USER" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash "$VM_USER"
+    echo "$VM_USER:$VM_PASS" | chpasswd
+fi
+usermod -aG wheel "$VM_USER"
+mkdir -p "/home/$VM_USER/.ssh"
+cat > "/home/$VM_USER/.ssh/authorized_keys" <<'EOF'
+#{SSH_KEY}
+EOF
+chown -R "$VM_USER:$VM_USER" "/home/$VM_USER/.ssh"
+chmod 700 "/home/$VM_USER/.ssh"
+chmod 600 "/home/$VM_USER/.ssh/authorized_keys"
+echo "$VM_USER ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/$VM_USER"
+chmod 440 "/etc/sudoers.d/$VM_USER"
+systemctl enable --now sshd
+if [ -f /vagrant/instala_default.sh ]; then
+    chmod +x /vagrant/instala_default.sh
+    /vagrant/instala_default.sh
+fi
+echo "=============================================================="
+echo "Rocky Linux 10"
+echo "IP: 192.168.56.100"
+echo "=============================================================="
+cat /etc/os-release
+uname -r
+ip -br addr
+ip route
+SHELL
+  end
+
+end

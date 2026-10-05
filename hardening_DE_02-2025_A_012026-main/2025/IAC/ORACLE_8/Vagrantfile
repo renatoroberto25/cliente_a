@@ -1,0 +1,81 @@
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  data_criacao = Time.now.strftime("%Y%m%d")
+
+  config.vm.define "ol8-soft-#{data_criacao}" do |ol8|
+    ol8.vm.box = "generic/oracle8"
+    ol8.vm.hostname = "ol8-soft-#{data_criacao}"
+    
+    ol8.vm.network "private_network", ip: "192.168.56.78", virtualbox__hostonly: "vboxnet0"
+
+    ol8.vm.provider "virtualbox" do |vb|
+      vb.memory = 2048
+      vb.cpus = 1
+      vb.customize ["modifyvm", :id, "--vram", "64"]
+      vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    end
+
+    ol8.vm.provision "shell", privileged: true, inline: <<-SHELL
+      echo "[V] Iniciando provisionamento (Oracle Linux 8)..."
+
+      # Pacotes essenciais
+      if command -v dnf >/dev/null 2>&1; then
+        dnf install -y openssh-server vim git btop curl wget bash-completion \
+          net-tools iproute lsof ansible parted xfsprogs
+      else
+        echo "[X] Gerenciador de pacotes não suportado."
+        exit 1
+      fi
+
+      systemctl enable sshd --now || true
+      timedatectl set-timezone America/Sao_Paulo || true
+
+      # ========= Banner /etc/issue.net =========
+      echo "[V] Criando banner /etc/issue.net..."
+cat > /etc/issue.net << 'EOF'
+************************************************************
+*        ACESSO RESTRITO — SISTEMA MONITORADO HITSS        *
+************************************************************
+
+Este sistema é de uso exclusivo de pessoal autorizado.
+Todas as atividades são registradas e auditadas.
+
+Desconecte-se imediatamente caso você não tenha permissão.
+EOF
+      chmod 644 /etc/issue.net
+      echo "[✔] Banner /etc/issue.net aplicado."
+
+      # ========= Kernel específico 4.18.0-513.18.1.el8_9 =========
+      echo "[V] Instalando kernel alvo 4.18.0-513.18.1.el8_9.x86_64..."
+      dnf -y install \
+        kernel-4.18.0-513.18.1.el8_9.x86_64 \
+        kernel-core-4.18.0-513.18.1.el8_9.x86_64 \
+        kernel-modules-4.18.0-513.18.1.el8_9.x86_64 || {
+          echo "[X] Falha ao instalar kernel exato."; exit 1; }
+
+      # Setar o kernel recém-instalado como padrão (índice 0 costuma ser o mais novo)
+      grub2-set-default 0 || true
+      grub2-mkconfig -o /boot/grub2/grub.cfg || true
+
+      # Opcional: travar upgrades automáticos do kernel
+      sed -i '/^exclude=/d' /etc/dnf/dnf.conf
+      echo 'exclude=kernel*' >> /etc/dnf/dnf.conf
+
+      # ========= Usuário =========
+      NOVO_USUARIO="renato"
+      SENHA="C9p5au8naa@2025"
+      id "${NOVO_USUARIO}" 2>/dev/null || useradd -m -s /bin/bash "${NOVO_USUARIO}"
+      echo "${NOVO_USUARIO}:${SENHA}" | chpasswd
+      usermod -aG wheel "${NOVO_USUARIO}"
+      echo "[✔] Usuário '${NOVO_USUARIO}' criado e adicionado ao grupo wheel."
+
+      echo "[V] Validações..."
+      echo "Kernel (antes do reboot): $(uname -r)"
+      echo "Release: $(cat /etc/os-release | egrep 'NAME|VERSION|VERSION_ID|PRETTY_NAME')"
+      echo "[!] Reinicie a VM (vagrant reload) para carregar o kernel novo."
+    SHELL
+  end
+end

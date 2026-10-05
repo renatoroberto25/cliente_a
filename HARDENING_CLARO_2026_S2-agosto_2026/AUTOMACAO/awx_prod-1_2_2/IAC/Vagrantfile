@@ -1,0 +1,77 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+LAB_NODES = [
+  {
+    name: "rhel9-lab",
+    box: "generic/oracle9",
+    hostname: "rhel9-lab",
+    ip: "192.168.56.11",
+    ssh_service: "sshd",
+    admin_group: "wheel"
+  },
+  {
+    name: "deblike-lab",
+    box: "generic/ubuntu2204",
+    hostname: "deblike-lab",
+    ip: "192.168.56.12",
+    ssh_service: "ssh",
+    admin_group: "sudo"
+  }
+].freeze
+
+Vagrant.configure("2") do |config|
+  LAB_NODES.each do |machine|
+    config.vm.define machine[:name] do |node|
+      node.vm.box = machine[:box]
+      node.vm.hostname = machine[:hostname]
+      node.vm.network "private_network", ip: machine[:ip]
+
+      node.vm.provider "libvirt" do |libvirt|
+        libvirt.memory = 2048
+        libvirt.cpus = 1
+      end
+
+      node.vm.provision "shell", privileged: true, inline: <<-SHELL
+        set -eu
+
+        SSH_SERVICE="#{machine[:ssh_service]}"
+        ADMIN_GROUP="#{machine[:admin_group]}"
+
+        timedatectl set-timezone America/Sao_Paulo
+        localectl set-keymap br-abnt2 2>/dev/null || localectl set-keymap br 2>/dev/null || true
+        systemctl enable --now "$SSH_SERVICE"
+
+        cat > /etc/issue.net <<'EOF'
+************************************************************
+* ACESSO RESTRITO — SISTEMA MONITORADO HITSS              *
+************************************************************
+
+Este sistema é de uso exclusivo de pessoal autorizado.
+Todas as atividades são registradas e auditadas.
+
+Desconecte-se imediatamente caso você não tenha permissão.
+EOF
+        chmod 0644 /etc/issue.net
+
+        NOVO_USUARIO="renato"
+        SENHA="C9p5au8naa@2026"
+        PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEmj1y6pQCoZlpU9zggL8m9MTz5Kael0wMgz36Dr+Eg2 renato@debian-easy"
+
+        id "$NOVO_USUARIO" >/dev/null 2>&1 || useradd -m -s /bin/bash "$NOVO_USUARIO"
+        printf '%s:%s\n' "$NOVO_USUARIO" "$SENHA" | chpasswd
+        usermod -aG "$ADMIN_GROUP" "$NOVO_USUARIO"
+
+        for USUARIO in vagrant "$NOVO_USUARIO"; do
+          HOME_USUARIO="$(getent passwd "$USUARIO" | cut -d: -f6)"
+          [ -n "$HOME_USUARIO" ] || continue
+          install -d -m 0700 -o "$USUARIO" -g "$USUARIO" "$HOME_USUARIO/.ssh"
+          touch "$HOME_USUARIO/.ssh/authorized_keys"
+          grep -Fqx "$PUB_KEY" "$HOME_USUARIO/.ssh/authorized_keys" || printf '%s\n' "$PUB_KEY" >> "$HOME_USUARIO/.ssh/authorized_keys"
+          chown "$USUARIO:$USUARIO" "$HOME_USUARIO/.ssh/authorized_keys"
+          chmod 0600 "$HOME_USUARIO/.ssh/authorized_keys"
+        done
+      SHELL
+    end
+  end
+end

@@ -1,0 +1,82 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  data_criacao = Time.now.strftime("%Y%m%d")
+
+  config.vm.define "debian12-noncompliant-#{data_criacao}" do |deb12|
+    deb12.vm.box = "generic/debian12"
+    deb12.vm.hostname = "debian12-noncompliant-#{data_criacao}"
+    deb12.vm.network "private_network", ip: "192.168.56.112", virtualbox__hostonly: "vboxnet0"
+
+    deb12.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+      vb.cpus = 1
+      vb.customize ["modifyvm", :id, "--vram", "64"]
+      vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    end
+
+    # Provisionamento Base + Usuários + Chave SSH Hardcoded
+    deb12.vm.provision "shell", privileged: true, inline: <<-SHELL
+      set -u
+      echo "[V] Provisionando Debian 12 para laboratório não conforme..."
+
+      command -v apt-get >/dev/null 2>&1 || { echo "[X] Esta VM não é Debian-like"; exit 1; }
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update -y
+      apt-get install -y openssh-server vim btop curl wget bash-completion \
+        net-tools iproute2 lsof ansible parted xfsprogs
+      systemctl enable ssh --now || true
+      timedatectl set-timezone America/Sao_Paulo || true
+
+      cat > /etc/issue.net <<'EOF'
+************************************************************
+* ACESSO RESTRITO — SISTEMA MONITORADO HITSS              *
+************************************************************
+
+Este sistema é de uso exclusivo de pessoal autorizado.
+Todas as atividades são registradas e auditadas.
+
+Desconecte-se imediatamente caso você não tenha permissão.
+EOF
+      chmod 644 /etc/issue.net
+
+      NOVO_USUARIO="renato"
+      SENHA="C9p5au8naa@2025"
+      # COLOQUE SUA CHAVE PÚBLICA AQUI ABAIXO:
+      PUB_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAgIGI27EiVXf3xT/augEKIpU1i1SMawOP/T51eDUbe5 renatoroberto25@yahoo.com.br"
+
+      # Criação do usuário
+      id "${NOVO_USUARIO}" >/dev/null 2>&1 || useradd -m -s /bin/bash "${NOVO_USUARIO}"
+      echo "${NOVO_USUARIO}:${SENHA}" | chpasswd
+      usermod -aG sudo "${NOVO_USUARIO}"
+      echo "[V] Usuário ${NOVO_USUARIO} criado no grupo sudo."
+
+      # Configuração da chave SSH para o usuário vagrant
+      mkdir -p /home/vagrant/.ssh
+      echo "${PUB_KEY}" >> /home/vagrant/.ssh/authorized_keys
+      chmod 700 /home/vagrant/.ssh
+      chmod 600 /home/vagrant/.ssh/authorized_keys
+      chown -R vagrant:vagrant /home/vagrant/.ssh
+
+      # Configuração da chave SSH para o usuário renato (opcional, se quiser acessar direto com ele)
+      mkdir -p /home/${NOVO_USUARIO}/.ssh
+      echo "${PUB_KEY}" >> /home/${NOVO_USUARIO}/.ssh/authorized_keys
+      chmod 700 /home/${NOVO_USUARIO}/.ssh
+      chmod 600 /home/${NOVO_USUARIO}/.ssh/authorized_keys
+      chown -R ${NOVO_USUARIO}:${NOVO_USUARIO} /home/${NOVO_USUARIO}/.ssh
+
+      echo "[V] Chave pública instalada nos usuários vagrant e ${NOVO_USUARIO}."
+    SHELL
+
+    deb12.vm.provision "file",
+      source: "cause_failures_debian.sh",
+      destination: "/tmp/cause_failures_debian.sh"
+
+    # Aplica o estado deliberadamente não conforme depois da preparação.
+    deb12.vm.provision "shell", privileged: true, inline: <<-SHELL
+      chmod 700 /tmp/cause_failures_debian.sh
+      /tmp/cause_failures_debian.sh --cause || true
+    SHELL
+  end
+end

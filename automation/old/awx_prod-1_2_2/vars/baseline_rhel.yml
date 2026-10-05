@@ -1,0 +1,699 @@
+---
+hitss_baseline_source: "catalogs/baseline_rhel.csv"
+hitss_controls:
+  - id: 1
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 2
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 3
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 4
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 5
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 6
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 7
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Baixa"
+  - id: 8
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 9
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 10
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 11
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 12
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 13
+    perfil: "Full"
+    descricao: "Kernel / Módulos"
+    criticidade: "Média"
+  - id: 14
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Média"
+  - id: 15
+    perfil: "Full"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Média"
+  - id: 16
+    perfil: "Full"
+    descricao: "Kernel / Mitigações"
+    criticidade: "Alta"
+  - id: 17
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Alta"
+  - id: 18
+    perfil: "Full"
+    descricao: "Kernel / Mitigações"
+    criticidade: "Alta"
+  - id: 19
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Baixa"
+  - id: 20
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Baixa"
+  - id: 21
+    perfil: "Full"
+    descricao: "Kernel / Namespaces"
+    criticidade: "Média"
+  - id: 22
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Média"
+  - id: 23
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Média"
+  - id: 24
+    perfil: "Light"
+    descricao: "Kernel / Sysctl"
+    criticidade: "Média"
+  - id: 25
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 26
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 27
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 28
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 29
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 30
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 31
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 32
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 33
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 34
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Baixa"
+  - id: 35
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Média"
+  - id: 36
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Média"
+  - id: 40
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Média"
+  - id: 41
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Média"
+  - id: 42
+    perfil: "Full"
+    descricao: "Partições / Montagem"
+    criticidade: "Média"
+  - id: 44
+    perfil: "Light"
+    descricao: "Diretórios / Sticky Bit"
+    criticidade: "Média"
+  - id: 45
+    perfil: "Light"
+    descricao: "Diretórios / Sticky Bit"
+    criticidade: "Baixa"
+  - id: 46
+    perfil: "Light"
+    descricao: "Diretórios / Sticky Bit"
+    criticidade: "Baixa"
+  - id: 47
+    perfil: "Light"
+    descricao: "Diretórios / Sticky Bit"
+    criticidade: "Baixa"
+  - id: 48
+    perfil: "Full"
+    descricao: "Serviços / Sistema"
+    criticidade: "Baixa"
+  - id: 49
+    perfil: "Full"
+    descricao: "Boot / Segurança"
+    criticidade: "Média"
+  - id: 50
+    perfil: "Light"
+    descricao: "Boot / Segurança"
+    criticidade: "Alta"
+  - id: 51
+    perfil: "Full"
+    descricao: "Boot / Segurança"
+    criticidade: "Média"
+  - id: 56
+    perfil: "Light"
+    descricao: "Integridade / Binários"
+    criticidade: "Baixa"
+  - id: 57
+    perfil: "Full"
+    descricao: "Serviços / Sistema"
+    criticidade: "Média"
+  - id: 58
+    perfil: "Full"
+    descricao: "Tempo / Sincronização"
+    criticidade: "Média"
+  - id: 61
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 62
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Baixa"
+  - id: 63
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Baixa"
+  - id: 64
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 65
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 66
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 67
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Alta"
+  - id: 68
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 69
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 70
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 71
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 72
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 73
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Alta"
+  - id: 74
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Alta"
+  - id: 75
+    perfil: "Full"
+    descricao: "Serviços / MTA"
+    criticidade: "Média"
+  - id: 76
+    perfil: "Full"
+    descricao: "Serviços / Rede"
+    criticidade: "Média"
+  - id: 77
+    perfil: "Full"
+    descricao: "Serviços / Rede"
+    criticidade: "Média"
+  - id: 78
+    perfil: "Full"
+    descricao: "Serviços / Rede"
+    criticidade: "Média"
+  - id: 79
+    perfil: "Full"
+    descricao: "Serviços / Clientes"
+    criticidade: "Média"
+  - id: 80
+    perfil: "Full"
+    descricao: "Serviços / Clientes"
+    criticidade: "Alta"
+  - id: 81
+    perfil: "Full"
+    descricao: "Serviços / Clientes"
+    criticidade: "Baixa"
+  - id: 82
+    perfil: "Full"
+    descricao: "Serviços / Clientes"
+    criticidade: "Média"
+  - id: 83
+    perfil: "Full"
+    descricao: "Serviços / Clientes"
+    criticidade: "Média"
+  - id: 84
+    perfil: "Full"
+    descricao: "Serviços / Superfície de Ataque"
+    criticidade: "Média"
+  - id: 85
+    perfil: "Full"
+    descricao: "Serviços / Rede"
+    criticidade: "Alta"
+  - id: 86
+    perfil: "Full"
+    descricao: "Autorização / PolicyKit"
+    criticidade: "Alta"
+  - id: 87
+    perfil: "Full"
+    descricao: "Pacotes / Repositórios"
+    criticidade: "Média"
+  - id: 89
+    perfil: "Full"
+    descricao: "Tempo / Sincronização"
+    criticidade: "Média"
+  - id: 90
+    perfil: "Full"
+    descricao: "Serviços / Agendadores"
+    criticidade: "Alta"
+  - id: 91
+    perfil: "Full"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 92
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 93
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 94
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 95
+    perfil: "Full"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 96
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Baixa"
+  - id: 97
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Baixa"
+  - id: 98
+    perfil: "Light"
+    descricao: "Rede / Sysctl"
+    criticidade: "Alta"
+  - id: 99
+    perfil: "Full"
+    descricao: "Rede / IPv6"
+    criticidade: "Baixa"
+  - id: 102
+    perfil: "Full"
+    descricao: "Rede / Wireless"
+    criticidade: "Média"
+  - id: 108
+    perfil: "Full"
+    descricao: "Criptografia / Política"
+    criticidade: "Alta"
+  - id: 109
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 110
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 111
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 112
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 113
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 114
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 115
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 117
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 118
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 119
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 120
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Baixa"
+  - id: 121
+    perfil: "Light"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 122
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 123
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Média"
+  - id: 125
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 126
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 127
+    perfil: "Full"
+    descricao: "SSH / Configuração"
+    criticidade: "Alta"
+  - id: 130
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 131
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 132
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 133
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 134
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 135
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 136
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 137
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Média"
+  - id: 138
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Média"
+  - id: 139
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 140
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 141
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 142
+    perfil: "Full"
+    descricao: "Autenticação / PAM"
+    criticidade: "Alta"
+  - id: 143
+    perfil: "Full"
+    descricao: "Autenticação / Senhas"
+    criticidade: "Alta"
+  - id: 144
+    perfil: "Full"
+    descricao: "Autenticação / Senhas"
+    criticidade: "Baixa"
+  - id: 145
+    perfil: "Full"
+    descricao: "Autenticação / Senhas"
+    criticidade: "Baixa"
+  - id: 146
+    perfil: "Full"
+    descricao: "Autenticação / Senhas"
+    criticidade: "Alta"
+  - id: 147
+    perfil: "Full"
+    descricao: "Autenticação / Senhas"
+    criticidade: "Alta"
+  - id: 148
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Alta"
+  - id: 149
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Alta"
+  - id: 150
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Alta"
+  - id: 151
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Baixa"
+  - id: 152
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Alta"
+  - id: 153
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Alta"
+  - id: 154
+    perfil: "Full"
+    descricao: "Contas / Permissões"
+    criticidade: "Baixa"
+  - id: 155
+    perfil: "Full"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Alta"
+  - id: 156
+    perfil: "Light"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Alta"
+  - id: 157
+    perfil: "Light"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Alta"
+  - id: 158
+    perfil: "Full"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Alta"
+  - id: 159
+    perfil: "Light"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Baixa"
+  - id: 160
+    perfil: "Full"
+    descricao: "Sudo / Privilégios"
+    criticidade: "Alta"
+  - id: 162
+    perfil: "Light"
+    descricao: "Logging"
+    criticidade: "Média"
+  - id: 164
+    perfil: "Light"
+    descricao: "Logging"
+    criticidade: "Baixa"
+  - id: 166
+    perfil: "Full"
+    descricao: "Auditoria"
+    criticidade: "Alta"
+  - id: 167
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 168
+    perfil: "Full"
+    descricao: "Auditoria"
+    criticidade: "Alta"
+  - id: 169
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 170
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 171
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 173
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 174
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 175
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 176
+    perfil: "Full"
+    descricao: "Auditoria"
+    criticidade: "Alta"
+  - id: 177
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 178
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 179
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 180
+    perfil: "Light"
+    descricao: "Auditoria"
+    criticidade: "Média"
+  - id: 181
+    perfil: "Full"
+    descricao: "Auditoria"
+    criticidade: "Alta"
+  - id: 185
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 186
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 187
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 188
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 189
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Alta"
+  - id: 190
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Alta"
+  - id: 191
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 192
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 193
+    perfil: "Full"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Média"
+  - id: 194
+    perfil: "Light"
+    descricao: "Contas / Arquivos Críticos"
+    criticidade: "Alta"
+  - id: 195
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Baixa"
+  - id: 196
+    perfil: "Light"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Média"
+  - id: 197
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Média"
+  - id: 198
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Alta"
+  - id: 199
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Baixa"
+  - id: 200
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Média"
+  - id: 201
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Média"
+  - id: 202
+    perfil: "Light"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Baixa"
+  - id: 203
+    perfil: "Full"
+    descricao: "Contas / Arquivos e Homes"
+    criticidade: "Média"

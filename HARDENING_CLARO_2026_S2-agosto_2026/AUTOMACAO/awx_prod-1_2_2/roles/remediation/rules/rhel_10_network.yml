@@ -1,0 +1,42 @@
+---
+rhel_10_network_controls:
+  - id: 1
+    descricao: "Kernel / Módulos"
+    severidade: INFO
+    perfil: "Full"
+  - id: 91
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 92
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 93
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 94
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 95
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Full"
+  - id: 96
+    descricao: "Rede / Sysctl"
+    severidade: INFO
+    perfil: "Light"
+  - id: 97
+    descricao: "Rede / Sysctl"
+    severidade: INFO
+    perfil: "Light"
+  - id: 98
+    descricao: "Rede / Sysctl"
+    severidade: BLOCK
+    perfil: "Light"
+  - id: 99
+    descricao: "Rede / IPv6"
+    severidade: INFO
+    perfil: "Full"
