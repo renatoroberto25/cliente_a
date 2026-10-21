@@ -1,0 +1,212 @@
+#https://developer.crowdstrike.com/api-reference/collections/access-scopes/#listaccessscopesexternal
+#https://developer.crowdstrike.com/api-reference/collections/access-scopes/#queryaccessscopesexternal
+from collections import defaultdict
+from pathlib import Path
+from datetime import datetime
+
+import win32cred
+import pandas as pd
+from falconpy import APIClients, UserManagement
+
+BASE_URL = "https://api.us-2.crowdstrike.com"
+OUTPUT = Path("ApiClientsInventory_AllTenants.xlsx")
+
+TENANTS = {
+    "PARENT": {
+        "api": "PARENT_FALCON_API_CLIENT",
+        "users": "PARENT_FALCON_USERS_CLIENT"
+    },
+    "BSA": {
+        "api": "BSA_FALCON_API_CLIENT",
+        "users": "BSA_FALCON_USERS_CLIENT"
+    },
+    "BDN": {
+        "api": "BDN_FALCON_API_CLIENT",
+        "users": "BDN_FALCON_USERS_CLIENT"
+    }
+}
+
+inventory = []
+scopes = []
+owner_issues = []
+
+
+def credentials(target):
+    cred = win32cred.CredRead(
+        target, win32cred.CRED_TYPE_GENERIC
+    )
+    secret = cred["CredentialBlob"]
+    if isinstance(secret, bytes):
+        secret = secret.decode("utf-16-le").rstrip("\x00")
+    return cred["UserName"], secret
+
+
+def resources(response):
+    if response.get("status_code") != 200:
+        raise RuntimeError(str(response))
+    return response.get("body", {}).get("resources", [])
+
+
+def resolve_user(api, user_id, cache):
+    if not user_id:
+        return None
+
+    if user_id not in cache:
+        try:
+            result = resources(
+                api.retrieve_users(ids=[user_id])
+            )
+            cache[user_id] = result[0] if result else None
+        except Exception:
+            cache[user_id] = None
+
+    return cache[user_id]
+
+
+for tenant, targets in TENANTS.items():
+    print(f"Processing {tenant}...")
+
+    api_id, api_secret = credentials(targets["api"])
+    user_id, user_secret = credentials(targets["users"])
+
+    clients_api = APIClients(
+        client_id=api_id,
+        client_secret=api_secret,
+        base_url=BASE_URL
+    )
+
+    users_api = UserManagement(
+        client_id=user_id,
+        client_secret=user_secret,
+        base_url=BASE_URL
+    )
+
+    user_cache = {}
+    client_ids = []
+    offset = 0
+
+    while True:
+        batch = resources(
+            clients_api.get_all_api_client_ids_for_customer(
+                limit=500,
+                offset=offset
+            )
+        )
+
+        if not batch:
+            break
+
+        client_ids.extend(batch)
+        offset += len(batch)
+
+        if len(batch) < 500:
+            break
+
+    for start in range(0, len(client_ids), 500):
+        ids = client_ids[start:start + 500]
+
+        clients = resources(
+            clients_api.get_api_clients(ids=ids)
+        )
+
+        for client in clients:
+            creator_id = client.get("created_by")
+            modifier_id = client.get("updated_by")
+
+            creator = resolve_user(
+                users_api, creator_id, user_cache
+            )
+            modifier = resolve_user(
+                users_api, modifier_id, user_cache
+            )
+
+            def full_name(user):
+                if not user:
+                    return None
+                return " ".join(filter(None, [
+                    user.get("first_name"),
+                    user.get("last_name")
+                ]))
+
+            client_scopes = client.get("scopes") or []
+            client_id = client.get("client_id", client.get("id"))
+
+            inventory.append({
+                "Tenant": tenant,
+                "APIClient": client.get("name"),
+                "ClientId": client_id,
+                "Status": client.get("active"),
+                "Tipo": client.get("type"),
+                "DataCriacao": client.get("created_timestamp"),
+                "UltimaAlteracao": client.get("last_modified"),
+                "IdCriador": creator_id,
+                "Criador": full_name(creator),
+                "EmailCriador": creator.get("uid") if creator else None,
+                "StatusCriador": "RESOLVED" if creator else "USER_NOT_FOUND",
+                "IdUltimoAlterador": modifier_id,
+                "UltimoAlterador": full_name(modifier),
+                "EmailUltimoAlterador": modifier.get("uid") if modifier else None,
+                "StatusUltimoAlterador": "RESOLVED" if modifier else "USER_NOT_FOUND",
+                "QuantidadeScopes": len(client_scopes),
+                "Scopes": "; ".join(map(str, client_scopes))
+            })
+
+            for scope in client_scopes:
+                scopes.append({
+                    "Tenant": tenant,
+                    "APIClient": client.get("name"),
+                    "ClientId": client_id,
+                    "Scope": str(scope)
+                })
+
+            for kind, uid, user in [
+                ("CRIADOR", creator_id, creator),
+                ("ALTERADOR", modifier_id, modifier)
+            ]:
+                if not user:
+                    owner_issues.append({
+                        "Tenant": tenant,
+                        "APIClient": client.get("name"),
+                        "Tipo": kind,
+                        "UserId": uid
+                    })
+
+
+df = pd.DataFrame(inventory)
+
+summary = []
+
+for tenant, group in df.groupby("Tenant"):
+    summary.append({
+        "Tenant": tenant,
+        "TotalClients": len(group),
+        "ActiveClients": int(group["Status"].sum()),
+        "InactiveClients": int((~group["Status"].astype(bool)).sum())
+    })
+
+with pd.ExcelWriter(OUTPUT, engine="openpyxl") as writer:
+    for sheet, data in {
+        "Summary": summary,
+        "APIClients": inventory,
+        "Scopes": scopes,
+        "OwnerIssues": owner_issues
+    }.items():
+        frame = pd.DataFrame(data)
+        frame.to_excel(writer, sheet_name=sheet, index=False)
+
+        ws = writer.sheets[sheet]
+        ws.freeze_panes = "A2"
+
+        if ws.max_row > 1 and ws.max_column > 0:
+            ws.auto_filter.ref = ws.dimensions
+
+        for column in ws.columns:
+            letter = column[0].column_letter
+            width = max(
+                len(str(cell.value or ""))
+                for cell in column
+            )
+            ws.column_dimensions[letter].width = min(width + 2, 55)
+
+print(f"Arquivo gerado: {OUTPUT}")
+print(f"Total API Clients: {len(inventory)}")
