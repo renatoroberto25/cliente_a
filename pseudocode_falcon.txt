@@ -1,0 +1,638 @@
+ALGORITMO 003_MULTI_TENANT_APICLIENT_INVENTORY
+
+OBJETIVO:
+    Inventariar API Clients de todos os tenants CrowdStrike.
+    Identificar criadores e últimos alteradores.
+    Resolver identidades entre tenants.
+    Consolidar resultados em um único XLSX.
+
+DEPENDÊNCIAS:
+    PowerShell 5.1
+    CredentialManager
+    PSFalcon
+    ImportExcel
+
+CONFIGURAÇÃO:
+    OUTPUT = ApiClientsInventory_AllTenants.xlsx
+
+    TENANTS = [
+        {
+            Tenant: PARENT
+            ApiCredential: PARENT_FALCON_API_CLIENT
+            UserCredential: PARENT_FALCON_USERS_CLIENT
+        },
+        {
+            Tenant: BSA
+            ApiCredential: BSA_FALCON_API_CLIENT
+            UserCredential: BSA_FALCON_USERS_CLIENT
+        },
+        {
+            Tenant: BDN
+            ApiCredential: BDN_FALCON_API_CLIENT
+            UserCredential: BDN_FALCON_USERS_CLIENT
+        }
+    ]
+
+ESTRUTURAS GLOBAIS:
+    INVENTORY = []
+    SCOPES = []
+    OWNER_ISSUES = []
+    USER_CACHE = {}
+    SUMMARY = []
+    TENANT_ERRORS = []
+
+--------------------------------------------------
+ETAPA 1 — CREDENCIAIS
+--------------------------------------------------
+
+FUNÇÃO GET_CREDENTIAL(TARGET):
+
+    CREDENTIAL = CredentialManager.GetStoredCredential(TARGET)
+
+    SE CREDENTIAL NÃO EXISTIR:
+        LANÇAR ERRO
+
+    RETORNAR:
+        ClientId = CREDENTIAL.UserName
+        ClientSecret = CREDENTIAL.Password descriptografada
+
+--------------------------------------------------
+ETAPA 2 — AUTENTICAÇÃO
+--------------------------------------------------
+
+FUNÇÃO AUTHENTICATE_API_CLIENT(TENANT):
+
+    CREDENTIAL = GET_CREDENTIAL(TENANT.ApiCredential)
+
+    TOKEN = CrowdStrike.OAuth2(
+        ClientId = CREDENTIAL.ClientId,
+        ClientSecret = CREDENTIAL.ClientSecret,
+        Cloud = região configurada
+    )
+
+    RETORNAR TOKEN
+
+
+FUNÇÃO AUTHENTICATE_USERS(TENANT):
+
+    CREDENTIAL = GET_CREDENTIAL(TENANT.UserCredential)
+
+    PSFalcon.RevokeToken()
+
+    PSFalcon.RequestToken(
+        ClientId = CREDENTIAL.ClientId,
+        ClientSecret = CREDENTIAL.ClientSecret
+    )
+
+--------------------------------------------------
+ETAPA 3 — CACHE GLOBAL DE USUÁRIOS
+--------------------------------------------------
+
+FUNÇÃO REGISTER_USER(USER, TENANT):
+
+    SE USER NÃO EXISTIR:
+        RETORNAR
+
+    USER_ID = USER.id
+
+    SE USER_ID ESTIVER VAZIO:
+        RETORNAR
+
+    NAME = CONCATENAR(
+        USER.first_name,
+        USER.last_name
+    )
+
+    EMAIL = USER.uid
+
+    SE USER_CACHE[USER_ID] NÃO EXISTIR:
+        USER_CACHE[USER_ID] = {
+            Id: USER_ID,
+            Name: NAME,
+            Email: EMAIL,
+            SourceTenant: TENANT
+        }
+
+    SENÃO:
+        SE USER_CACHE[USER_ID].Name ESTIVER VAZIO:
+            USER_CACHE[USER_ID].Name = NAME
+
+        SE USER_CACHE[USER_ID].Email ESTIVER VAZIO:
+            USER_CACHE[USER_ID].Email = EMAIL
+
+--------------------------------------------------
+ETAPA 4 — CARREGAMENTO DOS USUÁRIOS
+--------------------------------------------------
+
+PARA CADA TENANT EM TENANTS:
+
+    TENTAR:
+
+        AUTHENTICATE_USERS(TENANT)
+
+        USERS_IDS = PSFalcon.GetFalconUser(
+            All = TRUE
+        )
+
+        PARA CADA USER_ID EM USERS_IDS:
+
+            USER = PSFalcon.GetFalconUser(
+                Id = USER_ID
+            )
+
+            REGISTER_USER(USER, TENANT.Tenant)
+
+    EM CASO DE ERRO:
+
+        REGISTRAR EM TENANT_ERRORS:
+            Tenant
+            Operation = USER_COLLECTION
+            Error
+
+    FINALMENTE:
+
+        PSFalcon.RevokeToken()
+
+OBSERVAÇÃO:
+    Carregar primeiro PARENT.
+    Depois BSA e BDN.
+    Não sobrescrever dados válidos com campos vazios.
+    Não assumir que um usuário existe em todos os tenants.
+
+--------------------------------------------------
+ETAPA 5 — COLETA DE API CLIENTS
+--------------------------------------------------
+
+PARA CADA TENANT EM TENANTS:
+
+    TENTAR:
+
+        TOKEN = AUTHENTICATE_API_CLIENT(TENANT)
+
+        CLIENT_IDS = []
+
+        OFFSET = 0
+        LIMIT = 500
+
+        REPETIR:
+
+            RESPONSE = CrowdStrike.API(
+                GET /api-clients/queries/api-clients/v1,
+                Token = TOKEN,
+                Limit = LIMIT,
+                Offset = OFFSET
+            )
+
+            ADICIONAR RESPONSE.resources EM CLIENT_IDS
+
+            OFFSET = OFFSET + QUANTIDADE(RESPONSE.resources)
+
+        ATÉ:
+            RESPONSE.resources ESTIVER VAZIO
+            OU NÃO EXISTIR PRÓXIMA PÁGINA
+
+        PARA CADA LOTE DE ATÉ 500 IDS:
+
+            DETAILS = CrowdStrike.API(
+                GET /api-clients/entities/api-clients/v1,
+                Token = TOKEN,
+                Ids = IDS_DO_LOTE
+            )
+
+            PARA CADA CLIENT EM DETAILS.resources:
+
+                CLIENT_ID = IDENTIFICADOR_REAL_DO_CLIENT
+
+                CREATED_BY = CLIENT.created_by
+                UPDATED_BY = CLIENT.updated_by
+
+                ADICIONAR EM INVENTORY:
+
+                    Tenant = TENANT.Tenant
+                    APIClient = CLIENT.name
+                    ClientId = CLIENT_ID
+
+                    Status = CLIENT.active
+                    Tipo = CLIENT.type
+
+                    DataCriacao = CLIENT.created_timestamp
+                    UltimaAlteracao = CLIENT.last_modified
+
+                    IdCriador = CREATED_BY
+                    Criador = NULL
+                    EmailCriador = NULL
+                    StatusCriador = PENDING
+
+                    IdUltimoAlterador = UPDATED_BY
+                    UltimoAlterador = NULL
+                    EmailUltimoAlterador = NULL
+                    StatusUltimoAlterador = PENDING
+
+                    QuantidadeScopes = CONTAR(CLIENT.scopes)
+                    Scopes = JUNTAR(CLIENT.scopes, "; ")
+
+                PARA CADA SCOPE EM CLIENT.scopes:
+
+                    ADICIONAR EM SCOPES:
+                        Tenant = TENANT.Tenant
+                        APIClient = CLIENT.name
+                        ClientId = CLIENT_ID
+                        Scope = SCOPE
+
+    EM CASO DE ERRO:
+
+        REGISTRAR EM TENANT_ERRORS:
+            Tenant
+            Operation = API_CLIENT_COLLECTION
+            Error
+
+    FINALMENTE:
+
+        REVOGAR TOKEN QUANDO APLICÁVEL
+
+--------------------------------------------------
+ETAPA 6 — RESOLUÇÃO GLOBAL DE IDENTIDADES
+--------------------------------------------------
+
+PARA CADA CLIENT EM INVENTORY:
+
+    CRIADOR_ID = CLIENT.IdCriador
+    ALTERADOR_ID = CLIENT.IdUltimoAlterador
+
+    SE CRIADOR_ID EXISTIR EM USER_CACHE:
+
+        CLIENT.Criador = USER_CACHE[CRIADOR_ID].Name
+        CLIENT.EmailCriador = USER_CACHE[CRIADOR_ID].Email
+        CLIENT.StatusCriador = RESOLVED
+
+    SENÃO:
+
+        CLIENT.StatusCriador = USER_NOT_FOUND
+
+    SE ALTERADOR_ID EXISTIR EM USER_CACHE:
+
+        CLIENT.UltimoAlterador = USER_CACHE[ALTERADOR_ID].Name
+        CLIENT.EmailUltimoAlterador = USER_CACHE[ALTERADOR_ID].Email
+        CLIENT.StatusUltimoAlterador = RESOLVED
+
+    SENÃO:
+
+        CLIENT.StatusUltimoAlterador = USER_NOT_FOUND
+
+--------------------------------------------------
+ETAPA 7 — SEGUNDA PASSAGEM PELO INVENTÁRIO
+--------------------------------------------------
+
+OBJETIVO:
+    Aproveitar identidades já resolvidas em qualquer tenant
+    para preencher registros ainda pendentes.
+
+RESOLVED_USERS = {}
+
+PARA CADA CLIENT EM INVENTORY:
+
+    SE CLIENT.StatusCriador = RESOLVED:
+
+        RESOLVED_USERS[CLIENT.IdCriador] = {
+            Name: CLIENT.Criador
+            Email: CLIENT.EmailCriador
+        }
+
+    SE CLIENT.StatusUltimoAlterador = RESOLVED:
+
+        RESOLVED_USERS[CLIENT.IdUltimoAlterador] = {
+            Name: CLIENT.UltimoAlterador
+            Email: CLIENT.EmailUltimoAlterador
+        }
+
+PARA CADA CLIENT EM INVENTORY:
+
+    SE CLIENT.StatusCriador != RESOLVED:
+
+        SE CLIENT.IdCriador EXISTIR EM RESOLVED_USERS:
+
+            CLIENT.Criador = RESOLVED_USERS[CLIENT.IdCriador].Name
+            CLIENT.EmailCriador = RESOLVED_USERS[CLIENT.IdCriador].Email
+            CLIENT.StatusCriador = RESOLVED
+
+    SE CLIENT.StatusUltimoAlterador != RESOLVED:
+
+        SE CLIENT.IdUltimoAlterador EXISTIR EM RESOLVED_USERS:
+
+            CLIENT.UltimoAlterador = RESOLVED_USERS[CLIENT.IdUltimoAlterador].Name
+            CLIENT.EmailUltimoAlterador = RESOLVED_USERS[CLIENT.IdUltimoAlterador].Email
+            CLIENT.StatusUltimoAlterador = RESOLVED
+
+--------------------------------------------------
+ETAPA 8 — INCONSISTÊNCIAS DE PROPRIETÁRIOS
+--------------------------------------------------
+
+PARA CADA CLIENT EM INVENTORY:
+
+    SE CLIENT.StatusCriador != RESOLVED:
+
+        ADICIONAR EM OWNER_ISSUES:
+            Tenant = CLIENT.Tenant
+            APIClient = CLIENT.APIClient
+            Tipo = CRIADOR
+            UserId = CLIENT.IdCriador
+            Status = CLIENT.StatusCriador
+
+    SE CLIENT.StatusUltimoAlterador != RESOLVED:
+
+        ADICIONAR EM OWNER_ISSUES:
+            Tenant = CLIENT.Tenant
+            APIClient = CLIENT.APIClient
+            Tipo = ALTERADOR
+            UserId = CLIENT.IdUltimoAlterador
+            Status = CLIENT.StatusUltimoAlterador
+
+--------------------------------------------------
+ETAPA 9 — RESUMO POR TENANT
+--------------------------------------------------
+
+PARA CADA TENANT EM TENANTS:
+
+    DATA = FILTRAR INVENTORY POR TENANT
+
+    ADICIONAR EM SUMMARY:
+
+        Tenant
+        TotalClients
+        ActiveClients
+        InactiveClients
+        TotalScopes
+        CreatorsResolved
+        CreatorsNotFound
+        ModifiersResolved
+        ModifiersNotFound
+
+--------------------------------------------------
+ETAPA 10 — EXPORTAÇÃO XLSX
+--------------------------------------------------
+
+CRIAR OUTPUT
+
+ABA Summary:
+    EXPORTAR SUMMARY
+
+ABA APIClients:
+    EXPORTAR INVENTORY
+
+ABA Scopes:
+    EXPORTAR SCOPES
+
+ABA OwnerIssues:
+    EXPORTAR OWNER_ISSUES
+
+ABA Users:
+    EXPORTAR USER_CACHE
+
+ABA Errors:
+    EXPORTAR TENANT_ERRORS
+
+PARA TODAS AS ABAS:
+    Cabeçalho em negrito
+    AutoFilter
+    FreezeTopRow
+    AutoSize
+
+--------------------------------------------------
+ETAPA 11 — VALIDAÇÃO FINAL
+--------------------------------------------------
+
+VALIDAR:
+    Total de API Clients coletados por tenant
+    Total de usuários identificados
+    Total de identidades não resolvidas
+    Total de scopes
+    Erros de autenticação
+    Erros de paginação
+    Erros de consulta
+
+IMPORTANTE:
+    Nunca associar detalhes de clientes pela posição
+    em listas retornadas por chamadas diferentes.
+
+    Nunca apagar IDs de usuários não encontrados.
+
+    Nunca considerar coleta completa quando houver
+    falha de paginação ou erro de API.
+
+    Nunca classificar ausência de usuário como
+    USER_NOT_FOUND se a consulta de usuários falhou.
+    Nesse caso utilizar LOOKUP_ERROR.
+
+RESULTADO:
+    ApiClientsInventory_AllTenants.xlsx
+
+FIM
+
+
+# API Security Governance — Read-Only Discovery and Lifecycle Playbook
+
+> Generic reference workflow for API-client and automation governance using PowerShell and read-only API access. Adapt to the organization’s security policies, licensing, API capabilities and change-management process.
+
+## 1. Purpose
+
+Establish a repeatable process to discover, assess, document and periodically review API clients, permissions, integrations and automations across one or more environments. **Inventory is not proof of ownership, actual usage or approval.** Read-only access supports evidence collection; credential rotation, permission changes and deactivation require separate approval and authorized execution.
+
+## 2. Principles
+
+- Least privilege: discovery identities should use only required **read** permissions.
+- Separation of duties: collectors do not approve or execute destructive changes.
+- Environment isolation: collect and record the source environment for every object.
+- Traceability: each conclusion must link to a source, timestamp, reviewer and decision.
+- No assumed attribution: creator and last modifier are historical actors, not necessarily current owners.
+- No inferred usage: enabled state or last modification date does **not** prove an API client is in use.
+- No false success: permission errors, partial pagination and missing telemetry must appear as explicit gaps.
+
+## 3. Prerequisites
+
+- PowerShell and approved, installed modules (for example, PSFalcon and ImportExcel).
+- API client with minimum read permissions for each enabled product area.
+- Credentials stored in the approved local or enterprise secret store; no secrets in scripts, logs or spreadsheets.
+- Inventory of authorized environments and the corresponding API base URL/cloud region.
+- Approved location for evidence and governance records.
+
+**Verify installed syntax rather than inventing cmdlets:**
+
+```powershell
+Get-Module PSFalcon -ListAvailable | Select-Object Name,Version
+Get-Command -Module PSFalcon | Sort-Object Name | Select-Object Name
+Get-Command Get-FalconUser -Syntax
+Get-Help Get-FalconUser -Full
+```
+
+The installed module and its official documentation are the authority for command names, parameters, scope requirements and response properties. If a capability is absent, record `NOT_SUPPORTED` instead of fabricating an endpoint.
+
+## 4. Workflow A — Complete inventory
+
+1. List all authorized environments and configure read-only credentials for each.
+2. Authenticate separately to each environment, verify identity and effective permissions, and log start/end times.
+3. Collect all API client IDs **with pagination**; verify there is no next page remaining.
+4. Fetch details in API-supported batches and **join by stable object ID**, never by positional index.
+5. Preserve raw fields where supplied: environment, name, client ID, active state, client type, creation time, modification time, creator ID, modifier ID, scopes, and any relevant references.
+6. Enumerate users separately in each authorized environment. Build an identity lookup keyed by `(identity_namespace, user_id)`; use a plain global user ID only when its cross-environment uniqueness is established.
+7. Resolve creator and modifier IDs in a second pass. Reuse a match from another environment only when the identity namespace and exact ID make the equivalence reliable; otherwise keep the field unresolved.
+8. Record per-environment totals, permissions failures, unsupported fields and data completeness.
+9. Export a workbook with `Summary`, `APIClients`, `Scopes`, `Users`, `IdentityIssues`, `CollectionErrors` and `Governance` worksheets.
+10. Reconcile sampled counts and objects against the official console or another authorized inventory source.
+
+### Minimal reconciliation pseudocode
+
+```text
+inventory = []
+user_index = {}                    # key = namespace + ':' + user_id
+errors = []
+
+for environment in authorized_environments:
+    context = authenticate_readonly(environment)
+    ids = query_all_client_ids_with_pagination(context)
+    details = get_client_details_in_supported_batches(context, ids)
+    inventory += normalize_and_tag_environment(details, environment)
+
+    for user in query_all_users_with_pagination(context):
+        key = identity_namespace(environment, user) + ':' + user.id
+        if key is not empty and user identity is verified:
+            user_index[key] = user
+
+for client in inventory:
+    client.creator = safe_lookup(user_index, client.creator_namespace, client.creator_id)
+    client.last_modifier = safe_lookup(user_index, client.modifier_namespace, client.modifier_id)
+    if lookup unavailable or failed: record explicit status
+
+assert collection_errors_are_reported(errors)
+export_workbook(inventory, user_index, errors)
+```
+
+### APIClients worksheet columns
+
+| Group | Columns |
+|---|---|
+| Identity | Environment, APIClientName, ClientId, ClientType, Enabled |
+| Lifecycle | CreatedAt, LastModifiedAt |
+| Creator | CreatedById, CreatorName, CreatorEmail, CreatorResolutionStatus |
+| Modifier | ModifiedById, ModifierName, ModifierEmail, ModifierResolutionStatus |
+| Permissions | ScopeCount, ScopeList |
+| Quality | CollectionTimestamp, IdentitySource, DataQualityStatus |
+
+`ClientId` identifies the **API client**. `CreatedById` and `ModifiedById` identify **users/actors**. These are different keys.
+
+## 5. Workflow B — Decision register
+
+Create a `Governance` worksheet, one row per API client, referencing its environment and stable ID.
+
+| Field | How to populate |
+|---|---|
+| Environment / ClientId | Read-only inventory |
+| Technical creator / last modifier | API metadata, with resolution status |
+| Business owner / technical owner | Confirm with application or integration owner |
+| Consuming system / business purpose | Confirm with owner and architecture records |
+| Last observed authentication/use | Verified telemetry source, where available |
+| Telemetry window / completeness | Data source, time interval, retention and known gaps |
+| Granted scopes | Inventory |
+| Required scopes | Owner-confirmed operation requirements |
+| Excessive privilege finding | Comparison of granted vs required scopes |
+| Proposed decision | `KEEP`, `RESTRICT`, `ROTATE`, `DISABLE`, or `INVESTIGATE` |
+| Rationale / risk / dependency | Reviewer documentation |
+| Approver / date / change reference | Approval process |
+| Execution / tests / rollback evidence | Authorized change record |
+
+Do not label an API client `INACTIVE` until an **approved** telemetry source and inactivity definition support that classification. `UNKNOWN` is a valid result when data are unavailable.
+
+## 6. Workflow C — Usage and inactivity criteria
+
+1. Identify telemetry capable of associating API authentication or API activity with a client ID.
+2. Verify the telemetry’s coverage, data retention, permissions, ingestion delay and granularity.
+3. Compare a sample of known active clients against the collected events.
+4. Propose an inactivity interval and exceptions by service criticality, including rare scheduled jobs.
+5. Obtain approval from governance/security and impacted service owners.
+6. Measure each client only within the verified telemetry window.
+7. Record `ACTIVE_OBSERVED`, `NO_ACTIVITY_OBSERVED`, `INSUFFICIENT_TELEMETRY` or `NOT_EVALUATED`.
+8. Never automatically deactivate a client based only on the absence of events.
+
+## 7. Workflow D — Permissions / least privilege
+
+1. Export granted scopes per client in a one-scope-per-row format.
+2. Obtain the API operations actually required from each integration owner.
+3. Map required operations to documented read/write scopes.
+4. Flag broader scopes, unused write access, broad administrative access and unclear permissions.
+5. Open a remediation proposal for each confirmed excess; record risk and consumer dependency.
+6. Approve, schedule, test and document changes through the organization's process.
+
+## 8. Workflow E — Automation inventory
+
+1. Enumerate workflow/automation objects through authorized read-only module/API capabilities.
+2. Record environment, object ID, name, enabled status, creation/modification metadata and available authorship fields.
+3. Record triggers, actions, schedules, service dependencies and linked API clients **only if directly available or verified**.
+4. Collect execution and failure telemetry where supported.
+5. Ask owners to validate business purpose and expected execution frequency.
+6. Classify automations as `KEEP`, `REVIEW`, `FIX` or `RETIRE_CANDIDATE`.
+7. Submit proposed changes for approval; verify successful execution and rollback capability after any change.
+
+Do not assume every integration exists inside the security platform: external schedulers, SOAR tools and service accounts may be involved.
+
+## 9. Workflow F — Credential hygiene and client retirement
+
+1. Use the inventory and decision register to identify potential risk: unknown owner, excessive scopes, inactive candidate, unclear purpose or outdated rotation records.
+2. Determine consuming services and cross-environment dependencies; assess impact.
+3. Obtain owner/security/change approvals.
+4. Prepare a new-secret distribution procedure using an approved secret store and a tested rollback path.
+5. Have an **authorized write-capable operator** perform credential rotation or privilege changes.
+6. Validate client authentication, dependent jobs and business functionality.
+7. Retire old credentials or disable clients only after validation and approval.
+8. Preserve change ticket, approvals, test results, timestamps and exceptions.
+
+The read-only collector must **never** attempt rotation, secret retrieval, changes to scopes or deactivation.
+
+## 10. Operating controls and audit evidence
+
+Document:
+
+- **RACI:** inventory operator, service owner, security reviewer, approver, change implementer.
+- **Cadence:** inventory refresh, scope review, owner recertification and exception renewal.
+- **Monitoring:** data sources, coverage, retention, owner of alerts, escalation path.
+- **SLA:** proposed response/resolution targets by severity, approved by stakeholders.
+- **Traceability:** collection date, script/module version, authorized environment coverage, totals and known gaps.
+- **Evidence:** sanitized summaries, approved decision register, relevant tickets and test reports in approved internal repositories.
+
+## 11. Acceptance checks
+
+| Deliverable | Acceptance evidence |
+|---|---|
+| Inventory and documentation | Verified environment coverage, complete paginated collection, identity resolution rates, permission inventory, ownership/usage methodology, approved criteria and decision register |
+| Automations governance | Automation inventory, verified dependencies and owners, available execution evidence, classification, approved changes, post-change tests |
+| Credential hygiene | Risk-based candidate list, owner/impact validation, approved rotation/retirement plan, operator change records, tests and rollback evidence |
+
+If a change depends on another team or permission level, record it as a **blocking dependency**, not a completed action. Technical evidence and organizational approvals are separate acceptance criteria.
+
+## 12. Publication hygiene
+
+Safe to publish in a generic repository **only subject to employer policy and rights**:
+
+- Generic architecture, pseudocode, sanitized column schema, test fixtures with fabricated data, links to public documentation.
+
+Do **not** publish:
+
+- Credentials, tokens, client secrets, local credential-store entries or secret-store keys.
+- Real tenant identifiers, client IDs, user IDs/emails, API responses, internal hostnames or URLs.
+- Corporate inventory files, internal runbooks/tickets, screenshots or unreleased business workflows.
+- Proprietary code or work product without required authorization.
+
+A public GitHub repository is not a substitute for the organization's internal evidence repository. Public availability of a general technique does not establish permission to release employer-developed material.
+
+## 13. Copilot operating instruction
+
+```text
+You are assisting with a PowerShell read-only security-governance collector.
+Use only cmdlets proven to exist in the installed PSFalcon module and parameters
+confirmed by Get-Command -Syntax, Get-Help, or official documentation. Never
+invent API endpoints, PSFalcon functions, parameter names or return fields.
+Separate collection, identity reconciliation, telemetry assessment, decisions
+and authorized remediation. Do not output secrets or internal identifiers in
+logs. Keep environment context explicit, paginate, join by stable IDs, and
+record permission/coverage errors. Unknown attributes stay UNKNOWN. Propose
+one minimal code change at a time and state the verification command.
+No write operations, credential rotation or deactivation in collector code.
+```
