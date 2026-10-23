@@ -1,401 +1,516 @@
-ALGORITMO 003_MULTI_TENANT_APICLIENT_INVENTORY
+
+ALGORITMO INVENTARIO_FALCON_MULTITENANT
 
 OBJETIVO:
-    Inventariar API Clients de todos os tenants CrowdStrike.
-    Identificar criadores e últimos alteradores.
-    Resolver identidades entre tenants.
-    Consolidar resultados em um único XLSX.
+    Inventariar API Clients em múltiplos tenants.
+    Identificar criadores, alteradores e permissões.
+    Registrar falhas e qualidade dos dados.
+    Consolidar resultados em arquivo XLSX.
 
-DEPENDÊNCIAS:
-    PowerShell 5.1
-    CredentialManager
-    PSFalcon
-    ImportExcel
+DEPENDENCIAS:
+    Mecanismo de autenticação OAuth2
+    Cliente da API Falcon
+    Mecanismo de consulta de usuários
+    Gerenciador de credenciais
+    Exportador XLSX
 
-CONFIGURAÇÃO:
-    OUTPUT = ApiClientsInventory_AllTenants.xlsx
+PARAMETROS:
+    API_BASE_URL
+    CLOUD
+    PREFIXO_CREDENCIAL_API
+    PREFIXO_CREDENCIAL_USUARIOS
+    FILTRO_TENANTS
+    TAMANHO_PAGINA = 300
+    ARQUIVO_SAIDA
 
-    TENANTS = [
-        {
-            Tenant: PARENT
-            ApiCredential: PARENT_FALCON_API_CLIENT
-            UserCredential: PARENT_FALCON_USERS_CLIENT
-        },
-        {
-            Tenant: BSA
-            ApiCredential: BSA_FALCON_API_CLIENT
-            UserCredential: BSA_FALCON_USERS_CLIENT
-        },
-        {
-            Tenant: BDN
-            ApiCredential: BDN_FALCON_API_CLIENT
-            UserCredential: BDN_FALCON_USERS_CLIENT
-        }
-    ]
+ESTRUTURAS:
+    TENANTS = []
+    INVENTARIO_GLOBAL = []
+    SCOPES_GLOBAIS = []
+    PENDENCIAS_IDENTIDADE = []
+    ERROS_COLETA = []
+    STATUS_TENANTS = []
 
-ESTRUTURAS GLOBAIS:
-    INVENTORY = []
-    SCOPES = []
-    OWNER_ISSUES = []
-    USER_CACHE = {}
-    SUMMARY = []
-    TENANT_ERRORS = []
 
---------------------------------------------------
-ETAPA 1 — CREDENCIAIS
---------------------------------------------------
+==================================================
+ETAPA 1 - VALIDACAO DO AMBIENTE
+==================================================
 
-FUNÇÃO GET_CREDENTIAL(TARGET):
+VERIFICAR:
+    Ambiente permite execução dos componentes
+    necessários.
 
-    CREDENTIAL = CredentialManager.GetStoredCredential(TARGET)
+    Dependências de API estão disponíveis.
 
-    SE CREDENTIAL NÃO EXISTIR:
-        LANÇAR ERRO
+    Exportador XLSX está disponível.
+
+SE requisito obrigatório não estiver disponível:
+    INTERROMPER com erro explícito.
+SENAO:
+    PROSSEGUIR.
+
+
+==================================================
+ETAPA 2 - DESCOBERTA DE TENANTS
+==================================================
+
+CONSULTAR gerenciador de credenciais.
+
+LOCALIZAR entradas cujo identificador corresponda
+ao prefixo configurado para API Clients.
+
+PARA CADA entrada encontrada:
+    EXTRAIR identificador do tenant.
+    APLICAR filtro de tenants.
+    REMOVER duplicidades.
+
+    REGISTRAR:
+        Tenant
+        Referência da credencial
+
+SE nenhum tenant encontrado:
+    INTERROMPER com erro.
+SENAO:
+    EXIBIR quantidade de tenants.
+
+
+==================================================
+ETAPA 3 - COLETA POR TENANT
+==================================================
+
+PARA CADA TENANT:
+
+    DEFINIR:
+        ETAPA_ATUAL = CREDENCIAL
+        RESULTADO = OK
+        TOTAL_ESPERADO = DESCONHECIDO
+        TOTAL_COLETADO = 0
+
+    INICIAR tratamento de exceções.
+
+    ----------------------------------------------
+    3.1 - CREDENCIAIS
+    ----------------------------------------------
+
+    LER credencial do tenant.
+
+    OBTER:
+        CLIENT_ID
+        CLIENT_SECRET
+
+    SE credencial indisponível:
+        REGISTRAR erro.
+        INTERROMPER coleta deste tenant.
+
+    ----------------------------------------------
+    3.2 - AUTENTICACAO OAUTH2
+    ----------------------------------------------
+
+    SOLICITAR token OAuth2 utilizando:
+        CLIENT_ID
+        CLIENT_SECRET
+        API_BASE_URL
+
+    VALIDAR resposta.
+
+    CONSTRUIR cabeçalhos:
+        Authorization = Bearer TOKEN
+        Accept = application/json
+
+    ----------------------------------------------
+    3.3 - CONSULTA PAGINADA DE IDS
+    ----------------------------------------------
+
+    DEFINIR:
+        OFFSET = 0
+        IDS = conjunto sem duplicidades
+
+    REPETIR:
+
+        CONSULTAR endpoint de API Clients:
+            Operação: Query API Clients
+            Limite: TAMANHO_PAGINA
+            Offset: OFFSET
+
+        EXTRAIR:
+            Lista de IDs
+            Total esperado informado pela API
+
+        ADICIONAR IDs novos ao conjunto.
+
+        ATUALIZAR OFFSET conforme quantidade
+        de registros retornados.
+
+    ENQUANTO:
+        Página contém registros
+        E existem IDs novos
+        E total esperado ainda não foi alcançado.
+
+    SE nenhum ID encontrado:
+        RESULTADO = SEM_CLIENTS
+
+    SENAO SE total obtido difere do esperado:
+        RESULTADO = PARCIAL
+        REGISTRAR divergência em ERROS_COLETA.
+
+    ----------------------------------------------
+    3.4 - CONSULTA DE DETALHES EM LOTES
+    ----------------------------------------------
+
+    DIVIDIR conjunto de IDs em lotes.
+
+    PARA CADA LOTE:
+
+        CONSTRUIR consulta com os IDs do lote.
+
+        CONSULTAR endpoint:
+            Get API Client Entities
+
+        EXTRAIR recursos retornados.
+
+        PARA CADA recurso:
+
+            PROCURAR identificador explícito:
+                client_id
+                id
+
+            SE identificador encontrado:
+                CLIENT_ID_RESOLVIDO = identificador
+                QUALIDADE = OK
+
+            SENAO SE quantidade de recursos
+            corresponde à quantidade de IDs:
+                ASSOCIAR pela posição no lote
+                QUALIDADE = ID_POSITIONAL
+
+            SENAO:
+                CLIENT_ID_RESOLVIDO = NULO
+                QUALIDADE = ID_UNRESOLVED
+
+            ARMAZENAR:
+                CLIENT_ID_RESOLVIDO
+                QUALIDADE
+                DADOS_COMPLETOS_DO_CLIENTE
+
+    ----------------------------------------------
+    3.5 - AUTENTICACAO PARA CONSULTA DE USUARIOS
+    ----------------------------------------------
+
+    PROCURAR credencial específica para usuários
+    do tenant.
+
+    SE credencial específica existir:
+        UTILIZAR credencial de usuários.
+    SENAO:
+        UTILIZAR credencial principal.
+
+    REVOGAR sessão anterior do cliente PSFalcon,
+    quando existente.
+
+    SOLICITAR token para consulta de usuários.
+
+    SE autenticação falhar:
+        USUARIOS_DISPONIVEIS = FALSO
+        REGISTRAR erro TOKEN_USERS.
+    SENAO:
+        USUARIOS_DISPONIVEIS = VERDADEIRO
+
+    INICIALIZAR CACHE_USUARIOS vazio.
+
+
+==================================================
+ETAPA 4 - RESOLUCAO DE IDENTIDADES
+==================================================
+
+ROTINA RESOLVER_USUARIO(USER_ID):
+
+    SE USER_ID vazio:
+        RETORNAR:
+            STATUS = NO_ID
+            USUARIO = NULO
+
+    SE consulta de usuários indisponível:
+        RETORNAR:
+            STATUS = LOOKUP_UNAVAILABLE
+            USUARIO = NULO
+
+    SE USER_ID existir no CACHE_USUARIOS:
+        RETORNAR resultado armazenado.
+
+    TENTAR:
+        CONSULTAR usuário pelo ID.
+
+        SE usuário encontrado:
+            STATUS = RESOLVED
+            USUARIO = objeto retornado
+        SENAO:
+            STATUS = NOT_FOUND
+            USUARIO = NULO
+
+    EM CASO DE EXCECAO:
+        STATUS = ERROR
+        USUARIO = NULO
+
+    ARMAZENAR resultado no cache.
 
     RETORNAR:
-        ClientId = CREDENTIAL.UserName
-        ClientSecret = CREDENTIAL.Password descriptografada
-
---------------------------------------------------
-ETAPA 2 — AUTENTICAÇÃO
---------------------------------------------------
-
-FUNÇÃO AUTHENTICATE_API_CLIENT(TENANT):
-
-    CREDENTIAL = GET_CREDENTIAL(TENANT.ApiCredential)
-
-    TOKEN = CrowdStrike.OAuth2(
-        ClientId = CREDENTIAL.ClientId,
-        ClientSecret = CREDENTIAL.ClientSecret,
-        Cloud = região configurada
-    )
-
-    RETORNAR TOKEN
-
-
-FUNÇÃO AUTHENTICATE_USERS(TENANT):
-
-    CREDENTIAL = GET_CREDENTIAL(TENANT.UserCredential)
-
-    PSFalcon.RevokeToken()
-
-    PSFalcon.RequestToken(
-        ClientId = CREDENTIAL.ClientId,
-        ClientSecret = CREDENTIAL.ClientSecret
-    )
-
---------------------------------------------------
-ETAPA 3 — CACHE GLOBAL DE USUÁRIOS
---------------------------------------------------
-
-FUNÇÃO REGISTER_USER(USER, TENANT):
-
-    SE USER NÃO EXISTIR:
-        RETORNAR
-
-    USER_ID = USER.id
-
-    SE USER_ID ESTIVER VAZIO:
-        RETORNAR
-
-    NAME = CONCATENAR(
-        USER.first_name,
-        USER.last_name
-    )
-
-    EMAIL = USER.uid
-
-    SE USER_CACHE[USER_ID] NÃO EXISTIR:
-        USER_CACHE[USER_ID] = {
-            Id: USER_ID,
-            Name: NAME,
-            Email: EMAIL,
-            SourceTenant: TENANT
-        }
-
-    SENÃO:
-        SE USER_CACHE[USER_ID].Name ESTIVER VAZIO:
-            USER_CACHE[USER_ID].Name = NAME
-
-        SE USER_CACHE[USER_ID].Email ESTIVER VAZIO:
-            USER_CACHE[USER_ID].Email = EMAIL
-
---------------------------------------------------
-ETAPA 4 — CARREGAMENTO DOS USUÁRIOS
---------------------------------------------------
-
-PARA CADA TENANT EM TENANTS:
-
-    TENTAR:
-
-        AUTHENTICATE_USERS(TENANT)
-
-        USERS_IDS = PSFalcon.GetFalconUser(
-            All = TRUE
-        )
-
-        PARA CADA USER_ID EM USERS_IDS:
-
-            USER = PSFalcon.GetFalconUser(
-                Id = USER_ID
-            )
-
-            REGISTER_USER(USER, TENANT.Tenant)
-
-    EM CASO DE ERRO:
-
-        REGISTRAR EM TENANT_ERRORS:
-            Tenant
-            Operation = USER_COLLECTION
-            Error
-
-    FINALMENTE:
-
-        PSFalcon.RevokeToken()
-
-OBSERVAÇÃO:
-    Carregar primeiro PARENT.
-    Depois BSA e BDN.
-    Não sobrescrever dados válidos com campos vazios.
-    Não assumir que um usuário existe em todos os tenants.
-
---------------------------------------------------
-ETAPA 5 — COLETA DE API CLIENTS
---------------------------------------------------
-
-PARA CADA TENANT EM TENANTS:
-
-    TENTAR:
-
-        TOKEN = AUTHENTICATE_API_CLIENT(TENANT)
-
-        CLIENT_IDS = []
-
-        OFFSET = 0
-        LIMIT = 500
-
-        REPETIR:
-
-            RESPONSE = CrowdStrike.API(
-                GET /api-clients/queries/api-clients/v1,
-                Token = TOKEN,
-                Limit = LIMIT,
-                Offset = OFFSET
-            )
-
-            ADICIONAR RESPONSE.resources EM CLIENT_IDS
-
-            OFFSET = OFFSET + QUANTIDADE(RESPONSE.resources)
-
-        ATÉ:
-            RESPONSE.resources ESTIVER VAZIO
-            OU NÃO EXISTIR PRÓXIMA PÁGINA
-
-        PARA CADA LOTE DE ATÉ 500 IDS:
-
-            DETAILS = CrowdStrike.API(
-                GET /api-clients/entities/api-clients/v1,
-                Token = TOKEN,
-                Ids = IDS_DO_LOTE
-            )
-
-            PARA CADA CLIENT EM DETAILS.resources:
-
-                CLIENT_ID = IDENTIFICADOR_REAL_DO_CLIENT
-
-                CREATED_BY = CLIENT.created_by
-                UPDATED_BY = CLIENT.updated_by
-
-                ADICIONAR EM INVENTORY:
-
-                    Tenant = TENANT.Tenant
-                    APIClient = CLIENT.name
-                    ClientId = CLIENT_ID
-
-                    Status = CLIENT.active
-                    Tipo = CLIENT.type
-
-                    DataCriacao = CLIENT.created_timestamp
-                    UltimaAlteracao = CLIENT.last_modified
-
-                    IdCriador = CREATED_BY
-                    Criador = NULL
-                    EmailCriador = NULL
-                    StatusCriador = PENDING
-
-                    IdUltimoAlterador = UPDATED_BY
-                    UltimoAlterador = NULL
-                    EmailUltimoAlterador = NULL
-                    StatusUltimoAlterador = PENDING
-
-                    QuantidadeScopes = CONTAR(CLIENT.scopes)
-                    Scopes = JUNTAR(CLIENT.scopes, "; ")
-
-                PARA CADA SCOPE EM CLIENT.scopes:
-
-                    ADICIONAR EM SCOPES:
-                        Tenant = TENANT.Tenant
-                        APIClient = CLIENT.name
-                        ClientId = CLIENT_ID
-                        Scope = SCOPE
-
-    EM CASO DE ERRO:
-
-        REGISTRAR EM TENANT_ERRORS:
-            Tenant
-            Operation = API_CLIENT_COLLECTION
-            Error
-
-    FINALMENTE:
-
-        REVOGAR TOKEN QUANDO APLICÁVEL
-
---------------------------------------------------
-ETAPA 6 — RESOLUÇÃO GLOBAL DE IDENTIDADES
---------------------------------------------------
-
-PARA CADA CLIENT EM INVENTORY:
-
-    CRIADOR_ID = CLIENT.IdCriador
-    ALTERADOR_ID = CLIENT.IdUltimoAlterador
-
-    SE CRIADOR_ID EXISTIR EM USER_CACHE:
-
-        CLIENT.Criador = USER_CACHE[CRIADOR_ID].Name
-        CLIENT.EmailCriador = USER_CACHE[CRIADOR_ID].Email
-        CLIENT.StatusCriador = RESOLVED
-
-    SENÃO:
-
-        CLIENT.StatusCriador = USER_NOT_FOUND
-
-    SE ALTERADOR_ID EXISTIR EM USER_CACHE:
-
-        CLIENT.UltimoAlterador = USER_CACHE[ALTERADOR_ID].Name
-        CLIENT.EmailUltimoAlterador = USER_CACHE[ALTERADOR_ID].Email
-        CLIENT.StatusUltimoAlterador = RESOLVED
-
-    SENÃO:
-
-        CLIENT.StatusUltimoAlterador = USER_NOT_FOUND
-
---------------------------------------------------
-ETAPA 7 — SEGUNDA PASSAGEM PELO INVENTÁRIO
---------------------------------------------------
-
-OBJETIVO:
-    Aproveitar identidades já resolvidas em qualquer tenant
-    para preencher registros ainda pendentes.
-
-RESOLVED_USERS = {}
-
-PARA CADA CLIENT EM INVENTORY:
-
-    SE CLIENT.StatusCriador = RESOLVED:
-
-        RESOLVED_USERS[CLIENT.IdCriador] = {
-            Name: CLIENT.Criador
-            Email: CLIENT.EmailCriador
-        }
-
-    SE CLIENT.StatusUltimoAlterador = RESOLVED:
-
-        RESOLVED_USERS[CLIENT.IdUltimoAlterador] = {
-            Name: CLIENT.UltimoAlterador
-            Email: CLIENT.EmailUltimoAlterador
-        }
-
-PARA CADA CLIENT EM INVENTORY:
-
-    SE CLIENT.StatusCriador != RESOLVED:
-
-        SE CLIENT.IdCriador EXISTIR EM RESOLVED_USERS:
-
-            CLIENT.Criador = RESOLVED_USERS[CLIENT.IdCriador].Name
-            CLIENT.EmailCriador = RESOLVED_USERS[CLIENT.IdCriador].Email
-            CLIENT.StatusCriador = RESOLVED
-
-    SE CLIENT.StatusUltimoAlterador != RESOLVED:
-
-        SE CLIENT.IdUltimoAlterador EXISTIR EM RESOLVED_USERS:
-
-            CLIENT.UltimoAlterador = RESOLVED_USERS[CLIENT.IdUltimoAlterador].Name
-            CLIENT.EmailUltimoAlterador = RESOLVED_USERS[CLIENT.IdUltimoAlterador].Email
-            CLIENT.StatusUltimoAlterador = RESOLVED
-
---------------------------------------------------
-ETAPA 8 — INCONSISTÊNCIAS DE PROPRIETÁRIOS
---------------------------------------------------
-
-PARA CADA CLIENT EM INVENTORY:
-
-    SE CLIENT.StatusCriador != RESOLVED:
-
-        ADICIONAR EM OWNER_ISSUES:
-            Tenant = CLIENT.Tenant
-            APIClient = CLIENT.APIClient
-            Tipo = CRIADOR
-            UserId = CLIENT.IdCriador
-            Status = CLIENT.StatusCriador
-
-    SE CLIENT.StatusUltimoAlterador != RESOLVED:
-
-        ADICIONAR EM OWNER_ISSUES:
-            Tenant = CLIENT.Tenant
-            APIClient = CLIENT.APIClient
-            Tipo = ALTERADOR
-            UserId = CLIENT.IdUltimoAlterador
-            Status = CLIENT.StatusUltimoAlterador
-
---------------------------------------------------
-ETAPA 9 — RESUMO POR TENANT
---------------------------------------------------
-
-PARA CADA TENANT EM TENANTS:
-
-    DATA = FILTRAR INVENTORY POR TENANT
-
-    ADICIONAR EM SUMMARY:
+        STATUS
+        USUARIO
+
+
+==================================================
+ETAPA 5 - CONSTRUCAO DO INVENTARIO
+==================================================
+
+PARA CADA API CLIENT COLETADO:
+
+    OBTER:
+        Nome
+        Identificador
+        Estado ativo/inativo
+        Tipo
+        Data de criação
+        Data da última alteração
+        ID do criador
+        ID do último alterador
+        Lista de scopes
+
+    EXECUTAR:
+        CRIADOR = RESOLVER_USUARIO(ID_CRIADOR)
+        ALTERADOR = RESOLVER_USUARIO(ID_ALTERADOR)
+
+    SE CRIADOR resolvido:
+        EXTRAIR nome e sobrenome.
+        EXTRAIR UID/e-mail.
+    SENAO:
+        NOME_CRIADOR = NULO
+        EMAIL_CRIADOR = NULO
+
+    SE ALTERADOR resolvido:
+        EXTRAIR nome e sobrenome.
+        EXTRAIR UID/e-mail.
+    SENAO:
+        NOME_ALTERADOR = NULO
+        EMAIL_ALTERADOR = NULO
+
+    CONTAR scopes.
+
+    CONVERTER lista de scopes em texto
+    separado por ponto e vírgula.
+
+    ADICIONAR ao INVENTARIO_GLOBAL:
 
         Tenant
+        APIClient
+        ClientId
+        Status
+        Tipo
+        DataCriacao
+        UltimaAlteracao
+
+        IdCriador
+        Criador
+        EmailCriador
+        StatusCriador
+
+        IdUltimoAlterador
+        UltimoAlterador
+        EmailUltimoAlterador
+        StatusUltimoAlterador
+
+        QuantidadeScopes
+        Scopes
+
+        DataQualityStatus
+        CollectionTimestamp
+
+    INCREMENTAR TOTAL_COLETADO.
+
+
+==================================================
+ETAPA 6 - PENDENCIAS DE IDENTIDADE
+==================================================
+
+PARA CADA API CLIENT:
+
+    SE criador não resolvido:
+        ADICIONAR em PENDENCIAS_IDENTIDADE:
+            Tenant
+            APIClient
+            Tipo = CRIADOR
+            UserId
+            Motivo
+
+    SE último alterador não resolvido:
+        ADICIONAR em PENDENCIAS_IDENTIDADE:
+            Tenant
+            APIClient
+            Tipo = ALTERADOR
+            UserId
+            Motivo
+
+
+==================================================
+ETAPA 7 - INVENTARIO DE SCOPES
+==================================================
+
+PARA CADA API CLIENT:
+
+    PARA CADA SCOPE associado:
+
+        ADICIONAR em SCOPES_GLOBAIS:
+            Tenant
+            APIClient
+            ClientId
+            Scope
+
+    RESULTADO:
+        Uma linha por associação
+        API Client x Scope.
+
+
+==================================================
+ETAPA 8 - TRATAMENTO DE FALHAS
+==================================================
+
+SE ocorrer exceção durante a coleta:
+
+    RESULTADO = ERRO
+
+    ADICIONAR em ERROS_COLETA:
+        Tenant
+        Etapa
+        Mensagem do erro
+
+    EXIBIR aviso da etapa que falhou.
+
+AO FINAL DE CADA TENANT:
+
+    REVOGAR token PSFalcon, quando existente.
+
+    DESCARTAR referências locais:
+        Credenciais
+        Token
+        Cabeçalhos
+
+    ADICIONAR em STATUS_TENANTS:
+        Tenant
+        Resultado
+        EsperadoAPI
+        Coletados
+
+    PROSSEGUIR para o próximo tenant.
+
+
+==================================================
+ETAPA 9 - CONSOLIDACAO
+==================================================
+
+PARA CADA TENANT processado:
+
+    FILTRAR inventário global pelo tenant.
+
+    CALCULAR:
         TotalClients
         ActiveClients
         InactiveClients
-        TotalScopes
-        CreatorsResolved
-        CreatorsNotFound
-        ModifiersResolved
-        ModifiersNotFound
 
---------------------------------------------------
-ETAPA 10 — EXPORTAÇÃO XLSX
---------------------------------------------------
+    ASSOCIAR:
+        Tenant
+        Resultado
+        EsperadoAPI
 
-CRIAR OUTPUT
+    ADICIONAR linha ao SUMMARY.
 
-ABA Summary:
-    EXPORTAR SUMMARY
 
-ABA APIClients:
-    EXPORTAR INVENTORY
+==================================================
+ETAPA 10 - EXPORTACAO XLSX
+==================================================
 
-ABA Scopes:
-    EXPORTAR SCOPES
+SE arquivo de saída existir:
+    REMOVER arquivo anterior.
 
-ABA OwnerIssues:
-    EXPORTAR OWNER_ISSUES
+SE PENDENCIAS_IDENTIDADE estiver vazia:
+    ADICIONAR registro informativo.
 
-ABA Users:
-    EXPORTAR USER_CACHE
+SE ERROS_COLETA estiver vazio:
+    ADICIONAR registro informativo.
 
-ABA Errors:
-    EXPORTAR TENANT_ERRORS
+CRIAR arquivo XLSX.
 
-PARA TODAS AS ABAS:
-    Cabeçalho em negrito
-    AutoFilter
-    FreezeTopRow
-    AutoSize
+ABA 1 - Summary:
+    Tenant
+    Resultado
+    EsperadoAPI
+    TotalClients
+    ActiveClients
+    InactiveClients
+
+ABA 2 - APIClients:
+    Todos os campos do inventário detalhado.
+
+ABA 3 - Scopes:
+    Tenant
+    APIClient
+    ClientId
+    Scope
+
+ABA 4 - OwnerIssues:
+    Tenant
+    APIClient
+    Tipo
+    UserId
+    Motivo
+
+ABA 5 - CollectionErrors:
+    Tenant
+    Etapa
+    Erro
+
+APLICAR formatação:
+    Cabeçalhos destacados
+    Ajuste de largura
+    Filtros
+    Congelamento da primeira linha
+
+
+==================================================
+ETAPA 11 - RESULTADO
+==================================================
+
+EXIBIR:
+    Caminho do arquivo gerado
+    Quantidade de tenants
+    Quantidade total de API Clients
+
+ENCERRAR.
+
+
+==================================================
+CONTRATO DE OPERACAO
+==================================================
+
+PERMITIDO:
+    Autenticar
+    Consultar
+    Listar
+    Consolidar
+    Exportar
+
+PROIBIDO:
+    Criar API Clients
+    Alterar API Clients
+    Revogar credenciais de API Clients
+    Desativar API Clients
+    Modificar scopes
+    Alterar usuários
+
+OBSERVACAO:
+    Revogação de token de sessão do cliente
+    PSFalcon não equivale à revogação de
+    credenciais de API Clients.
+
+FIM DO ALGORITMO
 
 --------------------------------------------------
 ETAPA 11 — VALIDAÇÃO FINAL
